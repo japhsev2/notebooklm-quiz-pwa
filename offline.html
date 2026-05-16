@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Sin conexión · Cuestionarios</title>
+  <meta name="theme-color" content="#0f6cbf">
+  <style>
+    :root {
+      --bg: #f8f9fa;
+      --surface: #ffffff;
+      --border: #dee2e6;
+      --text: #1d2125;
+      --muted: #6a737b;
+      --accent: #0f6cbf;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(90vw, 32rem);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 1.25rem;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Aplicación sin conexión</h1>
+    <p>La aplicación principal no ha podido cargarse. Vuelva a abrirla cuando haya conexión para completar la caché local.</p>
+    <a href="./index.html">Volver a intentarlo</a>
+  </main>
+</body>
+</html>

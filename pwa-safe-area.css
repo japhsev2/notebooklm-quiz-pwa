@@ -1,0 +1,44 @@
+/* pwa-safe-area.css
+   Capa envolvente para iOS: respeta notch, Dynamic Island y borde inferior.
+   No modifica la lógica ni los estilos internos de la aplicación original.
+*/
+
+:root {
+  --pwa-safe-area-top: env(safe-area-inset-top, 0px);
+  --pwa-safe-area-right: env(safe-area-inset-right, 0px);
+  --pwa-safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --pwa-safe-area-left: env(safe-area-inset-left, 0px);
+}
+
+html {
+  min-height: 100%;
+  background: var(--bg, #f8f9fa);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: var(--pwa-safe-area-top);
+    padding-right: var(--pwa-safe-area-right);
+    padding-bottom: var(--pwa-safe-area-bottom);
+    padding-left: var(--pwa-safe-area-left);
+  }
+
+  .app-header {
+    top: var(--pwa-safe-area-top);
+  }
+
+  #quizArea .moodle-quiz-navigation {
+    top: calc(6.5rem + var(--pwa-safe-area-top));
+  }
+
+  @media (max-width: 980px) {
+    #quizArea .moodle-quiz-navigation {
+      top: auto;
+    }
+  }
+}
