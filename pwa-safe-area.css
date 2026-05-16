@@ -51,15 +51,24 @@ body {
   }
 }
 
-/* Ajuste v1.5: fondo exterior coherente al reducir zoom o al hacer overscroll. */
+/* Ajuste v1.6: fondo exterior coherente al reducir zoom o al hacer overscroll.
+   La clase pwa-dark-mode se sincroniza por JS porque body.dark-mode no propaga
+   sus variables CSS a <html> en todos los WebKit/iOS. */
 html,
 body {
-  background-color: var(--bg, #f8f9fa) !important;
+  background-color: #f8f9fa !important;
 }
 
-@supports selector(html:has(body.dark-mode)) {
-  html:has(body.dark-mode) {
-    background-color: #1d2125 !important;
-  }
+body.dark-mode,
+html.pwa-dark-mode,
+html.pwa-dark-mode body,
+html[data-pwa-theme="dark"],
+html[data-pwa-theme="dark"] body {
+  background-color: #1d2125 !important;
+}
+
+html:not(.pwa-dark-mode):not([data-pwa-theme="dark"]),
+html:not(.pwa-dark-mode):not([data-pwa-theme="dark"]) body:not(.dark-mode) {
+  background-color: #f8f9fa !important;
 }
 

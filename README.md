@@ -148,3 +148,14 @@ El HTML original contiene una importación de Google Fonts para Manrope. No se h
 - En escritorio, la pestaña del navegador no muestra icono visible: se fuerza un favicon vacío mediante `rel="icon" href="data:,"` y un `favicon.ico` transparente.
 - El fondo exterior al reducir zoom u overscroll se fuerza a la paleta de la página (`#f8f9fa` en modo claro y `#1d2125` en modo oscuro), evitando la aparición del azul del tema.
 - La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v4` para que los dispositivos recojan los nuevos recursos.
+
+
+## Versión 1.6
+
+Cambios de esta entrega:
+
+- Iconos renovados con las letras **CG** de “Generador de cuestionarios”.
+- Borde azul completo en todos los iconos, respetando la paleta Moodle/Boost usada por la aplicación.
+- Se mantiene el favicon invisible en escritorio para que la pestaña del navegador en PC no muestre icono.
+- Corrección reforzada del fondo exterior en modo oscuro cuando se reduce el zoom o aparece el área exterior del documento.
+- Caché PWA actualizada a `notebooklm-quiz-pwa-v5` para forzar la renovación en iPhone.

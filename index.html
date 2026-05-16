@@ -30,6 +30,28 @@
     });
   }
 </script>
+<script>
+  (function () {
+    function syncPwaThemeShell() {
+      var isDark = document.body && document.body.classList.contains('dark-mode');
+      document.documentElement.classList.toggle('pwa-dark-mode', !!isDark);
+      document.documentElement.setAttribute('data-pwa-theme', isDark ? 'dark' : 'light');
+      document.documentElement.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
+      if (document.body) document.body.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
+      var metas = document.querySelectorAll('meta[name="theme-color"]');
+      metas.forEach(function (meta) {
+        if (!meta.media) meta.setAttribute('content', isDark ? '#1d2125' : '#f8f9fa');
+      });
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      syncPwaThemeShell();
+      if (document.body) {
+        new MutationObserver(syncPwaThemeShell).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      }
+    });
+    window.addEventListener('pageshow', syncPwaThemeShell);
+  })();
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
