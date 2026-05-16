@@ -140,3 +140,10 @@ El HTML original contiene una importación de Google Fonts para Manrope. No se h
 - [ ] Al abrir desde el icono, la app se muestra en modo independiente.
 - [ ] El contenido no queda oculto por notch, Dynamic Island o borde inferior.
 - [ ] Tras una primera carga online, la app abre sin conexión.
+
+
+## Ajuste iOS de barra de estado
+
+Esta versión cambia `apple-mobile-web-app-status-bar-style` de `black-translucent` a `black` para evitar que iOS dibuje el contenido por debajo de la barra de estado cuando la PWA se abre desde el icono de la pantalla de inicio. iOS no permite ocultar por completo la barra de estado en una PWA; para ocultarla de verdad es necesaria una app iOS nativa.
+
+Tras subir estos archivos a GitHub Pages, elimine la app de la pantalla de inicio y añádala de nuevo desde Safari para que iOS lea los nuevos metadatos.
