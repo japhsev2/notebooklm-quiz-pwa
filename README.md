@@ -140,3 +140,12 @@ El HTML original contiene una importación de Google Fonts para Manrope. No se h
 - [ ] Al abrir desde el icono, la app se muestra en modo independiente.
 - [ ] El contenido no queda oculto por notch, Dynamic Island o borde inferior.
 - [ ] Tras una primera carga online, la app abre sin conexión.
+
+## Nota de versión 1.4: iconos y pestaña de escritorio
+
+- Se han renovado los iconos de instalación para iPhone y PWA.
+- Se han añadido tamaños Apple Touch Icon de 120, 152, 167 y 180 px.
+- En escritorio se fuerza un favicon vacío mediante `rel="icon" href="data:,"`, de modo que la pestaña del navegador no muestre icono.
+- El icono de pantalla de inicio del iPhone sigue procediendo de los `apple-touch-icon` y de los iconos del manifiesto.
+- La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v3` para que los dispositivos recojan los nuevos recursos.
+

@@ -1,17 +1,22 @@
 /* service-worker.js
    Caché local de la aplicación PWA. No altera la lógica del HTML original.
 */
-const CACHE_NAME = 'notebooklm-quiz-pwa-v2';
+const CACHE_NAME = 'notebooklm-quiz-pwa-v3';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.json',
   './pwa-safe-area.css',
   './offline.html',
+  './favicon.ico',
+  './icons/apple-touch-icon-120.png',
+  './icons/apple-touch-icon-152.png',
+  './icons/apple-touch-icon-167.png',
   './icons/apple-touch-icon-180.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
-  './icons/maskable-icon-512.png'
+  './icons/maskable-icon-512.png',
+  './icons/icon.svg'
 ];
 
 function toScopeUrl(path) {
