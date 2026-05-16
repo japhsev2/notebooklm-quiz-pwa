@@ -50,3 +50,16 @@ body {
     }
   }
 }
+
+/* Ajuste v1.5: fondo exterior coherente al reducir zoom o al hacer overscroll. */
+html,
+body {
+  background-color: var(--bg, #f8f9fa) !important;
+}
+
+@supports selector(html:has(body.dark-mode)) {
+  html:has(body.dark-mode) {
+    background-color: #1d2125 !important;
+  }
+}
+

@@ -141,11 +141,10 @@ El HTML original contiene una importación de Google Fonts para Manrope. No se h
 - [ ] El contenido no queda oculto por notch, Dynamic Island o borde inferior.
 - [ ] Tras una primera carga online, la app abre sin conexión.
 
-## Nota de versión 1.4: iconos y pestaña de escritorio
+## Nota de versión 1.5: iconos CG, pestaña sin icono y fondo exterior
 
-- Se han renovado los iconos de instalación para iPhone y PWA.
-- Se han añadido tamaños Apple Touch Icon de 120, 152, 167 y 180 px.
-- En escritorio se fuerza un favicon vacío mediante `rel="icon" href="data:,"`, de modo que la pestaña del navegador no muestre icono.
-- El icono de pantalla de inicio del iPhone sigue procediendo de los `apple-touch-icon` y de los iconos del manifiesto.
-- La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v3` para que los dispositivos recojan los nuevos recursos.
-
+- Los iconos de instalación se han rediseñado con un símbolo simple `CG`, por `Generador de cuestionarios`.
+- Se mantienen iconos para iPhone y PWA: 120, 152, 167, 180, 192 y 512 px, incluido icono maskable.
+- En escritorio, la pestaña del navegador no muestra icono visible: se fuerza un favicon vacío mediante `rel="icon" href="data:,"` y un `favicon.ico` transparente.
+- El fondo exterior al reducir zoom u overscroll se fuerza a la paleta de la página (`#f8f9fa` en modo claro y `#1d2125` en modo oscuro), evitando la aparición del azul del tema.
+- La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v4` para que los dispositivos recojan los nuevos recursos.
