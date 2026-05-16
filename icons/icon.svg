@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Icono CG del Generador de cuestionarios">
   <rect width="512" height="512" fill="#f8f9fa"/>
-  <rect x="26" y="26" width="460" height="460" rx="92" fill="#ffffff" stroke="#0f6cbf" stroke-width="16"/>
+  <rect x="12" y="12" width="488" height="488" rx="106" fill="#ffffff" stroke="#0f6cbf" stroke-width="24"/>
   <rect x="55" y="55" width="402" height="402" rx="66" fill="#e7f3ff" stroke="#b8d8f2" stroke-width="3"/>
   <text x="256" y="292" text-anchor="middle" font-family="DejaVu Sans, Manrope, system-ui, sans-serif" font-size="168" font-weight="700">
     <tspan fill="#1d2125">C</tspan><tspan fill="#0f6cbf">G</tspan>
