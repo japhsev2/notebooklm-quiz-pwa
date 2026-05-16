@@ -1,7 +1,12 @@
 /* pwa-safe-area.css
-   Ajuste iOS para PWA instalada desde Safari.
-   Nota: iOS no permite ocultar por completo la barra de estado en una PWA.
-   Este archivo evita que el contenido quede debajo de la barra de estado.
+   Capa envolvente para iOS: respeta notch, Dynamic Island y borde inferior.
+   No modifica la lógica ni los estilos internos de la aplicación original.
+
+   Ajuste iOS v2:
+   - El encabezado y la barra de pestañas dejan de ser sticky.
+   - Al hacer scroll, ambos bloques suben juntos y se ocultan bajo la barra de estado.
+   - Se mantiene el margen de seguridad superior/inferior para que la interfaz no nazca debajo
+     de la Dynamic Island ni del indicador inferior.
 */
 
 :root {
@@ -21,20 +26,22 @@ body {
   min-height: 100dvh;
 }
 
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
+@supports (padding-top: env(safe-area-inset-top)) {
   body {
-    padding-top: 0;
-    padding-right: var(--pwa-safe-area-right);
-    padding-bottom: var(--pwa-safe-area-bottom);
-    padding-left: var(--pwa-safe-area-left);
+    padding-top: var(--pwa-safe-area-top) !important;
+    padding-right: var(--pwa-safe-area-right) !important;
+    padding-bottom: var(--pwa-safe-area-bottom) !important;
+    padding-left: var(--pwa-safe-area-left) !important;
   }
 
-  .app-header {
-    top: 0;
+  .app-header,
+  .tab-bar {
+    position: static !important;
+    top: auto !important;
   }
 
   #quizArea .moodle-quiz-navigation {
-    top: 6.5rem;
+    top: calc(6.5rem + var(--pwa-safe-area-top));
   }
 
   @media (max-width: 980px) {
