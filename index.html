@@ -2068,6 +2068,724 @@ body:not(.dark-mode) .nav .btn-s:disabled {
   }
 }
 
+
+/* Ajuste v13 — Sin animación ni resaltado al pasar el cursor por las respuestas.
+   Aplica sólo a las opciones de respuesta de «Realizar cuestionario», tanto en claro como en oscuro. */
+#quizArea .quiz-option-btn,
+#quizArea .quiz-option-btn *,
+#quizArea .quiz-option-btn::before,
+#quizArea .quiz-option-btn::after,
+#quizArea .quiz-option-btn .option-letter,
+#quizArea .quiz-option-btn .option-letter::after {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn:hover,
+#quizArea .quiz-option-btn:hover:not(.disabled),
+#quizArea .quiz-option-btn:active,
+#quizArea .quiz-option-btn:focus,
+#quizArea .quiz-option-btn:focus-visible {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn.selected,
+#quizArea .quiz-option-btn.selected:hover,
+#quizArea .quiz-option-btn.selected:active,
+#quizArea .quiz-option-btn.selected:focus,
+#quizArea .quiz-option-btn.selected:focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn.correct-reveal,
+#quizArea .quiz-option-btn.correct-reveal:hover,
+#quizArea .quiz-option-btn.incorrect-reveal,
+#quizArea .quiz-option-btn.incorrect-reveal:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+/* Mismo ajuste para el cuestionario HTML independiente exportado. */
+.opt,
+.opt *,
+.opt::before,
+.opt::after,
+.opt .letter,
+.opt .letter::after {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.opt:hover,
+.opt:hover:not(.locked),
+.opt:active,
+.opt:focus,
+.opt:focus-visible,
+.opt.selected,
+.opt.selected:hover,
+.opt.selected:active,
+.opt.selected:focus,
+.opt.selected:focus-visible,
+.opt.correct-r,
+.opt.correct-r:hover,
+.opt.incorrect-r,
+.opt.incorrect-r:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+
+/* Ajuste v14 — punto del radio perfectamente centrado.
+   Conserva la ausencia de animaciones, pero restaura la traslación necesaria
+   para que el indicador interno quede en el centro geométrico del círculo. */
+#quizArea .quiz-option-btn .option-letter::after,
+#quizArea .quiz-option-btn.selected .option-letter::after,
+#quizArea .quiz-option-btn.correct-reveal .option-letter::after,
+#quizArea .quiz-option-btn.incorrect-reveal .option-letter::after,
+.opt .letter::after,
+.opt.selected .letter::after,
+.opt.correct-r .letter::after,
+.opt.incorrect-r .letter::after {
+  left: 50% !important;
+  top: 50% !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+#quizArea .quiz-option-btn .option-letter,
+.opt .letter {
+  position: relative !important;
+}
+
+
+/* Ajuste v15 — Retroalimentación fuera del cuadro celeste de la pregunta.
+   En modo estudio, Correcto/Incorrecto aparece debajo de la formulación, no dentro de ella. */
+#quizArea .moodle-feedback-outside {
+  margin-left: calc(7.2rem + 0.95rem);
+  margin-top: 0.85rem;
+}
+#quizArea .moodle-feedback-outside .quiz-feedback {
+  display: block;
+  margin-top: 0 !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-feedback-outside {
+    margin-left: 0 !important;
+    margin-top: 0.85rem !important;
+  }
+}
+
+
+
+/* Ajuste v16 -- Realizar cuestionario: mismo tamaño para enunciado y respuestas; en modo claro, texto negro puro. */
+#quizArea .quiz-question-text,
+#quizArea .quiz-option-btn .moodle-option-letter,
+#quizArea .quiz-option-btn .option-text {
+  font-size: 0.92rem !important;
+  line-height: 1.48 !important;
+}
+
+#quizArea .quiz-question-text {
+  font-weight: 400 !important;
+}
+
+body:not(.dark-mode) #quizArea .quiz-slide,
+body:not(.dark-mode) #quizArea .quiz-question-text,
+body:not(.dark-mode) #quizArea .quiz-option-btn,
+body:not(.dark-mode) #quizArea .quiz-option-btn .moodle-option-letter,
+body:not(.dark-mode) #quizArea .quiz-option-btn .option-text {
+  color: #000000 !important;
+}
+
+body:not(.dark-mode) #quizArea .quiz-option-btn.selected .moodle-option-letter,
+body:not(.dark-mode) #quizArea .quiz-option-btn.selected .option-text,
+body:not(.dark-mode) #quizArea .quiz-option-btn.correct-reveal .moodle-option-letter,
+body:not(.dark-mode) #quizArea .quiz-option-btn.correct-reveal .option-text,
+body:not(.dark-mode) #quizArea .quiz-option-btn.incorrect-reveal .moodle-option-letter,
+body:not(.dark-mode) #quizArea .quiz-option-btn.incorrect-reveal .option-text {
+  color: #000000 !important;
+}
+
+body.dark-mode #quizArea .quiz-question-text,
+body.dark-mode #quizArea .quiz-option-btn .moodle-option-letter,
+body.dark-mode #quizArea .quiz-option-btn .option-text {
+  font-size: 0.92rem !important;
+  line-height: 1.48 !important;
+}
+
+@media (max-width: 640px) {
+  #quizArea .quiz-question-text,
+  #quizArea .quiz-option-btn .moodle-option-letter,
+  #quizArea .quiz-option-btn .option-text {
+    font-size: 0.92rem !important;
+    line-height: 1.48 !important;
+  }
+}
+
+
+/* Ajuste v17 -- Realizar cuestionario: reduce ligeramente el espacio entre enunciado y respuestas. */
+#quizArea .quiz-question-text {
+  margin-bottom: 0.72rem !important;
+}
+#quizArea .quiz-options {
+  margin-top: 0 !important;
+}
+
+
+/* Ajuste v18 -- Realizar cuestionario: reduce una pizca mas el espacio entre enunciado y respuestas. */
+#quizArea .quiz-question-text {
+  margin-bottom: 0.56rem !important;
+}
+#quizArea .quiz-options {
+  margin-top: 0 !important;
+}
+
+
+
+
+/* Ajuste v19 -- Realizar cuestionario: espacio intermedio entre v17 (0.72rem) y v18 (0.56rem). */
+#quizArea .quiz-question-text {
+  margin-bottom: 0.64rem !important;
+}
+#quizArea .quiz-options {
+  margin-top: 0 !important;
+}
+
+
+/* Ajuste v20 -- Realizar cuestionario: reduce sólo una pizca el espacio vertical entre respuestas. */
+#quizArea .quiz-options {
+  gap: 0.16rem !important;
+}
+#quizArea .quiz-option-btn {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* Ajuste v21 — caja de estado con tamaño estable al guardar respuesta.
+   Reserva el espacio de «Respuesta guardada» desde el estado «Sin responder» para evitar saltos verticales. */
+#quizArea .moodle-question-info {
+  box-sizing: border-box !important;
+  width: 7.2rem !important;
+  min-width: 7.2rem !important;
+  max-width: 7.2rem !important;
+  min-height: 6.9rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  display: block !important;
+  min-height: 2.7em !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 0 !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    min-height: 1.35em !important;
+  }
+}
+
+
+
+/* Ajuste v22 — ancho lateral estable según «Respuesta guardada».
+   La cajetilla reserva también el ancho de la frase más larga aunque aún muestre «Sin responder». */
+#quizArea .moodle-attempt {
+  grid-template-columns: 8.8rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 8.8rem !important;
+  min-width: 8.8rem !important;
+  max-width: 8.8rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: normal !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+}
+
+
+/* Ajuste v23 — cajetilla lateral ceñida con precisión a «Respuesta guardada».
+   Mantiene una anchura fija mínima, suficiente para esa frase, sin ensanchar el bloque. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.95rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.95rem !important;
+  min-width: 7.95rem !important;
+  max-width: 7.95rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: nowrap !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+}
+
+
+/* Ajuste v24 — cajetilla lateral ultra ajustada y sin espacio vertical artificial.
+   Ancho fijado al texto «Respuesta guardada» y restauración del interlineado original. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.55rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.55rem !important;
+  min-width: 7.55rem !important;
+  max-width: 7.55rem !important;
+  min-height: 0 !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  min-height: 0 !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+}
+
+
+/* Ajuste v25 — cajetilla lateral ensanchada medio dígito.
+   Se conserva el ajuste ceñido de v24, pero se añade una reserva mínima
+   para que “Respuesta guardada” no quede visualmente pegado al borde. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.78rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.78rem !important;
+  min-width: 7.78rem !important;
+  max-width: 7.78rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: nowrap !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+}
+
+
+/* Ajuste v26 — cajetilla lateral ensanchada un tercio de dígito adicional.
+   Conserva el ajuste ceñido, añadiendo sólo una mínima reserva lateral más. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.93rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.93rem !important;
+  min-width: 7.93rem !important;
+  max-width: 7.93rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: nowrap !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+}
+
+
+
+/* Ajuste v27 — cajetilla lateral con anchura intermedia entre v25 y v26.
+   Valor medio: más holgado que v25, menos ancho que v26. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.855rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.855rem !important;
+  min-width: 7.855rem !important;
+  max-width: 7.855rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: nowrap !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+}
+
+
+/* Ajuste v28 — cajetilla a 7,845rem y retroalimentación igual de ancha que el cuadro celeste. */
+#quizArea .moodle-attempt {
+  grid-template-columns: 7.845rem minmax(0, 1fr) !important;
+}
+#quizArea .moodle-question-info {
+  width: 7.845rem !important;
+  min-width: 7.845rem !important;
+  max-width: 7.845rem !important;
+}
+#quizArea .moodle-question-info .moodle-info-status {
+  white-space: nowrap !important;
+}
+#quizArea .moodle-feedback-outside {
+  margin-left: calc(7.845rem + 0.95rem) !important;
+  margin-top: 0.85rem !important;
+  width: auto !important;
+  box-sizing: border-box !important;
+}
+#quizArea .moodle-feedback-outside .quiz-feedback {
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+@media (max-width: 767px) {
+  #quizArea .moodle-attempt {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-question-info {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+  }
+  #quizArea .moodle-question-info .moodle-info-status {
+    white-space: normal !important;
+  }
+  #quizArea .moodle-feedback-outside {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+
+
+/* Ajuste v29 — Botones azules más limpios y sólidos en modo oscuro.
+   Se aplica a todos los botones de acción primaria del generador y del HTML exportado. */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled) {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.42) !important;
+}
+body.dark-mode .btn-primary:disabled,
+body.dark-mode #quizArea .quiz-nav .btn-primary:disabled {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+/* Mismo azul primario para botones de acción en el cuestionario HTML independiente exportado. */
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border: 1px solid #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.42) !important;
+}
+body.dark-mode .btn-p:disabled {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+
+
+/* Ajuste v30 — Filtro sublime de revisión por resultado.
+   Al pulsar Correctas, Incorrectas o Sin responder, se muestran sólo esas preguntas. */
+.results-filter-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--sans);
+  padding: 0.45rem 0.75rem;
+  transition: none !important;
+}
+.results-filter-btn:hover,
+.results-filter-btn:focus,
+.results-filter-btn.active {
+  background: var(--surface-alt);
+  border-color: var(--border);
+  outline: 0;
+}
+.results-filter-btn.active {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+.results-filter-btn .results-stat-num,
+.results-filter-btn .results-stat-label {
+  pointer-events: none;
+}
+.review-filter-empty {
+  display: none;
+  padding: 1.1rem 1.25rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  background: var(--surface);
+}
+body.dark-mode .results-filter-btn:hover,
+body.dark-mode .results-filter-btn:focus,
+body.dark-mode .results-filter-btn.active {
+  background: #272c33;
+  border-color: #495057;
+}
+body.dark-mode .review-filter-empty {
+  background: #20262d;
+  border-color: #4a535d;
+  color: #d7dde3;
+}
+
+
+/* Ajuste v31 — El resultado total restaura la revisión completa */
+.results-overview-filter-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 0.5rem;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.65rem;
+  margin: 0 auto 1.1rem;
+  font-family: var(--sans);
+  text-align: center;
+}
+.results-overview-filter-btn:hover,
+.results-overview-filter-btn:focus,
+.results-overview-filter-btn.active {
+  outline: 0;
+  box-shadow: 0 0 0 0.14rem var(--accent);
+}
+.results-overview-filter-btn .results-score,
+.results-overview-filter-btn .results-label,
+.results-overview-filter-btn .score,
+.results-overview-filter-btn .score-label {
+  margin-bottom: 0;
+  pointer-events: none;
+}
+body.dark-mode .results-overview-filter-btn:hover,
+body.dark-mode .results-overview-filter-btn:focus,
+body.dark-mode .results-overview-filter-btn.active {
+  box-shadow: 0 0 0 0.14rem var(--accent);
+}
+
+
+
+/* Ajuste v32 — Resultado total sin borde persistente.
+   El indicador visual sólo aparece al pasar el cursor, no cuando está seleccionado. */
+.results-overview-filter-btn,
+.results-overview-filter-btn.active {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+.results-overview-filter-btn:hover {
+  box-shadow: 0 0 0 0.14rem var(--accent) !important;
+}
+.results-overview-filter-btn:focus:not(:hover) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+body.dark-mode .results-overview-filter-btn,
+body.dark-mode .results-overview-filter-btn.active {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+body.dark-mode .results-overview-filter-btn:hover {
+  box-shadow: 0 0 0 0.14rem var(--accent) !important;
+}
+body.dark-mode .results-overview-filter-btn:focus:not(:hover) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+
+/* Ajuste v33 — Revisión: estado propio para «Sin responder» y bandera visible. */
+.review-item {
+  position: relative;
+}
+.review-item.was-unanswered {
+  background: #fff8ea !important;
+  border: 1px solid #d8b15a !important;
+  border-left: 4px solid #f0ad4e !important;
+  color: #1d2125 !important;
+}
+.review-item.was-unanswered .review-q {
+  color: #1d2125 !important;
+}
+.review-item.was-unanswered .review-answer {
+  color: #5f6870 !important;
+}
+.review-item.was-unanswered .review-answer strong {
+  color: #2d7d46 !important;
+}
+.review-flag-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  color: #ca3120;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.review-item.is-flagged-review {
+  padding-right: 3rem !important;
+}
+body.dark-mode .review-item.was-unanswered {
+  background: #302716 !important;
+  border: 1px solid #b88a3a !important;
+  border-left: 4px solid #f0ad4e !important;
+  color: #f1f3f5 !important;
+}
+body.dark-mode .review-item.was-unanswered .review-q {
+  color: #f8f9fa !important;
+}
+body.dark-mode .review-item.was-unanswered .review-answer {
+  color: #d7dde3 !important;
+}
+body.dark-mode .review-item.was-unanswered .review-answer strong {
+  color: #87d68d !important;
+}
+body.dark-mode .review-flag-badge {
+  color: #ff6b5e;
+}
+
+
+/* Ajuste v34 — Revisión en modo claro: fondos suaves para correctas e incorrectas.
+   Las tarjetas ya no quedan blancas: el fondo acompaña al color del borde. */
+body:not(.dark-mode) .review-item.was-correct {
+  background: #f0f8f1 !important;
+  border: 1px solid #7fbd7d !important;
+  border-left: 4px solid #357a32 !important;
+  color: #1d2125 !important;
+}
+body:not(.dark-mode) .review-item.was-correct .review-q {
+  color: #102914 !important;
+}
+body:not(.dark-mode) .review-item.was-correct .review-answer {
+  color: #4f5f54 !important;
+}
+body:not(.dark-mode) .review-item.was-correct .review-answer strong {
+  color: #102914 !important;
+}
+body:not(.dark-mode) .review-item.was-incorrect {
+  background: #fff2f0 !important;
+  border: 1px solid #e47c73 !important;
+  border-left: 4px solid #ca3120 !important;
+  color: #1d2125 !important;
+}
+body:not(.dark-mode) .review-item.was-incorrect .review-q {
+  color: #2b1110 !important;
+}
+body:not(.dark-mode) .review-item.was-incorrect .review-answer {
+  color: #675251 !important;
+}
+body:not(.dark-mode) .review-item.was-incorrect .review-answer strong {
+  color: #2b1110 !important;
+}
+body:not(.dark-mode) .review-item.was-incorrect .review-answer strong[style*="var(--correct)"] {
+  color: #2d7d46 !important;
+}
+
 </style>
 </head>
 <body>
@@ -2981,19 +3699,19 @@ function renderQuizSlide() {
         <div class="moodle-attempt">
           <aside class="moodle-question-info" aria-label="Estado de la pregunta">
             <div class="moodle-info-qno">Pregunta ${index + 1}</div>
-            <div>${selected >= 0 ? 'Respuesta guardada' : 'Sin responder'}</div>
+            <div class="moodle-info-status">${selected >= 0 ? 'Respuesta guardada' : 'Sin responder'}</div>
             <div>Se puntúa como 0 sobre 1,00</div>
             <button class="moodle-flag-btn ${quizState.flags && quizState.flags[index] ? 'flagged' : ''}" type="button" onclick="toggleQuestionFlag()" aria-pressed="${quizState.flags && quizState.flags[index] ? 'true' : 'false'}">
-              ${quizState.flags && quizState.flags[index] ? '⚑ Pregunta marcada' : '⚐ Marcar pregunta'}
+              ${quizState.flags && quizState.flags[index] ? '⚑ Desmarcar' : '⚐ Marcar pregunta'}
             </button>
           </aside>
           <div class="quiz-slide">
             <div class="quiz-question-text">${escHtml(q.question)}</div>
             <div class="quiz-options">${optionsHtml}</div>
             ${clearChoiceHtml}
-            ${feedbackHtml}
           </div>
         </div>
+        ${feedbackHtml ? `<div class="moodle-feedback-outside">${feedbackHtml}</div>` : ''}
         <div class="quiz-nav">
           <button class="btn btn-secondary" onclick="prevSlide()" ${index === 0 ? 'disabled' : ''}>Página anterior</button>
           ${index === order.length - 1
@@ -3092,41 +3810,93 @@ function renderResults() {
   order.forEach((qi, i) => {
     const q = questions[qi];
     const ans = answers[i];
-    const isCorrect = ans === q.correctIndex;
+    const unanswered = ans === -1;
+    const isCorrect = !unanswered && ans === q.correctIndex;
     if (isCorrect) correct++;
-    reviews.push({ q, ans, isCorrect });
+    reviews.push({ q, ans, isCorrect, state: unanswered ? 'unanswered' : (isCorrect ? 'correct' : 'incorrect'), flagged: quizState.flags && quizState.flags[i] });
   });
 
   const total = order.length;
+  const incorrect = reviews.filter(r => r.state === 'incorrect').length;
+  const unanswered = reviews.filter(r => r.state === 'unanswered').length;
   const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
 
   updateProgress(total, total);
 
   area.innerHTML = `
     <div class="card results-card">
-      <div class="results-score">${pct}%</div>
-      <div class="results-label">${correct} de ${total} correctas</div>
-      <div class="results-breakdown">
-        <div class="results-stat"><div class="results-stat-num correct-c">${correct}</div><div class="results-stat-label">Correctas</div></div>
-        <div class="results-stat"><div class="results-stat-num incorrect-c">${total - correct}</div><div class="results-stat-label">Incorrectas</div></div>
-        <div class="results-stat"><div class="results-stat-num">${answers.filter(a => a === -1).length}</div><div class="results-stat-label">Sin responder</div></div>
+      <button type="button" class="results-overview-filter-btn active" onclick="showAllResultReview(this)" aria-pressed="true" aria-label="Mostrar revisión completa">
+        <div class="results-score">${pct}%</div>
+        <div class="results-label">${correct} de ${total} correctas</div>
+      </button>
+      <div class="results-breakdown" role="group" aria-label="Filtrar revisión por resultado">
+        <button type="button" class="results-stat results-filter-btn" onclick="filterResultReview('correct', this)" aria-pressed="false"><div class="results-stat-num correct-c">${correct}</div><div class="results-stat-label">Correctas</div></button>
+        <button type="button" class="results-stat results-filter-btn" onclick="filterResultReview('incorrect', this)" aria-pressed="false"><div class="results-stat-num incorrect-c">${incorrect}</div><div class="results-stat-label">Incorrectas</div></button>
+        <button type="button" class="results-stat results-filter-btn" onclick="filterResultReview('unanswered', this)" aria-pressed="false"><div class="results-stat-num">${unanswered}</div><div class="results-stat-label">Sin responder</div></button>
       </div>
       <div class="btn-row" style="justify-content:center;">
         <button class="btn btn-primary" onclick="resetQuiz()">Repetir cuestionario</button>
       </div>
     </div>
-    <h3 style="font-family:var(--serif);margin:24px 0 16px;">Revisión</h3>
-    ${reviews.map((r, i) => `
-      <div class="review-item ${r.isCorrect ? 'was-correct' : 'was-incorrect'}">
-        <div class="review-q">Q${i + 1}. ${escHtml(r.q.question)}</div>
-        <div class="review-answer">
-          ${r.ans >= 0 ? `Su respuesta: <strong>${escHtml(r.q.options[r.ans])}</strong>` : '<em>Sin responder</em>'}
-          ${!r.isCorrect ? `<br>Respuesta correcta: <strong style="color:var(--correct)">${escHtml(r.q.options[r.q.correctIndex])}</strong>` : ''}
-          ${r.q.explanation ? `<br><em style="color:var(--text-light)">${escHtml(r.q.explanation)}</em>` : ''}
+    <h3 id="reviewHeading" style="font-family:var(--serif);margin:24px 0 16px;">Revisión</h3>
+    <div id="reviewFilterEmpty" class="review-filter-empty">No hay preguntas en esta categoría.</div>
+    <div id="reviewList">
+      ${reviews.map((r, i) => `
+        <div class="review-item ${r.state === 'correct' ? 'was-correct' : (r.state === 'unanswered' ? 'was-unanswered' : 'was-incorrect')} ${r.flagged ? 'is-flagged-review' : ''}" data-review-state="${r.state}">
+          ${r.flagged ? '<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>' : ''}
+          <div class="review-q">Q${i + 1}. ${escHtml(r.q.question)}</div>
+          <div class="review-answer">
+            ${r.ans >= 0 ? `Su respuesta: <strong>${escHtml(r.q.options[r.ans])}</strong>` : '<em>Sin responder</em>'}
+            ${!r.isCorrect ? `<br>Respuesta correcta: <strong style="color:var(--correct)">${escHtml(r.q.options[r.q.correctIndex])}</strong>` : ''}
+            ${r.q.explanation ? `<br><em style="color:var(--text-light)">${escHtml(r.q.explanation)}</em>` : ''}
+          </div>
         </div>
-      </div>
-    `).join('')}
+      `).join('')}
+    </div>
   `;
+}
+
+function filterResultReview(kind, btn) {
+  const labels = { correct: 'Revisión — Correctas', incorrect: 'Revisión — Incorrectas', unanswered: 'Revisión — Sin responder' };
+  const items = Array.from(document.querySelectorAll('#reviewList .review-item'));
+  let visible = 0;
+  items.forEach(item => {
+    const show = item.dataset.reviewState === kind;
+    item.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.querySelectorAll('.results-filter-btn').forEach(button => {
+    const active = button === btn;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  document.querySelectorAll('.results-overview-filter-btn').forEach(button => {
+    button.classList.remove('active');
+    button.setAttribute('aria-pressed', 'false');
+  });
+  const heading = document.getElementById('reviewHeading');
+  if (heading) heading.textContent = labels[kind] || 'Revisión';
+  const empty = document.getElementById('reviewFilterEmpty');
+  if (empty) empty.style.display = visible === 0 ? 'block' : 'none';
+}
+
+function showAllResultReview(btn) {
+  document.querySelectorAll('#reviewList .review-item').forEach(item => {
+    item.style.display = '';
+  });
+  document.querySelectorAll('.results-filter-btn').forEach(button => {
+    button.classList.remove('active');
+    button.setAttribute('aria-pressed', 'false');
+  });
+  document.querySelectorAll('.results-overview-filter-btn').forEach(button => {
+    const active = button === btn;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', active ? 'true' : 'false');
+  });
+  const heading = document.getElementById('reviewHeading');
+  if (heading) heading.textContent = 'Revisión';
+  const empty = document.getElementById('reviewFilterEmpty');
+  if (empty) empty.style.display = 'none';
 }
 
 function updateProgress(current, total) {
@@ -3301,6 +4071,13 @@ function buildStandaloneHTML(meta, qJSON) {
   .results{text-align:center;padding:40px 20px}
   .score{font-family:var(--serif);font-size:3.2rem;font-weight:700;color:var(--accent)}
   .score-label{font-size:0.95rem;color:var(--text-muted);margin-bottom:20px}
+
+  .results-breakdown{display:flex;justify-content:center;gap:28px;margin:18px 0 24px;flex-wrap:wrap}
+  .results-stat{text-align:center}
+  .results-stat-num{font-size:1.35rem;font-weight:700;line-height:1.1}
+  .results-stat-label{font-size:.8rem;color:var(--text-muted)}
+  .results-stat-num.correct-c{color:var(--correct)}
+  .results-stat-num.incorrect-c{color:var(--incorrect)}
   .review-item{text-align:left;padding:16px;border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px}
   .review-item.ok{border-left:4px solid var(--correct)}
   .review-item.no{border-left:4px solid var(--incorrect)}
@@ -3308,6 +4085,8 @@ function buildStandaloneHTML(meta, qJSON) {
   .review-a{font-size:0.85rem;color:var(--text-muted)}
   .review-a strong{color:var(--text)}
   .info{font-size:0.85rem;color:var(--text-muted);text-align:center}
+  .feedback-outside{margin-top:.85rem}
+  .feedback-outside .feedback{display:block;margin-top:0!important}
 
   /* Moodle 5.1 / Boost palette override for exported standalone quiz */
   :root{
@@ -3485,6 +4264,416 @@ body:not(.dark-mode) .nav .btn-s:disabled {
   }
 }
 
+
+/* Ajuste v13 — Sin animación ni resaltado al pasar el cursor por las respuestas.
+   Aplica sólo a las opciones de respuesta de «Realizar cuestionario», tanto en claro como en oscuro. */
+#quizArea .quiz-option-btn,
+#quizArea .quiz-option-btn *,
+#quizArea .quiz-option-btn::before,
+#quizArea .quiz-option-btn::after,
+#quizArea .quiz-option-btn .option-letter,
+#quizArea .quiz-option-btn .option-letter::after {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn:hover,
+#quizArea .quiz-option-btn:hover:not(.disabled),
+#quizArea .quiz-option-btn:active,
+#quizArea .quiz-option-btn:focus,
+#quizArea .quiz-option-btn:focus-visible {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn.selected,
+#quizArea .quiz-option-btn.selected:hover,
+#quizArea .quiz-option-btn.selected:active,
+#quizArea .quiz-option-btn.selected:focus,
+#quizArea .quiz-option-btn.selected:focus-visible {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+#quizArea .quiz-option-btn.correct-reveal,
+#quizArea .quiz-option-btn.correct-reveal:hover,
+#quizArea .quiz-option-btn.incorrect-reveal,
+#quizArea .quiz-option-btn.incorrect-reveal:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+/* Mismo ajuste para el cuestionario HTML independiente exportado. */
+.opt,
+.opt *,
+.opt::before,
+.opt::after,
+.opt .letter,
+.opt .letter::after {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.opt:hover,
+.opt:hover:not(.locked),
+.opt:active,
+.opt:focus,
+.opt:focus-visible,
+.opt.selected,
+.opt.selected:hover,
+.opt.selected:active,
+.opt.selected:focus,
+.opt.selected:focus-visible,
+.opt.correct-r,
+.opt.correct-r:hover,
+.opt.incorrect-r,
+.opt.incorrect-r:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  transform: none !important;
+}
+
+
+/* Ajuste v14 — punto del radio perfectamente centrado.
+   Conserva la ausencia de animaciones, pero restaura la traslación necesaria
+   para que el indicador interno quede en el centro geométrico del círculo. */
+#quizArea .quiz-option-btn .option-letter::after,
+#quizArea .quiz-option-btn.selected .option-letter::after,
+#quizArea .quiz-option-btn.correct-reveal .option-letter::after,
+#quizArea .quiz-option-btn.incorrect-reveal .option-letter::after,
+.opt .letter::after,
+.opt.selected .letter::after,
+.opt.correct-r .letter::after,
+.opt.incorrect-r .letter::after {
+  left: 50% !important;
+  top: 50% !important;
+  margin: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+#quizArea .quiz-option-btn .option-letter,
+.opt .letter {
+  position: relative !important;
+}
+
+
+  /* Ajuste v16 -- mismo tamaño de enunciado y respuestas en HTML exportado; modo claro en negro puro */
+  .q-text,.opt .mletter,.opt .otext,.opt span:not(.letter){font-size:1rem!important;line-height:1.48!important}
+  body:not(.dark-mode) .q-text,body:not(.dark-mode) .opt,body:not(.dark-mode) .opt .mletter,body:not(.dark-mode) .opt .otext,body:not(.dark-mode) .opt span:not(.letter){color:#000!important}
+
+  /* Ajuste v17 -- espacio más corto entre enunciado y respuestas en HTML exportado */
+  .q-text{margin-bottom:.72rem!important}
+  .options{margin-top:0!important}
+
+  /* Ajuste v18 -- espacio una pizca mas corto entre enunciado y respuestas en HTML exportado */
+  .q-text{margin-bottom:.56rem!important}
+  .options{margin-top:0!important}
+
+
+  /* Ajuste v19 -- espacio intermedio entre v17 y v18 en HTML exportado */
+  .q-text{margin-bottom:.64rem!important}
+  .options{margin-top:0!important}
+
+
+
+
+  /* Ajuste v20 -- reduce sólo una pizca el espacio vertical entre respuestas en HTML exportado */
+  .options{gap:.26rem!important}
+  .opt{margin-top:0!important;margin-bottom:0!important}
+
+
+  /* Ajuste v21 — caja de estado estable también en HTML exportado */
+  .qinfo{box-sizing:border-box!important;width:7.2rem!important;min-width:7.2rem!important;max-width:7.2rem!important;min-height:6.9rem!important}
+  .qinfo .status{display:block!important;min-height:2.7em!important}
+  @media(max-width:767px){.qinfo{width:100%!important;min-width:0!important;max-width:none!important;min-height:0!important}.qinfo .status{min-height:1.35em!important}}
+
+
+
+  /* Ajuste v22 — ancho estable según «Respuesta guardada» también en HTML exportado */
+  .attempt{display:grid!important;grid-template-columns:8.8rem minmax(0,1fr)!important;gap:.95rem!important;align-items:start!important}
+  .qinfo{width:8.8rem!important;min-width:8.8rem!important;max-width:8.8rem!important}
+  .qinfo .status{white-space:normal!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}}
+
+
+  /* Ajuste v23 — cajetilla lateral ceñida a «Respuesta guardada» también en HTML exportado */
+  .attempt{grid-template-columns:7.95rem minmax(0,1fr)!important}
+  .qinfo{width:7.95rem!important;min-width:7.95rem!important;max-width:7.95rem!important}
+  .qinfo .status{white-space:nowrap!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}}
+
+
+  /* Ajuste v24 — exportación: cajetilla lateral ultra ajustada y sin espacio vertical artificial. */
+  .attempt{grid-template-columns:7.55rem minmax(0,1fr)!important}
+  .qinfo{width:7.55rem!important;min-width:7.55rem!important;max-width:7.55rem!important;min-height:0!important}
+  .qinfo .status{min-height:0!important;white-space:nowrap!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}}
+
+
+  /* Ajuste v25 — exportación: cajetilla medio dígito más ancha */
+  .attempt{grid-template-columns:7.78rem minmax(0,1fr)!important}
+  .qinfo{width:7.78rem!important;min-width:7.78rem!important;max-width:7.78rem!important}
+  .qinfo .status{white-space:nowrap!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}}
+
+  /* Ajuste v26 — exportación: cajetilla un tercio de dígito más ancha */
+  .attempt{grid-template-columns:7.93rem minmax(0,1fr)!important}
+  .qinfo{width:7.93rem!important;min-width:7.93rem!important;max-width:7.93rem!important}
+  .qinfo .status{white-space:nowrap!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}}
+
+
+
+  /* Ajuste v27 — exportación: cajetilla con anchura intermedia entre v25 y v26 */
+  .attempt{grid-template-columns:7.855rem minmax(0,1fr)!important}
+  .qinfo{width:7.855rem!important;min-width:7.855rem!important;max-width:7.855rem!important}
+  .qinfo .status{white-space:nowrap!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}}
+
+  /* Ajuste v28 — exportación: cajetilla a 7,845rem y feedback con la misma anchura que la pregunta. */
+  .attempt{grid-template-columns:7.845rem minmax(0,1fr)!important}
+  .qinfo{width:7.845rem!important;min-width:7.845rem!important;max-width:7.845rem!important}
+  .qinfo .status{white-space:nowrap!important}
+  .feedback-outside{margin-left:calc(7.845rem + .95rem)!important;margin-top:.85rem!important;width:auto!important;box-sizing:border-box!important}
+  .feedback-outside .feedback{display:block!important;margin-top:0!important;width:100%!important;box-sizing:border-box!important}
+  @media(max-width:767px){.attempt{grid-template-columns:1fr!important}.qinfo{width:100%!important;min-width:0!important;max-width:none!important}.qinfo .status{white-space:normal!important}.feedback-outside{margin-left:0!important;width:100%!important}}
+
+
+
+/* Ajuste v29 — Botones azules más limpios y sólidos en modo oscuro.
+   Se aplica a todos los botones de acción primaria del generador y del HTML exportado. */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled) {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.42) !important;
+}
+body.dark-mode .btn-primary:disabled,
+body.dark-mode #quizArea .quiz-nav .btn-primary:disabled {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+/* Mismo azul primario para botones de acción en el cuestionario HTML independiente exportado. */
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border: 1px solid #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.42) !important;
+}
+body.dark-mode .btn-p:disabled {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+
+/* Ajuste v30 — Filtro sublime de revisión por resultado.
+   Al pulsar Correctas, Incorrectas o Sin responder, se muestran sólo esas preguntas. */
+.results-filter-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--sans);
+  padding: 0.45rem 0.75rem;
+  transition: none !important;
+}
+.results-filter-btn:hover,
+.results-filter-btn:focus,
+.results-filter-btn.active {
+  background: var(--surface-alt);
+  border-color: var(--border);
+  outline: 0;
+}
+.results-filter-btn.active {
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+.results-filter-btn .results-stat-num,
+.results-filter-btn .results-stat-label {
+  pointer-events: none;
+}
+.review-filter-empty {
+  display: none;
+  padding: 1.1rem 1.25rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  background: var(--surface);
+}
+body.dark-mode .results-filter-btn:hover,
+body.dark-mode .results-filter-btn:focus,
+body.dark-mode .results-filter-btn.active {
+  background: #272c33;
+  border-color: #495057;
+}
+body.dark-mode .review-filter-empty {
+  background: #20262d;
+  border-color: #4a535d;
+  color: #d7dde3;
+}
+
+
+
+/* Ajuste v32 — Resultado total sin borde persistente.
+   El indicador visual sólo aparece al pasar el cursor, no cuando está seleccionado. */
+.results-overview-filter-btn,
+.results-overview-filter-btn.active {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+.results-overview-filter-btn:hover {
+  box-shadow: 0 0 0 0.14rem var(--accent) !important;
+}
+.results-overview-filter-btn:focus:not(:hover) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+body.dark-mode .results-overview-filter-btn,
+body.dark-mode .results-overview-filter-btn.active {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+body.dark-mode .results-overview-filter-btn:hover {
+  box-shadow: 0 0 0 0.14rem var(--accent) !important;
+}
+body.dark-mode .results-overview-filter-btn:focus:not(:hover) {
+  box-shadow: none !important;
+  outline: 0 !important;
+}
+
+
+/* Ajuste v33 — Revisión: estado propio para «Sin responder» y bandera visible. */
+.review-item {
+  position: relative;
+}
+.review-item.was-unanswered {
+  background: #fff8ea !important;
+  border: 1px solid #d8b15a !important;
+  border-left: 4px solid #f0ad4e !important;
+  color: #1d2125 !important;
+}
+.review-item.was-unanswered .review-q {
+  color: #1d2125 !important;
+}
+.review-item.was-unanswered .review-answer {
+  color: #5f6870 !important;
+}
+.review-item.was-unanswered .review-answer strong {
+  color: #2d7d46 !important;
+}
+.review-flag-badge {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  color: #ca3120;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.review-item.is-flagged-review {
+  padding-right: 3rem !important;
+}
+body.dark-mode .review-item.was-unanswered {
+  background: #302716 !important;
+  border: 1px solid #b88a3a !important;
+  border-left: 4px solid #f0ad4e !important;
+  color: #f1f3f5 !important;
+}
+body.dark-mode .review-item.was-unanswered .review-q {
+  color: #f8f9fa !important;
+}
+body.dark-mode .review-item.was-unanswered .review-answer {
+  color: #d7dde3 !important;
+}
+body.dark-mode .review-item.was-unanswered .review-answer strong {
+  color: #87d68d !important;
+}
+body.dark-mode .review-flag-badge {
+  color: #ff6b5e;
+}
+
+  /* Ajuste v33 — Revisión: Sin responder con estilo propio y bandera visible */
+  .review-item{position:relative}
+  .review-item.unanswered{background:#fff8ea!important;border:1px solid #d8b15a!important;border-left:4px solid #f0ad4e!important;color:#1d2125!important}
+  .review-item.unanswered .review-q{color:#1d2125!important}
+  .review-item.unanswered .review-a{color:#5f6870!important}
+  .review-item.unanswered .review-a strong{color:#2d7d46!important}
+  .review-flag-badge{position:absolute;top:.85rem;right:1rem;color:#ca3120;font-size:1.25rem;font-weight:700;line-height:1}
+  .review-item.is-flagged-review{padding-right:3rem!important}
+  body.dark-mode .review-item.unanswered{background:#302716!important;border:1px solid #b88a3a!important;border-left:4px solid #f0ad4e!important;color:#f1f3f5!important}
+  body.dark-mode .review-item.unanswered .review-q{color:#f8f9fa!important}
+  body.dark-mode .review-item.unanswered .review-a{color:#d7dde3!important}
+  body.dark-mode .review-item.unanswered .review-a strong{color:#87d68d!important}
+  body.dark-mode .review-flag-badge{color:#ff6b5e}
+
+
+
+  /* Ajuste v34 — Revisión exportada en modo claro: fondos suaves por estado */
+  body:not(.dark-mode) .review-item.ok{background:#f0f8f1!important;border:1px solid #7fbd7d!important;border-left:4px solid #357a32!important;color:#1d2125!important}
+  body:not(.dark-mode) .review-item.ok .review-q{color:#102914!important}
+  body:not(.dark-mode) .review-item.ok .review-a{color:#4f5f54!important}
+  body:not(.dark-mode) .review-item.ok .review-a strong{color:#102914!important}
+  body:not(.dark-mode) .review-item.no{background:#fff2f0!important;border:1px solid #e47c73!important;border-left:4px solid #ca3120!important;color:#1d2125!important}
+  body:not(.dark-mode) .review-item.no .review-q{color:#2b1110!important}
+  body:not(.dark-mode) .review-item.no .review-a{color:#675251!important}
+  body:not(.dark-mode) .review-item.no .review-a strong{color:#2b1110!important}
+  body:not(.dark-mode) .review-item.no .review-a strong[style*="var(--correct)"]{color:#2d7d46!important}
 </style>
 </head>
 <body>
@@ -3504,13 +4693,13 @@ body:not(.dark-mode) .nav .btn-s:disabled {
 <div class="quiz-container" id="qa"></div>
 <script>
 var Qs=${qJSON};
-var mode='test',idx=0,ans=[],order=[];
+var mode='test',idx=0,ans=[],order=[],flags=[];
 function setMode(m,el){mode=m;document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('active')});el.classList.add('active');restart()}
-function restart(){idx=0;ans=[];order=Qs.map(function(_,i){return i});if(document.getElementById('shuf').checked){for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t}}ans=new Array(order.length).fill(-1);render()}
+function restart(){idx=0;ans=[];order=Qs.map(function(_,i){return i});if(document.getElementById('shuf').checked){for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t}}ans=new Array(order.length).fill(-1);flags=new Array(order.length).fill(false);render()}
 function render(){
   if(idx>=order.length){showResults();return}
   var q=Qs[order[idx]],L='ABCDEF',sel=ans[idx],rev=window._rev||false;
-  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div>'+(sel>=0?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag" type="button">⚐ Marcar pregunta</button></aside><div class="slide"><div class="q-text">'+esc(q.question)+'</div><div class="options">';
+  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div class="status">'+(sel>=0?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag '+(flags[idx]?'flagged':'')+'" type="button" onclick="toggleFlag()">'+(flags[idx]?'⚑ Desmarcar':'⚐ Marcar pregunta')+'</button></aside><div class="slide"><div class="q-text">'+esc(q.question)+'</div><div class="options">';
   q.options.forEach(function(o,j){
     var c='opt';
     if(sel===j)c+=' selected';
@@ -3535,24 +4724,51 @@ function render(){
 }
 function pick(j){ans[idx]=j;if(mode==='study'){window._rev=true}render()}
 function clearChoice(){ans[idx]=-1;window._rev=false;render()}
+function toggleFlag(){if(!flags||flags.length!==order.length)flags=new Array(order.length).fill(false);flags[idx]=!flags[idx];render()}
 function next(){idx++;window._rev=false;render()}
 function prev(){if(idx>0){idx--;window._rev=false;render()}}
 function finish(){idx=order.length;showResults()}
 function showResults(){
-  var cor=0;order.forEach(function(qi,i){if(ans[i]===Qs[qi].correctIndex)cor++});
-  var t=order.length,pct=t?Math.round(cor/t*100):0;
-  var h='<div class="slide results"><div class="score">'+pct+'%</div><div class="score-label">'+cor+' de '+t+' correctas</div>';
-  h+='<button class="btn btn-p" onclick="restart()" style="margin-bottom:24px">Repetir cuestionario</button></div>';
-  h+='<h3 style="font-family:var(--serif);margin:20px 0 12px">Revisión</h3>';
+  var cor=0,inc=0,un=0,reviewData=[];
   order.forEach(function(qi,i){
-    var q=Qs[qi],a=ans[i],ok=a===q.correctIndex;
-    h+='<div class="review-item '+(ok?'ok':'no')+'"><div class="review-q">Q'+(i+1)+'. '+esc(q.question)+'</div><div class="review-a">';
+    var q=Qs[qi],a=ans[i],state=a<0?'unanswered':(a===q.correctIndex?'correct':'incorrect');
+    if(state==='correct')cor++;else if(state==='incorrect')inc++;else un++;
+    reviewData.push({q:q,a:a,state:state,ok:state==='correct',flagged:flags&&flags[i]});
+  });
+  var t=order.length,pct=t?Math.round(cor/t*100):0;
+  var h='<div class="slide results"><button type="button" class="results-overview-filter-btn active" onclick="showAllStandaloneReview(this)" aria-pressed="true" aria-label="Mostrar revisión completa"><div class="score">'+pct+'%</div><div class="score-label">'+cor+' de '+t+' correctas</div></button>';
+  h+='<div class="results-breakdown" role="group" aria-label="Filtrar revisión por resultado">';
+  h+='<button type="button" class="results-stat results-filter-btn" onclick="filterStandaloneReview(\'correct\',this)" aria-pressed="false"><div class="results-stat-num correct-c">'+cor+'</div><div class="results-stat-label">Correctas</div></button>';
+  h+='<button type="button" class="results-stat results-filter-btn" onclick="filterStandaloneReview(\'incorrect\',this)" aria-pressed="false"><div class="results-stat-num incorrect-c">'+inc+'</div><div class="results-stat-label">Incorrectas</div></button>';
+  h+='<button type="button" class="results-stat results-filter-btn" onclick="filterStandaloneReview(\'unanswered\',this)" aria-pressed="false"><div class="results-stat-num">'+un+'</div><div class="results-stat-label">Sin responder</div></button>';
+  h+='</div><button class="btn btn-p" onclick="restart()" style="margin-bottom:24px">Repetir cuestionario</button></div>';
+  h+='<h3 id="reviewHeading" style="font-family:var(--serif);margin:20px 0 12px">Revisión</h3><div id="reviewFilterEmpty" class="review-filter-empty">No hay preguntas en esta categoría.</div><div id="reviewList">';
+  reviewData.forEach(function(r,i){
+    var q=r.q,a=r.a,ok=r.ok;
+    h+='<div class="review-item '+(r.state==='correct'?'ok':(r.state==='unanswered'?'unanswered':'no'))+' '+(r.flagged?'is-flagged-review':'')+'" data-review-state="'+r.state+'">'+(r.flagged?'<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>':'')+'<div class="review-q">Q'+(i+1)+'. '+esc(q.question)+'</div><div class="review-a">';
     h+=a>=0?'Su respuesta: <strong>'+esc(q.options[a])+'</strong>':'<em>Sin responder</em>';
     if(!ok)h+='<br>Correcta: <strong style="color:var(--correct)">'+esc(q.options[q.correctIndex])+'</strong>';
     if(q.explanation)h+='<br><em style="color:#a89b88">'+esc(q.explanation)+'</em>';
     h+='</div></div>';
   });
+  h+='</div>';
   document.getElementById('qa').innerHTML=h;
+}
+function filterStandaloneReview(kind,btn){
+  var labels={correct:'Revisión — Correctas',incorrect:'Revisión — Incorrectas',unanswered:'Revisión — Sin responder'};
+  var items=Array.prototype.slice.call(document.querySelectorAll('#reviewList .review-item')),visible=0;
+  items.forEach(function(item){var show=item.getAttribute('data-review-state')===kind;item.style.display=show?'':'none';if(show)visible++});
+  document.querySelectorAll('.results-filter-btn').forEach(function(button){var active=button===btn;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active?'true':'false')});
+  document.querySelectorAll('.results-overview-filter-btn').forEach(function(button){button.classList.remove('active');button.setAttribute('aria-pressed','false')});
+  var heading=document.getElementById('reviewHeading');if(heading)heading.textContent=labels[kind]||'Revisión';
+  var empty=document.getElementById('reviewFilterEmpty');if(empty)empty.style.display=visible===0?'block':'none';
+}
+function showAllStandaloneReview(btn){
+  document.querySelectorAll('#reviewList .review-item').forEach(function(item){item.style.display=''}) ;
+  document.querySelectorAll('.results-filter-btn').forEach(function(button){button.classList.remove('active');button.setAttribute('aria-pressed','false')});
+  document.querySelectorAll('.results-overview-filter-btn').forEach(function(button){var active=button===btn;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active?'true':'false')});
+  var heading=document.getElementById('reviewHeading');if(heading)heading.textContent='Revisión';
+  var empty=document.getElementById('reviewFilterEmpty');if(empty)empty.style.display='none';
 }
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function applyTheme(t){var dark=t==='dark';document.body.classList.toggle('dark-mode',dark);var b=document.getElementById('themeBtn');if(b)b.textContent=dark?'Modo claro':'Modo oscuro';localStorage.setItem('standaloneQuizTheme',t)}

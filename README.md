@@ -2,6 +2,16 @@
 
 Aplicación web progresiva basada en el HTML original del generador de cuestionarios. El proyecto está preparado para publicarse directamente en GitHub Pages y para instalarse en iPhone desde Safari mediante **Añadir a pantalla de inicio**.
 
+## Procedencia y atribución
+
+Este trabajo procede de un fork del proyecto de GitHub `Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`:
+
+```text
+https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer
+```
+
+Sobre ese proyecto se han realizado modificaciones de interfaz, adaptación visual tipo Moodle 5.1 / Boost, empaquetado PWA para iPhone, iconografía propia y ajustes de instalación mediante GitHub Pages.
+
 ## Principio de conversión
 
 El archivo `index.html` conserva la aplicación original. Sólo se han añadido elementos envolventes de PWA en el `<head>`:
@@ -13,7 +23,7 @@ El archivo `index.html` conserva la aplicación original. Sólo se han añadido 
 - registro de `service-worker.js`;
 - ajuste del viewport con `viewport-fit=cover`.
 
-No se han modificado funciones, colores, textos, interacciones, cálculos, animaciones ni lógica de la aplicación.
+En esta integración no se han reescrito las funciones ni la lógica del nuevo HTML: se ha incorporado como `index.html` y sólo se han preservado las adiciones envolventes necesarias para la PWA.
 
 ## Estructura
 
@@ -159,3 +169,30 @@ Cambios de esta entrega:
 - Se mantiene el favicon invisible en escritorio para que la pestaña del navegador en PC no muestre icono.
 - Corrección reforzada del fondo exterior en modo oscuro cuando se reduce el zoom o aparece el área exterior del documento.
 - Caché PWA actualizada a `notebooklm-quiz-pwa-v5` para forzar la renovación en iPhone.
+
+## Versión 1.8
+
+Cambios de esta entrega:
+
+- Sustitución del `index.html` anterior por el nuevo HTML actualizado, conservando la envoltura PWA, iconos, manifiesto, hoja de áreas seguras, favicon invisible en PC y funcionamiento offline.
+- Incorporación documental de la procedencia del trabajo como fork modificado del proyecto `Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
+- Conservación de los cambios añadidos previamente en este paquete: instalación en iPhone, iconos CG con borde azul ancho, ausencia de favicon visible en PC, fondo exterior correcto en modo claro/oscuro y corrección del scroll bajo la barra de estado.
+- Actualización de la caché PWA a `notebooklm-quiz-pwa-v7` para forzar que iPhone y GitHub Pages recojan el nuevo HTML.
+
+Resumen funcional del nuevo HTML integrado:
+
+- Apariencia tipo Moodle 5.1 / Boost.
+- Preguntas de respuesta única con radios, letras `a.`, `b.`, `c.`, `d.` y sin animaciones de hover.
+- Cuadro celeste de formulación de pregunta.
+- Funciones “Quitar mi elección” y “Marcar / Desmarcar pregunta”.
+- Cajetilla lateral de estado de pregunta ajustada a 7,845rem.
+- Bloque de navegación por el cuestionario.
+- Eliminación de barra de progreso superior.
+- Botones con paleta final en modo claro y modo oscuro.
+- Retroalimentación inmediata fuera del cuadro celeste y con espacio estable.
+- Modo oscuro refinado.
+- Tipografía Manrope reforzada.
+- Adaptación móvil para iPhone.
+- Revisión final con filtros por correctas, incorrectas y sin responder.
+- Estados visuales diferenciados en la revisión, incluidas banderas.
+- Exportación HTML independiente con los mismos cambios principales.

@@ -1,0 +1,18 @@
+{
+  "source_html_sha256": "c5ff2fedc2d6e34ccb4df62b8198921cf4e39183a05075000109347a7c9ad31d",
+  "packaged_index_sha256": "b08f311ee24e8aeb37dc3c84a412c8184c9ce2f6d2de5ebbb909f9ef1e97ec3d",
+  "cache_name": "notebooklm-quiz-pwa-v7",
+  "pwa_manifest_link_present": true,
+  "apple_touch_icons_present": true,
+  "service_worker_registration_present": true,
+  "viewport_fit_cover_present": true,
+  "new_html_feature_markers": {
+    "moodle_5_1": true,
+    "clear_choice": true,
+    "question_flag": true,
+    "review_filters": true,
+    "unanswered_state": true,
+    "feedback_outside": true,
+    "exported_html_changes": true
+  }
+}
