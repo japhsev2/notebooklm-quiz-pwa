@@ -1,0 +1,21 @@
+{
+  "version": "1.9",
+  "base_package": "notebooklm-quiz-pwa-v18-html-v34-fork-tony-myers.zip",
+  "new_html_source": "index_moodle_51_quiz_navblock_v42_word_aiken_imagenes_multimedia_separacion_acciones.html",
+  "new_html_source_sha256": "8a2a0a7096af32f9382ae13c043573ec67cb0cf50f416fa9c27adf3c97d0ee5b",
+  "integrated_files_sha256": {
+    "index.html": "d3796934f72e12a20d31d21161d9164477539e537d6351f93955b15f0996b1ee",
+    "service-worker.js": "abf8f1e3b4908a10ee47367040bf72bffd7b9b2dd43bcfbf0beaffb5aea316db",
+    "README.md": "0b8055a72fe276790317fbbe2e94313a188df9feb954ae7164609939d9eb2082",
+    "manifest.json": "9ff3713f8cd6088ea26255e4deedf5619511c2f93de6176a1c8195488bac5d74",
+    "pwa-safe-area.css": "8f7993b7df7a76f43bb3d1ec7c01ecb7e78c04349e3ed304243a8486092daa14",
+    "offline.html": "468b02946613917a530adf8c45044924f329d1ee537c393f9097ab00c62071c1"
+  },
+  "changes": [
+    "Replaced previous index.html with new v42 HTML",
+    "Reapplied PWA/iOS head wrapper: manifest, apple touch icons, invisible desktop favicon, safe area CSS, service worker registration, viewport-fit=cover and theme shell sync",
+    "Bumped service worker cache to notebooklm-quiz-pwa-v8",
+    "Kept remaining PWA assets from v1.8 unchanged"
+  ],
+  "external_dependency_preserved_from_html": "https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"
+}

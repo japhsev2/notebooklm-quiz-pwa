@@ -52,6 +52,7 @@
     window.addEventListener('pageshow', syncPwaThemeShell);
   })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -2786,6 +2787,870 @@ body:not(.dark-mode) .review-item.was-incorrect .review-answer strong[style*="va
   color: #2d7d46 !important;
 }
 
+
+
+/* Ajuste v35 — Azul intermedio para botones principales en modo oscuro.
+   Valor situado entre el azul claro anterior a v29 (#6fb1f4) y el azul Moodle sólido de v29 (#0f6cbf). */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .btn-p {
+  background: #3f8fda !important;
+  border-color: #3f8fda !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #2f7fc8 !important;
+  border-color: #2f7fc8 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #256fb4 !important;
+  border-color: #256fb4 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .btn-p:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(63,143,218,0.42) !important;
+}
+body.dark-mode .btn-primary:disabled,
+body.dark-mode #quizArea .quiz-nav .btn-primary:disabled,
+body.dark-mode .btn-p:disabled {
+  background: #3f8fda !important;
+  border-color: #3f8fda !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+
+
+/* Ajuste v36 — Azul nocturno más atractivo para botones principales en modo oscuro.
+   Paleta v39: mismo azul Moodle que en modo claro; en hover y activo se oscurece progresivamente. */
+body.dark-mode {
+  --dark-button-blue: #0f6cbf;
+  --dark-button-blue-hover: #0c589c;
+  --dark-button-blue-active: #0a4b85;
+}
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode .export-card .btn-primary,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .results-card .btn-primary {
+  background: var(--dark-button-blue) !important;
+  border-color: var(--dark-button-blue) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover,
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover,
+body.dark-mode .results-card .btn-primary:hover {
+  background: var(--dark-button-blue-hover) !important;
+  border-color: var(--dark-button-blue-hover) !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active,
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active,
+body.dark-mode .results-card .btn-primary:active {
+  background: var(--dark-button-blue-active) !important;
+  border-color: var(--dark-button-blue-active) !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .results-card .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(31, 95, 143, 0.38) !important;
+}
+
+/* Mismo ajuste para el HTML independiente exportado. */
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-p:hover {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:active {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+
+
+/* Ajuste v40 — modo oscuro: los botones azules se OSCURECEN en hover y activo.
+   Normal se conserva en azul Moodle; hover y activo pasan a tonos claramente más oscuros. */
+body.dark-mode {
+  --dark-button-blue: #0f6cbf !important;
+  --dark-button-blue-hover: #0a4b85 !important;
+  --dark-button-blue-active: #07365f !important;
+}
+
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .results-card .btn-primary {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode .results-card .btn-primary:hover:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode .results-card .btn-primary:active:not(:disabled) {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .results-card .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.35) !important;
+}
+
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #ffffff !important;
+}
+
+
+
+/* Ajuste v41 — Modo oscuro: azul normal solicitado #0a4b85; hover/activo más oscuros. */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode .btn-p {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:hover,
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode .btn-p:hover {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:active,
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode .btn-p:active {
+  background: #052944 !important;
+  border-color: #052944 !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode .btn-p:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(10, 75, 133, 0.35) !important;
+}
+
+
+
+/* Ajuste v42 — FORZADO específico en «Realizar cuestionario»: botones primarios del modo oscuro.
+   Corrige la cascada anterior: el selector del área del cuestionario tiene ahora la máxima prioridad práctica. */
+body.dark-mode #panel-quiz .btn-primary,
+body.dark-mode #panel-quiz .quiz-nav .btn-primary,
+body.dark-mode #quizArea .btn-primary,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode #quizArea button.btn.btn-primary,
+body.dark-mode .results-card .btn-primary,
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode #panel-quiz .btn-primary:hover:not(:disabled),
+body.dark-mode #panel-quiz .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode #quizArea .btn-primary:hover:not(:disabled),
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode #quizArea button.btn.btn-primary:hover:not(:disabled),
+body.dark-mode .results-card .btn-primary:hover:not(:disabled),
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode #panel-quiz .btn-primary:active:not(:disabled),
+body.dark-mode #panel-quiz .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode #quizArea .btn-primary:active:not(:disabled),
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode #quizArea button.btn.btn-primary:active:not(:disabled),
+body.dark-mode .results-card .btn-primary:active:not(:disabled),
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active {
+  background: #052944 !important;
+  border-color: #052944 !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode #panel-quiz .btn-primary:focus-visible,
+body.dark-mode #quizArea .btn-primary:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(5, 41, 68, 0.42) !important;
+}
+
+/* Ajuste v44 — Importación Word/Aiken con imágenes en las preguntas. */
+.word-aiken-upload {
+  background: var(--surface-alt);
+  border: 1px dashed var(--border-focus);
+  border-radius: var(--radius);
+  margin-top: 12px;
+  padding: 14px 16px;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.word-aiken-upload.drag-over {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.18);
+}
+.word-aiken-upload.drag-invalid {
+  background: var(--incorrect-bg);
+  border-color: var(--incorrect);
+  box-shadow: 0 0 0 0.2rem rgba(202,49,32,0.16);
+}
+.word-aiken-upload input[type="file"] {
+  display: block;
+  margin-top: 8px;
+}
+.word-aiken-upload p {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 8px;
+}
+.word-aiken-drop-status {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.55rem;
+  justify-content: center;
+  line-height: 1.35;
+  margin-top: 10px;
+  min-height: 3.25rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.word-aiken-upload.drag-over .word-aiken-drop-status {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 600;
+}
+.word-aiken-upload.drag-invalid .word-aiken-drop-status {
+  border-color: var(--incorrect);
+  color: var(--incorrect);
+  font-weight: 600;
+}
+.word-aiken-drop-status strong {
+  color: var(--text);
+}
+body.dark-mode .word-aiken-drop-status {
+  background: var(--surface);
+}
+.question-images,
+.after-option-images,
+.question-tables,
+.after-option-tables,
+.question-rich-blocks,
+.after-option-rich-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 0.8rem;
+}
+.after-option-images,
+.after-option-tables,
+.after-option-rich-blocks {
+  margin-bottom: 0.35rem;
+}
+.question-image,
+.after-option-image {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  display: block;
+  height: auto;
+  max-height: 34rem;
+  max-width: min(100%, 820px);
+  object-fit: contain;
+}
+.q-text .question-images,
+.quiz-question-text .question-images,
+.review-q .question-images,
+.q-text .question-tables,
+.quiz-question-text .question-tables,
+.review-q .question-tables,
+.q-text .question-rich-blocks,
+.quiz-question-text .question-rich-blocks,
+.review-q .question-rich-blocks,
+.q-text .after-option-images,
+.quiz-question-text .after-option-images,
+.review-q .after-option-images,
+.q-text .after-option-tables,
+.quiz-question-text .after-option-tables,
+.review-q .after-option-tables,
+.q-text .after-option-rich-blocks,
+.quiz-question-text .after-option-rich-blocks,
+.review-q .after-option-rich-blocks {
+  margin-top: 0.55rem;
+}
+.editor-image-note {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin: 0.35rem 0 0.7rem;
+}
+body.dark-mode .question-image,
+body.dark-mode .after-option-image {
+  background: #fff;
+}
+
+
+/* Ajuste v46 — Multimedia Word/Aiken: enlaces, YouTube, JoVE, PDF, audio, vídeo y web. */
+.word-aiken-media-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  color: var(--text);
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.45;
+  max-width: min(100%, 820px);
+  overflow: hidden;
+}
+.word-aiken-media-card .media-card-header {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.65rem 0.8rem;
+}
+.word-aiken-media-card .media-card-icon {
+  background: var(--accent-light);
+  border-radius: 999px;
+  color: var(--accent);
+  flex: 0 0 auto;
+  font-size: 1rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  text-align: center;
+  width: 1.8rem;
+}
+.word-aiken-media-card .media-card-text {
+  min-width: 0;
+}
+.word-aiken-media-card .media-card-title {
+  color: var(--text);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+.word-aiken-media-card .media-card-kind {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
+.word-aiken-media-card a.media-card-link {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.word-aiken-media-card .media-embed {
+  background: #000;
+  border: 0;
+  display: block;
+  width: 100%;
+}
+.word-aiken-media-card iframe.media-embed {
+  aspect-ratio: 16 / 9;
+  min-height: 220px;
+}
+.word-aiken-media-card audio.media-embed {
+  background: transparent;
+  padding: 0 0.8rem 0.75rem;
+}
+.word-aiken-media-card video.media-embed {
+  max-height: 34rem;
+}
+.word-aiken-media-card .pdf-embed {
+  background: #fff;
+  height: min(70vh, 38rem);
+}
+body.dark-mode .word-aiken-media-card {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+
+/* Ajuste v53 — Multimedia robusta: miniaturas, visor seguro y apertura externa.
+   Los navegadores y muchas plataformas bloquean iframes externos mediante CSP/X-Frame-Options;
+   por eso se muestra siempre una tarjeta útil con miniatura/botón y sólo se intenta incrustar
+   cuando técnicamente es posible. */
+.word-aiken-media-card.media-youtube,
+.word-aiken-media-card.media-jove,
+.word-aiken-media-card.media-web,
+.word-aiken-media-card.media-pdf,
+.word-aiken-media-card.media-audio,
+.word-aiken-media-card.media-video {
+  background: #fff;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.word-aiken-media-card .media-card-header {
+  background: #fff;
+}
+.word-aiken-media-card .media-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0 0.8rem 0.8rem;
+}
+.word-aiken-media-card .media-action-btn {
+  align-items: center;
+  background: var(--accent-light);
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  color: var(--accent);
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 700;
+  gap: 0.35rem;
+  line-height: 1.2;
+  padding: 0.45rem 0.65rem;
+  text-decoration: none;
+}
+.word-aiken-media-card .media-action-btn:hover,
+.word-aiken-media-card .media-action-btn:focus {
+  border-color: var(--accent);
+  text-decoration: underline;
+}
+.word-aiken-media-card .media-thumbnail-link {
+  background: #111;
+  display: block;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.word-aiken-media-card .media-thumbnail-link img {
+  aspect-ratio: 16 / 9;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.96;
+  width: 100%;
+}
+.word-aiken-media-card .media-thumbnail-play {
+  align-items: center;
+  background: rgba(0,0,0,0.58);
+  border: 2px solid rgba(255,255,255,0.92);
+  border-radius: 999px;
+  color: #fff;
+  display: flex;
+  font-size: 1.6rem;
+  height: 4.2rem;
+  justify-content: center;
+  left: 50%;
+  line-height: 1;
+  padding-left: 0.15rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.2rem;
+}
+.word-aiken-media-card .media-preview-panel {
+  border-top: 1px solid var(--border);
+  padding: 0;
+}
+.word-aiken-media-card .media-preview-panel > summary {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 700;
+  list-style-position: inside;
+  padding: 0.65rem 0.8rem;
+}
+.word-aiken-media-card .media-preview-panel > summary:hover {
+  text-decoration: underline;
+}
+.word-aiken-media-card .media-fallback-note {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  padding: 0 0.8rem 0.75rem;
+}
+.word-aiken-media-card .media-webframe,
+.word-aiken-media-card .media-pdf-object {
+  background: #fff;
+  border: 0;
+  display: block;
+  height: min(72vh, 42rem);
+  width: 100%;
+}
+.word-aiken-media-card .media-pdf-object {
+  min-height: 30rem;
+}
+.word-aiken-media-card iframe.media-embed {
+  background: #111;
+  border: 0;
+  display: block;
+  width: 100%;
+}
+.word-aiken-media-card .media-embed-youtube {
+  aspect-ratio: 16 / 9;
+  min-height: 260px;
+}
+.word-aiken-media-card video.media-embed {
+  background: #111;
+  display: block;
+  max-height: 34rem;
+  width: 100%;
+}
+.word-aiken-media-card audio.media-embed {
+  background: transparent;
+  display: block;
+  padding: 0.2rem 0.8rem 0.8rem;
+  width: 100%;
+}
+body.dark-mode .word-aiken-media-card.media-youtube,
+body.dark-mode .word-aiken-media-card.media-jove,
+body.dark-mode .word-aiken-media-card.media-web,
+body.dark-mode .word-aiken-media-card.media-pdf,
+body.dark-mode .word-aiken-media-card.media-audio,
+body.dark-mode .word-aiken-media-card.media-video,
+body.dark-mode .word-aiken-media-card .media-card-header {
+  background: var(--surface);
+  border-color: var(--border);
+}
+body.dark-mode .word-aiken-media-card .media-fallback-note {
+  color: var(--text-muted);
+}
+@media (max-width: 640px) {
+  .word-aiken-media-card .media-thumbnail-play {
+    height: 3.35rem;
+    width: 3.35rem;
+    font-size: 1.25rem;
+  }
+  .word-aiken-media-card .media-webframe,
+  .word-aiken-media-card .media-pdf-object {
+    height: 65vh;
+    min-height: 22rem;
+  }
+}
+
+
+/* Ajuste v45 — Tablas Word en preguntas Aiken ampliadas. */
+.word-aiken-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.word-aiken-table {
+  background: #fff;
+  border-collapse: collapse;
+  color: #111;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  margin: 0.25rem 0;
+  max-width: 100%;
+  table-layout: auto;
+  width: auto;
+}
+.word-aiken-table td,
+.word-aiken-table th {
+  border: 1px solid #222;
+  padding: 0.45rem 0.55rem;
+  vertical-align: top;
+}
+.word-aiken-table p {
+  margin: 0 0 0.35rem;
+}
+.word-aiken-table p:last-child {
+  margin-bottom: 0;
+}
+.word-aiken-table ul,
+.word-aiken-table ol {
+  margin: 0.2rem 0 0.35rem 1.25rem;
+}
+.word-aiken-table img {
+  display: block;
+  height: auto;
+  max-height: 28rem;
+  max-width: min(100%, 780px);
+  object-fit: contain;
+}
+body.dark-mode .word-aiken-table {
+  background: #fff;
+}
+
+
+
+
+
+/* Ajuste v54 — Multimedia: botones de previsualización y apertura dentro de la misma cabecera.
+   El enlace queda a la izquierda y, a su derecha, los botones de vista previa/reproducción y apertura externa. */
+.word-aiken-media-card .media-card-header {
+  align-items: center !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.55rem !important;
+  padding: 0.65rem 0.8rem !important;
+}
+.word-aiken-media-card .media-card-text {
+  align-items: baseline !important;
+  display: flex !important;
+  flex: 1 1 18rem !important;
+  flex-wrap: wrap !important;
+  gap: 0.25rem 0.35rem !important;
+  min-width: 0 !important;
+}
+.word-aiken-media-card .media-card-kind {
+  display: inline-block !important;
+  margin-top: 0 !important;
+}
+.word-aiken-media-card .media-card-header .media-actions {
+  align-items: center !important;
+  display: flex !important;
+  flex: 0 0 auto !important;
+  flex-wrap: wrap !important;
+  gap: 0.75rem !important;
+  margin-left: auto !important;
+  padding: 0 !important;
+}
+.word-aiken-media-card .media-action-btn {
+  appearance: none !important;
+  cursor: pointer !important;
+  font-family: var(--sans) !important;
+  white-space: nowrap !important;
+}
+.word-aiken-media-card button.media-action-btn {
+  background: var(--accent-light) !important;
+}
+.word-aiken-media-card .media-preview-content {
+  border-top: 1px solid var(--border);
+  display: block;
+  padding: 0;
+}
+.word-aiken-media-card .media-preview-content[hidden] {
+  display: none !important;
+}
+.word-aiken-media-card .media-preview-content .media-fallback-note {
+  margin: 0;
+}
+body.dark-mode .word-aiken-media-card .media-card-header .media-actions .media-action-btn {
+  border-color: var(--border) !important;
+}
+@media (max-width: 720px) {
+  .word-aiken-media-card .media-card-header .media-actions {
+    flex: 1 1 100% !important;
+    margin-left: calc(1.8rem + 0.55rem) !important;
+  }
+}
+
+/* Ajuste v55 — Multimedia: la acción de previsualización vuelve a mostrarse como texto desplegable.
+   Se mantiene a la derecha del enlace y antes del botón de apertura externa, pero sin apariencia de botón. */
+.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle {
+  appearance: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--accent) !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  font-family: var(--sans) !important;
+  font-size: 0.86rem !important;
+  font-weight: 700 !important;
+  gap: 0.25rem !important;
+  line-height: 1.2 !important;
+  padding: 0 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:hover,
+.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:focus-visible {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  text-decoration: underline !important;
+}
+body.dark-mode .word-aiken-media-card .media-card-header .media-actions .media-preview-toggle {
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--accent) !important;
+}
+
+
+/* Ajuste v49 — Justificación/Reasoning/Explicación en modo estudio.
+   Estilo tipo recuadro Moodle: fondo crema, borde naranja y etiqueta en línea. */
+@keyframes moodleJustificationFadeIn {
+  from { opacity: 0; transform: translateY(-0.35rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#quizArea .moodle-justification-card {
+  animation: moodleJustificationFadeIn 0.22s ease-out both;
+  background: #fff4df;
+  border: 1.5px solid #f0ad4e;
+  border-radius: 0.85rem;
+  box-shadow: none;
+  color: #1d2125;
+  margin-top: 0.85rem;
+  padding: 1.25rem 1.55rem;
+}
+#quizArea .moodle-justification-body {
+  color: #1d2125;
+  font-family: var(--sans);
+  font-size: 0.92rem !important;
+  font-weight: 400;
+  line-height: 1.48 !important;
+  white-space: pre-wrap;
+}
+#quizArea .moodle-justification-label {
+  color: #1d2125;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+body.dark-mode #quizArea .moodle-justification-card {
+  background: #3b2a12;
+  border-color: #f0ad4e;
+  box-shadow: none;
+  color: #f8f9fa;
+}
+body.dark-mode #quizArea .moodle-justification-body,
+body.dark-mode #quizArea .moodle-justification-label {
+  color: #f8f9fa;
+}
+@media (max-width: 640px) {
+  #quizArea .moodle-justification-card {
+    border-radius: 0.7rem;
+    padding: 1rem 1.05rem;
+  }
+  #quizArea .moodle-justification-body {
+    font-size: 0.92rem !important;
+    line-height: 1.48 !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #quizArea .moodle-justification-card { animation: none !important; }
+}
+
+
+
+/* Ajuste v50 — Justificación con el mismo tamaño que el enunciado de la pregunta. */
+#quizArea .moodle-justification-body,
+#quizArea .moodle-justification-label {
+  font-size: 0.92rem !important;
+  line-height: 1.48 !important;
+}
+
+
+
+/* Ajuste v51 — Tamaños definitivos de la tarjeta de justificación.
+   - El texto justificativo conserva exactamente el tamaño del enunciado de la pregunta.
+   - La etiqueta JUSTIFICACIÓN/REASONING/EXPLICACIÓN/EXPLANATION se reduce dos unidades visuales. */
+#quizArea .moodle-justification-body {
+  font-size: 0.92rem !important;
+  line-height: 1.48 !important;
+}
+#quizArea .moodle-justification-label {
+  font-size: calc(0.92rem - 2px) !important;
+  line-height: 1.48 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: uppercase !important;
+  vertical-align: baseline !important;
+}
+@media (max-width: 640px) {
+  #quizArea .moodle-justification-body {
+    font-size: 0.92rem !important;
+    line-height: 1.48 !important;
+  }
+  #quizArea .moodle-justification-label {
+    font-size: calc(0.92rem - 2px) !important;
+    line-height: 1.48 !important;
+  }
+}
+
+
+
+/* Ajuste v52 — Justificación: aumento fino de media unidad.
+   - El texto justificativo aumenta 0,5 px respecto al tamaño anterior.
+   - La etiqueta mantiene la reducción previa de dos unidades visuales, pero también aumenta 0,5 px. */
+#quizArea .moodle-justification-body {
+  font-size: calc(0.92rem + 0.5px) !important;
+  line-height: 1.48 !important;
+}
+#quizArea .moodle-justification-label {
+  font-size: calc(0.92rem - 1.5px) !important;
+  line-height: 1.48 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: uppercase !important;
+  vertical-align: baseline !important;
+}
+@media (max-width: 640px) {
+  #quizArea .moodle-justification-body {
+    font-size: calc(0.92rem + 0.5px) !important;
+    line-height: 1.48 !important;
+  }
+  #quizArea .moodle-justification-label {
+    font-size: calc(0.92rem - 1.5px) !important;
+    line-height: 1.48 !important;
+  }
+}
+
+
+/* Ajuste v56 — Multimedia: una pizca más de separación entre el texto desplegable y el botón de apertura. */
+.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle + .media-action-btn {
+  margin-left: 0.15rem !important;
+}
+
 </style>
 </head>
 <body>
@@ -2837,11 +3702,18 @@ body:not(.dark-mode) .review-item.was-incorrect .review-answer strong[style*="va
           <option value="nlm">Pegado de NotebookLM</option>
           <option value="json">JSON (estructurado)</option>
           <option value="aiken">Formato Aiken</option>
+          <option value="docx-aiken">MS Word Aiken con imágenes</option>
           <option value="gift">Formato GIFT</option>
           <option value="text">Texto plano (véase la plantilla)</option>
         </select>
       </div>
       <textarea id="importData" placeholder="Pegue aquí el texto del cuestionario de NotebookLM (Ctrl+V). Se importará automáticamente al usar el formato de pegado de NotebookLM."></textarea>
+      <div id="wordAikenUpload" class="word-aiken-upload" style="display:none;">
+        <label for="wordAikenFile">Subir documento MS Word (.docx) en formato Aiken ampliado</label>
+        <input type="file" id="wordAikenFile" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        <div id="wordAikenDropStatus" class="word-aiken-drop-status">Arrastre aquí el archivo <strong>.docx</strong> o use «Elegir archivo».</div>
+        <p>Formato esperado: enunciado de la pregunta, imagen o imágenes, tablas insertadas en Word —con texto, viñetas e imágenes dentro de sus celdas— y enlaces o recursos multimedia —YouTube, JoVE, PDF, audio, vídeo, páginas web u otras plataformas—; opciones A. / B. / C. / D. o a) / b) / c) / d. —incluida la numeración automática de Word—; recursos opcionales después de las opciones y línea <strong>ANSWER: letra</strong> y, opcionalmente, una línea posterior <strong>Justificación:</strong>, <strong>Reasoning:</strong>, <strong>Explicación:</strong> o <strong>Explanation:</strong>. Separe cada pregunta con un espacio o salto de párrafo después de la línea ANSWER.</p>
+      </div>
       <div class="btn-row">
         <button class="btn btn-primary" onclick="importQuiz()">Importar</button>
         <button class="btn btn-secondary" onclick="showFormatHelp()">Ejemplos de formato</button>
@@ -2963,6 +3835,7 @@ body:not(.dark-mode) .review-item.was-incorrect .review-answer strong[style*="va
 // ═══════════════════════════════════════════════════════
 let questions = [];
 let quizState = { index: 0, answers: [], order: [], revealed: false, flags: [] };
+let wordAikenSelectedFile = null;
 
 // ═══════════════════════════════════════════════════════
 //  BOOKMARKLET
@@ -3062,16 +3935,17 @@ function switchTab(name) {
 // ═══════════════════════════════════════════════════════
 //  IMPORT / PARSING
 // ═══════════════════════════════════════════════════════
-function importQuiz() {
-  const raw = document.getElementById('importData').value.trim();
-  if (!raw) { showToast('No hay nada que importar'); return; }
+async function importQuiz() {
   const fmt = document.getElementById('importFormat').value;
+  const raw = document.getElementById('importData').value.trim();
+  if (fmt !== 'docx-aiken' && !raw) { showToast('No hay nada que importar'); return; }
   let parsed = [];
   try {
     switch (fmt) {
       case 'nlm': parsed = parseNotebookLMPaste(raw); break;
       case 'json': parsed = parseJSON(raw); break;
       case 'aiken': parsed = parseAiken(raw); break;
+      case 'docx-aiken': parsed = await parseWordAikenWithImages(); break;
       case 'gift': parsed = parseGIFT(raw); break;
       case 'text': parsed = parsePlainText(raw); break;
     }
@@ -3281,7 +4155,10 @@ function parseJSON(raw) {
                   (q.correct_index !== undefined) ? q.correct_index :
                   (q.correctAnswer !== undefined) ? (typeof q.correctAnswer === 'number' ? q.correctAnswer :
                     (q.options || []).indexOf(q.correctAnswer)) : 0,
-    explanation: q.explanation || q.feedback || q.rationale || ''
+    explanation: q.explanation || q.feedback || q.rationale || '',
+    explanationLabel: q.explanationLabel || q.explanation_label || q.feedbackLabel || '',
+    images: normalizeQuestionImages(q.images || q.questionImages || q.media || []),
+    afterOptionImages: normalizeQuestionImages(q.afterOptionImages || q.postOptionImages || q.imagesAfterOptions || q.afterImages || [])
   })).filter(q => q.question && q.options.length >= 2);
 }
 
@@ -3313,6 +4190,1011 @@ function parseAiken(raw) {
   }
   return result;
 }
+
+
+async function parseWordAikenWithImages() {
+  const input = document.getElementById('wordAikenFile');
+  const file = wordAikenSelectedFile || (input && input.files && input.files[0]);
+  if (!file) throw new Error('Seleccione primero un documento MS Word .docx o arrástrelo sobre la zona de subida');
+  if (!/\.docx$/i.test(file.name)) throw new Error('El archivo debe estar en formato .docx');
+  if (typeof mammoth === 'undefined') {
+    throw new Error('No se ha podido cargar el lector de Word. Compruebe la conexión o aloje mammoth.browser.min.js localmente junto al HTML.');
+  }
+
+  const arrayBuffer = await file.arrayBuffer();
+  const result = await mammoth.convertToHtml({ arrayBuffer }, {
+    convertImage: mammoth.images.imgElement(function(image) {
+      return image.read('base64').then(function(imageBuffer) {
+        return {
+          src: 'data:' + image.contentType + ';base64,' + imageBuffer,
+          alt: 'Imagen de la pregunta'
+        };
+      });
+    })
+  });
+
+  const parsed = parseAikenHtmlWithImages(result.value);
+  if (parsed.length === 0) {
+    throw new Error('No se han detectado preguntas Aiken válidas en el documento Word. Revise que existan opciones a), a., A), A. o numeración automática de Word, y una línea ANSWER: letra.');
+  }
+  return parsed;
+}
+
+function parseAikenHtmlWithImages(html) {
+  const doc = new DOMParser().parseFromString(html || '', 'text/html');
+  const entries = extractWordAikenEntries(doc.body);
+  const result = [];
+  let current = newAikenWordQuestion();
+  let pendingLetter = null;
+
+  function hasStarted(q) {
+    return !!(q.questionLines.length || q.images.length || q.tables.length || q.afterOptionImages.length || q.afterOptionTables.length || q.options.length || q.correctLetter);
+  }
+
+  function addWordBlocks(targetZone, images, tables, blocks) {
+    const safeImages = normalizeQuestionImages(images || []);
+    const safeTables = normalizeQuestionTables(tables || []);
+    let safeBlocks = normalizeWordRichBlocks(blocks || []);
+    if (!safeBlocks.length) {
+      safeBlocks = safeImages.map(img => ({ type: 'image', src: img.src, alt: img.alt }))
+        .concat(safeTables.map(html => ({ type: 'table', html })));
+    }
+    if (targetZone === 'after') {
+      current.afterOptionImages.push(...safeImages);
+      current.afterOptionTables.push(...safeTables);
+      current.afterOptionBlocks.push(...safeBlocks);
+    } else {
+      current.images.push(...safeImages);
+      current.tables.push(...safeTables);
+      current.questionBlocks.push(...safeBlocks);
+    }
+  }
+
+  function finalizeCurrent() {
+    if (!current.questionLines.length && !current.images.length && !current.tables.length && !current.afterOptionImages.length && !current.afterOptionTables.length) return;
+    if (current.options.length < 2) return;
+    const correctLetter = (current.correctLetter || '').toUpperCase();
+    const byLetter = current.options.findIndex(o => String(o.letter || '').toUpperCase() === correctLetter);
+    const fallbackIndex = correctLetter ? correctLetter.charCodeAt(0) - 65 : -1;
+    const correctIndex = byLetter >= 0 ? byLetter : fallbackIndex;
+    if (correctIndex < 0 || correctIndex >= current.options.length) return;
+
+    const cleanQuestion = cleanWordQuestionText(current.questionLines.join(' '));
+    if (!cleanQuestion && !current.images.length && !current.tables.length && !current.afterOptionImages.length && !current.afterOptionTables.length) return;
+
+    result.push({
+      question: cleanQuestion,
+      options: current.options.map(o => cleanWordAikenText(o.text)),
+      correctIndex,
+      explanation: current.explanation || '',
+      explanationLabel: current.explanationLabel || '',
+      images: normalizeQuestionImages(current.images),
+      tables: normalizeQuestionTables(current.tables),
+      questionBlocks: normalizeWordRichBlocks(current.questionBlocks),
+      afterOptionImages: normalizeQuestionImages(current.afterOptionImages),
+      afterOptionTables: normalizeQuestionTables(current.afterOptionTables),
+      afterOptionBlocks: normalizeWordRichBlocks(current.afterOptionBlocks)
+    });
+  }
+
+  function processEntry(entry, text, images, tables, blocks) {
+    const hasMedia = !!((images && images.length) || (tables && tables.length) || (blocks && blocks.length));
+    const answerMatch = text.match(/^ANSWER\s*[:：]\s*([A-J])\b\s*(.*)$/i);
+    if (answerMatch) {
+      current.correctLetter = answerMatch[1].toUpperCase();
+      const trailingExplanation = matchAikenExplanationLine(answerMatch[2] || '');
+      if (trailingExplanation) appendAikenExplanation(current, trailingExplanation.text, trailingExplanation.label);
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    const explanationMatch = matchAikenExplanationLine(text);
+    if (explanationMatch && current.correctLetter) {
+      appendAikenExplanation(current, explanationMatch.text, explanationMatch.label);
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    if (!text && hasMedia) {
+      if (current.options.length === 0 && !current.correctLetter) addWordBlocks('question', images, tables, blocks);
+      else addWordBlocks('after', images, tables, blocks);
+      return;
+    }
+
+    // Opciones escritas manualmente en Word o visibles tras la conversión:
+    // a) texto, A) texto, a. texto, A. texto. Se toleran tabuladores,
+    // espacios duros y, si el documento los conserva, flechas de tabulación.
+    const standaloneLetter = text.match(/^([A-J])\s*[.)]\s*$/i);
+    if (standaloneLetter) {
+      pendingLetter = standaloneLetter[1].toUpperCase();
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      return;
+    }
+
+    const optionMatch = text.match(/^([A-J])\s*[.)][\s\u00a0\t\u2192]*(.+)$/i);
+    if (optionMatch) {
+      current.options.push({ letter: optionMatch[1].toUpperCase(), text: optionMatch[2].trim() });
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    // Opciones con numeración automática de MS Word. Mammoth puede eliminar
+    // literalmente a), a., A) o A.; en ese caso la letra se reconstruye por la
+    // posición real de la opción dentro de la pregunta actualmente abierta.
+    const inferredListLetter = getWordNumberedOptionLetter(entry, current);
+    if (inferredListLetter && text && !current.correctLetter) {
+      current.options.push({ letter: inferredListLetter, text: text.trim() });
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    if (pendingLetter) {
+      current.options.push({ letter: pendingLetter, text: text });
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    if (current.options.length === 0 && !current.correctLetter) {
+      if (text) current.questionLines.push(text);
+      if (hasMedia) addWordBlocks('question', images, tables, blocks);
+      return;
+    }
+
+    if (hasMedia) addWordBlocks('after', images, tables, blocks);
+    if (text) {
+      const last = current.options[current.options.length - 1];
+      if (last && !/^ANSWER\s*[:：]/i.test(text)) last.text += ' ' + text;
+    }
+  }
+
+  for (const entry of entries) {
+    const text = cleanWordAikenText(entry.text || '');
+    const images = normalizeQuestionImages(entry.images || []);
+    const tables = normalizeQuestionTables(entry.tables || []);
+    const blocks = normalizeWordRichBlocks(entry.blocks || []);
+    const hasMedia = !!(images.length || tables.length || blocks.length);
+    if (!text && !hasMedia) continue;
+
+    // Tras ANSWER, una imagen sola pertenece a la pregunta que acaba de cerrarse.
+    // En cuanto aparece texto ordinario, se considera que empieza la pregunta
+    // siguiente. Esto corrige los casos 119-122 del documento de profesores,
+    // donde algunas imágenes van antes de las opciones y otras después de ANSWER.
+    if (current.correctLetter && !/^ANSWER\s*[:：]/i.test(text)) {
+      const explanationMatch = matchAikenExplanationLine(text);
+      const captionLike = images.length && /^(figura|imagen|image|figure)\b/i.test(text);
+      if (explanationMatch) {
+        processEntry(entry, text, images, tables, blocks);
+        continue;
+      }
+      if (current.collectingExplanation && text && !looksLikeWordAikenNewQuestion(text, entry) && !isWordAikenOptionText(text)) {
+        appendAikenExplanation(current, text, '');
+        if (hasMedia) addWordBlocks('after', images, tables, blocks);
+        continue;
+      }
+      if (!text || captionLike) {
+        if (hasMedia) addWordBlocks('after', images, tables, blocks);
+        continue;
+      }
+      finalizeCurrent();
+      current = newAikenWordQuestion();
+      pendingLetter = null;
+    }
+
+    processEntry(entry, text, images, tables, blocks);
+  }
+
+  finalizeCurrent();
+  return result;
+}
+
+function newAikenWordQuestion() {
+  return {
+    questionLines: [],
+    images: [],
+    tables: [],
+    questionBlocks: [],
+    afterOptionImages: [],
+    afterOptionTables: [],
+    afterOptionBlocks: [],
+    options: [],
+    correctLetter: '',
+    explanation: '',
+    explanationLabel: '',
+    collectingExplanation: false
+  };
+}
+
+function extractWordAikenEntries(root) {
+  const entries = [];
+  if (!root) return entries;
+
+  function tagName(node) {
+    return node && node.tagName ? node.tagName.toLowerCase() : '';
+  }
+
+  function isListElement(node) {
+    const tag = tagName(node);
+    return tag === 'ol' || tag === 'ul';
+  }
+
+  function isEntryBlock(node) {
+    const tag = tagName(node);
+    return /^(p|h1|h2|h3|h4|h5|h6|table)$/i.test(tag);
+  }
+
+  function getListStyleType(list) {
+    if (!list) return '';
+    const typeAttr = (list.getAttribute('type') || '').trim();
+    const styleAttr = (list.getAttribute('style') || '').trim();
+    const styleMatch = styleAttr.match(/list-style-type\s*:\s*([^;]+)/i);
+    return typeAttr || (styleMatch ? styleMatch[1].trim() : '');
+  }
+
+  function pushEntry(text, images, meta) {
+    meta = meta || {};
+    const cleanText = cleanWordAikenText(text || '');
+    const cleanImages = normalizeQuestionImages(images || []);
+    const cleanTables = normalizeQuestionTables(meta.tables || []);
+    const cleanBlocks = normalizeWordRichBlocks(meta.blocks || []);
+    if (!cleanText && cleanImages.length === 0 && cleanTables.length === 0 && cleanBlocks.length === 0) return;
+    entries.push(Object.assign({
+      text: cleanText,
+      images: cleanImages,
+      tables: cleanTables,
+      blocks: cleanBlocks,
+      isOrderedListItem: false,
+      isListItem: false,
+      listIndex: -1,
+      listDepth: 0,
+      listStyleType: ''
+    }, meta, { text: cleanText, images: cleanImages, tables: cleanTables, blocks: cleanBlocks }));
+  }
+
+  function collectContent(node, bucket) {
+    if (!node) return;
+    if (node.nodeType === 3) {
+      bucket.text += node.nodeValue || '';
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    const tag = tagName(node);
+    if (isListElement(node)) return;
+    if (tag === 'br') {
+      bucket.text += ' ';
+      return;
+    }
+    if (tag === 'table') {
+      const tableHtml = sanitizeWordTableHtml(node);
+      if (tableHtml) {
+        bucket.tables.push(tableHtml);
+        bucket.blocks.push({ type: 'table', html: tableHtml });
+      }
+      return;
+    }
+    if (tag === 'img') {
+      const src = node.getAttribute('src') || '';
+      if (isSafeImageSrc(src)) {
+        const img = { src, alt: node.getAttribute('alt') || ('Imagen de la pregunta ' + (bucket.images.length + 1)) };
+        bucket.images.push(img);
+        bucket.blocks.push({ type: 'image', src: img.src, alt: img.alt });
+      }
+      return;
+    }
+    Array.from(node.childNodes || []).forEach(child => collectContent(child, bucket));
+    if (isEntryBlock(node) || tag === 'div') bucket.text += ' ';
+  }
+
+  function contentFromNodes(nodes) {
+    const bucket = { text: '', images: [], tables: [], blocks: [] };
+    Array.from(nodes || []).forEach(node => collectContent(node, bucket));
+    return bucket;
+  }
+
+  function processNode(node, depth) {
+    if (!node) return;
+    if (node.nodeType === 3) {
+      const cleanText = cleanWordAikenText(node.nodeValue || '');
+      if (cleanText) pushEntry(cleanText, [], { listDepth: depth || 0 });
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    const tag = tagName(node);
+    if (isListElement(node)) {
+      processList(node, depth || 0);
+      return;
+    }
+    if (isEntryBlock(node)) {
+      const content = contentFromNodes([node]);
+      pushEntry(content.text, content.images, { listDepth: depth || 0, tables: content.tables, blocks: content.blocks });
+      return;
+    }
+    if (tag === 'img') {
+      const content = contentFromNodes([node]);
+      pushEntry(content.text, content.images, { listDepth: depth || 0, tables: content.tables, blocks: content.blocks });
+      return;
+    }
+    Array.from(node.childNodes || []).forEach(child => processNode(child, depth || 0));
+  }
+
+  function processList(list, depth) {
+    const items = Array.from(list.children || []).filter(child => tagName(child) === 'li');
+    const listStyleType = getListStyleType(list);
+    items.forEach((li, index) => processListItem(li, list, index, depth, listStyleType));
+  }
+
+  function processListItem(li, list, index, depth, listStyleType) {
+    const children = Array.from(li.childNodes || []);
+    let preNodes = [];
+    let seenNestedList = false;
+
+    function flushPreNodes() {
+      if (!preNodes.length) return;
+      const content = contentFromNodes(preNodes);
+      pushEntry(content.text, content.images, {
+        tables: content.tables,
+        blocks: content.blocks,
+        isListItem: true,
+        isOrderedListItem: tagName(list) === 'ol',
+        listIndex: index,
+        listDepth: depth || 0,
+        listStyleType: listStyleType || ''
+      });
+      preNodes = [];
+    }
+
+    children.forEach(child => {
+      if (child.nodeType === 1 && isListElement(child)) {
+        flushPreNodes();
+        seenNestedList = true;
+        processList(child, (depth || 0) + 1);
+        return;
+      }
+      if (!seenNestedList) {
+        preNodes.push(child);
+      } else {
+        processNode(child, depth || 0);
+      }
+    });
+    flushPreNodes();
+  }
+
+  Array.from(root.childNodes || []).forEach(child => processNode(child, 0));
+
+  if (entries.length === 0) {
+    const lines = (root.textContent || '').split(/\n+/).map(line => cleanWordAikenText(line)).filter(Boolean);
+    return lines.map(text => ({ text, images: [], isOrderedListItem: false, isListItem: false, listIndex: -1, listDepth: 0, listStyleType: '' }));
+  }
+  return entries;
+}
+
+function getWordNumberedOptionLetter(entry, current) {
+  if (!entry || !entry.isListItem) return '';
+  if (!current || !(current.questionLines.length || current.images.length || current.tables.length || current.options.length)) return '';
+  const idx = current.options.length;
+  if (idx < 0 || idx > 25) return '';
+  return String.fromCharCode(65 + idx);
+}
+
+function cleanWordAikenText(text) {
+  return String(text || '')
+    .replace(/[\u00a0\u2007\u202f]/g, ' ')
+    .replace(/[\u200b\u200c\u200d\ufeff]/g, '')
+    .replace(/[\t\r\n]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function cleanWordQuestionText(text) {
+  return cleanWordAikenText(text)
+    .replace(/^\s*\d{1,4}\s*[.)]?\s+(?=[A-ZÁÉÍÓÚÜÑ¿])/i, '')
+    .trim();
+}
+
+function matchAikenExplanationLine(text) {
+  const clean = cleanWordAikenText(text || '');
+  const match = clean.match(/^(Justificaci[oó]n|Justificacion|Reasoning|Explicaci[oó]n|Explicacion|Explanation)\s*[:：]\s*(.*)$/i);
+  if (!match) return null;
+  const rawLabel = match[1] || 'Explicación';
+  let label = rawLabel;
+  if (/^justificacion$/i.test(rawLabel)) label = 'Justificación';
+  if (/^explicacion$/i.test(rawLabel)) label = 'Explicación';
+  return { label, text: cleanWordAikenText(match[2] || '') };
+}
+
+function appendAikenExplanation(current, text, label) {
+  if (!current) return;
+  const clean = cleanWordAikenText(text || '');
+  if (label && !current.explanationLabel) current.explanationLabel = label;
+  if (clean) current.explanation = current.explanation ? (current.explanation + ' ' + clean) : clean;
+  current.collectingExplanation = !clean;
+}
+
+function isWordAikenOptionText(text) {
+  return /^([A-J])\s*[.)][\s\u00a0\t\u2192]*(.+)$/i.test(cleanWordAikenText(text || '')) || /^([A-J])\s*[.)]\s*$/i.test(cleanWordAikenText(text || ''));
+}
+
+function looksLikeWordAikenNewQuestion(text, entry) {
+  const clean = cleanWordAikenText(text || '');
+  if (!clean) return false;
+  if (/^\d{1,4}\s*[.)]?\s+/.test(clean)) return true;
+  if (/^pregunta\s+\d{1,4}\b/i.test(clean)) return true;
+  if (entry && entry.isOrderedListItem && entry.listDepth === 0 && !isWordAikenOptionText(clean)) return true;
+  return false;
+}
+
+function normalizeQuestionImages(images) {
+  if (!Array.isArray(images)) return [];
+  return images.map((img, i) => {
+    if (typeof img === 'string') return { src: img, alt: 'Imagen de la pregunta ' + (i + 1) };
+    return { src: img.src || '', alt: img.alt || ('Imagen de la pregunta ' + (i + 1)) };
+  }).filter(img => isSafeImageSrc(img.src));
+}
+
+function normalizeQuestionTables(tables) {
+  if (!Array.isArray(tables)) return [];
+  return tables.map(table => sanitizeWordTableHtml(table)).filter(Boolean);
+}
+
+function normalizeWordRichBlocks(blocks) {
+  if (!Array.isArray(blocks)) return [];
+  const normalized = [];
+  blocks.forEach((block, i) => {
+    if (!block) return;
+    if (block.type === 'image') {
+      const img = normalizeQuestionImages([block])[0];
+      if (img) normalized.push({ type: 'image', src: img.src, alt: img.alt || ('Imagen de la pregunta ' + (i + 1)) });
+      return;
+    }
+    if (block.type === 'table') {
+      const table = sanitizeWordTableHtml(block.html || block.table || '');
+      if (table) normalized.push({ type: 'table', html: table });
+    }
+  });
+  return normalized;
+}
+
+function sanitizeWordTableHtml(tableInput) {
+  let tableNode = null;
+  if (!tableInput) return '';
+  if (typeof tableInput === 'string') {
+    const parsed = new DOMParser().parseFromString(tableInput, 'text/html');
+    tableNode = parsed.querySelector('table');
+  } else if (tableInput.nodeType === 1 && String(tableInput.tagName || '').toLowerCase() === 'table') {
+    tableNode = tableInput;
+  }
+  if (!tableNode) return '';
+
+  const allowed = new Set(['table','thead','tbody','tfoot','tr','td','th','p','br','ul','ol','li','strong','b','em','i','u','sub','sup','span','div','img']);
+  function cleanNode(node) {
+    if (node.nodeType === 3) return document.createTextNode(node.nodeValue || '');
+    if (node.nodeType !== 1) return document.createTextNode('');
+    const tag = String(node.tagName || '').toLowerCase();
+    if (!allowed.has(tag)) {
+      const frag = document.createDocumentFragment();
+      Array.from(node.childNodes || []).forEach(child => frag.appendChild(cleanNode(child)));
+      return frag;
+    }
+    const outTag = tag === 'div' ? 'p' : tag;
+    const out = document.createElement(outTag);
+    if (outTag === 'table') {
+      out.className = 'word-aiken-table';
+      out.setAttribute('border', '1');
+      out.setAttribute('cellpadding', '4');
+      out.setAttribute('cellspacing', '0');
+      out.setAttribute('style', 'border-collapse:collapse;max-width:100%;width:auto;');
+    }
+    if (outTag === 'td' || outTag === 'th') {
+      out.setAttribute('style', 'border:1px solid #222;padding:6px;vertical-align:top;');
+      const colspan = parseInt(node.getAttribute('colspan') || '', 10);
+      const rowspan = parseInt(node.getAttribute('rowspan') || '', 10);
+      if (colspan > 1 && colspan <= 20) out.setAttribute('colspan', String(colspan));
+      if (rowspan > 1 && rowspan <= 200) out.setAttribute('rowspan', String(rowspan));
+    }
+    if (outTag === 'ol' || outTag === 'ul') {
+      const type = (node.getAttribute('type') || '').replace(/[^A-Za-z1Ii]/g, '').slice(0, 2);
+      if (type) out.setAttribute('type', type);
+    }
+    if (outTag === 'img') {
+      const src = node.getAttribute('src') || '';
+      if (!isSafeImageSrc(src)) return document.createTextNode('');
+      out.setAttribute('src', src);
+      out.setAttribute('alt', node.getAttribute('alt') || 'Imagen incluida en tabla');
+      out.setAttribute('style', 'max-width:100%;height:auto;');
+      return out;
+    }
+    Array.from(node.childNodes || []).forEach(child => out.appendChild(cleanNode(child)));
+    return out;
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.appendChild(cleanNode(tableNode));
+  const table = wrapper.querySelector('table');
+  if (!table || !cleanWordAikenText(table.textContent || '') && table.querySelectorAll('img').length === 0) return '';
+  return wrapper.innerHTML;
+}
+
+function isSafeImageSrc(src) {
+  return /^data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,/i.test(src || '');
+}
+
+
+function normalizeWordRichBlocks(blocks) {
+  if (!Array.isArray(blocks)) return [];
+  const normalized = [];
+  blocks.forEach((block, i) => {
+    if (!block) return;
+    if (block.type === 'image') {
+      const img = normalizeQuestionImages([block])[0];
+      if (img) normalized.push({ type: 'image', src: img.src, alt: img.alt || ('Imagen de la pregunta ' + (i + 1)) });
+      return;
+    }
+    if (block.type === 'table') {
+      const table = sanitizeWordTableHtml(block.html || block.table || '');
+      if (table) normalized.push({ type: 'table', html: table });
+      return;
+    }
+    if (block.type === 'media' || block.type === 'link') {
+      const media = normalizeWordMediaBlock(block);
+      if (media) normalized.push(media);
+    }
+  });
+  return normalized;
+}
+
+function normalizeWordMediaBlock(block) {
+  if (!block) return null;
+  const rawUrl = block.url || block.href || block.src || '';
+  const url = normalizeExternalMediaUrl(rawUrl);
+  if (!url || !isSafeExternalMediaUrl(url)) return null;
+  const info = classifyWordMediaUrl(url, block.kind || block.provider || block.type);
+  const label = cleanWordAikenText(block.label || block.title || block.text || info.label || url) || info.label || url;
+  const embedUrl = info.embedUrl || '';
+  return {
+    type: 'media',
+    url,
+    label,
+    kind: info.kind,
+    provider: info.provider,
+    icon: info.icon,
+    embedUrl: embedUrl && isSafeExternalMediaUrl(embedUrl) ? embedUrl : '',
+    thumbnailUrl: info.thumbnailUrl || '',
+    previewUrl: info.previewUrl || ''
+  };
+}
+
+function normalizeExternalMediaUrl(url) {
+  url = String(url || '').trim().replace(/[\u200b\u200c\u200d\ufeff]/g, '');
+  if (!url) return '';
+  url = url.replace(/^<|>$/g, '').replace(/[),.;:]+$/g, '');
+  if (/^www\./i.test(url)) url = 'https://' + url;
+  return url;
+}
+
+function isSafeExternalMediaUrl(url) {
+  try {
+    const u = new URL(url, window.location.href);
+    return u.protocol === 'https:' || u.protocol === 'http:';
+  } catch (e) {
+    return false;
+  }
+}
+
+function classifyWordMediaUrl(url, preferredKind) {
+  const fallback = { kind: 'web', provider: 'Web', label: 'Página web', icon: '🔗', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  let u;
+  try { u = new URL(url, window.location.href); } catch (e) { return fallback; }
+  const host = u.hostname.replace(/^www\./i, '').toLowerCase();
+  const path = u.pathname.toLowerCase();
+  const extMatch = path.match(/\.([a-z0-9]{2,5})(?:$|[?#])/i);
+  const ext = extMatch ? extMatch[1].toLowerCase() : '';
+  const yt = getYouTubeMediaInfo(u);
+  if (yt) return yt;
+  if (host.includes('jove.com')) return { kind: 'jove', provider: 'JoVE', label: 'Vídeo o recurso de JoVE', icon: '🎬', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (ext === 'pdf') return { kind: 'pdf', provider: 'PDF', label: 'Documento PDF', icon: '📄', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (/^(mp3|m4a|aac|wav|ogg|oga|flac)$/.test(ext)) return { kind: 'audio', provider: 'Audio', label: 'Audio', icon: '🎧', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (/^(mp4|webm|ogv|m4v)$/.test(ext)) return { kind: 'video', provider: 'Vídeo', label: 'Vídeo', icon: '🎞️', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (ext === 'mov') return { kind: 'video', provider: 'Vídeo MOV', label: 'Vídeo MOV', icon: '🎞️', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (preferredKind && /audio/i.test(preferredKind)) return { kind: 'audio', provider: 'Audio', label: 'Audio', icon: '🎧', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  if (preferredKind && /video/i.test(preferredKind)) return { kind: 'video', provider: 'Vídeo', label: 'Vídeo', icon: '🎞️', embedUrl: url, previewUrl: url, thumbnailUrl: '' };
+  return fallback;
+}
+
+function getYouTubeMediaInfo(u) {
+  const host = u.hostname.replace(/^www\./i, '').toLowerCase();
+  let id = '';
+  const parts = u.pathname.split('/').filter(Boolean);
+  if (host === 'youtu.be') {
+    id = parts[0] || '';
+  } else if (host.endsWith('youtube.com') || host.endsWith('youtube-nocookie.com')) {
+    if (u.pathname === '/watch') id = u.searchParams.get('v') || '';
+    else if (parts[0] === 'embed' || parts[0] === 'shorts' || parts[0] === 'live') id = parts[1] || '';
+  }
+  id = String(id || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 32);
+  if (!id) return null;
+  const origin = (window.location && /^https?:$/i.test(window.location.protocol)) ? ('&origin=' + encodeURIComponent(window.location.origin)) : '';
+  return {
+    kind: 'youtube',
+    provider: 'YouTube',
+    label: 'Vídeo de YouTube',
+    icon: '▶️',
+    embedUrl: 'https://www.youtube.com/embed/' + id + '?rel=0&modestbranding=1&playsinline=1' + origin,
+    previewUrl: u.href,
+    thumbnailUrl: 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'
+  };
+}
+
+function getYouTubeEmbedUrl(u) {
+  const info = getYouTubeMediaInfo(u);
+  return info ? info.embedUrl : '';
+}
+
+function extractMediaBlocksFromText(text) {
+  const blocks = [];
+  const raw = String(text || '');
+  const urlRe = /(?:https?:\/\/|www\.)[^\s<>()"']+/ig;
+  let m;
+  while ((m = urlRe.exec(raw))) {
+    const url = normalizeExternalMediaUrl(m[0]);
+    const media = normalizeWordMediaBlock({ url, label: url });
+    if (media && !blocks.some(b => b.url === media.url)) blocks.push(media);
+  }
+  return blocks;
+}
+
+function removeBareUrlsFromText(text) {
+  return cleanWordAikenText(String(text || '').replace(/(?:https?:\/\/|www\.)[^\s<>()"']+/ig, ' '));
+}
+
+function isMediaOnlyText(text, blocks) {
+  const cleaned = cleanWordAikenText(text || '');
+  if (!cleaned || !(blocks && blocks.length)) return !cleaned;
+  const stripped = removeBareUrlsFromText(cleaned);
+  if (!stripped) return true;
+  const labels = blocks.map(b => cleanWordAikenText(b.label || b.url || '')).filter(Boolean);
+  return labels.length > 0 && labels.some(label => cleanWordAikenText(label) === cleaned);
+}
+
+function toggleWordMediaPreview(btn) {
+  const card = btn && btn.closest ? btn.closest('.word-aiken-media-card') : null;
+  const panel = card ? card.querySelector('.media-preview-content') : null;
+  if (!panel) return;
+  const willOpen = panel.hasAttribute('hidden');
+  panel.toggleAttribute('hidden', !willOpen);
+  btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  const label = btn.getAttribute('data-label') || btn.textContent.replace(/^[▸▾]\s*/, '');
+  btn.textContent = (willOpen ? '▾ ' : '▸ ') + label;
+}
+
+function renderWordMediaBlock(block) {
+  const media = normalizeWordMediaBlock(block);
+  if (!media) return '';
+  const title = escHtml(media.label || media.url);
+  const kind = escHtml(media.provider || media.kind || 'Recurso multimedia');
+  const url = escAttr(media.url);
+  const openText = media.kind === 'pdf' ? 'Abrir PDF' : (media.kind === 'web' ? 'Abrir página' : 'Abrir recurso');
+  let previewAction = '';
+  let embed = '';
+
+  function makePreview(label, html) {
+    previewAction = `<button type="button" class="media-action-btn media-preview-toggle" data-label="${escAttr(label)}" aria-expanded="false" onclick="toggleWordMediaPreview(this)">▸ ${escHtml(label)}</button>`;
+    embed = `<div class="media-preview-content" hidden>${html}</div>`;
+  }
+
+  if (media.kind === 'youtube') {
+    const thumb = media.thumbnailUrl ? `<a class="media-thumbnail-link media-youtube-thumb" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="Abrir vídeo en YouTube"><img src="${escAttr(media.thumbnailUrl)}" alt="${escAttr(media.label || 'Miniatura de YouTube')}" loading="lazy"><span class="media-thumbnail-play">▶</span></a>` : '';
+    const player = media.embedUrl ? `<iframe class="media-embed media-embed-youtube" src="${escAttr(media.embedUrl)}" title="${escAttr(media.label || 'Vídeo de YouTube')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="media-fallback-note">Si YouTube bloquea la reproducción embebida en un archivo local o en esta plataforma, use el botón “Abrir recurso”.</p>` : '';
+    if (player) makePreview('Intentar reproducir aquí', player);
+    embed = thumb + embed;
+  } else if (media.kind === 'audio' && media.embedUrl) {
+    makePreview('Reproducir audio', `<audio class="media-embed" controls preload="none" src="${escAttr(media.embedUrl)}">Su navegador no puede reproducir este audio.</audio>`);
+  } else if (media.kind === 'video' && media.embedUrl) {
+    makePreview('Reproducir vídeo', `<video class="media-embed" controls preload="metadata" src="${escAttr(media.embedUrl)}">Su navegador no puede reproducir este vídeo.</video><p class="media-fallback-note">Algunos formatos, como MOV, dependen de los códecs instalados en el navegador. Si no se reproduce, abra el recurso.</p>`);
+  } else if (media.kind === 'pdf' && media.embedUrl) {
+    makePreview('Ver PDF aquí', `<object class="media-pdf-object" data="${escAttr(media.embedUrl)}" type="application/pdf"><iframe class="media-webframe" src="${escAttr(media.embedUrl)}" title="${escAttr(media.label || 'Documento PDF')}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="media-fallback-note">Este navegador no puede mostrar el PDF embebido. Use el botón “Abrir PDF”.</p></object>`);
+  } else if ((media.kind === 'web' || media.kind === 'jove') && media.embedUrl) {
+    makePreview('Vista previa navegable', `<iframe class="media-webframe" src="${escAttr(media.embedUrl)}" title="${escAttr(media.label || 'Página web')}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe><p class="media-fallback-note">Algunas webs, JoVE incluido en ciertos recursos, impiden ser mostradas dentro de otra página por seguridad. En ese caso, use “Abrir recurso”.</p>`);
+  }
+
+  const actions = `<div class="media-actions">${previewAction}<a class="media-action-btn" href="${url}" target="_blank" rel="noopener noreferrer">↗ ${openText}</a></div>`;
+  return `<div class="word-aiken-media-card ${escAttr('media-' + media.kind)}"><div class="media-card-header"><span class="media-card-icon" aria-hidden="true">${escHtml(media.icon || '🔗')}</span><span class="media-card-text"><a class="media-card-link media-card-title" href="${url}" target="_blank" rel="noopener noreferrer">${title}</a><span class="media-card-kind">${kind}</span></span>${actions}</div>${embed}</div>`;
+}
+function renderMoodleMediaBlock(block) {
+  const media = normalizeWordMediaBlock(block);
+  if (!media) return '';
+  const href = escAttr(media.url);
+  const label = escHtml(media.label || media.url);
+  const provider = escHtml(media.provider || media.kind || 'Recurso multimedia');
+  if (media.kind === 'youtube') {
+    const thumb = media.thumbnailUrl ? `<p><a href="${href}" target="_blank" rel="noopener noreferrer"><img src="${escAttr(media.thumbnailUrl)}" alt="${label}" style="max-width:640px;width:100%;height:auto;"></a></p>` : '';
+    const frame = media.embedUrl ? `<p><iframe src="${escAttr(media.embedUrl)}" width="640" height="360" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></p>` : '';
+    return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a> <em>${provider}</em></p>${thumb}${frame}`;
+  }
+  if (media.kind === 'audio' && media.embedUrl) {
+    return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a></p><p><audio controls src="${escAttr(media.embedUrl)}">Audio</audio></p>`;
+  }
+  if (media.kind === 'video' && media.embedUrl) {
+    return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a></p><p><video controls src="${escAttr(media.embedUrl)}" style="max-width:100%;height:auto;">Vídeo</video></p>`;
+  }
+  if (media.kind === 'pdf' && media.embedUrl) {
+    return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a></p><p><object data="${escAttr(media.embedUrl)}" type="application/pdf" width="100%" height="500"><iframe src="${escAttr(media.embedUrl)}" width="100%" height="500" frameborder="0"></iframe></object></p>`;
+  }
+  if ((media.kind === 'web' || media.kind === 'jove') && media.embedUrl) {
+    return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a> <em>${provider}</em></p><p><iframe src="${escAttr(media.embedUrl)}" width="100%" height="500" frameborder="0" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox" referrerpolicy="strict-origin-when-cross-origin"></iframe></p>`;
+  }
+  return `<p><a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a></p>`;
+}
+
+function sanitizeWordTableHtml(tableInput) {
+  let tableNode = null;
+  if (!tableInput) return '';
+  if (typeof tableInput === 'string') {
+    const parsed = new DOMParser().parseFromString(tableInput, 'text/html');
+    tableNode = parsed.querySelector('table');
+  } else if (tableInput.nodeType === 1 && String(tableInput.tagName || '').toLowerCase() === 'table') {
+    tableNode = tableInput;
+  }
+  if (!tableNode) return '';
+
+  const allowed = new Set(['table','thead','tbody','tfoot','tr','td','th','p','br','ul','ol','li','strong','b','em','i','u','sub','sup','span','div','img','a']);
+  function cleanNode(node) {
+    if (node.nodeType === 3) return document.createTextNode(node.nodeValue || '');
+    if (node.nodeType !== 1) return document.createTextNode('');
+    const tag = String(node.tagName || '').toLowerCase();
+    if (!allowed.has(tag)) {
+      const frag = document.createDocumentFragment();
+      Array.from(node.childNodes || []).forEach(child => frag.appendChild(cleanNode(child)));
+      return frag;
+    }
+    const outTag = tag === 'div' ? 'p' : tag;
+    const out = document.createElement(outTag);
+    if (outTag === 'table') {
+      out.className = 'word-aiken-table';
+      out.setAttribute('border', '1');
+      out.setAttribute('cellpadding', '4');
+      out.setAttribute('cellspacing', '0');
+      out.setAttribute('style', 'border-collapse:collapse;max-width:100%;width:auto;');
+    }
+    if (outTag === 'td' || outTag === 'th') {
+      out.setAttribute('style', 'border:1px solid #222;padding:6px;vertical-align:top;');
+      const colspan = parseInt(node.getAttribute('colspan') || '', 10);
+      const rowspan = parseInt(node.getAttribute('rowspan') || '', 10);
+      if (colspan > 1 && colspan <= 20) out.setAttribute('colspan', String(colspan));
+      if (rowspan > 1 && rowspan <= 200) out.setAttribute('rowspan', String(rowspan));
+    }
+    if (outTag === 'ol' || outTag === 'ul') {
+      const type = (node.getAttribute('type') || '').replace(/[^A-Za-z1Ii]/g, '').slice(0, 2);
+      if (type) out.setAttribute('type', type);
+    }
+    if (outTag === 'a') {
+      const href = normalizeExternalMediaUrl(node.getAttribute('href') || '');
+      if (!isSafeExternalMediaUrl(href)) {
+        const frag = document.createDocumentFragment();
+        Array.from(node.childNodes || []).forEach(child => frag.appendChild(cleanNode(child)));
+        return frag;
+      }
+      out.setAttribute('href', href);
+      out.setAttribute('target', '_blank');
+      out.setAttribute('rel', 'noopener noreferrer');
+    }
+    if (outTag === 'img') {
+      const src = node.getAttribute('src') || '';
+      if (!isSafeImageSrc(src)) return document.createTextNode('');
+      out.setAttribute('src', src);
+      out.setAttribute('alt', node.getAttribute('alt') || 'Imagen incluida en tabla');
+      out.setAttribute('style', 'max-width:100%;height:auto;');
+      return out;
+    }
+    Array.from(node.childNodes || []).forEach(child => out.appendChild(cleanNode(child)));
+    return out;
+  }
+
+  const wrapper = document.createElement('div');
+  wrapper.appendChild(cleanNode(tableNode));
+  const table = wrapper.querySelector('table');
+  if (!table || (!cleanWordAikenText(table.textContent || '') && table.querySelectorAll('img,a').length === 0)) return '';
+  return wrapper.innerHTML;
+}
+
+function extractWordAikenEntries(root) {
+  const entries = [];
+  if (!root) return entries;
+
+  function tagName(node) {
+    return node && node.tagName ? node.tagName.toLowerCase() : '';
+  }
+
+  function isListElement(node) {
+    const tag = tagName(node);
+    return tag === 'ol' || tag === 'ul';
+  }
+
+  function isEntryBlock(node) {
+    const tag = tagName(node);
+    return /^(p|h1|h2|h3|h4|h5|h6|table)$/i.test(tag);
+  }
+
+  function getListStyleType(list) {
+    if (!list) return '';
+    const typeAttr = (list.getAttribute('type') || '').trim();
+    const styleAttr = (list.getAttribute('style') || '').trim();
+    const styleMatch = styleAttr.match(/list-style-type\s*:\s*([^;]+)/i);
+    return typeAttr || (styleMatch ? styleMatch[1].trim() : '');
+  }
+
+  function pushEntry(text, images, meta) {
+    meta = meta || {};
+    let cleanText = cleanWordAikenText(text || '');
+    const cleanImages = normalizeQuestionImages(images || []);
+    const cleanTables = normalizeQuestionTables(meta.tables || []);
+    let cleanBlocks = normalizeWordRichBlocks(meta.blocks || []);
+    const bareBlocks = extractMediaBlocksFromText(cleanText);
+    if (bareBlocks.length) {
+      bareBlocks.forEach(block => {
+        if (!cleanBlocks.some(existing => existing.type === 'media' && existing.url === block.url)) cleanBlocks.push(block);
+      });
+      const stripped = removeBareUrlsFromText(cleanText);
+      if (!stripped || stripped !== cleanText) cleanText = stripped;
+    }
+    if (isMediaOnlyText(cleanText, cleanBlocks.filter(b => b.type === 'media'))) cleanText = '';
+    if (!cleanText && cleanImages.length === 0 && cleanTables.length === 0 && cleanBlocks.length === 0) return;
+    entries.push(Object.assign({
+      text: cleanText,
+      images: cleanImages,
+      tables: cleanTables,
+      blocks: cleanBlocks,
+      isOrderedListItem: false,
+      isListItem: false,
+      listIndex: -1,
+      listDepth: 0,
+      listStyleType: ''
+    }, meta, { text: cleanText, images: cleanImages, tables: cleanTables, blocks: cleanBlocks }));
+  }
+
+  function collectContent(node, bucket) {
+    if (!node) return;
+    if (node.nodeType === 3) {
+      bucket.text += node.nodeValue || '';
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    const tag = tagName(node);
+    if (isListElement(node)) return;
+    if (tag === 'br') {
+      bucket.text += ' ';
+      return;
+    }
+    if (tag === 'table') {
+      const tableHtml = sanitizeWordTableHtml(node);
+      if (tableHtml) {
+        bucket.tables.push(tableHtml);
+        bucket.blocks.push({ type: 'table', html: tableHtml });
+      }
+      return;
+    }
+    if (tag === 'img') {
+      const src = node.getAttribute('src') || '';
+      if (isSafeImageSrc(src)) {
+        const img = { src, alt: node.getAttribute('alt') || ('Imagen de la pregunta ' + (bucket.images.length + 1)) };
+        bucket.images.push(img);
+        bucket.blocks.push({ type: 'image', src: img.src, alt: img.alt });
+      }
+      return;
+    }
+    if (tag === 'a') {
+      const href = normalizeExternalMediaUrl(node.getAttribute('href') || '');
+      const label = cleanWordAikenText(node.textContent || href);
+      if (isSafeExternalMediaUrl(href)) {
+        const media = normalizeWordMediaBlock({ type: 'media', url: href, label: label || href });
+        if (media && !bucket.blocks.some(b => b.type === 'media' && b.url === media.url)) bucket.blocks.push(media);
+        bucket.text += label || href;
+        return;
+      }
+    }
+    if (tag === 'video' || tag === 'audio' || tag === 'iframe' || tag === 'embed' || tag === 'object') {
+      const src = normalizeExternalMediaUrl(node.getAttribute('src') || node.getAttribute('data') || '');
+      if (isSafeExternalMediaUrl(src)) {
+        const media = normalizeWordMediaBlock({ type: tag === 'audio' ? 'audio' : 'video', url: src, label: node.getAttribute('title') || node.getAttribute('alt') || src });
+        if (media) bucket.blocks.push(media);
+      }
+      return;
+    }
+    Array.from(node.childNodes || []).forEach(child => collectContent(child, bucket));
+    if (isEntryBlock(node) || tag === 'div') bucket.text += ' ';
+  }
+
+  function contentFromNodes(nodes) {
+    const bucket = { text: '', images: [], tables: [], blocks: [] };
+    Array.from(nodes || []).forEach(node => collectContent(node, bucket));
+    const mediaBlocks = bucket.blocks.filter(block => block.type === 'media');
+    if (mediaBlocks.length) {
+      const stripped = removeBareUrlsFromText(bucket.text);
+      bucket.text = isMediaOnlyText(bucket.text, mediaBlocks) ? '' : stripped;
+    }
+    return bucket;
+  }
+
+  function processNode(node, depth) {
+    if (!node) return;
+    if (node.nodeType === 3) {
+      const cleanText = cleanWordAikenText(node.nodeValue || '');
+      if (cleanText) pushEntry(cleanText, [], { listDepth: depth || 0 });
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    const tag = tagName(node);
+    if (isListElement(node)) {
+      processList(node, depth || 0);
+      return;
+    }
+    if (isEntryBlock(node)) {
+      const content = contentFromNodes([node]);
+      pushEntry(content.text, content.images, { listDepth: depth || 0, tables: content.tables, blocks: content.blocks });
+      return;
+    }
+    if (tag === 'img' || tag === 'a' || tag === 'video' || tag === 'audio' || tag === 'iframe' || tag === 'embed' || tag === 'object') {
+      const content = contentFromNodes([node]);
+      pushEntry(content.text, content.images, { listDepth: depth || 0, tables: content.tables, blocks: content.blocks });
+      return;
+    }
+    Array.from(node.childNodes || []).forEach(child => processNode(child, depth || 0));
+  }
+
+  function processList(list, depth) {
+    const items = Array.from(list.children || []).filter(child => tagName(child) === 'li');
+    const listStyleType = getListStyleType(list);
+    items.forEach((li, index) => processListItem(li, list, index, depth, listStyleType));
+  }
+
+  function processListItem(li, list, index, depth, listStyleType) {
+    const children = Array.from(li.childNodes || []);
+    let preNodes = [];
+    let seenNestedList = false;
+
+    function flushPreNodes() {
+      if (!preNodes.length) return;
+      const content = contentFromNodes(preNodes);
+      pushEntry(content.text, content.images, {
+        tables: content.tables,
+        blocks: content.blocks,
+        isListItem: true,
+        isOrderedListItem: tagName(list) === 'ol',
+        listIndex: index,
+        listDepth: depth || 0,
+        listStyleType: listStyleType || ''
+      });
+      preNodes = [];
+    }
+
+    children.forEach(child => {
+      if (child.nodeType === 1 && isListElement(child)) {
+        flushPreNodes();
+        seenNestedList = true;
+        processList(child, (depth || 0) + 1);
+        return;
+      }
+      if (!seenNestedList) {
+        preNodes.push(child);
+      } else {
+        processNode(child, depth || 0);
+      }
+    });
+    flushPreNodes();
+  }
+
+  Array.from(root.childNodes || []).forEach(child => processNode(child, 0));
+
+  if (entries.length === 0) {
+    const lines = (root.textContent || '').split(/\n+/).map(line => cleanWordAikenText(line)).filter(Boolean);
+    return lines.map(text => ({ text, images: [], tables: [], blocks: extractMediaBlocksFromText(text), isOrderedListItem: false, isListItem: false, listIndex: -1, listDepth: 0, listStyleType: '' }));
+  }
+  return entries;
+}
+
 
 function parseGIFT(raw) {
   const result = [];
@@ -3415,6 +5297,22 @@ B) Tierra
 C) Mercurio
 D) Marte
 ANSWER: C`,
+    'docx-aiken': `Documento .docx con párrafos de este tipo:
+
+¿Qué estructura se observa en la imagen?
+[imagen insertada en Word antes de las opciones]
+A. Seminoma
+B. Coriocarcinoma
+C. Tumor del saco vitelino
+D. Carcinoma embrionario
+[imagen insertada en Word después de las opciones, si procede]
+ANSWER: C
+
+Reglas:
+- Las imágenes insertadas antes de A., B., C. ... se colocan bajo el enunciado.
+- Las imágenes insertadas después de la última opción y antes de ANSWER se colocan debajo de las opciones.
+- Las opciones pueden estar escritas manualmente como a), a., A), A. o proceder de la numeración automática de MS Word.
+- La respuesta correcta debe declararse como ANSWER: letra.`,
     gift: `::Cell Biology:: ¿Cuál es la central energética de la célula? {
 =Mitocondria
 ~Núcleo
@@ -3467,7 +5365,7 @@ function renderEditor() {
       <div class="q-header">
         <span class="drag-handle" title="Arrastrar para reordenar">⠿</span>
         <span class="q-number">Q${i + 1}</span>
-        <span class="q-text">${escHtml(q.question)}</span>
+        <div class="q-text">${renderQuestionContent(q)}</div>
         <div class="q-actions">
           <button class="btn btn-ghost btn-sm" onclick="editQuestion(${i})" title="Editar">✏️</button>
           <button class="btn btn-danger btn-sm" onclick="deleteQuestion(${i})" title="Eliminar">🗑️</button>
@@ -3476,6 +5374,7 @@ function renderEditor() {
       <div class="q-options">
         ${q.options.map((o, j) => `<div class="q-option${j === q.correctIndex ? ' correct' : ''}">${escHtml(o)}</div>`).join('')}
       </div>
+      ${renderAfterOptionContent(q)}
       ${q.explanation ? `<div class="q-explanation">${escHtml(q.explanation)}</div>` : ''}
       <div class="edit-form" id="editForm${i}" style="display:none;"></div>
     </div>
@@ -3519,8 +5418,8 @@ function editQuestion(idx) {
     `).join('')}
     ${q.options.length < 6 ? `<button class="btn btn-ghost btn-sm" onclick="addOption(${idx})" style="margin:4px 0 12px 60px;">+ Añadir opción</button>` : ''}
     <div class="input-group">
-      <label>Explicación (opcional)</label>
-      <input type="text" id="ex${idx}" value="${escAttr(q.explanation)}" placeholder="¿Por qué es esta la respuesta correcta?">
+      <label>Justificación / explicación (opcional)</label>
+      <input type="text" id="ex${idx}" value="${escAttr(q.explanation)}" placeholder="Justifique por qué es esta la respuesta correcta">
     </div>
     <div class="btn-row">
       <button class="btn btn-primary btn-sm" onclick="saveQuestion(${idx})">Guardar</button>
@@ -3647,6 +5546,23 @@ function resetQuiz() {
   renderQuizSlide();
 }
 
+function getQuestionExplanationLabel(q) {
+  const raw = cleanWordAikenText((q && q.explanationLabel) || '');
+  if (/^reasoning$/i.test(raw)) return 'Reasoning';
+  if (/^justificaci[oó]n$/i.test(raw) || /^justificacion$/i.test(raw)) return 'Justificación';
+  if (/^explicaci[oó]n$/i.test(raw) || /^explicacion$/i.test(raw)) return 'Explicación';
+  if (/^explanation$/i.test(raw)) return 'Explanation';
+  return raw || 'Explicación';
+}
+
+function renderStudyJustification(q) {
+  if (!q || !q.explanation) return '';
+  const label = getQuestionExplanationLabel(q).toUpperCase();
+  return `<div class="moodle-justification-card" role="note" aria-label="${escAttr(label)}">
+    <div class="moodle-justification-body"><strong class="moodle-justification-label">${escHtml(label)}:</strong> ${escHtml(q.explanation)}</div>
+  </div>`;
+}
+
 function renderQuizSlide() {
   const { index, order, answers } = quizState;
   const mode = document.getElementById('quizMode').value;
@@ -3689,8 +5605,7 @@ function renderQuizSlide() {
     feedbackHtml = `<div class="quiz-feedback show ${correct ? 'correct-fb' : 'incorrect-fb'}">
       <strong>${correct ? '✓ Correcto' : '✗ Incorrecto'}</strong>
       ${!correct ? `<br>La respuesta correcta es: <strong>${escHtml(q.options[q.correctIndex])}</strong>` : ''}
-      ${q.explanation ? `<br><br>${escHtml(q.explanation)}` : ''}
-    </div>`;
+    </div>${renderStudyJustification(q)}`;
   }
 
   area.innerHTML = `
@@ -3706,8 +5621,9 @@ function renderQuizSlide() {
             </button>
           </aside>
           <div class="quiz-slide">
-            <div class="quiz-question-text">${escHtml(q.question)}</div>
+            <div class="quiz-question-text">${renderQuestionContent(q)}</div>
             <div class="quiz-options">${optionsHtml}</div>
+            ${renderAfterOptionContent(q)}
             ${clearChoiceHtml}
           </div>
         </div>
@@ -3844,7 +5760,8 @@ function renderResults() {
       ${reviews.map((r, i) => `
         <div class="review-item ${r.state === 'correct' ? 'was-correct' : (r.state === 'unanswered' ? 'was-unanswered' : 'was-incorrect')} ${r.flagged ? 'is-flagged-review' : ''}" data-review-state="${r.state}">
           ${r.flagged ? '<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>' : ''}
-          <div class="review-q">Q${i + 1}. ${escHtml(r.q.question)}</div>
+          <div class="review-q">Q${i + 1}. ${renderQuestionContent(r.q)}</div>
+          ${renderAfterOptionContent(r.q)}
           <div class="review-answer">
             ${r.ans >= 0 ? `Su respuesta: <strong>${escHtml(r.q.options[r.ans])}</strong>` : '<em>Sin responder</em>'}
             ${!r.isCorrect ? `<br>Respuesta correcta: <strong style="color:var(--correct)">${escHtml(r.q.options[r.q.correctIndex])}</strong>` : ''}
@@ -3966,6 +5883,7 @@ function exportAiken() {
     let s = q.question + '\n';
     q.options.forEach((o, i) => { s += letters[i] + '. ' + o + '\n'; });
     s += 'ANSWER: ' + letters[q.correctIndex];
+    if (q.explanation) s += '\n' + (q.explanationLabel || 'Explanation') + ': ' + q.explanation;
     return s;
   });
   downloadFile(slugify(meta.title) + '_aiken.txt', lines.join('\n\n'), 'text/plain');
@@ -3993,7 +5911,8 @@ function exportMoodleXML() {
   questions.forEach((q, i) => {
     xml += `  <question type="multichoice">\n`;
     xml += `    <name><text>Q${i + 1}</text></name>\n`;
-    xml += `    <questiontext format="html"><text><![CDATA[${q.question}]]></text></questiontext>\n`;
+    const moodleQuestion = buildMoodleQuestionText(q, i);
+    xml += `    <questiontext format="html"><text><![CDATA[${moodleQuestion.html}]]></text>\n${moodleQuestion.files}    </questiontext>\n`;
     xml += `    <shuffleanswers>1</shuffleanswers>\n`;
     xml += `    <single>true</single>\n`;
     if (q.explanation) {
@@ -4044,6 +5963,11 @@ function buildStandaloneHTML(meta, qJSON) {
   .quiz-container{max-width:700px;width:100%;padding:0 20px 40px}
   .slide{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;box-shadow:0 4px 12px rgba(44,36,24,0.08)}
   .q-text{font-family:var(--serif);font-size:1.15rem;font-weight:600;line-height:1.5;margin-bottom:20px}
+  .question-images,.after-option-images,.question-tables,.after-option-tables,.question-rich-blocks,.after-option-rich-blocks{display:flex;flex-direction:column;gap:.55rem;margin-top:.8rem}
+  .after-option-images,.after-option-tables,.after-option-rich-blocks{margin-bottom:.35rem}
+  .question-image,.after-option-image{display:block;max-width:min(100%,820px);max-height:34rem;height:auto;object-fit:contain;border:1px solid var(--border);border-radius:.35rem;background:#fff}
+  .word-aiken-table-wrap{max-width:100%;overflow-x:auto}.word-aiken-table{background:#fff;border-collapse:collapse;color:#111;font-family:var(--sans);font-size:.92rem;line-height:1.35;margin:.25rem 0;max-width:100%;width:auto}.word-aiken-table td,.word-aiken-table th{border:1px solid #222;padding:.45rem .55rem;vertical-align:top}.word-aiken-table p{margin:0 0 .35rem}.word-aiken-table p:last-child{margin-bottom:0}.word-aiken-table ul,.word-aiken-table ol{margin:.2rem 0 .35rem 1.25rem}.word-aiken-table img{display:block;height:auto;max-height:28rem;max-width:min(100%,780px);object-fit:contain}
+  .word-aiken-media-card{background:var(--surface);border:1px solid var(--border);border-radius:.45rem;color:var(--text);display:block;font-family:var(--sans);font-size:.9rem;line-height:1.45;max-width:min(100%,820px);overflow:hidden}.word-aiken-media-card .media-card-header{align-items:center;display:flex;gap:.55rem;padding:.65rem .8rem}.word-aiken-media-card .media-card-icon{background:var(--accent-light);border-radius:999px;color:var(--accent);flex:0 0 auto;font-size:1rem;height:1.8rem;line-height:1.8rem;text-align:center;width:1.8rem}.word-aiken-media-card .media-card-text{min-width:0}.word-aiken-media-card .media-card-title{color:var(--text);font-weight:700;overflow-wrap:anywhere}.word-aiken-media-card .media-card-kind{color:var(--text-muted);font-size:.78rem;margin-top:.1rem}.word-aiken-media-card a.media-card-link{color:var(--accent);text-decoration:underline}.word-aiken-media-card .media-embed{background:#000;border:0;display:block;width:100%}.word-aiken-media-card iframe.media-embed{aspect-ratio:16/9;min-height:220px}.word-aiken-media-card audio.media-embed{background:transparent;padding:0 .8rem .75rem}.word-aiken-media-card video.media-embed{max-height:34rem}.word-aiken-media-card .pdf-embed{background:#fff;height:min(70vh,38rem)}.word-aiken-media-card .media-actions{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 .8rem .8rem}.word-aiken-media-card .media-action-btn{align-items:center;background:var(--accent-light);border:1px solid var(--border);border-radius:.45rem;color:var(--accent);display:inline-flex;font-size:.84rem;font-weight:700;gap:.35rem;line-height:1.2;padding:.45rem .65rem;text-decoration:none}.word-aiken-media-card .media-thumbnail-link{background:#111;display:block;overflow:hidden;position:relative;width:100%}.word-aiken-media-card .media-thumbnail-link img{aspect-ratio:16/9;display:block;height:auto;object-fit:cover;opacity:.96;width:100%}.word-aiken-media-card .media-thumbnail-play{align-items:center;background:rgba(0,0,0,.58);border:2px solid rgba(255,255,255,.92);border-radius:999px;color:#fff;display:flex;font-size:1.6rem;height:4.2rem;justify-content:center;left:50%;line-height:1;padding-left:.15rem;position:absolute;top:50%;transform:translate(-50%,-50%);width:4.2rem}.word-aiken-media-card .media-preview-panel{border-top:1px solid var(--border);padding:0}.word-aiken-media-card .media-preview-panel>summary{color:var(--accent);cursor:pointer;font-size:.86rem;font-weight:700;list-style-position:inside;padding:.65rem .8rem}.word-aiken-media-card .media-fallback-note{color:var(--text-muted);font-size:.78rem;line-height:1.35;padding:0 .8rem .75rem}.word-aiken-media-card .media-webframe,.word-aiken-media-card .media-pdf-object{background:#fff;border:0;display:block;height:min(72vh,42rem);width:100%}.word-aiken-media-card .media-pdf-object{min-height:30rem}.word-aiken-media-card .media-embed-youtube{aspect-ratio:16/9;min-height:260px}.word-aiken-media-card .media-card-header{align-items:center!important;display:flex!important;flex-wrap:wrap!important;gap:.55rem!important;padding:.65rem .8rem!important}.word-aiken-media-card .media-card-text{align-items:baseline!important;display:flex!important;flex:1 1 18rem!important;flex-wrap:wrap!important;gap:.25rem .35rem!important;min-width:0!important}.word-aiken-media-card .media-card-kind{display:inline-block!important;margin-top:0!important}.word-aiken-media-card .media-card-header .media-actions{align-items:center!important;display:flex!important;flex:0 0 auto!important;flex-wrap:wrap!important;gap:.75rem!important;margin-left:auto!important;padding:0!important}.word-aiken-media-card .media-action-btn{appearance:none!important;cursor:pointer!important;font-family:var(--sans)!important;white-space:nowrap!important}.word-aiken-media-card button.media-action-btn{background:var(--accent-light)!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{appearance:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--accent)!important;cursor:pointer!important;display:inline-flex!important;font-family:var(--sans)!important;font-size:.86rem!important;font-weight:700!important;gap:.25rem!important;line-height:1.2!important;padding:0!important;text-decoration:none!important;white-space:nowrap!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:hover,.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:focus-visible{background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;text-decoration:underline!important}body.dark-mode .word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{background:transparent!important;border:0!important;color:var(--accent)!important}.word-aiken-media-card .media-preview-content{border-top:1px solid var(--border);display:block;padding:0}.word-aiken-media-card .media-preview-content[hidden]{display:none!important}.word-aiken-media-card .media-preview-content .media-fallback-note{margin:0}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle+.media-action-btn{margin-left:.15rem!important}@media(max-width:720px){.word-aiken-media-card .media-card-header .media-actions{flex:1 1 100%!important;margin-left:2.35rem!important}}
   .options{display:flex;flex-direction:column;gap:10px}
   .opt{font-family:var(--sans);font-size:0.92rem;text-align:left;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);cursor:pointer;display:flex;align-items:flex-start;gap:10px;line-height:1.5;transition:all 0.2s}
   .opt:hover:not(.locked){border-color:#8b7355;background:var(--surface-alt)}
@@ -4674,6 +6598,228 @@ body.dark-mode .review-flag-badge {
   body:not(.dark-mode) .review-item.no .review-a{color:#675251!important}
   body:not(.dark-mode) .review-item.no .review-a strong{color:#2b1110!important}
   body:not(.dark-mode) .review-item.no .review-a strong[style*="var(--correct)"]{color:#2d7d46!important}
+
+
+/* Ajuste v35 — Azul intermedio para botones principales en modo oscuro.
+   Valor situado entre el azul claro anterior a v29 (#6fb1f4) y el azul Moodle sólido de v29 (#0f6cbf). */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .btn-p {
+  background: #3f8fda !important;
+  border-color: #3f8fda !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #2f7fc8 !important;
+  border-color: #2f7fc8 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #256fb4 !important;
+  border-color: #256fb4 !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .btn-p:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(63,143,218,0.42) !important;
+}
+body.dark-mode .btn-primary:disabled,
+body.dark-mode #quizArea .quiz-nav .btn-primary:disabled,
+body.dark-mode .btn-p:disabled {
+  background: #3f8fda !important;
+  border-color: #3f8fda !important;
+  color: #ffffff !important;
+  opacity: 0.68 !important;
+}
+
+
+
+/* Ajuste v36 — Azul nocturno más atractivo para botones principales en modo oscuro.
+   Paleta v39: mismo azul Moodle que en modo claro; en hover y activo se oscurece progresivamente. */
+body.dark-mode {
+  --dark-button-blue: #0f6cbf;
+  --dark-button-blue-hover: #0c589c;
+  --dark-button-blue-active: #0a4b85;
+}
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode .export-card .btn-primary,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .results-card .btn-primary {
+  background: var(--dark-button-blue) !important;
+  border-color: var(--dark-button-blue) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-primary:hover,
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover,
+body.dark-mode .results-card .btn-primary:hover {
+  background: var(--dark-button-blue-hover) !important;
+  border-color: var(--dark-button-blue-hover) !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:active,
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active,
+body.dark-mode .results-card .btn-primary:active {
+  background: var(--dark-button-blue-active) !important;
+  border-color: var(--dark-button-blue-active) !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .results-card .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(31, 95, 143, 0.38) !important;
+}
+
+/* Mismo ajuste para el HTML independiente exportado. */
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+body.dark-mode .btn-p:hover {
+  background: #0c589c !important;
+  border-color: #0c589c !important;
+  color: #ffffff !important;
+}
+body.dark-mode .btn-p:active {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+
+
+/* Ajuste v40 — modo oscuro: los botones azules se OSCURECEN en hover y activo.
+   Normal se conserva en azul Moodle; hover y activo pasan a tonos claramente más oscuros. */
+body.dark-mode {
+  --dark-button-blue: #0f6cbf !important;
+  --dark-button-blue-hover: #0a4b85 !important;
+  --dark-button-blue-active: #07365f !important;
+}
+
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode #quizArea .quiz-nav .btn-primary,
+body.dark-mode .results-card .btn-primary {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:hover:not(:disabled),
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode #quizArea .quiz-nav .btn-primary:hover:not(:disabled),
+body.dark-mode .results-card .btn-primary:hover:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:active:not(:disabled),
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode #quizArea .quiz-nav .btn-primary:active:not(:disabled),
+body.dark-mode .results-card .btn-primary:active:not(:disabled) {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode #quizArea .quiz-nav .btn-primary:focus-visible,
+body.dark-mode .results-card .btn-primary:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(15,108,191,0.35) !important;
+}
+
+body.dark-mode .btn-p {
+  background: #0f6cbf !important;
+  border-color: #0f6cbf !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-p:hover:not(:disabled) {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode .btn-p:active:not(:disabled) {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #ffffff !important;
+}
+
+
+
+/* Ajuste v41 — Modo oscuro: azul normal solicitado #0a4b85; hover/activo más oscuros. */
+body.dark-mode .btn-primary,
+body.dark-mode .bookmarklet-link,
+body.dark-mode .btn-p {
+  background: #0a4b85 !important;
+  border-color: #0a4b85 !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:hover,
+body.dark-mode .bookmarklet-link:hover,
+body.dark-mode .btn-p:hover {
+  background: #07365f !important;
+  border-color: #07365f !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:active,
+body.dark-mode .bookmarklet-link:active,
+body.dark-mode .btn-p:active {
+  background: #052944 !important;
+  border-color: #052944 !important;
+  color: #fff !important;
+}
+body.dark-mode .btn-primary:focus-visible,
+body.dark-mode .bookmarklet-link:focus-visible,
+body.dark-mode .btn-p:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(10, 75, 133, 0.35) !important;
+}
+
+
+
+  /* Ajuste v42 — HTML exportado: botones primarios en modo oscuro realmente oscuros. */
+  body.dark-mode .btn-p,
+  body.dark-mode button.btn.btn-p {
+    background:#0a4b85!important;
+    border-color:#0a4b85!important;
+    color:#ffffff!important;
+    box-shadow:none!important;
+  }
+  body.dark-mode .btn-p:hover:not(:disabled),
+  body.dark-mode button.btn.btn-p:hover:not(:disabled) {
+    background:#07365f!important;
+    border-color:#07365f!important;
+    color:#ffffff!important;
+    box-shadow:none!important;
+  }
+  body.dark-mode .btn-p:active:not(:disabled),
+  body.dark-mode button.btn.btn-p:active:not(:disabled) {
+    background:#052944!important;
+    border-color:#052944!important;
+    color:#ffffff!important;
+    box-shadow:none!important;
+  }
 </style>
 </head>
 <body>
@@ -4699,14 +6845,14 @@ function restart(){idx=0;ans=[];order=Qs.map(function(_,i){return i});if(documen
 function render(){
   if(idx>=order.length){showResults();return}
   var q=Qs[order[idx]],L='ABCDEF',sel=ans[idx],rev=window._rev||false;
-  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div class="status">'+(sel>=0?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag '+(flags[idx]?'flagged':'')+'" type="button" onclick="toggleFlag()">'+(flags[idx]?'⚑ Desmarcar':'⚐ Marcar pregunta')+'</button></aside><div class="slide"><div class="q-text">'+esc(q.question)+'</div><div class="options">';
+  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div class="status">'+(sel>=0?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag '+(flags[idx]?'flagged':'')+'" type="button" onclick="toggleFlag()">'+(flags[idx]?'⚑ Desmarcar':'⚐ Marcar pregunta')+'</button></aside><div class="slide"><div class="q-text">'+renderQuestion(q)+'</div><div class="options">';
   q.options.forEach(function(o,j){
     var c='opt';
     if(sel===j)c+=' selected';
     if(rev){c+=' locked';if(j===q.correctIndex)c+=' correct-r';else if(j===sel&&j!==q.correctIndex)c+=' incorrect-r'}
     h+='<button class="'+c+'" type="button" '+(rev?'disabled':' onclick="pick('+j+')"')+'><span class="letter" aria-hidden="true"></span><span class="mletter">'+(L[j]||String(j+1)).toLowerCase()+'.</span><span class="otext">'+esc(o)+'</span></button>';
   });
-  h+='</div>';
+  h+='</div>'+renderAfterImages(q);
   if(sel>=0)h+='<button type="button" class="clear-choice" onclick="clearChoice()">Quitar mi elección</button>';
   if(rev&&mode==='study'){
     var ok=sel===q.correctIndex;
@@ -4745,7 +6891,7 @@ function showResults(){
   h+='<h3 id="reviewHeading" style="font-family:var(--serif);margin:20px 0 12px">Revisión</h3><div id="reviewFilterEmpty" class="review-filter-empty">No hay preguntas en esta categoría.</div><div id="reviewList">';
   reviewData.forEach(function(r,i){
     var q=r.q,a=r.a,ok=r.ok;
-    h+='<div class="review-item '+(r.state==='correct'?'ok':(r.state==='unanswered'?'unanswered':'no'))+' '+(r.flagged?'is-flagged-review':'')+'" data-review-state="'+r.state+'">'+(r.flagged?'<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>':'')+'<div class="review-q">Q'+(i+1)+'. '+esc(q.question)+'</div><div class="review-a">';
+    h+='<div class="review-item '+(r.state==='correct'?'ok':(r.state==='unanswered'?'unanswered':'no'))+' '+(r.flagged?'is-flagged-review':'')+'" data-review-state="'+r.state+'">'+(r.flagged?'<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>':'')+'<div class="review-q">Q'+(i+1)+'. '+renderQuestion(q)+'</div>'+renderAfterImages(q)+'<div class="review-a">';
     h+=a>=0?'Su respuesta: <strong>'+esc(q.options[a])+'</strong>':'<em>Sin responder</em>';
     if(!ok)h+='<br>Correcta: <strong style="color:var(--correct)">'+esc(q.options[q.correctIndex])+'</strong>';
     if(q.explanation)h+='<br><em style="color:#a89b88">'+esc(q.explanation)+'</em>';
@@ -4770,6 +6916,20 @@ function showAllStandaloneReview(btn){
   var heading=document.getElementById('reviewHeading');if(heading)heading.textContent='Revisión';
   var empty=document.getElementById('reviewFilterEmpty');if(empty)empty.style.display='none';
 }
+function renderQuestion(q){return esc(q&&q.question||'')+renderRichBlocks(q&&q.questionBlocks,'question-rich-blocks','question-image',q&&q.images,q&&q.tables)}
+function renderAfterImages(q){return renderRichBlocks(q&&q.afterOptionBlocks,'after-option-rich-blocks','after-option-image',q&&q.afterOptionImages,q&&q.afterOptionTables)}
+function renderRichBlocks(blocks,wrapClass,imgClass,fallbackImgs,fallbackTables){var b=normalizeBlocks(blocks||[]);if(!b.length){b=normalizeImages(fallbackImgs||[]).map(function(img){return{type:'image',src:img.src,alt:img.alt}}).concat(normalizeTables(fallbackTables||[]).map(function(html){return{type:'table',html:html}}))}if(!b.length)return '';var h='<div class="'+wrapClass+'">';b.forEach(function(block,i){if(block.type==='image'){h+='<img class="'+imgClass+'" src="'+attr(block.src)+'" alt="'+attr(block.alt||('Imagen de la pregunta '+(i+1)))+'">'}else if(block.type==='table'){h+='<div class="word-aiken-table-wrap">'+block.html+'</div>'}else if(block.type==='media'||block.type==='link'){h+=renderMediaBlock(block)}});return h+'</div>'}
+function toggleMediaPreview(btn){var card=btn&&btn.closest?btn.closest('.word-aiken-media-card'):null,panel=card?card.querySelector('.media-preview-content'):null;if(!panel)return;var open=panel.hasAttribute('hidden');panel.toggleAttribute('hidden',!open);btn.setAttribute('aria-expanded',open?'true':'false');var label=btn.getAttribute('data-label')||btn.textContent.replace(/^[▸▾]\s*/,'');btn.textContent=(open?'▾ ':'▸ ')+label}
+function renderMediaBlock(block){var m=normalizeMedia(block);if(!m)return '';var url=attr(m.url),title=esc(m.label||m.url),kind=esc(m.provider||m.kind||'Recurso multimedia'),openText=m.kind==='pdf'?'Abrir PDF':(m.kind==='web'?'Abrir página':'Abrir recurso'),previewAction='',embed='';function makePreview(label,html){previewAction='<button type="button" class="media-action-btn media-preview-toggle" data-label="'+attr(label)+'" aria-expanded="false" onclick="toggleMediaPreview(this)">▸ '+esc(label)+'</button>';embed='<div class="media-preview-content" hidden>'+html+'</div>'}if(m.kind==='youtube'){var thumb=m.thumbnailUrl?'<a class="media-thumbnail-link media-youtube-thumb" href="'+url+'" target="_blank" rel="noopener noreferrer"><img src="'+attr(m.thumbnailUrl)+'" alt="'+attr(m.label||'Miniatura de YouTube')+'" loading="lazy"><span class="media-thumbnail-play">▶</span></a>':'';var player=m.embedUrl?'<iframe class="media-embed media-embed-youtube" src="'+attr(m.embedUrl)+'" title="'+attr(m.label||'Vídeo de YouTube')+'" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="media-fallback-note">Si la plataforma bloquea la reproducción embebida, use el botón “Abrir recurso”.</p>':'';if(player)makePreview('Intentar reproducir aquí',player);embed=thumb+embed}else if(m.kind==='audio'&&m.embedUrl){makePreview('Reproducir audio','<audio class="media-embed" controls preload="none" src="'+attr(m.embedUrl)+'">Su navegador no puede reproducir este audio.</audio>')}else if(m.kind==='video'&&m.embedUrl){makePreview('Reproducir vídeo','<video class="media-embed" controls preload="metadata" src="'+attr(m.embedUrl)+'">Su navegador no puede reproducir este vídeo.</video><p class="media-fallback-note">Si el códec no es compatible, abra el recurso.</p>')}else if(m.kind==='pdf'&&m.embedUrl){makePreview('Ver PDF aquí','<object class="media-pdf-object" data="'+attr(m.embedUrl)+'" type="application/pdf"><iframe class="media-webframe" src="'+attr(m.embedUrl)+'" title="'+attr(m.label||'Documento PDF')+'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe><p class="media-fallback-note">Este navegador no puede mostrar el PDF embebido. Use “Abrir PDF”.</p></object>')}else if((m.kind==='web'||m.kind==='jove')&&m.embedUrl){makePreview('Vista previa navegable','<iframe class="media-webframe" src="'+attr(m.embedUrl)+'" title="'+attr(m.label||'Página web')+'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe><p class="media-fallback-note">Algunas webs impiden ser mostradas dentro de otra página. En ese caso, use “Abrir recurso”.</p>')}var actions='<div class="media-actions">'+previewAction+'<a class="media-action-btn" href="'+url+'" target="_blank" rel="noopener noreferrer">↗ '+openText+'</a></div>';return '<div class="word-aiken-media-card media-'+attr(m.kind)+'"><div class="media-card-header"><span class="media-card-icon" aria-hidden="true">'+esc(m.icon||'🔗')+'</span><span class="media-card-text"><a class="media-card-link media-card-title" href="'+url+'" target="_blank" rel="noopener noreferrer">'+title+'</a><span class="media-card-kind">'+kind+'</span></span>'+actions+'</div>'+embed+'</div>'}
+function normalizeMedia(block){if(!block)return null;var url=String(block.url||block.href||block.src||'').trim().replace(/[\u200b\u200c\u200d\ufeff]/g,'');if(/^www\./i.test(url))url='https://'+url;if(!/^https?:\/\//i.test(url))return null;var info=classifyMedia(url,block.kind||block.provider||block.type);return{type:'media',url:url,label:String(block.label||block.title||block.text||info.label||url),kind:info.kind,provider:info.provider,icon:info.icon,embedUrl:info.embedUrl||'',thumbnailUrl:info.thumbnailUrl||'',previewUrl:info.previewUrl||''}}
+function classifyMedia(url,preferred){var a=document.createElement('a');a.href=url;var host=(a.hostname||'').replace(/^www\./i,'').toLowerCase(),path=(a.pathname||'').toLowerCase(),m=path.match(/\.([a-z0-9]{2,5})(?:$|[?#])/i),ext=m?m[1].toLowerCase():'';var yt=getYouTubeInfo(a);if(yt)return yt;if(host.indexOf('jove.com')>=0)return{kind:'jove',provider:'JoVE',label:'Vídeo o recurso de JoVE',icon:'🎬',embedUrl:url,previewUrl:url};if(ext==='pdf')return{kind:'pdf',provider:'PDF',label:'Documento PDF',icon:'📄',embedUrl:url,previewUrl:url};if(/^(mp3|m4a|aac|wav|ogg|oga|flac)$/.test(ext))return{kind:'audio',provider:'Audio',label:'Audio',icon:'🎧',embedUrl:url,previewUrl:url};if(/^(mp4|webm|ogv|mov|m4v)$/.test(ext))return{kind:'video',provider:'Vídeo',label:'Vídeo',icon:'🎞️',embedUrl:url,previewUrl:url};if(/audio/i.test(preferred||''))return{kind:'audio',provider:'Audio',label:'Audio',icon:'🎧',embedUrl:url,previewUrl:url};if(/video/i.test(preferred||''))return{kind:'video',provider:'Vídeo',label:'Vídeo',icon:'🎞️',embedUrl:url,previewUrl:url};return{kind:'web',provider:'Web',label:'Página web',icon:'🔗',embedUrl:url,previewUrl:url}}
+function getYouTubeInfo(a){var host=(a.hostname||'').replace(/^www\./i,'').toLowerCase(),id='',parts=(a.pathname||'').split('/').filter(Boolean);if(host==='youtu.be')id=parts[0]||'';else if(host.indexOf('youtube.com')>=0||host.indexOf('youtube-nocookie.com')>=0){if((a.pathname||'')==='/watch')id=new URL(a.href).searchParams.get('v')||'';else if(parts[0]==='embed'||parts[0]==='shorts'||parts[0]==='live')id=parts[1]||''}id=String(id||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,32);return id?{kind:'youtube',provider:'YouTube',label:'Vídeo de YouTube',icon:'▶️',embedUrl:'https://www.youtube.com/embed/'+id+'?rel=0&modestbranding=1&playsinline=1',previewUrl:a.href,thumbnailUrl:'https://img.youtube.com/vi/'+id+'/hqdefault.jpg'}:null}
+function getYouTubeEmbed(a){var info=getYouTubeInfo(a);return info?info.embedUrl:''}
+function renderImageList(imgs,wrapClass,imgClass){var normalized=normalizeImages(imgs||[]);if(!normalized.length)return '';var h='<div class="'+wrapClass+'">';normalized.forEach(function(img,i){h+='<img class="'+imgClass+'" src="'+attr(img.src)+'" alt="'+attr((img&&img.alt)||('Imagen de la pregunta '+(i+1)))+'">'});return h+'</div>'}
+function normalizeImages(imgs){if(!imgs||!imgs.length)return [];return imgs.filter(function(img){return img&&/^data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,/i.test(img.src||'')})}
+function normalizeTables(tables){if(!tables||!tables.length)return [];return tables.filter(function(html){return typeof html==='string'&&/<table[\s>]/i.test(html)&&!/<script|<iframe|<object|<embed/i.test(html)})}
+function normalizeBlocks(blocks){if(!blocks||!blocks.length)return [];var out=[];blocks.forEach(function(block){if(!block)return;if(block.type==='image'&&/^data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,/i.test(block.src||'')){out.push({type:'image',src:block.src,alt:block.alt||'Imagen de la pregunta'})}else if(block.type==='table'&&typeof block.html==='string'&&/<table[\s>]/i.test(block.html)&&!/<script|<iframe|<object|<embed/i.test(block.html)){out.push({type:'table',html:block.html})}else if(block.type==='media'||block.type==='link'){var m=normalizeMedia(block);if(m)out.push(m)}});return out}
+function attr(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
 function applyTheme(t){var dark=t==='dark';document.body.classList.toggle('dark-mode',dark);var b=document.getElementById('themeBtn');if(b)b.textContent=dark?'Modo claro':'Modo oscuro';localStorage.setItem('standaloneQuizTheme',t)}
 function toggleTheme(){applyTheme(document.body.classList.contains('dark-mode')?'light':'dark')}
@@ -4778,6 +6938,139 @@ restart();
 <\/script>
 </body>
 </html>`;
+}
+
+
+function renderQuestionContent(q) {
+  return escHtml(q && q.question ? q.question : '') + renderQuestionRichBlocks(q);
+}
+
+function renderQuestionImages(q) {
+  return renderImageCollection(q && q.images ? q.images : [], 'question-images', 'question-image');
+}
+
+function renderQuestionTables(q) {
+  return renderTableCollection(q && q.tables ? q.tables : [], 'question-tables');
+}
+
+function renderQuestionRichBlocks(q) {
+  const blocks = normalizeWordRichBlocks(q && q.questionBlocks ? q.questionBlocks : []);
+  if (blocks.length) return renderRichBlockCollection(blocks, 'question-rich-blocks', 'question-image');
+  return renderQuestionImages(q) + renderQuestionTables(q);
+}
+
+function renderAfterOptionContent(q) {
+  const blocks = normalizeWordRichBlocks(q && q.afterOptionBlocks ? q.afterOptionBlocks : []);
+  if (blocks.length) return renderRichBlockCollection(blocks, 'after-option-rich-blocks', 'after-option-image');
+  return renderImageCollection(q && q.afterOptionImages ? q.afterOptionImages : [], 'after-option-images', 'after-option-image') +
+    renderTableCollection(q && q.afterOptionTables ? q.afterOptionTables : [], 'after-option-tables');
+}
+
+function renderRichBlockCollection(blocks, wrapClass, imageClass) {
+  const normalized = normalizeWordRichBlocks(blocks || []);
+  if (!normalized.length) return '';
+  return `<div class="${wrapClass}">${normalized.map((block, i) => {
+    if (block.type === 'image') return `<img class="${imageClass}" src="${escAttr(block.src)}" alt="${escAttr(block.alt || ('Imagen de la pregunta ' + (i + 1)))}" loading="lazy">`;
+    if (block.type === 'table') return `<div class="word-aiken-table-wrap">${block.html}</div>`;
+    if (block.type === 'media' || block.type === 'link') return renderWordMediaBlock(block);
+    return '';
+  }).join('')}</div>`;
+}
+
+function renderImageCollection(images, wrapClass, imageClass) {
+  const normalized = normalizeQuestionImages(images || []);
+  if (!normalized.length) return '';
+  return `<div class="${wrapClass}">${normalized.map((img, i) => `<img class="${imageClass}" src="${escAttr(img.src)}" alt="${escAttr(img.alt || ('Imagen de la pregunta ' + (i + 1)))}" loading="lazy">`).join('')}</div>`;
+}
+
+function renderTableCollection(tables, wrapClass) {
+  const normalized = normalizeQuestionTables(tables || []);
+  if (!normalized.length) return '';
+  return `<div class="${wrapClass}">${normalized.map(html => `<div class="word-aiken-table-wrap">${html}</div>`).join('')}</div>`;
+}
+
+function buildMoodleQuestionText(q, qIndex) {
+  let html = `<p>${escHtml(q.question || '').replace(/\n/g, '<br>')}</p>`;
+  let files = '';
+  let fileCounter = 0;
+
+  function nextImageFilename(suffix, ext) {
+    fileCounter += 1;
+    return `q${qIndex + 1}_${suffix}_${fileCounter}.${ext}`;
+  }
+
+  function addFileForImage(img, suffix) {
+    const data = splitImageDataUri(img && img.src ? img.src : '');
+    if (!data) return '';
+    const filename = nextImageFilename(suffix, data.ext);
+    files += `      <file name="${xmlEsc(filename)}" path="/" encoding="base64">${data.base64}</file>\n`;
+    return filename;
+  }
+
+  function addImage(img, suffix) {
+    const filename = addFileForImage(img, suffix);
+    if (!filename) return;
+    html += `<p><img src="@@PLUGINFILE@@/${filename}" alt="${escAttr((img && img.alt) || 'Imagen de la pregunta')}" /></p>`;
+  }
+
+  function addTable(tableHtml, suffix) {
+    const converted = convertTableDataUrisToPluginFiles(tableHtml, suffix);
+    if (converted.html) html += converted.html;
+  }
+
+  function addMedia(block) {
+    html += renderMoodleMediaBlock(block);
+  }
+
+  function convertTableDataUrisToPluginFiles(tableHtml, suffix) {
+    const safeTable = sanitizeWordTableHtml(tableHtml);
+    if (!safeTable) return { html: '' };
+    const parsed = new DOMParser().parseFromString(safeTable, 'text/html');
+    parsed.querySelectorAll('img').forEach(imgEl => {
+      const filename = addFileForImage({ src: imgEl.getAttribute('src') || '', alt: imgEl.getAttribute('alt') || '' }, suffix);
+      if (filename) {
+        imgEl.setAttribute('src', '@@PLUGINFILE@@/' + filename);
+      } else {
+        imgEl.remove();
+      }
+    });
+    return { html: parsed.body.innerHTML };
+  }
+
+  const beforeBlocks = normalizeWordRichBlocks(q && q.questionBlocks ? q.questionBlocks : []);
+  const afterBlocks = normalizeWordRichBlocks(q && q.afterOptionBlocks ? q.afterOptionBlocks : []);
+
+  if (beforeBlocks.length) {
+    beforeBlocks.forEach(block => {
+      if (block.type === 'image') addImage(block, 'imagen');
+      if (block.type === 'table') addTable(block.html, 'tabla');
+      if (block.type === 'media' || block.type === 'link') addMedia(block);
+    });
+  } else {
+    normalizeQuestionImages(q && q.images ? q.images : []).forEach(img => addImage(img, 'imagen'));
+    normalizeQuestionTables(q && q.tables ? q.tables : []).forEach(table => addTable(table, 'tabla'));
+  }
+
+  if (afterBlocks.length) {
+    afterBlocks.forEach(block => {
+      if (block.type === 'image') addImage(block, 'imagen_despues_opciones');
+      if (block.type === 'table') addTable(block.html, 'tabla_despues_opciones');
+      if (block.type === 'media' || block.type === 'link') addMedia(block);
+    });
+  } else {
+    normalizeQuestionImages(q && q.afterOptionImages ? q.afterOptionImages : []).forEach(img => addImage(img, 'imagen_despues_opciones'));
+    normalizeQuestionTables(q && q.afterOptionTables ? q.afterOptionTables : []).forEach(table => addTable(table, 'tabla_despues_opciones'));
+  }
+  return { html, files };
+}
+
+function splitImageDataUri(src) {
+  const match = String(src || '').match(/^data:(image\/(png|jpe?g|gif|webp|svg\+xml));base64,([A-Za-z0-9+/=\r\n]+)$/i);
+  if (!match) return null;
+  let ext = match[2].toLowerCase();
+  if (ext === 'jpeg') ext = 'jpg';
+  if (ext === 'svg+xml') ext = 'svg';
+  return { mime: match[1], ext, base64: match[3].replace(/\s+/g, '') };
 }
 
 // ═══════════════════════════════════════════════════════
@@ -4834,9 +7127,115 @@ function initTheme() {
 // ═══════════════════════════════════════════════════════
 initTheme();
 
+function isDocxFile(file) {
+  return !!file && (/\.docx$/i.test(file.name) || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+}
+
+function setWordAikenSelectedFile(file) {
+  const input = document.getElementById('wordAikenFile');
+  const status = document.getElementById('wordAikenDropStatus');
+  wordAikenSelectedFile = file || null;
+
+  if (input && file) {
+    try {
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      input.files = dt.files;
+    } catch (e) {
+      // Algunos navegadores no permiten asignar programáticamente input.files.
+      // La variable wordAikenSelectedFile conserva igualmente el archivo soltado.
+    }
+  }
+
+  if (status) {
+    status.innerHTML = file
+      ? 'Documento seleccionado: <strong>' + escHtml(file.name) + '</strong>. Pulse Importar para cargarlo.'
+      : 'Arrastre aquí el archivo <strong>.docx</strong> o use «Elegir archivo».';
+  }
+}
+
+function setupWordAikenDragAndDrop() {
+  const box = document.getElementById('wordAikenUpload');
+  const input = document.getElementById('wordAikenFile');
+  if (!box || !input || box.dataset.dragDropReady === '1') return;
+  box.dataset.dragDropReady = '1';
+
+  input.addEventListener('change', () => {
+    const file = input.files && input.files[0];
+    if (file) {
+      if (isDocxFile(file)) {
+        setWordAikenSelectedFile(file);
+      } else {
+        setWordAikenSelectedFile(null);
+        input.value = '';
+        showToast('El archivo debe ser un documento MS Word .docx');
+      }
+    } else {
+      setWordAikenSelectedFile(null);
+    }
+  });
+
+  ['dragenter', 'dragover'].forEach(evtName => {
+    box.addEventListener(evtName, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const item = e.dataTransfer && e.dataTransfer.items && e.dataTransfer.items[0];
+      const looksLikeFile = !item || item.kind === 'file';
+      box.classList.toggle('drag-over', looksLikeFile);
+      box.classList.remove('drag-invalid');
+      if (e.dataTransfer) e.dataTransfer.dropEffect = looksLikeFile ? 'copy' : 'none';
+    });
+  });
+
+  ['dragleave', 'dragend'].forEach(evtName => {
+    box.addEventListener(evtName, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!box.contains(e.relatedTarget)) {
+        box.classList.remove('drag-over', 'drag-invalid');
+      }
+    });
+  });
+
+  box.addEventListener('drop', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    box.classList.remove('drag-over', 'drag-invalid');
+
+    const files = Array.from((e.dataTransfer && e.dataTransfer.files) || []);
+    const file = files.find(isDocxFile);
+    if (!file) {
+      box.classList.add('drag-invalid');
+      setTimeout(() => box.classList.remove('drag-invalid'), 900);
+      showToast('Arrastre un único documento MS Word en formato .docx');
+      return;
+    }
+
+    setWordAikenSelectedFile(file);
+    showToast('Documento preparado: ' + file.name);
+  });
+}
+
+function updateImportFormatUi() {
+  const fmt = document.getElementById('importFormat').value;
+  const wordBox = document.getElementById('wordAikenUpload');
+  const textarea = document.getElementById('importData');
+  if (wordBox) wordBox.style.display = fmt === 'docx-aiken' ? 'block' : 'none';
+  if (textarea) {
+    textarea.disabled = fmt === 'docx-aiken';
+    textarea.placeholder = fmt === 'docx-aiken'
+      ? 'Seleccione o arrastre un archivo .docx en el campo inferior y pulse Importar.'
+      : 'Pegue aquí el texto del cuestionario de NotebookLM (Ctrl+V). Se importará automáticamente al usar el formato de pegado de NotebookLM.';
+  }
+}
+
 document.getElementById('importFormat').addEventListener('change', () => {
   document.getElementById('formatHelp').style.display = 'none';
+  updateImportFormatUi();
+  setupWordAikenDragAndDrop();
 });
+updateImportFormatUi();
+setupWordAikenDragAndDrop();
 
 // Auto-import on paste when format is NotebookLM paste
 document.getElementById('importData').addEventListener('paste', () => {

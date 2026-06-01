@@ -196,3 +196,23 @@ Resumen funcional del nuevo HTML integrado:
 - Revisión final con filtros por correctas, incorrectas y sin responder.
 - Estados visuales diferenciados en la revisión, incluidas banderas.
 - Exportación HTML independiente con los mismos cambios principales.
+
+
+## Versión 1.9
+
+Cambios de esta entrega:
+
+- Sustitución del `index.html` de la versión 1.8 por el nuevo HTML `v42_word_aiken_imagenes_multimedia_separacion_acciones`, conservando la envoltura PWA, iconos, manifiesto, hoja de áreas seguras, favicon invisible en PC y publicación directa en GitHub Pages.
+- Incorporación de la nueva opción de importación **MS Word Aiken con imágenes**, orientada a documentos `.docx` con estructura Aiken ampliada.
+- Soporte para subida de documentos Word mediante selector de archivo y arrastrar/soltar.
+- Reconocimiento ampliado de opciones Aiken: `a)`, `A)`, `a.`, `A.` y listas procedentes de la numeración automática de Microsoft Word.
+- Conservación de imágenes colocadas antes de las opciones y también después de las opciones o de `ANSWER:`.
+- Soporte para tablas de Word, incluidas tablas con texto, listas, viñetas e imágenes en celdas.
+- Soporte para enlaces y recursos multimedia externos: YouTube, JoVE, PDF, audio, vídeo, páginas web y enlaces generales.
+- Tarjetas multimedia con enlace principal, acción de previsualización desplegable y botón de apertura externa.
+- Reconocimiento de justificaciones tras `ANSWER:` mediante `Justificación:`, `Explicación:`, `Reasoning:` o `Explanation:`.
+- Visualización de la justificación sólo en **Realizar cuestionario → Modo estudio**, con tarjeta de fondo crema, borde naranja y compatibilidad con modo oscuro.
+- Propagación de estas mejoras al editor, al cuestionario, a la revisión final, al HTML independiente exportado y al XML Moodle cuando corresponde.
+- Caché PWA actualizada a `notebooklm-quiz-pwa-v8` para forzar que iPhone y GitHub Pages recojan el nuevo HTML.
+
+Nota técnica: el nuevo HTML carga `mammoth.browser.min.js` desde jsDelivr para leer documentos `.docx`. Se ha conservado esa referencia externa para no alterar la lógica del HTML recibido. La app PWA sigue cacheando sus archivos locales esenciales; la importación Word/Aiken necesita que esa librería esté disponible en el navegador.
