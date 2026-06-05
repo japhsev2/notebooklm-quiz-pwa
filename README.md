@@ -1,3 +1,23 @@
+# Actualización 1.12
+
+Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v74_revision_duplicados_importada_izquierda.html`, conservando la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
+
+Cambios principales incorporados en el HTML:
+
+- botones globales de traducción en Editor y Revisión;
+- eliminación de la redirección automática al Editor tras importar;
+- ajuste de la marca de pregunta señalada para que quede debajo del botón de traducción en Revisión;
+- botón de traducción del cuadro celeste reducido, recolocado, con radio `0.35rem`, área táctil restaurada y colores nocturnos suavizados;
+- revisión interactiva de preguntas omitidas por duplicado desde el aviso inferior derecho;
+- comparación entre pregunta ya importada y pregunta omitida;
+- selección de preguntas omitidas para añadirlas, importarlas todas o no añadir ninguna;
+- revisión doble de duplicados en modo bilingüe;
+- botones de traducción en el pop-up de duplicados;
+- navegación lateral anterior/siguiente dentro de la revisión de duplicados;
+- orden final de comparación: `Ya importada #N` a la izquierda y `Omitida en esta importación` a la derecha.
+
+El proyecto deriva de un fork modificado de `https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
+
 # Actualización 1.11
 
 Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v64_bilingue_idioma_persistente_revision.html`, conservando la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.

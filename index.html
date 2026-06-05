@@ -3941,7 +3941,416 @@ body.dark-mode .bilingual-translation-btn {
   border-color: #4aa0d8;
   color: #9cccff;
 }
+.bilingual-global-translation-btn {
+  align-items: center;
+  background: #e7f3ff;
+  border: 1px solid #9fcfeb;
+  border-radius: 0.35rem;
+  color: #0f6cbf;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 800;
+  gap: 0.12rem;
+  line-height: 1;
+  padding: 0.28rem 0.45rem;
+  white-space: nowrap;
+}
+.bilingual-global-translation-btn:hover,
+.bilingual-global-translation-btn:focus-visible {
+  border-color: #0f6cbf;
+  outline: 0;
+  text-decoration: underline;
+}
+.editor-bilingual-toolbar,
+.review-bilingual-toolbar {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+.review-heading-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 24px 0 16px;
+}
+.review-heading-row h3 {
+  margin: 0 !important;
+}
+/* Ajuste v67 — Revisión bilingüe: la bandera de pregunta marcada queda siempre debajo del botón de traducción. */
+.review-item.is-flagged-review.has-bilingual-toggle {
+  padding-right: 3.8rem !important;
+}
+.review-item.is-flagged-review.has-bilingual-toggle .bilingual-translation-btn {
+  right: 0.55rem !important;
+  top: 0.55rem !important;
+}
+.review-item.is-flagged-review.has-bilingual-toggle .review-flag-badge {
+  right: 1.45rem !important;
+  top: 2.55rem !important;
+}
+body.dark-mode .bilingual-global-translation-btn {
+  background: #173958;
+  border-color: #4aa0d8;
+  color: #9cccff;
+}
+@media (max-width: 640px) {
+  .review-heading-row { gap: 0.75rem; }
+  .bilingual-global-translation-btn { font-size: 0.86rem; padding: 0.25rem 0.4rem; }
+}
 
+
+
+/* Ajuste v69 — Realizar cuestionario: botón de traducción mínimo, con el radio original,
+   pegado a la esquina y sin restar anchura al enunciado. */
+#quizArea .quiz-slide.has-bilingual-toggle .quiz-question-text {
+  padding-right: 0 !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  right: 0.14rem !important;
+  top: 0.14rem !important;
+  border-radius: 0.35rem !important;
+  font-size: 0.64rem !important;
+  gap: 0.03rem !important;
+  line-height: 1 !important;
+  min-height: 1.05rem !important;
+  padding: 0.055rem 0.16rem !important;
+  z-index: 2 !important;
+}
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  background: rgba(20, 38, 48, 0.86) !important;
+  border-color: rgba(112, 139, 154, 0.82) !important;
+  color: #b9d4e3 !important;
+  box-shadow: none !important;
+  filter: grayscale(0.45) saturate(0.62) brightness(0.92) !important;
+}
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn:hover,
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn:focus-visible {
+  background: rgba(27, 52, 65, 0.94) !important;
+  border-color: rgba(151, 174, 186, 0.9) !important;
+  color: #d1e3ec !important;
+  filter: grayscale(0.35) saturate(0.7) brightness(0.98) !important;
+  text-decoration: none !important;
+}
+@media (max-width: 640px) {
+  #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+    right: 0.12rem !important;
+    top: 0.12rem !important;
+    border-radius: 0.35rem !important;
+    font-size: 0.60rem !important;
+    min-height: 0.98rem !important;
+    padding: 0.045rem 0.14rem !important;
+  }
+}
+
+/* Ajuste v71 — Realizar cuestionario: área de activación del botón de traducción restaurada a la amplitud v67.
+   Sólo se amplía el área invisible clicable/táctil; no cambia el tamaño visual, la ubicación ni el radio del botón. */
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  overflow: visible !important;
+  touch-action: manipulation !important;
+}
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn::before {
+  background: rgba(0,0,0,0.001) !important;
+  border-radius: 0.35rem !important;
+  content: "" !important;
+  height: 1.62rem !important;
+  left: 50% !important;
+  pointer-events: auto !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 2.60rem !important;
+}
+@media (max-width: 640px) {
+  #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn::before {
+    height: 1.62rem !important;
+    width: 2.60rem !important;
+  }
+}
+
+
+/* Ajuste v72 — Revisión interactiva de preguntas omitidas por duplicado.
+   El aviso inferior derecho se vuelve clicable cuando hay preguntas omitidas y
+   abre un visor comparativo horizontal para decidir qué versiones importar. */
+.toast.toast-clickable {
+  cursor: pointer;
+  pointer-events: auto;
+  text-decoration: none;
+}
+.toast.toast-clickable:hover,
+.toast.toast-clickable:focus-visible {
+  box-shadow: 0 0 0 0.18rem rgba(15,108,191,0.28), var(--shadow-lg);
+  outline: 0;
+}
+.duplicate-review-backdrop {
+  align-items: center;
+  background: rgba(0,0,0,0.48);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 1.25rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 3000;
+}
+.duplicate-review-dialog {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.28);
+  color: var(--text);
+  max-height: min(86vh, 54rem);
+  max-width: min(96vw, 76rem);
+  overflow: hidden;
+  width: 100%;
+}
+.duplicate-review-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.1rem 1.25rem 0.9rem;
+}
+.duplicate-review-header h3 {
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 0.35rem;
+}
+.duplicate-review-header p {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin: 0;
+}
+.duplicate-review-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.1rem;
+  scroll-snap-type: x proximity;
+}
+.duplicate-review-card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  flex: 0 0 min(70rem, 92vw);
+  min-width: min(70rem, 92vw);
+  padding: 1rem;
+  scroll-snap-align: start;
+}
+.duplicate-review-card-title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.duplicate-review-card-title strong {
+  font-size: 0.95rem;
+}
+.duplicate-review-choice {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 0.45rem;
+  margin: 0 !important;
+}
+.duplicate-review-pair {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.duplicate-review-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.9rem;
+  min-width: 0;
+}
+.duplicate-review-col h4 {
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin: 0 0 0.55rem;
+}
+.duplicate-review-question {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 0.65rem;
+  white-space: pre-wrap;
+}
+.duplicate-review-options {
+  display: grid;
+  gap: 0.35rem;
+}
+.duplicate-review-option {
+  border: 1px solid var(--border);
+  border-radius: 0.42rem;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  padding: 0.45rem 0.55rem;
+}
+.duplicate-review-option.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+  font-weight: 700;
+}
+.duplicate-review-matches {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+}
+.duplicate-review-matches .duplicate-review-col {
+  flex: 0 0 100%;
+}
+.duplicate-review-actions {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  padding: 0.9rem 1.25rem 1.05rem;
+}
+.duplicate-review-empty {
+  color: var(--text-muted);
+  padding: 1rem 1.25rem;
+}
+body.dark-mode .duplicate-review-backdrop {
+  background: rgba(0,0,0,0.68);
+}
+body.dark-mode .duplicate-review-card,
+body.dark-mode .duplicate-review-col {
+  border-color: var(--border);
+}
+@media (max-width: 720px) {
+  .duplicate-review-dialog { max-height: 90vh; }
+  .duplicate-review-track { padding: 0.85rem; }
+  .duplicate-review-card {
+    flex-basis: 88vw;
+    min-width: 88vw;
+  }
+  .duplicate-review-pair { grid-template-columns: 1fr; }
+  .duplicate-review-actions { justify-content: stretch; }
+  .duplicate-review-actions .btn { justify-content: center; width: 100%; }
+}
+
+
+
+/* Ajuste v73 — Revisión bilingüe de duplicados, navegación lateral y botones de traducción.
+   En modo bilingüe, la revisión de duplicados se muestra en dos fases: documento 1 y documento 2.
+   Cada pregunta comparada incorpora conmutador de traducción y el visor añade navegación anterior/siguiente. */
+.duplicate-review-dialog {
+  position: relative;
+}
+.duplicate-review-title-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: space-between;
+}
+.duplicate-review-phase-badge {
+  background: var(--accent-light);
+  border: 1px solid #9fcfeb;
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.2;
+  padding: 0.26rem 0.62rem;
+}
+.duplicate-review-qbox {
+  position: relative;
+}
+.duplicate-review-qbox.has-bilingual-toggle {
+  padding-top: 0.15rem;
+}
+.duplicate-review-qbox .bilingual-translation-btn {
+  border-radius: 0.35rem !important;
+  font-size: 0.74rem !important;
+  padding: 0.12rem 0.22rem !important;
+  right: 0 !important;
+  top: 0 !important;
+}
+.duplicate-review-qbox.has-bilingual-toggle .duplicate-review-question {
+  padding-right: 2.15rem;
+}
+.duplicate-review-already-added {
+  color: var(--correct);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.duplicate-review-choice input:disabled + span,
+.duplicate-review-choice.is-disabled {
+  cursor: default;
+  opacity: 0.72;
+}
+.duplicate-review-nav-btn {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  color: var(--accent);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 1.35rem;
+  font-weight: 900;
+  height: 2.55rem;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.55rem;
+  z-index: 2;
+}
+.duplicate-review-nav-btn:hover,
+.duplicate-review-nav-btn:focus-visible {
+  border-color: var(--accent);
+  outline: 0;
+}
+.duplicate-review-prev { left: 0.55rem; }
+.duplicate-review-next { right: 0.55rem; }
+.duplicate-review-track {
+  scroll-behavior: smooth;
+}
+body.dark-mode .duplicate-review-phase-badge {
+  background: #173958;
+  border-color: #345f84;
+  color: #b8d7ee;
+}
+body.dark-mode .duplicate-review-nav-btn {
+  background: #20262d;
+  border-color: #4a535d;
+  color: #b8d7ee;
+}
+@media (max-width: 720px) {
+  .duplicate-review-nav-btn {
+    height: 2.2rem;
+    width: 2.2rem;
+    font-size: 1.1rem;
+    top: auto;
+    bottom: 4.8rem;
+  }
+  .duplicate-review-prev { left: 0.75rem; }
+  .duplicate-review-next { right: 0.75rem; }
+}
 </style>
 </head>
 <body>
@@ -4050,9 +4459,10 @@ body.dark-mode .bilingual-translation-btn {
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
       <h2 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;">Preguntas</h2>
-      <div style="display:flex;gap:8px;">
+      <div class="editor-bilingual-toolbar">
         <button class="btn btn-secondary btn-sm" onclick="clearAllQuestions()">Borrar todo</button>
         <button class="btn btn-primary btn-sm" onclick="addNewQuestion()">+ Añadir pregunta</button>
+        <span id="editorBilingualGlobalSlot"></span>
       </div>
     </div>
 
@@ -4141,6 +4551,7 @@ let wordAikenSelectedFileAlt = null;
 let wordAikenBilingualEnabled = false;
 let bilingualQuizLanguageMode = null;
 let bilingualCurrentLang = 'primary';
+let lastDuplicateReview = { items: [] };
 
 // ═══════════════════════════════════════════════════════
 //  BOOKMARKLET
@@ -4229,9 +4640,13 @@ function buildBookmarklet() {
 function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
+  const panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
   document.body.classList.toggle('quiz-wide', name === 'quiz');
-  event.target.classList.add('active');
+  const activeBtn = (typeof event !== 'undefined' && event && event.target && event.target.classList && event.target.classList.contains('tab-btn'))
+    ? event.target
+    : Array.from(document.querySelectorAll('.tab-btn')).find(b => (b.getAttribute('onclick') || '').includes("'" + name + "'"));
+  if (activeBtn) activeBtn.classList.add('active');
   if (name === 'editor') renderEditor();
   if (name === 'quiz') resetQuiz();
   if (name === 'export') updateExportState();
@@ -4262,13 +4677,25 @@ async function importQuiz() {
     showToast('No se han encontrado preguntas válidas. Revise el formato.');
     return;
   }
-  // Deduplicate against existing questions (especially useful for NLM paste)
+  // Deduplicate against existing questions (especially useful for NLM paste).
+  // v72: when questions are omitted as duplicates, keep a reviewable comparison
+  // so the user can decide whether to import none, some, or all of them.
   let added = 0;
   let skipped = 0;
+  const duplicateItems = [];
   for (const q of parsed) {
-    const key = q.question.substring(0, 60);
-    const isDupe = questions.some(existing => existing.question.substring(0, 60) === key);
-    if (isDupe) {
+    const duplicateMatches = findDuplicateQuestionMatches(q);
+    if (duplicateMatches.length) {
+      duplicateItems.push({
+        omitted: cloneQuestionForDuplicateReview(q),
+        matches: duplicateMatches.map(match => ({
+          index: match.index,
+          question: cloneQuestionForDuplicateReview(match.question),
+          score: match.score
+        })),
+        selected: false,
+        imported: false
+      });
       skipped++;
     } else {
       getCorrectIndices(q);
@@ -4276,15 +4703,241 @@ async function importQuiz() {
       added++;
     }
   }
+  lastDuplicateReview = { items: duplicateItems, phase: 'primary', bilingual: duplicateItems.some(item => hasBilingualAlt(item.omitted) || (item.matches || []).some(m => hasBilingualAlt(m.question))) };
   updateBadge();
   if (added > 0 && skipped > 0) {
-    showToast('Importadas ' + added + ' pregunta' + (added !== 1 ? 's' : '') + ' (' + skipped + ' duplicada' + (skipped !== 1 ? 's' : '') + ' omitida' + (skipped !== 1 ? 's' : '') + ')');
+    showToast('Importadas ' + added + ' pregunta' + (added !== 1 ? 's' : '') + ' (' + skipped + ' duplicada' + (skipped !== 1 ? 's' : '') + ' omitida' + (skipped !== 1 ? 's' : '') + '). Pulse para revisar.', { action: 'duplicates', duration: 9000 });
   } else if (added > 0) {
     showToast('Importadas ' + added + ' pregunta' + (added !== 1 ? 's' : ''));
   } else {
-    showToast('Las ' + skipped + ' pregunta(s) ya estaban importadas');
+    showToast('Las ' + skipped + ' pregunta(s) ya estaban importadas. Pulse para revisar.', { action: 'duplicates', duration: 9000 });
   }
   document.getElementById('importData').value = '';
+}
+
+
+function normalizeQuestionFingerprintText(text) {
+  return String(text || '')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/[^a-z0-9áéíóúüñ]+/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getQuestionDuplicateKey(q) {
+  return normalizeQuestionFingerprintText(q && q.question ? q.question : '').substring(0, 80);
+}
+
+function findDuplicateQuestionMatches(candidate) {
+  const key = getQuestionDuplicateKey(candidate);
+  if (!key) return [];
+  const matches = [];
+  questions.forEach((existing, index) => {
+    const existingKey = getQuestionDuplicateKey(existing);
+    if (!existingKey) return;
+    const sameLead = existingKey.substring(0, 60) === key.substring(0, 60);
+    const fullMatch = existingKey === key;
+    if (sameLead || fullMatch) {
+      matches.push({ index, question: existing, score: fullMatch ? 100 : 90 });
+    }
+  });
+  return matches;
+}
+
+function cloneQuestionForDuplicateReview(q) {
+  return JSON.parse(JSON.stringify(q || {}));
+}
+
+function getDuplicateReviewVisibleQuestion(q) {
+  return getVisibleQuestion(q || {}) || q || {};
+}
+
+function setDuplicateReviewPhaseLanguage(phase) {
+  const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  const lang = phase === 'alt' ? 'alt' : 'primary';
+  items.forEach(item => {
+    if (item && item.omitted && hasBilingualAlt(item.omitted)) item.omitted.bilingualLang = lang;
+    (item.matches || []).forEach(match => {
+      if (match && match.question && hasBilingualAlt(match.question)) match.question.bilingualLang = lang;
+    });
+  });
+}
+
+function duplicateReviewHasBilingualItems() {
+  const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  return items.some(item => hasBilingualAlt(item.omitted) || (item.matches || []).some(match => hasBilingualAlt(match.question)));
+}
+
+function toggleDuplicateReviewQuestionLanguage(itemIndex, zone, matchIndex) {
+  const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  const item = items[itemIndex];
+  if (!item) return;
+  let q = null;
+  if (zone === 'omitted') q = item.omitted;
+  else if (zone === 'match' && item.matches && item.matches[matchIndex]) q = item.matches[matchIndex].question;
+  if (!hasBilingualAlt(q)) return;
+  q.bilingualLang = isBilingualAltVisible(q) ? 'primary' : 'alt';
+  showDuplicateReviewDialog({ keepPhase: true, focusIndex: itemIndex });
+}
+
+function renderDuplicateReviewQuestion(q, itemIndex, zone, matchIndex) {
+  const vq = getDuplicateReviewVisibleQuestion(q);
+  const options = Array.isArray(vq.options) ? vq.options : [];
+  const correct = uniqueSortedIndices(getCorrectIndices(vq), options.length);
+  const rows = options.map((opt, i) => {
+    const letter = String.fromCharCode(65 + i) + '.';
+    const cls = correct.includes(i) ? ' duplicate-review-option correct' : ' duplicate-review-option';
+    return '<div class="' + cls.trim() + '"><strong>' + escHtml(letter) + '</strong> ' + escHtml(opt || '') + '</div>';
+  }).join('');
+  const hasToggle = hasBilingualAlt(q);
+  const toggle = hasToggle
+    ? '<button type="button" class="bilingual-translation-btn" title="Cambiar idioma" aria-label="Cambiar idioma" onclick="toggleDuplicateReviewQuestionLanguage(' + itemIndex + ',\'' + escAttr(zone) + '\',' + (Number.isFinite(matchIndex) ? matchIndex : -1) + ')">🌐A</button>'
+    : '';
+  return '<div class="duplicate-review-qbox' + (hasToggle ? ' has-bilingual-toggle' : '') + '">' +
+         toggle +
+         '<div class="duplicate-review-question">' + escHtml(vq.question || '(Sin enunciado)') + '</div>' +
+         '<div class="duplicate-review-options">' + rows + '</div>' +
+         '</div>';
+}
+
+function showDuplicateReviewDialog(options) {
+  options = options || {};
+  closeDuplicateReviewDialog();
+  const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  const hasBilingual = duplicateReviewHasBilingualItems();
+  if (!lastDuplicateReview) lastDuplicateReview = { items: items, phase: 'primary', bilingual: hasBilingual };
+  if (!options.keepPhase) {
+    lastDuplicateReview.phase = lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary';
+    setDuplicateReviewPhaseLanguage(lastDuplicateReview.phase);
+  }
+  const phase = lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary';
+  const phaseLabel = hasBilingual ? (phase === 'alt' ? 'Documento 2 · segundo idioma' : 'Documento 1 · idioma principal') : 'Documento único';
+  const backdrop = document.createElement('div');
+  backdrop.className = 'duplicate-review-backdrop';
+  backdrop.id = 'duplicateReviewBackdrop';
+  backdrop.setAttribute('role', 'presentation');
+  const body = items.length ? items.map((item, idx) => {
+    const matches = Array.isArray(item.matches) && item.matches.length ? item.matches : [];
+    const matchCards = matches.map((match, mi) =>
+      '<div class="duplicate-review-col">' +
+        '<h4>Ya importada ' + escHtml('#' + (Number(match.index) + 1)) + (matches.length > 1 ? ' · coincidencia ' + (mi + 1) : '') + '</h4>' +
+        renderDuplicateReviewQuestion(match.question, idx, 'match', mi) +
+      '</div>'
+    ).join('');
+    const disabled = item.imported ? ' disabled' : '';
+    const choice = item.imported
+      ? '<span class="duplicate-review-already-added">✓ Ya añadida a la importación final</span>'
+      : '<label class="duplicate-review-choice"><input type="checkbox" class="duplicate-review-select" data-duplicate-index="' + idx + '"' + disabled + '> <span>Añadir esta versión omitida</span></label>';
+    return '<section class="duplicate-review-card" data-duplicate-index="' + idx + '">' +
+      '<div class="duplicate-review-card-title">' +
+        '<strong>Pregunta omitida ' + (idx + 1) + ' de ' + items.length + '</strong>' +
+        choice +
+      '</div>' +
+      '<div class="duplicate-review-pair">' +
+        '<div class="duplicate-review-matches">' + matchCards + '</div>' +
+        '<div class="duplicate-review-col"><h4>Omitida en esta importación</h4>' + renderDuplicateReviewQuestion(item.omitted, idx, 'omitted', -1) + '</div>' +
+      '</div>' +
+    '</section>';
+  }).join('') : '<div class="duplicate-review-empty">No hay preguntas omitidas pendientes de revisar.</div>';
+  const nextPhaseText = hasBilingual && phase === 'primary' ? ' Al cerrar o terminar esta revisión se abrirá automáticamente la comprobación del documento 2.' : '';
+  backdrop.innerHTML =
+    '<div class="duplicate-review-dialog" role="dialog" aria-modal="true" aria-labelledby="duplicateReviewTitle">' +
+      '<button type="button" class="duplicate-review-nav-btn duplicate-review-prev" onclick="navigateDuplicateReview(-1)" aria-label="Pregunta omitida anterior">‹</button>' +
+      '<button type="button" class="duplicate-review-nav-btn duplicate-review-next" onclick="navigateDuplicateReview(1)" aria-label="Pregunta omitida siguiente">›</button>' +
+      '<div class="duplicate-review-header">' +
+        '<div class="duplicate-review-title-row"><h3 id="duplicateReviewTitle">Revisión de preguntas omitidas por posible duplicado</h3><span class="duplicate-review-phase-badge">' + escHtml(phaseLabel) + '</span></div>' +
+        '<p>Compare cada pregunta omitida con la pregunta ya importada que el HTML ha interpretado como parecida o repetida. Desplácese horizontalmente o use los botones laterales para revisar todas las versiones y marque las que sí deban añadirse a la importación final.' + nextPhaseText + '</p>' +
+      '</div>' +
+      '<div class="duplicate-review-track">' + body + '</div>' +
+      '<div class="duplicate-review-actions">' +
+        '<button type="button" class="btn btn-secondary" onclick="finishDuplicateReviewPhase(false)">No añadir ninguna' + (hasBilingual && phase === 'primary' ? ' y revisar documento 2' : '') + '</button>' +
+        '<button type="button" class="btn btn-secondary" onclick="selectAllDuplicateReviewItems()">Seleccionar todas</button>' +
+        '<button type="button" class="btn btn-primary" onclick="importSelectedDuplicateReviewItems(false)">Añadir seleccionadas</button>' +
+        '<button type="button" class="btn btn-primary" onclick="importSelectedDuplicateReviewItems(true)">Importar todas</button>' +
+      '</div>' +
+    '</div>';
+  backdrop.addEventListener('click', function(e) { if (e.target === backdrop) finishDuplicateReviewPhase(false); });
+  document.body.appendChild(backdrop);
+  const focusIndex = Number.isFinite(options.focusIndex) ? options.focusIndex : 0;
+  const track = backdrop.querySelector('.duplicate-review-track');
+  const card = backdrop.querySelector('.duplicate-review-card[data-duplicate-index="' + focusIndex + '"]');
+  if (track && card) track.scrollLeft = card.offsetLeft - track.offsetLeft;
+  const first = backdrop.querySelector('.duplicate-review-select:not(:disabled), .duplicate-review-actions .btn');
+  if (first) first.focus();
+}
+
+function closeDuplicateReviewDialog() {
+  const old = document.getElementById('duplicateReviewBackdrop');
+  if (old) old.remove();
+}
+
+function finishDuplicateReviewPhase(forceClose) {
+  const hasBilingual = duplicateReviewHasBilingualItems();
+  const phase = lastDuplicateReview && lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary';
+  closeDuplicateReviewDialog();
+  if (!forceClose && hasBilingual && phase === 'primary') {
+    lastDuplicateReview.phase = 'alt';
+    setDuplicateReviewPhaseLanguage('alt');
+    setTimeout(function() { showDuplicateReviewDialog({ keepPhase: true }); }, 80);
+    return;
+  }
+  if (lastDuplicateReview && Array.isArray(lastDuplicateReview.items)) {
+    lastDuplicateReview.items = lastDuplicateReview.items.filter(item => !item.imported);
+  }
+}
+
+function navigateDuplicateReview(direction) {
+  const track = document.querySelector('#duplicateReviewBackdrop .duplicate-review-track');
+  if (!track) return;
+  const cards = Array.from(track.querySelectorAll('.duplicate-review-card'));
+  if (!cards.length) return;
+  const currentLeft = track.scrollLeft + track.getBoundingClientRect().left;
+  let currentIndex = 0;
+  let best = Infinity;
+  cards.forEach((card, i) => {
+    const dist = Math.abs(card.getBoundingClientRect().left - track.getBoundingClientRect().left);
+    if (dist < best) { best = dist; currentIndex = i; }
+  });
+  const nextIndex = Math.max(0, Math.min(cards.length - 1, currentIndex + (direction > 0 ? 1 : -1)));
+  cards[nextIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+}
+
+function selectAllDuplicateReviewItems() {
+  document.querySelectorAll('#duplicateReviewBackdrop .duplicate-review-select:not(:disabled)').forEach(cb => { cb.checked = true; });
+}
+
+function importSelectedDuplicateReviewItems(all) {
+  const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  const selected = all ? items.filter(item => !item.imported) : items.filter((item, idx) => {
+    if (item.imported) return false;
+    const cb = document.querySelector('#duplicateReviewBackdrop .duplicate-review-select[data-duplicate-index="' + idx + '"]');
+    return !!(cb && cb.checked);
+  });
+  if (!selected.length) {
+    showToast('No se ha seleccionado ninguna pregunta omitida');
+    return;
+  }
+  selected.forEach(item => {
+    const q = cloneQuestionForDuplicateReview(item.omitted);
+    q.bilingualLang = 'primary';
+    getCorrectIndices(q);
+    questions.push(q);
+    item.imported = true;
+  });
+  updateBadge();
+  const count = selected.length;
+  const hasBilingual = duplicateReviewHasBilingualItems();
+  const phase = lastDuplicateReview && lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary';
+  showToast('Añadidas ' + count + ' pregunta' + (count !== 1 ? 's' : '') + ' omitida' + (count !== 1 ? 's' : '') + ' tras la revisión');
+  if (hasBilingual && phase === 'primary') {
+    lastDuplicateReview.phase = 'alt';
+    setDuplicateReviewPhaseLanguage('alt');
+    showDuplicateReviewDialog({ keepPhase: true });
+  } else {
+    finishDuplicateReviewPhase(true);
+  }
 }
 
 function parseNotebookLMPaste(raw) {
@@ -4570,6 +5223,31 @@ function renderBilingualToggleButton(q, absoluteIndex, context) {
 
 function hasAnyBilingualQuestions() {
   return Array.isArray(questions) && questions.some(q => hasBilingualAlt(q));
+}
+
+function getNextGlobalBilingualLanguage() {
+  const bilingual = Array.isArray(questions) ? questions.filter(q => hasBilingualAlt(q)) : [];
+  if (!bilingual.length) return 'primary';
+  return bilingual.every(q => isBilingualAltVisible(q)) ? 'primary' : 'alt';
+}
+
+function renderGlobalBilingualToggleButton(context) {
+  if (!hasAnyBilingualQuestions()) return '';
+  const nextLang = getNextGlobalBilingualLanguage();
+  const title = nextLang === 'alt' ? 'Cambiar todas las preguntas al otro idioma' : 'Cambiar todas las preguntas al idioma principal';
+  return '<button type="button" class="bilingual-global-translation-btn" title="' + escAttr(title) + '" aria-label="' + escAttr(title) + '" onclick="toggleAllBilingualQuestionsLanguage(\'' + escAttr(context || 'editor') + '\')">🌐 A</button>';
+}
+
+function toggleAllBilingualQuestionsLanguage(context) {
+  const nextLang = getNextGlobalBilingualLanguage();
+  setAllBilingualQuestionsLanguage(nextLang);
+  bilingualCurrentLang = nextLang;
+  if (context === 'quiz' || context === 'results') {
+    bilingualQuizLanguageMode = nextLang === 'alt' ? 'doc2' : 'doc1';
+  }
+  if (context === 'results') renderResults();
+  else if (context === 'quiz') renderQuizSlide();
+  else renderEditor();
 }
 
 function setAllBilingualQuestionsLanguage(lang) {
@@ -5965,10 +6643,14 @@ function renderEditor() {
   const empty = document.getElementById('emptyEditor');
   if (questions.length === 0) {
     list.innerHTML = '';
+    const globalSlot = document.getElementById('editorBilingualGlobalSlot');
+    if (globalSlot) globalSlot.innerHTML = '';
     empty.style.display = 'block';
     return;
   }
   empty.style.display = 'none';
+  const globalSlot = document.getElementById('editorBilingualGlobalSlot');
+  if (globalSlot) globalSlot.innerHTML = renderGlobalBilingualToggleButton('editor');
   list.innerHTML = questions.map((q, i) => {
     const shown = getVisibleQuestion(q);
     return `
@@ -6508,7 +7190,10 @@ function renderResults() {
         <button class="btn btn-primary" onclick="resetQuiz()">Repetir cuestionario</button>
       </div>
     </div>
-    <h3 id="reviewHeading" style="font-family:var(--serif);margin:24px 0 16px;">Revisión</h3>
+    <div class="review-heading-row">
+      <h3 id="reviewHeading" style="font-family:var(--serif);">Revisión</h3>
+      <div class="review-bilingual-toolbar">${renderGlobalBilingualToggleButton('results')}</div>
+    </div>
     <div id="reviewFilterEmpty" class="review-filter-empty">No hay preguntas en esta categoría.</div>
     <div id="reviewList">
       ${reviews.map((r, i) => `
@@ -7665,6 +8350,290 @@ body.dark-mode .bilingual-translation-btn {
   color: #9cccff;
 }
 
+
+
+/* Ajuste v69 — Realizar cuestionario: botón de traducción mínimo, con el radio original,
+   pegado a la esquina y sin restar anchura al enunciado. */
+#quizArea .quiz-slide.has-bilingual-toggle .quiz-question-text {
+  padding-right: 0 !important;
+  position: relative !important;
+  z-index: 3 !important;
+}
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  right: 0.14rem !important;
+  top: 0.14rem !important;
+  border-radius: 0.35rem !important;
+  font-size: 0.64rem !important;
+  gap: 0.03rem !important;
+  line-height: 1 !important;
+  min-height: 1.05rem !important;
+  padding: 0.055rem 0.16rem !important;
+  z-index: 2 !important;
+}
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  background: rgba(20, 38, 48, 0.86) !important;
+  border-color: rgba(112, 139, 154, 0.82) !important;
+  color: #b9d4e3 !important;
+  box-shadow: none !important;
+  filter: grayscale(0.45) saturate(0.62) brightness(0.92) !important;
+}
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn:hover,
+body.dark-mode #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn:focus-visible {
+  background: rgba(27, 52, 65, 0.94) !important;
+  border-color: rgba(151, 174, 186, 0.9) !important;
+  color: #d1e3ec !important;
+  filter: grayscale(0.35) saturate(0.7) brightness(0.98) !important;
+  text-decoration: none !important;
+}
+@media (max-width: 640px) {
+  #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+    right: 0.12rem !important;
+    top: 0.12rem !important;
+    border-radius: 0.35rem !important;
+    font-size: 0.60rem !important;
+    min-height: 0.98rem !important;
+    padding: 0.045rem 0.14rem !important;
+  }
+}
+
+
+/* Ajuste v70 — Realizar cuestionario: radio original del botón de traducción, forzado al final de la cascada.
+   Se declaran las cuatro esquinas para impedir que reglas previas o estilos nativos alteren el ángulo. */
+#quizArea .quiz-slide.has-bilingual-toggle > .bilingual-translation-btn,
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border-radius: 0.35rem !important;
+  -webkit-border-radius: 0.35rem !important;
+  border-top-left-radius: 0.35rem !important;
+  border-top-right-radius: 0.35rem !important;
+  border-bottom-right-radius: 0.35rem !important;
+  border-bottom-left-radius: 0.35rem !important;
+  right: 0.10rem !important;
+  top: 0.10rem !important;
+  font-size: 0.58rem !important;
+  min-height: 0.92rem !important;
+  padding: 0.035rem 0.12rem !important;
+}
+@media (max-width: 640px) {
+  #quizArea .quiz-slide.has-bilingual-toggle > .bilingual-translation-btn,
+  #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+    border-radius: 0.35rem !important;
+    -webkit-border-radius: 0.35rem !important;
+    border-top-left-radius: 0.35rem !important;
+    border-top-right-radius: 0.35rem !important;
+    border-bottom-right-radius: 0.35rem !important;
+    border-bottom-left-radius: 0.35rem !important;
+    right: 0.08rem !important;
+    top: 0.08rem !important;
+    font-size: 0.56rem !important;
+    min-height: 0.88rem !important;
+    padding: 0.03rem 0.11rem !important;
+  }
+}
+
+/* Ajuste v71 — Realizar cuestionario: área de activación del botón de traducción restaurada a la amplitud v67.
+   Sólo se amplía el área invisible clicable/táctil; no cambia el tamaño visual, la ubicación ni el radio del botón. */
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn {
+  overflow: visible !important;
+  touch-action: manipulation !important;
+}
+#quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn::before {
+  background: rgba(0,0,0,0.001) !important;
+  border-radius: 0.35rem !important;
+  content: "" !important;
+  height: 1.62rem !important;
+  left: 50% !important;
+  pointer-events: auto !important;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 2.60rem !important;
+}
+@media (max-width: 640px) {
+  #quizArea .quiz-slide.has-bilingual-toggle .bilingual-translation-btn::before {
+    height: 1.62rem !important;
+    width: 2.60rem !important;
+  }
+}
+
+
+/* Ajuste v72 — Revisión interactiva de preguntas omitidas por duplicado.
+   El aviso inferior derecho se vuelve clicable cuando hay preguntas omitidas y
+   abre un visor comparativo horizontal para decidir qué versiones importar. */
+.toast.toast-clickable {
+  cursor: pointer;
+  pointer-events: auto;
+  text-decoration: none;
+}
+.toast.toast-clickable:hover,
+.toast.toast-clickable:focus-visible {
+  box-shadow: 0 0 0 0.18rem rgba(15,108,191,0.28), var(--shadow-lg);
+  outline: 0;
+}
+.duplicate-review-backdrop {
+  align-items: center;
+  background: rgba(0,0,0,0.48);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 1.25rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 3000;
+}
+.duplicate-review-dialog {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.28);
+  color: var(--text);
+  max-height: min(86vh, 54rem);
+  max-width: min(96vw, 76rem);
+  overflow: hidden;
+  width: 100%;
+}
+.duplicate-review-header {
+  border-bottom: 1px solid var(--border);
+  padding: 1.1rem 1.25rem 0.9rem;
+}
+.duplicate-review-header h3 {
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 0.35rem;
+}
+.duplicate-review-header p {
+  color: var(--text-muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  margin: 0;
+}
+.duplicate-review-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  padding: 1rem 1.25rem 1.1rem;
+  scroll-snap-type: x proximity;
+}
+.duplicate-review-card {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  flex: 0 0 min(70rem, 92vw);
+  min-width: min(70rem, 92vw);
+  padding: 1rem;
+  scroll-snap-align: start;
+}
+.duplicate-review-card-title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+.duplicate-review-card-title strong {
+  font-size: 0.95rem;
+}
+.duplicate-review-choice {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: 0.45rem;
+  margin: 0 !important;
+}
+.duplicate-review-pair {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+.duplicate-review-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  padding: 0.9rem;
+  min-width: 0;
+}
+.duplicate-review-col h4 {
+  color: var(--accent);
+  font-size: 0.86rem;
+  font-weight: 800;
+  margin: 0 0 0.55rem;
+}
+.duplicate-review-question {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 0.65rem;
+  white-space: pre-wrap;
+}
+.duplicate-review-options {
+  display: grid;
+  gap: 0.35rem;
+}
+.duplicate-review-option {
+  border: 1px solid var(--border);
+  border-radius: 0.42rem;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  padding: 0.45rem 0.55rem;
+}
+.duplicate-review-option.correct {
+  background: var(--correct-bg);
+  border-color: var(--correct);
+  color: var(--correct);
+  font-weight: 700;
+}
+.duplicate-review-matches {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+}
+.duplicate-review-matches .duplicate-review-col {
+  flex: 0 0 100%;
+}
+.duplicate-review-actions {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  padding: 0.9rem 1.25rem 1.05rem;
+}
+.duplicate-review-empty {
+  color: var(--text-muted);
+  padding: 1rem 1.25rem;
+}
+body.dark-mode .duplicate-review-backdrop {
+  background: rgba(0,0,0,0.68);
+}
+body.dark-mode .duplicate-review-card,
+body.dark-mode .duplicate-review-col {
+  border-color: var(--border);
+}
+@media (max-width: 720px) {
+  .duplicate-review-dialog { max-height: 90vh; }
+  .duplicate-review-track { padding: 0.85rem; }
+  .duplicate-review-card {
+    flex-basis: 88vw;
+    min-width: 88vw;
+  }
+  .duplicate-review-pair { grid-template-columns: 1fr; }
+  .duplicate-review-actions { justify-content: stretch; }
+  .duplicate-review-actions .btn { justify-content: center; width: 100%; }
+}
+
 </style>
 </head>
 <body>
@@ -8117,12 +9086,33 @@ function updateBadge() {
   document.getElementById('questionCountBadge').textContent = n + ' pregunta' + (n !== 1 ? 's' : '');
 }
 
-function showToast(msg) {
+function showToast(msg, options) {
+  options = options || {};
   const el = document.getElementById('toast');
   el.textContent = msg;
+  el.classList.remove('toast-clickable');
+  el.removeAttribute('role');
+  el.removeAttribute('tabindex');
+  el.removeAttribute('title');
+  el.onclick = null;
+  el.onkeydown = null;
+  if (options.action === 'duplicates') {
+    el.classList.add('toast-clickable');
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('title', 'Revisar preguntas omitidas por posible duplicado');
+    el.onclick = showDuplicateReviewDialog;
+    el.onkeydown = function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        showDuplicateReviewDialog();
+      }
+    };
+  }
   el.classList.add('show');
   clearTimeout(el._timer);
-  el._timer = setTimeout(() => el.classList.remove('show'), 2500);
+  const duration = Number(options.duration || 2500);
+  el._timer = setTimeout(() => el.classList.remove('show'), duration);
 }
 
 // ═══════════════════════════════════════════════════════
