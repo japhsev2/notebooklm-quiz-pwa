@@ -1,0 +1,27 @@
+{
+  "version": "1.11",
+  "package": "notebooklm-quiz-pwa-v21-html-v64-bilingue.zip",
+  "date_utc": "2026-06-05T00:25:48Z",
+  "source_html": "index_moodle_51_quiz_navblock_v64_bilingue_idioma_persistente_revision.html",
+  "base_zip": "notebooklm-quiz-pwa-v20-html-plus.zip",
+  "source_html_sha256": "a8c5b80d9b5aa78c401d0414f7b235c793cf8938bbe76db5bde6d40d7a4afddf",
+  "final_index_sha256": "0a37dc2489b0a805b6a35a7b971469de8c8dff946a97195eeb298bc2740f4488",
+  "service_worker_cache": "notebooklm-quiz-pwa-v10",
+  "preserved_files": [
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    "icons/",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "changed_files": [
+    "index.html",
+    "service-worker.js",
+    "README.md",
+    "ACTUALIZACION_1_11_VERIFICACION.json"
+  ],
+  "pwa_head_reinjected": true,
+  "notes": "El HTML nuevo se integró con metadatos PWA/iOS externos y viewport-fit=cover para conservar la instalación en iPhone."
+}

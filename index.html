@@ -647,6 +647,33 @@
     color: var(--text-muted);
   }
   .review-answer strong { color: var(--text); }
+  .review-answer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.16rem;
+    margin: 0.28rem 0 0 0.1rem;
+  }
+  .review-answer-row {
+    display: grid;
+    grid-template-columns: 1.25rem minmax(0, 1fr);
+    column-gap: 0.35rem;
+    align-items: start;
+  }
+  .review-answer-marker {
+    font-weight: 700;
+    text-align: center;
+  }
+  .review-answer-text {
+    min-width: 0;
+  }
+  .review-answer-list-user {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .review-answer-list-correct {
+    color: var(--correct);
+    font-weight: 700;
+  }
 
   /* ── Export ── */
   .export-grid {
@@ -3646,9 +3673,273 @@ body.dark-mode #quizArea .moodle-justification-label {
 }
 
 
-/* Ajuste v56 — Multimedia: una pizca más de separación entre el texto desplegable y el botón de apertura. */
+/* Ajuste v59 — NOTA/NOTE en modo estudio.
+   Tarjeta informativa con borde azul, icono circular y tamaños coordinados
+   con la tarjeta de Justificación/Reasoning/Explicación/Explanation. */
+@keyframes moodleNoteFadeIn {
+  from { opacity: 0; transform: translateY(-0.35rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#quizArea .moodle-note-card {
+  animation: moodleNoteFadeIn 0.22s ease-out both;
+  background: #ffffff;
+  border: 1px solid #9fcfeb;
+  border-left: 4px solid #0f6cbf;
+  border-radius: 0.55rem;
+  box-shadow: 0 1px 3px rgba(15,108,191,0.12);
+  color: #343a40;
+  margin-top: 0.85rem;
+  padding: 1.25rem 1.55rem;
+}
+#quizArea .moodle-note-heading { align-items: center; display: flex; gap: 0.45rem; margin-bottom: 0.08rem; }
+#quizArea .moodle-note-icon {
+  align-items: center; background: #e7f3ff; border-radius: 999px; color: #0f6cbf; display: inline-flex;
+  flex: 0 0 0.72rem; font-size: 0.42rem; font-weight: 800; height: 0.72rem; justify-content: center; line-height: 1; width: 0.72rem;
+}
+#quizArea .moodle-note-label {
+  color: #0f6cbf; font-family: var(--sans); font-size: calc(0.92rem - 1.5px) !important;
+  font-weight: 800 !important; line-height: 1.18 !important; text-transform: uppercase !important; vertical-align: baseline !important;
+}
+#quizArea .moodle-note-body {
+  color: #343a40; font-family: var(--sans); font-size: calc(0.92rem + 0.5px) !important;
+  font-weight: 400; line-height: 1.48 !important; white-space: pre-wrap;
+}
+body.dark-mode #quizArea .moodle-note-card { background: #20262d; border-color: #4aa0d8; border-left-color: #0f6cbf; box-shadow: none; color: #f8f9fa; }
+body.dark-mode #quizArea .moodle-note-icon { background: #173958; color: #9cccff; }
+body.dark-mode #quizArea .moodle-note-label { color: #9cccff; }
+body.dark-mode #quizArea .moodle-note-body { color: #f8f9fa; }
+@media (max-width: 640px) { #quizArea .moodle-note-card { border-radius: 0.5rem; padding: 1rem 1.05rem; } }
+@media (prefers-reduced-motion: reduce) { #quizArea .moodle-note-card { animation: none !important; } }
+
+
+
+
+/* Ajuste v60 — NOTA/NOTE compacta en modo estudio.
+   Icono informativo reducido, etiqueta siempre en mayúsculas
+   y separación mínima entre cabecera y contenido. */
+/* Ajuste v57 — Multimedia: una pizquita más de separación entre el texto desplegable y el botón de apertura. */
 .word-aiken-media-card .media-card-header .media-actions .media-preview-toggle + .media-action-btn {
-  margin-left: 0.15rem !important;
+  margin-left: 0.35rem !important;
+}
+
+
+
+/* Ajuste v58 — Nombre largo del formato Word/Aiken ampliado sin ensanchar el selector.
+   Mantiene la anchura del selector y permite que el texto largo se distribuya en varias líneas
+   en navegadores que admiten ajuste de línea en opciones nativas. */
+#importFormat {
+  width: 14.35rem !important;
+  min-width: 14.35rem !important;
+  max-width: 14.35rem !important;
+  margin-bottom: 12px !important;
+}
+#importFormat option {
+  max-width: 14.35rem !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  padding-left: 1.25rem !important;
+  text-indent: -0.75rem !important;
+}
+
+
+
+/* Ajuste v47 — Selección múltiple: cuadradito con esquinas un poco menos redondeadas
+   y pequeño tick interior cuando la opción está seleccionada o revelada. */
+#quizArea .quiz-option-btn.multiple-choice .option-letter {
+  border-radius: 0.14rem !important;
+  overflow: hidden !important;
+}
+#quizArea .quiz-option-btn.multiple-choice .option-letter::after {
+  background: transparent !important;
+  border-radius: 0 !important;
+  color: transparent !important;
+  content: "";
+  font-size: 0 !important;
+  font-weight: 700;
+  height: auto !important;
+  left: 50%;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -54%);
+  width: auto !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.selected .option-letter {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.selected .option-letter::after,
+#quizArea .quiz-option-btn.multiple-choice.correct-reveal .option-letter::after,
+#quizArea .quiz-option-btn.multiple-choice.incorrect-reveal .option-letter::after {
+  background: transparent !important;
+  border-radius: 0 !important;
+  content: "✓" !important;
+  font-size: 0.50rem !important;
+  height: auto !important;
+  width: auto !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.selected .option-letter::after {
+  color: #fff !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.correct-reveal .option-letter {
+  background: var(--correct) !important;
+  border-color: var(--correct) !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.correct-reveal .option-letter::after {
+  color: #fff !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.incorrect-reveal .option-letter {
+  background: var(--incorrect) !important;
+  border-color: var(--incorrect) !important;
+}
+#quizArea .quiz-option-btn.multiple-choice.incorrect-reveal .option-letter::after {
+  color: #fff !important;
+}
+
+.correct-answer-feedback-list {
+  margin-top: 0.35rem;
+}
+.correct-answer-feedback-line {
+  display: block;
+  margin-top: 0.18rem;
+}
+
+
+/* Ajuste v62 — Mezcla avanzada de preguntas y respuestas.
+   Al activar «Mezclar preguntas» se ofrece elegir entre mezclar preguntas,
+   respuestas o ambas, manteniendo la identidad interna de cada respuesta. */
+.shuffle-choice-backdrop {
+  align-items: center;
+  background: rgba(0,0,0,0.38);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 1.25rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+}
+.shuffle-choice-dialog {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  box-shadow: 0 1rem 3rem rgba(0,0,0,0.22);
+  color: var(--text);
+  max-width: 34rem;
+  padding: 1.35rem;
+  width: min(100%, 34rem);
+}
+.shuffle-choice-dialog h3 {
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 0.45rem;
+}
+.shuffle-choice-dialog p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin: 0 0 1rem;
+}
+.shuffle-choice-options {
+  display: grid;
+  gap: 0.65rem;
+}
+.shuffle-choice-option {
+  appearance: none;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 0.8rem 0.95rem;
+  text-align: left;
+}
+.shuffle-choice-option:hover,
+.shuffle-choice-option:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.16rem rgba(15,108,191,0.18);
+  outline: 0;
+}
+.shuffle-choice-cancel {
+  margin-top: 1rem;
+}
+body.dark-mode .shuffle-choice-backdrop {
+  background: rgba(0,0,0,0.58);
+}
+
+
+/* Ajuste v63 — Modo bilingüe Word/Aiken: segundo documento vinculado y conmutador por pregunta. */
+.word-aiken-upload-header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+.word-aiken-upload-header > label { margin-bottom: 0 !important; }
+.word-aiken-bilingual-toggle {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.35rem;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+.word-aiken-bilingual-secondary {
+  border-top: 1px dashed var(--border);
+  margin-top: 0.8rem;
+  padding-top: 0.75rem;
+}
+.bilingual-translation-btn {
+  align-items: center;
+  background: #e7f3ff;
+  border: 1px solid #9fcfeb;
+  border-radius: 0.35rem;
+  color: #0f6cbf;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 800;
+  gap: 0.12rem;
+  line-height: 1;
+  padding: 0.18rem 0.25rem;
+  position: absolute;
+  right: 0.55rem;
+  top: 0.55rem;
+  z-index: 2;
+}
+.bilingual-translation-btn:hover,
+.bilingual-translation-btn:focus-visible {
+  border-color: #0f6cbf;
+  outline: 0;
+  text-decoration: underline;
+}
+.quiz-slide.has-bilingual-toggle,
+.question-item.has-bilingual-toggle,
+.review-item.has-bilingual-toggle {
+  position: relative;
+}
+.quiz-slide.has-bilingual-toggle .quiz-question-text { padding-right: 2.6rem; }
+.question-item.has-bilingual-toggle .q-header { padding-right: 2.6rem; }
+.review-item.has-bilingual-toggle { padding-right: 3.2rem !important; }
+body.dark-mode .bilingual-translation-btn {
+  background: #173958;
+  border-color: #4aa0d8;
+  color: #9cccff;
 }
 
 </style>
@@ -3702,17 +3993,26 @@ body.dark-mode #quizArea .moodle-justification-label {
           <option value="nlm">Pegado de NotebookLM</option>
           <option value="json">JSON (estructurado)</option>
           <option value="aiken">Formato Aiken</option>
-          <option value="docx-aiken">MS Word Aiken con imágenes</option>
+          <option value="docx-aiken">MS Word Aiken (ampliado) con imágenes, tablas, multimedia y más formatos de preguntas</option>
           <option value="gift">Formato GIFT</option>
           <option value="text">Texto plano (véase la plantilla)</option>
         </select>
       </div>
       <textarea id="importData" placeholder="Pegue aquí el texto del cuestionario de NotebookLM (Ctrl+V). Se importará automáticamente al usar el formato de pegado de NotebookLM."></textarea>
       <div id="wordAikenUpload" class="word-aiken-upload" style="display:none;">
-        <label for="wordAikenFile">Subir documento MS Word (.docx) en formato Aiken ampliado</label>
+        <div class="word-aiken-upload-header">
+          <label for="wordAikenFile">Subir documento MS Word (.docx) en formato Aiken ampliado</label>
+          <label class="word-aiken-bilingual-toggle" title="Vincular un segundo documento Word idéntico en otro idioma">
+            <input type="checkbox" id="wordAikenBilingualToggle" onchange="toggleWordAikenBilingualMode()"> Modo bilingüe
+          </label>
+        </div>
         <input type="file" id="wordAikenFile" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
         <div id="wordAikenDropStatus" class="word-aiken-drop-status">Arrastre aquí el archivo <strong>.docx</strong> o use «Elegir archivo».</div>
-        <p>Formato esperado: enunciado de la pregunta, imagen o imágenes, tablas insertadas en Word —con texto, viñetas e imágenes dentro de sus celdas— y enlaces o recursos multimedia —YouTube, JoVE, PDF, audio, vídeo, páginas web u otras plataformas—; opciones A. / B. / C. / D. o a) / b) / c) / d. —incluida la numeración automática de Word—; recursos opcionales después de las opciones y línea <strong>ANSWER: letra</strong> y, opcionalmente, una línea posterior <strong>Justificación:</strong>, <strong>Reasoning:</strong>, <strong>Explicación:</strong> o <strong>Explanation:</strong>. Separe cada pregunta con un espacio o salto de párrafo después de la línea ANSWER.</p>
+        <div id="wordAikenBilingualSecondary" class="word-aiken-bilingual-secondary" style="display:none;">
+          <input type="file" id="wordAikenFileAlt" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <div id="wordAikenDropStatusAlt" class="word-aiken-drop-status">Arrastre aquí el segundo archivo <strong>.docx</strong> en el otro idioma o use «Elegir archivo».</div>
+        </div>
+        <p>Formato esperado: enunciado de la pregunta, imagen o imágenes, tablas insertadas en Word —con texto, viñetas e imágenes dentro de sus celdas— y enlaces o recursos multimedia —YouTube, JoVE, PDF, audio, vídeo, páginas web u otras plataformas—; opciones A. / B. / C. / D. o a) / b) / c) / d. —incluida la numeración automática de Word—; recursos opcionales después de las opciones y línea de respuesta como <strong>ANSWER:</strong>, <strong>CORRECT ANSWER:</strong>, <strong>CORRECT:</strong>, <strong>RIGHT:</strong>, <strong>RESPUESTA CORRECTA:</strong>, <strong>RESPUESTA:</strong> o <strong>CORRECTA:</strong>, en mayúsculas, minúsculas o combinaciones, seguida de una o varias respuestas —por ejemplo, <strong>ANSWER: C</strong> o <strong>ANSWER: B, C, D, F</strong>—. Opcionalmente, puede añadirse después una línea <strong>Justificación:</strong>, <strong>Reasoning:</strong>, <strong>Explicación:</strong> o <strong>Explanation:</strong>, y también una línea informativa <strong>NOTA:</strong>, <strong>Nota:</strong>, <strong>nota:</strong> o <strong>NOTE:</strong>; ambas pueden aparecer antes o después entre sí. Separe cada pregunta con un espacio o salto de párrafo después de la respuesta, la justificación o la nota, según corresponda.</p>
       </div>
       <div class="btn-row">
         <button class="btn btn-primary" onclick="importQuiz()">Importar</button>
@@ -3773,7 +4073,7 @@ body.dark-mode #quizArea .moodle-justification-label {
         <option value="study">Modo estudio (retroalimentación inmediata)</option>
       </select>
       <label style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer;margin:0;">
-        <input type="checkbox" id="shuffleToggle" onchange="resetQuiz()"> Mezclar preguntas
+        <input type="checkbox" id="shuffleToggle" onchange="handleShuffleToggle()"> Mezclar preguntas
       </label>
     </div>
     <div id="quizArea"></div>
@@ -3834,8 +4134,13 @@ body.dark-mode #quizArea .moodle-justification-label {
 //  STATE
 // ═══════════════════════════════════════════════════════
 let questions = [];
-let quizState = { index: 0, answers: [], order: [], revealed: false, flags: [] };
+let quizShuffleMode = 'none';
+let quizState = { index: 0, answers: [], order: [], optionOrders: [], revealed: false, flags: [] };
 let wordAikenSelectedFile = null;
+let wordAikenSelectedFileAlt = null;
+let wordAikenBilingualEnabled = false;
+let bilingualQuizLanguageMode = null;
+let bilingualCurrentLang = 'primary';
 
 // ═══════════════════════════════════════════════════════
 //  BOOKMARKLET
@@ -3945,7 +4250,7 @@ async function importQuiz() {
       case 'nlm': parsed = parseNotebookLMPaste(raw); break;
       case 'json': parsed = parseJSON(raw); break;
       case 'aiken': parsed = parseAiken(raw); break;
-      case 'docx-aiken': parsed = await parseWordAikenWithImages(); break;
+      case 'docx-aiken': parsed = await parseWordAikenImport(); break;
       case 'gift': parsed = parseGIFT(raw); break;
       case 'text': parsed = parsePlainText(raw); break;
     }
@@ -3966,6 +4271,7 @@ async function importQuiz() {
     if (isDupe) {
       skipped++;
     } else {
+      getCorrectIndices(q);
       questions.push(q);
       added++;
     }
@@ -4155,8 +4461,13 @@ function parseJSON(raw) {
                   (q.correct_index !== undefined) ? q.correct_index :
                   (q.correctAnswer !== undefined) ? (typeof q.correctAnswer === 'number' ? q.correctAnswer :
                     (q.options || []).indexOf(q.correctAnswer)) : 0,
+    correctIndices: (Array.isArray(q.correctIndices) ? q.correctIndices :
+                    (Array.isArray(q.correct_indexes) ? q.correct_indexes :
+                    (Array.isArray(q.correctAnswers) ? q.correctAnswers.map(a => typeof a === 'number' ? a : (q.options || []).indexOf(a)) : undefined))),
     explanation: q.explanation || q.feedback || q.rationale || '',
     explanationLabel: q.explanationLabel || q.explanation_label || q.feedbackLabel || '',
+    note: q.note || q.nota || q.noteText || q.notaText || q.notice || '',
+    noteLabel: q.noteLabel || q.note_label || q.notaLabel || q.nota_label || '',
     images: normalizeQuestionImages(q.images || q.questionImages || q.media || []),
     afterOptionImages: normalizeQuestionImages(q.afterOptionImages || q.postOptionImages || q.imagesAfterOptions || q.afterImages || [])
   })).filter(q => q.question && q.options.length >= 2);
@@ -4176,14 +4487,15 @@ function parseAiken(raw) {
       if (optMatch) {
         opts.push(optMatch[2]);
       }
-      const ansMatch = lines[i].match(/^ANSWER:\s*([A-Z])/i);
-      if (ansMatch) correctLetter = ansMatch[1];
+      const ansMatch = matchAikenAnswerLine(lines[i]);
+      if (ansMatch) correctLetter = ansMatch.value;
     }
     if (opts.length >= 2) {
       result.push({
         question,
         options: opts,
-        correctIndex: correctLetter ? correctLetter.charCodeAt(0) - 65 : 0,
+        correctIndex: (parseAnswerIndicesFromValue(correctLetter, opts)[0] || 0),
+        correctIndices: parseAnswerIndicesFromValue(correctLetter, opts).length ? parseAnswerIndicesFromValue(correctLetter, opts) : [0],
         explanation: ''
       });
     }
@@ -4192,9 +4504,162 @@ function parseAiken(raw) {
 }
 
 
-async function parseWordAikenWithImages() {
+
+async function parseWordAikenImport() {
+  const primaryInput = document.getElementById('wordAikenFile');
+  const secondaryInput = document.getElementById('wordAikenFileAlt');
+  const primaryFile = wordAikenSelectedFile || (primaryInput && primaryInput.files && primaryInput.files[0]);
+  const secondaryFile = wordAikenSelectedFileAlt || (secondaryInput && secondaryInput.files && secondaryInput.files[0]);
+  const primary = await parseWordAikenWithImages(primaryFile);
+  if (!isWordAikenBilingualModeEnabled()) return primary;
+  if (!secondaryFile) throw new Error('El modo bilingüe está activado: seleccione también el segundo documento MS Word .docx en el otro idioma.');
+  const secondary = await parseWordAikenWithImages(secondaryFile);
+  return buildBilingualQuestionSet(primary, secondary);
+}
+
+function isWordAikenBilingualModeEnabled() {
+  const cb = document.getElementById('wordAikenBilingualToggle');
+  return !!(cb && cb.checked);
+}
+
+function buildBilingualQuestionSet(primary, secondary) {
+  if (!Array.isArray(primary) || !Array.isArray(secondary) || !primary.length || !secondary.length) return primary || [];
+  if (primary.length !== secondary.length) {
+    showToast('Aviso: los documentos bilingües tienen distinto número de preguntas; se vincularán las coincidentes por posición.');
+  }
+  const n = Math.min(primary.length, secondary.length);
+  bilingualQuizLanguageMode = null;
+  bilingualCurrentLang = 'primary';
+  for (let i = 0; i < n; i++) {
+    const a = primary[i];
+    const b = secondary[i];
+    if (!a || !b) continue;
+    const aCount = Array.isArray(a.options) ? a.options.length : 0;
+    const bCount = Array.isArray(b.options) ? b.options.length : 0;
+    if (aCount !== bCount) {
+      showToast('Aviso bilingüe: la pregunta ' + (i + 1) + ' no tiene el mismo número de respuestas en ambos documentos.');
+    }
+    a.bilingualAlt = cloneQuestionForBilingual(b);
+    a.bilingualLang = 'primary';
+  }
+  return primary;
+}
+
+function cloneQuestionForBilingual(q) {
+  return JSON.parse(JSON.stringify(q || {}));
+}
+
+function hasBilingualAlt(q) {
+  return !!(q && q.bilingualAlt && q.bilingualAlt.question);
+}
+
+function isBilingualAltVisible(q) {
+  return !!(q && q.bilingualLang === 'alt' && hasBilingualAlt(q));
+}
+
+function getVisibleQuestion(q) {
+  return isBilingualAltVisible(q) ? q.bilingualAlt : q;
+}
+
+function renderBilingualToggleButton(q, absoluteIndex, context) {
+  if (!hasBilingualAlt(q)) return '';
+  const active = isBilingualAltVisible(q);
+  const title = active ? 'Cambiar al idioma principal' : 'Cambiar al otro idioma';
+  return '<button type="button" class="bilingual-translation-btn" title="' + escAttr(title) + '" aria-label="' + escAttr(title) + '" onclick="toggleBilingualQuestionLanguage(' + absoluteIndex + ',\'' + escAttr(context || 'quiz') + '\')">🌐A</button>';
+}
+
+function hasAnyBilingualQuestions() {
+  return Array.isArray(questions) && questions.some(q => hasBilingualAlt(q));
+}
+
+function setAllBilingualQuestionsLanguage(lang) {
+  const normalized = lang === 'alt' ? 'alt' : 'primary';
+  questions.forEach(q => { if (hasBilingualAlt(q)) q.bilingualLang = normalized; });
+}
+
+function applyBilingualQuizLanguageForPage(pageIndex) {
+  if (!quizState || !Array.isArray(quizState.order)) return;
+  const q = questions[quizState.order[pageIndex]];
+  if (!hasBilingualAlt(q)) return;
+  if (bilingualQuizLanguageMode === 'doc1') q.bilingualLang = 'primary';
+  else if (bilingualQuizLanguageMode === 'doc2') q.bilingualLang = 'alt';
+  else if (bilingualQuizLanguageMode === 'last') q.bilingualLang = bilingualCurrentLang === 'alt' ? 'alt' : 'primary';
+}
+
+function showBilingualQuizLanguageDialog() {
+  closeBilingualQuizLanguageDialog();
+  const backdrop = document.createElement('div');
+  backdrop.className = 'shuffle-choice-backdrop';
+  backdrop.id = 'bilingualQuizLanguageBackdrop';
+  backdrop.setAttribute('role', 'presentation');
+  backdrop.innerHTML = `
+    <div class="shuffle-choice-dialog" role="dialog" aria-modal="true" aria-labelledby="bilingualLanguageTitle">
+      <h3 id="bilingualLanguageTitle">Seleccione el comportamiento del idioma</h3>
+      <p>Elija cómo debe mantenerse el idioma durante este intento del cuestionario bilingüe.</p>
+      <div class="shuffle-choice-options">
+        <button type="button" class="shuffle-choice-option" onclick="setBilingualQuizLanguageMode('doc1')">Mantener idioma del documento 1 en todo el cuestionario</button>
+        <button type="button" class="shuffle-choice-option" onclick="setBilingualQuizLanguageMode('doc2')">Mantener idioma del documento 2 en todo el cuestionario</button>
+        <button type="button" class="shuffle-choice-option" onclick="setBilingualQuizLanguageMode('last')">Mantener idioma de la última pregunta respondida</button>
+      </div>
+    </div>`;
+  document.body.appendChild(backdrop);
+  const first = backdrop.querySelector('.shuffle-choice-option');
+  if (first) first.focus();
+}
+
+function closeBilingualQuizLanguageDialog() {
+  const old = document.getElementById('bilingualQuizLanguageBackdrop');
+  if (old) old.remove();
+}
+
+function setBilingualQuizLanguageMode(mode) {
+  bilingualQuizLanguageMode = ['doc1', 'doc2', 'last'].includes(mode) ? mode : 'last';
+  if (bilingualQuizLanguageMode === 'doc1') {
+    bilingualCurrentLang = 'primary';
+    setAllBilingualQuestionsLanguage('primary');
+  } else if (bilingualQuizLanguageMode === 'doc2') {
+    bilingualCurrentLang = 'alt';
+    setAllBilingualQuestionsLanguage('alt');
+  } else {
+    bilingualCurrentLang = bilingualCurrentLang === 'alt' ? 'alt' : 'primary';
+    setAllBilingualQuestionsLanguage(bilingualCurrentLang);
+  }
+  closeBilingualQuizLanguageDialog();
+  resetQuiz();
+}
+
+function toggleBilingualQuestionLanguage(absoluteIndex, context) {
+  const q = questions[absoluteIndex];
+  if (!hasBilingualAlt(q)) return;
+  const nextLang = isBilingualAltVisible(q) ? 'primary' : 'alt';
+  q.bilingualLang = nextLang;
+  if (context === 'quiz') {
+    bilingualCurrentLang = nextLang;
+    if (bilingualQuizLanguageMode === 'doc1' || bilingualQuizLanguageMode === 'doc2') {
+      bilingualQuizLanguageMode = nextLang === 'alt' ? 'doc2' : 'doc1';
+      setAllBilingualQuestionsLanguage(nextLang);
+    }
+  }
+  if (context === 'editor') renderEditor();
+  else if (context === 'results') renderResults();
+  else renderQuizSlide();
+}
+
+function toggleWordAikenBilingualMode() {
+  const cb = document.getElementById('wordAikenBilingualToggle');
+  wordAikenBilingualEnabled = !!(cb && cb.checked);
+  const secondary = document.getElementById('wordAikenBilingualSecondary');
+  if (secondary) secondary.style.display = wordAikenBilingualEnabled ? 'block' : 'none';
+  if (!wordAikenBilingualEnabled) {
+    setWordAikenSelectedFileAlt(null);
+    const input = document.getElementById('wordAikenFileAlt');
+    if (input) input.value = '';
+  }
+}
+
+async function parseWordAikenWithImages(fileOverride) {
   const input = document.getElementById('wordAikenFile');
-  const file = wordAikenSelectedFile || (input && input.files && input.files[0]);
+  const file = fileOverride || wordAikenSelectedFile || (input && input.files && input.files[0]);
   if (!file) throw new Error('Seleccione primero un documento MS Word .docx o arrástrelo sobre la zona de subida');
   if (!/\.docx$/i.test(file.name)) throw new Error('El archivo debe estar en formato .docx');
   if (typeof mammoth === 'undefined') {
@@ -4215,7 +4680,7 @@ async function parseWordAikenWithImages() {
 
   const parsed = parseAikenHtmlWithImages(result.value);
   if (parsed.length === 0) {
-    throw new Error('No se han detectado preguntas Aiken válidas en el documento Word. Revise que existan opciones a), a., A), A. o numeración automática de Word, y una línea ANSWER: letra.');
+    throw new Error('No se han detectado preguntas Aiken válidas en el documento Word. Revise que existan opciones a), a., A), A. o numeración automática de Word, y una línea de respuesta válida, como ANSWER:, CORRECT:, RIGHT:, RESPUESTA: o RESPUESTA CORRECTA:.');
   }
   return parsed;
 }
@@ -4253,21 +4718,32 @@ function parseAikenHtmlWithImages(html) {
   function finalizeCurrent() {
     if (!current.questionLines.length && !current.images.length && !current.tables.length && !current.afterOptionImages.length && !current.afterOptionTables.length) return;
     if (current.options.length < 2) return;
-    const correctLetter = (current.correctLetter || '').toUpperCase();
-    const byLetter = current.options.findIndex(o => String(o.letter || '').toUpperCase() === correctLetter);
-    const fallbackIndex = correctLetter ? correctLetter.charCodeAt(0) - 65 : -1;
-    const correctIndex = byLetter >= 0 ? byLetter : fallbackIndex;
-    if (correctIndex < 0 || correctIndex >= current.options.length) return;
+    const optionTexts = current.options.map(o => cleanWordAikenText(o.text));
+    let correctIndices = [];
+    const declaredLetters = Array.isArray(current.correctLetters) && current.correctLetters.length ? current.correctLetters : (current.correctLetter ? [current.correctLetter] : []);
+    declaredLetters.forEach(letter => {
+      const upper = String(letter || '').toUpperCase();
+      const byLetter = current.options.findIndex(o => String(o.letter || '').toUpperCase() === upper);
+      const fallbackIndex = upper ? upper.charCodeAt(0) - 65 : -1;
+      correctIndices.push(byLetter >= 0 ? byLetter : fallbackIndex);
+    });
+    if (!correctIndices.length && current.correctAnswerRaw) correctIndices = parseAnswerIndicesFromValue(current.correctAnswerRaw, optionTexts);
+    correctIndices = uniqueSortedIndices(correctIndices, current.options.length);
+    if (!correctIndices.length) return;
+    const correctIndex = correctIndices[0];
 
-    const cleanQuestion = cleanWordQuestionText(current.questionLines.join(' '));
+    const cleanQuestion = buildCleanWordAikenQuestionText(current.questionLines);
     if (!cleanQuestion && !current.images.length && !current.tables.length && !current.afterOptionImages.length && !current.afterOptionTables.length) return;
 
     result.push({
       question: cleanQuestion,
-      options: current.options.map(o => cleanWordAikenText(o.text)),
+      options: optionTexts,
       correctIndex,
+      correctIndices,
       explanation: current.explanation || '',
       explanationLabel: current.explanationLabel || '',
+      note: current.note || '',
+      noteLabel: current.noteLabel || '',
       images: normalizeQuestionImages(current.images),
       tables: normalizeQuestionTables(current.tables),
       questionBlocks: normalizeWordRichBlocks(current.questionBlocks),
@@ -4279,11 +4755,19 @@ function parseAikenHtmlWithImages(html) {
 
   function processEntry(entry, text, images, tables, blocks) {
     const hasMedia = !!((images && images.length) || (tables && tables.length) || (blocks && blocks.length));
-    const answerMatch = text.match(/^ANSWER\s*[:：]\s*([A-J])\b\s*(.*)$/i);
+    const answerMatch = matchAikenAnswerLine(text);
     if (answerMatch) {
-      current.correctLetter = answerMatch[1].toUpperCase();
-      const trailingExplanation = matchAikenExplanationLine(answerMatch[2] || '');
-      if (trailingExplanation) appendAikenExplanation(current, trailingExplanation.text, trailingExplanation.label);
+      current.correctAnswerRaw = answerMatch.value || '';
+      current.correctLetters = parseAnswerIndicesFromValue(current.correctAnswerRaw, current.options.map(o => cleanWordAikenText(o.text))).map(i => String.fromCharCode(65 + i));
+      current.correctLetter = current.correctLetters[0] || '';
+      if (hasMedia) addWordBlocks('after', images, tables, blocks);
+      pendingLetter = null;
+      return;
+    }
+
+    const noteMatch = matchAikenNoteLine(text);
+    if (noteMatch && current.correctLetter) {
+      appendAikenNote(current, noteMatch.text, noteMatch.label);
       if (hasMedia) addWordBlocks('after', images, tables, blocks);
       pendingLetter = null;
       return;
@@ -4340,7 +4824,15 @@ function parseAikenHtmlWithImages(html) {
     }
 
     if (current.options.length === 0 && !current.correctLetter) {
-      if (text) current.questionLines.push(text);
+      if (text) {
+        if (shouldResetWordAikenQuestionLead(current.questionLines, text)) {
+          current.questionLines = [];
+          current.questionBlocks = [];
+          current.images = [];
+          current.tables = [];
+        }
+        current.questionLines.push(text);
+      }
       if (hasMedia) addWordBlocks('question', images, tables, blocks);
       return;
     }
@@ -4348,7 +4840,7 @@ function parseAikenHtmlWithImages(html) {
     if (hasMedia) addWordBlocks('after', images, tables, blocks);
     if (text) {
       const last = current.options[current.options.length - 1];
-      if (last && !/^ANSWER\s*[:：]/i.test(text)) last.text += ' ' + text;
+      if (last && !matchAikenAnswerLine(text)) last.text += ' ' + text;
     }
   }
 
@@ -4364,11 +4856,17 @@ function parseAikenHtmlWithImages(html) {
     // En cuanto aparece texto ordinario, se considera que empieza la pregunta
     // siguiente. Esto corrige los casos 119-122 del documento de profesores,
     // donde algunas imágenes van antes de las opciones y otras después de ANSWER.
-    if (current.correctLetter && !/^ANSWER\s*[:：]/i.test(text)) {
+    if (current.correctLetter && !matchAikenAnswerLine(text)) {
+      const noteMatch = matchAikenNoteLine(text);
       const explanationMatch = matchAikenExplanationLine(text);
       const captionLike = images.length && /^(figura|imagen|image|figure)\b/i.test(text);
-      if (explanationMatch) {
+      if (noteMatch || explanationMatch) {
         processEntry(entry, text, images, tables, blocks);
+        continue;
+      }
+      if (current.collectingNote && text && !looksLikeWordAikenNewQuestion(text, entry) && !isWordAikenOptionText(text)) {
+        appendAikenNote(current, text, '');
+        if (hasMedia) addWordBlocks('after', images, tables, blocks);
         continue;
       }
       if (current.collectingExplanation && text && !looksLikeWordAikenNewQuestion(text, entry) && !isWordAikenOptionText(text)) {
@@ -4403,9 +4901,14 @@ function newAikenWordQuestion() {
     afterOptionBlocks: [],
     options: [],
     correctLetter: '',
+    correctLetters: [],
+    correctAnswerRaw: '',
     explanation: '',
     explanationLabel: '',
-    collectingExplanation: false
+    collectingExplanation: false,
+    note: '',
+    noteLabel: '',
+    collectingNote: false
   };
 }
 
@@ -4595,15 +5098,115 @@ function cleanWordQuestionText(text) {
     .trim();
 }
 
-function matchAikenExplanationLine(text) {
+
+/* Ajuste v61 — MS Word Aiken ampliado: limpieza estricta de títulos y frases sueltas.
+   Evita que encabezados como “GENÓMICA Y PROTEOMICA…”, “Preguntas del examen…”,
+   “PREGUNTA DE PROTEOMICA…”, “Cuestionario”, “Tarea II” o bloques definitorios
+   se fusionen con la siguiente pregunta. */
+function buildCleanWordAikenQuestionText(lines) {
+  const safeLines = Array.isArray(lines) ? lines.map(cleanWordAikenText).filter(Boolean) : [];
+  if (!safeLines.length) return '';
+  let start = 0;
+  for (let i = 0; i < safeLines.length; i++) {
+    if (isLikelyWordAikenQuestionStem(safeLines[i])) start = i;
+  }
+  if (start > 0) {
+    while (start > 0 && shouldKeepWordAikenLeadInLine(safeLines[start - 1])) start--;
+  }
+  const question = safeLines.slice(start).filter(line => !isWordAikenDiscardableTitleLine(line)).join(' ');
+  return cleanWordQuestionText(question);
+}
+
+function shouldResetWordAikenQuestionLead(existingLines, nextText) {
+  const lines = Array.isArray(existingLines) ? existingLines.map(cleanWordAikenText).filter(Boolean) : [];
+  const text = cleanWordAikenText(nextText || '');
+  if (!lines.length || !text) return false;
+  if (!isLikelyWordAikenQuestionStem(text)) return false;
+  const alreadyHasQuestion = lines.some(isLikelyWordAikenQuestionStem);
+  if (!alreadyHasQuestion) return true;
+  const allPreviousAreNoise = lines.every(line => isWordAikenDiscardableTitleLine(line) || isWordAikenLoosePrefaceLine(line));
+  return allPreviousAreNoise;
+}
+
+function isLikelyWordAikenQuestionStem(text) {
   const clean = cleanWordAikenText(text || '');
-  const match = clean.match(/^(Justificaci[oó]n|Justificacion|Reasoning|Explicaci[oó]n|Explicacion|Explanation)\s*[:：]\s*(.*)$/i);
+  if (!clean) return false;
+  if (/[¿?]/.test(clean)) return true;
+  if (/^\s*\d{1,4}\s*[.)]?\s*[¿Qué|Qué|Cuál|Cu[aá]l|Por qué|Por qu[eé]|C[oó]mo|D[oó]nde|Cu[aá]ndo]/i.test(clean)) return true;
+  if (/^(seleccione|selecciona|elige|elija|indique|indica|señale|señala|observe|considera|considere|teniendo en cuenta|en cuanto a|imagina que|queremos|para analizar|en la |en el |qué |cuál |cómo |por qué )\b/i.test(clean)) return clean.length > 18;
+  return false;
+}
+
+function shouldKeepWordAikenLeadInLine(text) {
+  const clean = cleanWordAikenText(text || '');
+  if (!clean) return false;
+  if (isWordAikenDiscardableTitleLine(clean) || isWordAikenLoosePrefaceLine(clean)) return false;
+  if (/[¿?]/.test(clean)) return true;
+  if (/^(caso|contexto|situaci[oó]n|escenario|figura|imagen|tabla|gr[aá]fico|diagrama|observe|observa|considera|considere|teniendo en cuenta)\b/i.test(clean)) return true;
+  return clean.length > 45 && /[.:;]$/.test(clean) && !/[→]/.test(clean);
+}
+
+function isWordAikenDiscardableTitleLine(text) {
+  const clean = cleanWordAikenText(text || '');
+  if (!clean) return true;
+  if (/[¿?]/.test(clean)) return false;
+  if (/^(gen[oó]mica y prote[oó]mica|preguntas? del examen|pregunta de prote[oó]mica|preguntas? de ejemplo|cuestionario|tarea\s+[ivxlcdm]+|bloque\s+\d+|secci[oó]n\s+\d+|tema\s+\d+)\b/i.test(clean)) return true;
+  const letters = (clean.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g) || []).length;
+  const upper = (clean.match(/[A-ZÁÉÍÓÚÜÑ]/g) || []).length;
+  const lower = (clean.match(/[a-záéíóúüñ]/g) || []).length;
+  const upperRatio = letters ? upper / letters : 0;
+  if (letters >= 8 && clean.length <= 90 && upperRatio > 0.72 && lower <= 3) return true;
+  if (clean.length <= 32 && /^(cuestionario|examen|parcial|preguntas?|tarea|actividad|test|prueba|repaso)$/i.test(clean)) return true;
+  return false;
+}
+
+function isWordAikenLoosePrefaceLine(text) {
+  const clean = cleanWordAikenText(text || '');
+  if (!clean) return true;
+  if (/[¿?]/.test(clean)) return false;
+  if (/[→]/.test(clean)) return true;
+  if (/\b(conceptos?|definiciones?|empareja|relaciona|correspondencias?)\b/i.test(clean) && /[:：]$/.test(clean)) return true;
+  if (/^(nota de clase|comentario|observaci[oó]n|recordatorio|instrucciones?|leer antes|material de apoyo)\b/i.test(clean)) return true;
+  return false;
+}
+
+function transliterateAikenSmallCaps(text) {
+  const map = {
+    'ᴀ':'A','ʙ':'B','ᴄ':'C','ᴅ':'D','ᴇ':'E','ꜰ':'F','ɢ':'G','ʜ':'H','ɪ':'I','ᴊ':'J','ᴋ':'K','ʟ':'L','ᴍ':'M','ɴ':'N','ᴏ':'O','ᴘ':'P','ǫ':'Q','ʀ':'R','ᴛ':'T','ᴜ':'U','ᴠ':'V','ᴡ':'W','ʏ':'Y','ᴢ':'Z'
+  };
+  return String(text || '').normalize('NFKC').replace(/[ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀᴛᴜᴠᴡʏᴢ]/g, ch => map[ch] || ch);
+}
+
+function splitAikenDirective(text, labelPattern) {
+  const clean = cleanWordAikenText(text || '');
+  if (!clean) return null;
+  const normalized = transliterateAikenSmallCaps(clean);
+  const match = normalized.match(new RegExp('^\\s*(' + labelPattern + ')\\s*[:：]\\s*([\\s\\S]*)$', 'i'));
   if (!match) return null;
-  const rawLabel = match[1] || 'Explicación';
-  let label = rawLabel;
-  if (/^justificacion$/i.test(rawLabel)) label = 'Justificación';
-  if (/^explicacion$/i.test(rawLabel)) label = 'Explicación';
-  return { label, text: cleanWordAikenText(match[2] || '') };
+  const colonIndex = clean.search(/[:：]/);
+  const rawLabel = colonIndex >= 0 ? clean.slice(0, colonIndex).trim() : match[1];
+  const rawText = colonIndex >= 0 ? clean.slice(colonIndex + 1) : match[2];
+  return { rawLabel, normalizedLabel: match[1], text: cleanWordAikenText(rawText || '') };
+}
+
+function matchAikenExplanationLine(text) {
+  const match = splitAikenDirective(text, 'Justificaci[oó]n|Justificacion|Reasoning|Explicaci[oó]n|Explicacion|Explanation');
+  if (!match) return null;
+  const normalizedLabel = transliterateAikenSmallCaps(match.normalizedLabel || match.rawLabel || '').toLowerCase();
+  let label = match.rawLabel || 'Explicación';
+  if (/^justificacion$/i.test(normalizedLabel) || /^justificaci[oó]n$/i.test(normalizedLabel)) label = 'Justificación';
+  if (/^explicacion$/i.test(normalizedLabel) || /^explicaci[oó]n$/i.test(normalizedLabel)) label = 'Explicación';
+  if (/^reasoning$/i.test(normalizedLabel)) label = 'Reasoning';
+  if (/^explanation$/i.test(normalizedLabel)) label = 'Explanation';
+  return { label, text: match.text };
+}
+
+function matchAikenNoteLine(text) {
+  const match = splitAikenDirective(text, 'Nota|Note');
+  if (!match) return null;
+  const normalizedLabel = transliterateAikenSmallCaps(match.normalizedLabel || match.rawLabel || '').toLowerCase();
+  const label = /^note$/i.test(normalizedLabel) ? 'Note' : 'Nota';
+  return { label, text: match.text };
 }
 
 function appendAikenExplanation(current, text, label) {
@@ -4612,6 +5215,14 @@ function appendAikenExplanation(current, text, label) {
   if (label && !current.explanationLabel) current.explanationLabel = label;
   if (clean) current.explanation = current.explanation ? (current.explanation + ' ' + clean) : clean;
   current.collectingExplanation = !clean;
+}
+
+function appendAikenNote(current, text, label) {
+  if (!current) return;
+  const clean = cleanWordAikenText(text || '');
+  if (label && !current.noteLabel) current.noteLabel = label;
+  if (clean) current.note = current.note ? (current.note + ' ' + clean) : clean;
+  current.collectingNote = !clean;
 }
 
 function isWordAikenOptionText(text) {
@@ -5312,7 +5923,8 @@ Reglas:
 - Las imágenes insertadas antes de A., B., C. ... se colocan bajo el enunciado.
 - Las imágenes insertadas después de la última opción y antes de ANSWER se colocan debajo de las opciones.
 - Las opciones pueden estar escritas manualmente como a), a., A), A. o proceder de la numeración automática de MS Word.
-- La respuesta correcta debe declararse como ANSWER: letra.`,
+- La respuesta correcta debe declararse como ANSWER: letra o ANSWER: B, C, D si es de selección múltiple.
+- Después de ANSWER puede añadirse NOTA: o NOTE: con información adicional; si también hay Justificación/Reasoning/Explicación/Explanation, la nota puede ir antes o después.`,
     gift: `::Cell Biology:: ¿Cuál es la central energética de la célula? {
 =Mitocondria
 ~Núcleo
@@ -5357,8 +5969,10 @@ function renderEditor() {
     return;
   }
   empty.style.display = 'none';
-  list.innerHTML = questions.map((q, i) => `
-    <div class="question-item" draggable="true" data-index="${i}"
+  list.innerHTML = questions.map((q, i) => {
+    const shown = getVisibleQuestion(q);
+    return `
+    <div class="question-item ${hasBilingualAlt(q) ? 'has-bilingual-toggle' : ''}" draggable="true" data-index="${i}"
          ondragstart="dragStart(event)" ondragover="dragOver(event)"
          ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"
          ondrop="dropItem(event)" ondragend="dragEnd(event)">
@@ -5366,23 +5980,25 @@ function renderEditor() {
         <span class="drag-handle" title="Arrastrar para reordenar">⠿</span>
         <span class="q-number">Q${i + 1}</span>
         <div class="q-text">${renderQuestionContent(q)}</div>
+        ${renderBilingualToggleButton(q, i, 'editor')}
         <div class="q-actions">
           <button class="btn btn-ghost btn-sm" onclick="editQuestion(${i})" title="Editar">✏️</button>
           <button class="btn btn-danger btn-sm" onclick="deleteQuestion(${i})" title="Eliminar">🗑️</button>
         </div>
       </div>
       <div class="q-options">
-        ${q.options.map((o, j) => `<div class="q-option${j === q.correctIndex ? ' correct' : ''}">${escHtml(o)}</div>`).join('')}
+        ${(shown.options || []).map((o, j) => `<div class="q-option${isCorrectOption(q, j) ? ' correct' : ''}">${escHtml(o)}</div>`).join('')}
       </div>
       ${renderAfterOptionContent(q)}
-      ${q.explanation ? `<div class="q-explanation">${escHtml(q.explanation)}</div>` : ''}
+      ${shown.explanation ? `<div class="q-explanation">${escHtml(shown.explanation)}</div>` : ''}
       <div class="edit-form" id="editForm${i}" style="display:none;"></div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function addNewQuestion() {
-  questions.push({ question: '', options: ['', '', '', ''], correctIndex: 0, explanation: '' });
+  questions.push({ question: '', options: ['', '', '', ''], correctIndex: 0, correctIndices: [0], explanation: '' });
   updateBadge();
   renderEditor();
   editQuestion(questions.length - 1);
@@ -5407,10 +6023,10 @@ function editQuestion(idx) {
       <label>Texto de la pregunta</label>
       <input type="text" id="eq${idx}" value="${escAttr(q.question)}" placeholder="Introduzca la pregunta...">
     </div>
-    <label style="margin-bottom:8px;">Opciones (seleccione la respuesta correcta)</label>
+    <label style="margin-bottom:8px;">Opciones (seleccione la respuesta correcta o las respuestas correctas)</label>
     ${q.options.map((o, j) => `
       <div class="option-edit-row">
-        <input type="radio" name="correct${idx}" value="${j}" ${j === q.correctIndex ? 'checked' : ''}>
+        <input type="checkbox" name="correct${idx}" value="${j}" ${isCorrectOption(q, j) ? 'checked' : ''}>
         <span class="radio-label">${letters[j] || (j + 1)} ✓</span>
         <input type="text" id="eo${idx}_${j}" value="${escAttr(o)}" placeholder="Opción ${letters[j] || (j + 1)}">
         ${q.options.length > 2 ? `<button class="btn btn-danger btn-sm" onclick="removeOption(${idx},${j})">×</button>` : ''}
@@ -5431,8 +6047,10 @@ function editQuestion(idx) {
 function saveQuestion(idx) {
   const q = questions[idx];
   q.question = document.getElementById('eq' + idx).value.trim();
-  const correctRadio = document.querySelector(`input[name="correct${idx}"]:checked`);
-  q.correctIndex = correctRadio ? parseInt(correctRadio.value) : 0;
+  const correctChecks = Array.from(document.querySelectorAll(`input[name="correct${idx}"]:checked`));
+  q.correctIndices = correctChecks.map(el => parseInt(el.value, 10)).filter(n => Number.isFinite(n));
+  if (!q.correctIndices.length) q.correctIndices = [0];
+  q.correctIndex = q.correctIndices[0];
   q.options = [];
   let j = 0;
   while (document.getElementById('eo' + idx + '_' + j)) {
@@ -5466,7 +6084,9 @@ function deleteQuestion(idx) {
 function removeOption(qIdx, oIdx) {
   const q = questions[qIdx];
   q.options.splice(oIdx, 1);
-  if (q.correctIndex >= oIdx && q.correctIndex > 0) q.correctIndex--;
+  q.correctIndices = getCorrectIndices(q).filter(i => i !== oIdx).map(i => i > oIdx ? i - 1 : i);
+  if (!q.correctIndices.length) q.correctIndices = [0];
+  q.correctIndex = q.correctIndices[0];
   editQuestion(qIdx);
 }
 
@@ -5481,7 +6101,10 @@ function addOption(qIdx) {
     j++;
   }
   const correctRadio = document.querySelector(`input[name="correct${qIdx}"]:checked`);
-  q.correctIndex = correctRadio ? parseInt(correctRadio.value) : 0;
+  const correctChecks = Array.from(document.querySelectorAll(`input[name="correct${qIdx}"]:checked`));
+  q.correctIndices = correctChecks.map(el => parseInt(el.value, 10)).filter(n => Number.isFinite(n));
+  if (!q.correctIndices.length) q.correctIndices = [0];
+  q.correctIndex = q.correctIndices[0];
   q.explanation = document.getElementById('ex' + qIdx).value.trim();
   q.options.push('');
   renderEditor();
@@ -5524,6 +6147,70 @@ function dropItem(e) {
 // ═══════════════════════════════════════════════════════
 //  QUIZ MODE
 // ═══════════════════════════════════════════════════════
+function handleShuffleToggle() {
+  const cb = document.getElementById('shuffleToggle');
+  if (!cb) return resetQuiz();
+  if (cb.checked) {
+    showShuffleChoiceDialog();
+  } else {
+    quizShuffleMode = 'none';
+    closeShuffleChoiceDialog();
+    resetQuiz();
+  }
+}
+
+function showShuffleChoiceDialog() {
+  closeShuffleChoiceDialog();
+  const backdrop = document.createElement('div');
+  backdrop.className = 'shuffle-choice-backdrop';
+  backdrop.id = 'shuffleChoiceBackdrop';
+  backdrop.setAttribute('role', 'presentation');
+  backdrop.innerHTML = `
+    <div class="shuffle-choice-dialog" role="dialog" aria-modal="true" aria-labelledby="shuffleChoiceTitle">
+      <h3 id="shuffleChoiceTitle">Seleccione el tipo de mezcla</h3>
+      <p>Elija cómo desea aleatorizar este intento del cuestionario.</p>
+      <div class="shuffle-choice-options">
+        <button type="button" class="shuffle-choice-option" onclick="setShuffleMode('questions')">Mezclar sólo el orden de las preguntas</button>
+        <button type="button" class="shuffle-choice-option" onclick="setShuffleMode('answers')">Mezclar sólo el orden de las respuestas</button>
+        <button type="button" class="shuffle-choice-option" onclick="setShuffleMode('both')">Mezclar orden de preguntas y orden de sus respuestas</button>
+      </div>
+      <button type="button" class="btn btn-secondary shuffle-choice-cancel" onclick="cancelShuffleChoice()">Cancelar</button>
+    </div>`;
+  document.body.appendChild(backdrop);
+  const first = backdrop.querySelector('.shuffle-choice-option');
+  if (first) first.focus();
+}
+
+function closeShuffleChoiceDialog() {
+  const old = document.getElementById('shuffleChoiceBackdrop');
+  if (old) old.remove();
+}
+
+function cancelShuffleChoice() {
+  quizShuffleMode = 'none';
+  const cb = document.getElementById('shuffleToggle');
+  if (cb) cb.checked = false;
+  closeShuffleChoiceDialog();
+  resetQuiz();
+}
+
+function setShuffleMode(mode) {
+  quizShuffleMode = ['questions', 'answers', 'both'].includes(mode) ? mode : 'none';
+  const cb = document.getElementById('shuffleToggle');
+  if (cb) cb.checked = quizShuffleMode !== 'none';
+  closeShuffleChoiceDialog();
+  resetQuiz();
+}
+
+function shuffledCopy(values) {
+  const out = values.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
 function resetQuiz() {
   const area = document.getElementById('quizArea');
   const empty = document.getElementById('quizEmpty');
@@ -5534,15 +6221,25 @@ function resetQuiz() {
     return;
   }
   empty.style.display = 'none';
-  const shuffle = document.getElementById('shuffleToggle').checked;
-  let order = questions.map((_, i) => i);
-  if (shuffle) {
-    for (let i = order.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [order[i], order[j]] = [order[j], order[i]];
-    }
+  if (hasAnyBilingualQuestions() && !bilingualQuizLanguageMode) {
+    area.innerHTML = '';
+    updateProgress(0, questions.length || 1);
+    showBilingualQuizLanguageDialog();
+    return;
   }
-  quizState = { index: 0, answers: new Array(order.length).fill(-1), order, revealed: false, flags: new Array(order.length).fill(false) };
+  closeBilingualQuizLanguageDialog();
+  const cb = document.getElementById('shuffleToggle');
+  if (cb && !cb.checked) quizShuffleMode = 'none';
+  let order = questions.map((_, i) => i);
+  if (quizShuffleMode === 'questions' || quizShuffleMode === 'both') {
+    order = shuffledCopy(order);
+  }
+  const optionOrders = order.map(qi => {
+    const q = questions[qi];
+    const base = Array.isArray(q.options) ? q.options.map((_, i) => i) : [];
+    return (quizShuffleMode === 'answers' || quizShuffleMode === 'both') ? shuffledCopy(base) : base;
+  });
+  quizState = { index: 0, answers: new Array(order.length).fill(-1), order, optionOrders, revealed: false, flags: new Array(order.length).fill(false) };
   renderQuizSlide();
 }
 
@@ -5556,11 +6253,43 @@ function getQuestionExplanationLabel(q) {
 }
 
 function renderStudyJustification(q) {
+  q = getVisibleQuestion(q);
   if (!q || !q.explanation) return '';
   const label = getQuestionExplanationLabel(q).toUpperCase();
   return `<div class="moodle-justification-card" role="note" aria-label="${escAttr(label)}">
     <div class="moodle-justification-body"><strong class="moodle-justification-label">${escHtml(label)}:</strong> ${escHtml(q.explanation)}</div>
   </div>`;
+}
+
+function getQuestionNoteLabel(q) {
+  const raw = cleanWordAikenText((q && q.noteLabel) || '');
+  if (/^note$/i.test(transliterateAikenSmallCaps(raw))) return 'NOTE';
+  return 'NOTA';
+}
+
+function renderStudyNote(q) {
+  q = getVisibleQuestion(q);
+  if (!q || !q.note) return '';
+  const label = getQuestionNoteLabel(q);
+  return `<div class="moodle-note-card" role="note" aria-label="${escAttr(label)}">
+    <div class="moodle-note-heading"><span class="moodle-note-icon" aria-hidden="true">i</span><strong class="moodle-note-label">${escHtml(label)}:</strong></div>
+    <div class="moodle-note-body">${escHtml(q.note)}</div>
+  </div>`;
+}
+
+function getOptionOrderForQuizPage(pageIndex, q) {
+  const fallback = q && Array.isArray(q.options) ? q.options.map((_, i) => i) : [];
+  const order = quizState && Array.isArray(quizState.optionOrders) ? quizState.optionOrders[pageIndex] : null;
+  if (!Array.isArray(order) || order.length !== fallback.length) return fallback;
+  return order.filter(i => Number.isInteger(i) && i >= 0 && i < fallback.length);
+}
+
+function getDisplayLetterForOption(q, optionIndex, pageIndex, lower) {
+  const letters = lower ? 'abcdefghijklmnopqrstuvwxyz' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const order = Number.isInteger(pageIndex) ? getOptionOrderForQuizPage(pageIndex, q) : (q && Array.isArray(q.options) ? q.options.map((_, i) => i) : []);
+  const pos = order.indexOf(optionIndex);
+  const displayIndex = pos >= 0 ? pos : optionIndex;
+  return letters[displayIndex] || String(displayIndex + 1);
 }
 
 function renderQuizSlide() {
@@ -5573,39 +6302,48 @@ function renderQuizSlide() {
     return;
   }
 
+  applyBilingualQuizLanguageForPage(index);
   const q = questions[order[index]];
+  const shown = getVisibleQuestion(q);
+  const absoluteQuestionIndex = order[index];
   const letters = ['a', 'b', 'c', 'd', 'e', 'f'];
   const selected = answers[index];
+  const multiple = isMultipleQuestion(q);
   const isRevealed = quizState.revealed;
 
   updateProgress(index, order.length);
 
-  let optionsHtml = q.options.map((o, j) => {
-    let cls = 'quiz-option-btn';
-    if (selected === j) cls += ' selected';
+  const optionOrder = getOptionOrderForQuizPage(index, q);
+  let optionsHtml = optionOrder.map((originalIndex, displayIndex) => {
+    const o = (shown.options && shown.options[originalIndex]) || (q.options && q.options[originalIndex]) || '';
+    let cls = 'quiz-option-btn' + (multiple ? ' multiple-choice' : '');
+    if (answerContains(selected, originalIndex)) cls += ' selected';
     if (isRevealed) {
       cls += ' disabled';
-      if (j === q.correctIndex) cls += ' correct-reveal';
-      else if (j === selected && j !== q.correctIndex) cls += ' incorrect-reveal';
+      if (isCorrectOption(q, originalIndex)) cls += ' correct-reveal';
+      else if (answerContains(selected, originalIndex) && !isCorrectOption(q, originalIndex)) cls += ' incorrect-reveal';
     }
-    return `<button class="${cls}" type="button" onclick="selectOption(${j})" ${isRevealed ? 'disabled' : ''}>
+    return `<button class="${cls}" type="button" onclick="selectOption(${originalIndex})" ${isRevealed ? 'disabled' : ''}>
       <span class="option-letter" aria-hidden="true"></span>
-      <span class="moodle-option-letter">${letters[j] || (j + 1)}.</span>
+      <span class="moodle-option-letter">${letters[displayIndex] || (displayIndex + 1)}.</span>
       <span class="option-text">${escHtml(o)}</span>
     </button>`;
   }).join('');
 
-  const clearChoiceHtml = selected >= 0
+  const clearChoiceHtml = hasAnyAnswer(selected)
     ? `<button type="button" class="moodle-clear-choice" onclick="clearMyChoice()">Quitar mi elección</button>`
+    : '';
+  const checkMultipleHtml = multiple && hasAnyAnswer(selected) && mode === 'study' && !isRevealed
+    ? `<button type="button" class="moodle-clear-choice" onclick="checkCurrentAnswer()">Comprobar respuesta</button>`
     : '';
 
   let feedbackHtml = '';
   if (isRevealed && mode === 'study') {
-    const correct = selected === q.correctIndex;
+    const correct = isAnswerCorrect(q, selected);
     feedbackHtml = `<div class="quiz-feedback show ${correct ? 'correct-fb' : 'incorrect-fb'}">
       <strong>${correct ? '✓ Correcto' : '✗ Incorrecto'}</strong>
-      ${!correct ? `<br>La respuesta correcta es: <strong>${escHtml(q.options[q.correctIndex])}</strong>` : ''}
-    </div>${renderStudyJustification(q)}`;
+      ${!correct ? formatCorrectAnswerFeedbackHtml(q, index) : ''}
+    </div>${renderStudyJustification(q)}${renderStudyNote(q)}`;
   }
 
   area.innerHTML = `
@@ -5614,17 +6352,19 @@ function renderQuizSlide() {
         <div class="moodle-attempt">
           <aside class="moodle-question-info" aria-label="Estado de la pregunta">
             <div class="moodle-info-qno">Pregunta ${index + 1}</div>
-            <div class="moodle-info-status">${selected >= 0 ? 'Respuesta guardada' : 'Sin responder'}</div>
+            <div class="moodle-info-status">${hasAnyAnswer(selected) ? 'Respuesta guardada' : 'Sin responder'}</div>
             <div>Se puntúa como 0 sobre 1,00</div>
             <button class="moodle-flag-btn ${quizState.flags && quizState.flags[index] ? 'flagged' : ''}" type="button" onclick="toggleQuestionFlag()" aria-pressed="${quizState.flags && quizState.flags[index] ? 'true' : 'false'}">
               ${quizState.flags && quizState.flags[index] ? '⚑ Desmarcar' : '⚐ Marcar pregunta'}
             </button>
           </aside>
-          <div class="quiz-slide">
+          <div class="quiz-slide ${hasBilingualAlt(q) ? 'has-bilingual-toggle' : ''}">
+            ${renderBilingualToggleButton(q, absoluteQuestionIndex, 'quiz')}
             <div class="quiz-question-text">${renderQuestionContent(q)}</div>
             <div class="quiz-options">${optionsHtml}</div>
             ${renderAfterOptionContent(q)}
             ${clearChoiceHtml}
+            ${checkMultipleHtml}
           </div>
         </div>
         ${feedbackHtml ? `<div class="moodle-feedback-outside">${feedbackHtml}</div>` : ''}
@@ -5644,7 +6384,7 @@ function renderQuizSlide() {
 function renderQuizNavigationBlock() {
   if (!quizState || !quizState.order || quizState.order.length === 0) return '';
   const buttons = quizState.order.map((questionIndex, i) => {
-    const answered = quizState.answers && quizState.answers[i] >= 0;
+    const answered = quizState.answers && hasAnyAnswer(quizState.answers[i]);
     const current = i === quizState.index;
     const flagged = quizState.flags && quizState.flags[i];
     const stateClass = answered ? 'complete answersaved' : 'notyetanswered';
@@ -5682,17 +6422,31 @@ function toggleQuestionFlag() {
 
 function selectOption(j) {
   const mode = document.getElementById('quizMode').value;
-  quizState.answers[quizState.index] = j;
-  if (mode === 'study') {
-    quizState.revealed = true;
+  const q = questions[quizState.order[quizState.index]];
+  if (hasBilingualAlt(q) && bilingualQuizLanguageMode === 'last') {
+    bilingualCurrentLang = isBilingualAltVisible(q) ? 'alt' : 'primary';
   }
+  if (isMultipleQuestion(q)) {
+    const current = new Set(answerToArray(quizState.answers[quizState.index]));
+    if (current.has(j)) current.delete(j); else current.add(j);
+    quizState.answers[quizState.index] = Array.from(current).sort((a, b) => a - b);
+    quizState.revealed = false;
+  } else {
+    quizState.answers[quizState.index] = j;
+    if (mode === 'study') quizState.revealed = true;
+  }
+  renderQuizSlide();
+}
+
+function checkCurrentAnswer() {
+  quizState.revealed = true;
   renderQuizSlide();
 }
 
 
 function clearMyChoice() {
   if (!quizState || !quizState.answers) return;
-  quizState.answers[quizState.index] = -1;
+  quizState.answers[quizState.index] = isMultipleQuestion(questions[quizState.order[quizState.index]]) ? [] : -1;
   quizState.revealed = false;
   renderQuizSlide();
 }
@@ -5726,10 +6480,10 @@ function renderResults() {
   order.forEach((qi, i) => {
     const q = questions[qi];
     const ans = answers[i];
-    const unanswered = ans === -1;
-    const isCorrect = !unanswered && ans === q.correctIndex;
+    const unanswered = !hasAnyAnswer(ans);
+    const isCorrect = !unanswered && isAnswerCorrect(q, ans);
     if (isCorrect) correct++;
-    reviews.push({ q, ans, isCorrect, state: unanswered ? 'unanswered' : (isCorrect ? 'correct' : 'incorrect'), flagged: quizState.flags && quizState.flags[i] });
+    reviews.push({ q, qi, ans, isCorrect, state: unanswered ? 'unanswered' : (isCorrect ? 'correct' : 'incorrect'), flagged: quizState.flags && quizState.flags[i] });
   });
 
   const total = order.length;
@@ -5758,14 +6512,15 @@ function renderResults() {
     <div id="reviewFilterEmpty" class="review-filter-empty">No hay preguntas en esta categoría.</div>
     <div id="reviewList">
       ${reviews.map((r, i) => `
-        <div class="review-item ${r.state === 'correct' ? 'was-correct' : (r.state === 'unanswered' ? 'was-unanswered' : 'was-incorrect')} ${r.flagged ? 'is-flagged-review' : ''}" data-review-state="${r.state}">
+        <div class="review-item ${r.state === 'correct' ? 'was-correct' : (r.state === 'unanswered' ? 'was-unanswered' : 'was-incorrect')} ${r.flagged ? 'is-flagged-review' : ''} ${hasBilingualAlt(r.q) ? 'has-bilingual-toggle' : ''}" data-review-state="${r.state}">
+          ${renderBilingualToggleButton(r.q, r.qi, 'results')}
           ${r.flagged ? '<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>' : ''}
           <div class="review-q">Q${i + 1}. ${renderQuestionContent(r.q)}</div>
           ${renderAfterOptionContent(r.q)}
           <div class="review-answer">
-            ${r.ans >= 0 ? `Su respuesta: <strong>${escHtml(r.q.options[r.ans])}</strong>` : '<em>Sin responder</em>'}
-            ${!r.isCorrect ? `<br>Respuesta correcta: <strong style="color:var(--correct)">${escHtml(r.q.options[r.q.correctIndex])}</strong>` : ''}
-            ${r.q.explanation ? `<br><em style="color:var(--text-light)">${escHtml(r.q.explanation)}</em>` : ''}
+            ${hasAnyAnswer(r.ans) ? `Su respuesta:${isMultipleQuestion(r.q) ? '<br>' : ' '}${renderReviewAnswerValueHtml(r.q, answerToArray(r.ans), 'user')}` : '<em>Sin responder</em>'}
+            ${!r.isCorrect ? `<br>Respuesta correcta:${isMultipleQuestion(r.q) ? '' : ' '}${renderReviewAnswerValueHtml(r.q, getCorrectIndices(r.q), 'correct')}` : ''}
+            ${getVisibleQuestion(r.q).explanation ? `<br><em style="color:var(--text-light)">${escHtml(getVisibleQuestion(r.q).explanation)}</em>` : ''}
           </div>
         </div>
       `).join('')}
@@ -5868,7 +6623,7 @@ function exportCSV() {
   for (const q of questions) {
     const row = [q.question];
     for (let i = 0; i < maxOpts; i++) row.push(q.options[i] || '');
-    row.push(String.fromCharCode(65 + q.correctIndex));
+    row.push(getCorrectIndices(q).map(i => String.fromCharCode(65 + i)).join(', '));
     row.push(q.explanation);
     rows.push(row.map(csvEsc).join(','));
   }
@@ -5882,7 +6637,7 @@ function exportAiken() {
   const lines = questions.map(q => {
     let s = q.question + '\n';
     q.options.forEach((o, i) => { s += letters[i] + '. ' + o + '\n'; });
-    s += 'ANSWER: ' + letters[q.correctIndex];
+    s += 'ANSWER: ' + getCorrectIndices(q).map(i => letters[i]).join(', ');
     if (q.explanation) s += '\n' + (q.explanationLabel || 'Explanation') + ': ' + q.explanation;
     return s;
   });
@@ -5895,7 +6650,7 @@ function exportGIFT() {
   const lines = questions.map((q, i) => {
     let s = `::Q${i + 1}:: ${giftEsc(q.question)} {\n`;
     q.options.forEach((o, j) => {
-      s += (j === q.correctIndex ? '  =' : '  ~') + giftEsc(o) + '\n';
+      s += (isCorrectOption(q, j) ? '  =' : '  ~') + giftEsc(o) + '\n';
     });
     s += '}';
     return s;
@@ -5914,12 +6669,12 @@ function exportMoodleXML() {
     const moodleQuestion = buildMoodleQuestionText(q, i);
     xml += `    <questiontext format="html"><text><![CDATA[${moodleQuestion.html}]]></text>\n${moodleQuestion.files}    </questiontext>\n`;
     xml += `    <shuffleanswers>1</shuffleanswers>\n`;
-    xml += `    <single>true</single>\n`;
+    xml += `    <single>${isMultipleQuestion(q) ? 'false' : 'true'}</single>\n`;
     if (q.explanation) {
       xml += `    <generalfeedback format="html"><text><![CDATA[${q.explanation}]]></text></generalfeedback>\n`;
     }
     q.options.forEach((o, j) => {
-      const frac = j === q.correctIndex ? 100 : 0;
+      const frac = isCorrectOption(q, j) ? (100 / getCorrectIndices(q).length) : 0;
       xml += `    <answer fraction="${frac}" format="html">\n`;
       xml += `      <text><![CDATA[${o}]]></text>\n`;
       xml += `    </answer>\n`;
@@ -5967,7 +6722,7 @@ function buildStandaloneHTML(meta, qJSON) {
   .after-option-images,.after-option-tables,.after-option-rich-blocks{margin-bottom:.35rem}
   .question-image,.after-option-image{display:block;max-width:min(100%,820px);max-height:34rem;height:auto;object-fit:contain;border:1px solid var(--border);border-radius:.35rem;background:#fff}
   .word-aiken-table-wrap{max-width:100%;overflow-x:auto}.word-aiken-table{background:#fff;border-collapse:collapse;color:#111;font-family:var(--sans);font-size:.92rem;line-height:1.35;margin:.25rem 0;max-width:100%;width:auto}.word-aiken-table td,.word-aiken-table th{border:1px solid #222;padding:.45rem .55rem;vertical-align:top}.word-aiken-table p{margin:0 0 .35rem}.word-aiken-table p:last-child{margin-bottom:0}.word-aiken-table ul,.word-aiken-table ol{margin:.2rem 0 .35rem 1.25rem}.word-aiken-table img{display:block;height:auto;max-height:28rem;max-width:min(100%,780px);object-fit:contain}
-  .word-aiken-media-card{background:var(--surface);border:1px solid var(--border);border-radius:.45rem;color:var(--text);display:block;font-family:var(--sans);font-size:.9rem;line-height:1.45;max-width:min(100%,820px);overflow:hidden}.word-aiken-media-card .media-card-header{align-items:center;display:flex;gap:.55rem;padding:.65rem .8rem}.word-aiken-media-card .media-card-icon{background:var(--accent-light);border-radius:999px;color:var(--accent);flex:0 0 auto;font-size:1rem;height:1.8rem;line-height:1.8rem;text-align:center;width:1.8rem}.word-aiken-media-card .media-card-text{min-width:0}.word-aiken-media-card .media-card-title{color:var(--text);font-weight:700;overflow-wrap:anywhere}.word-aiken-media-card .media-card-kind{color:var(--text-muted);font-size:.78rem;margin-top:.1rem}.word-aiken-media-card a.media-card-link{color:var(--accent);text-decoration:underline}.word-aiken-media-card .media-embed{background:#000;border:0;display:block;width:100%}.word-aiken-media-card iframe.media-embed{aspect-ratio:16/9;min-height:220px}.word-aiken-media-card audio.media-embed{background:transparent;padding:0 .8rem .75rem}.word-aiken-media-card video.media-embed{max-height:34rem}.word-aiken-media-card .pdf-embed{background:#fff;height:min(70vh,38rem)}.word-aiken-media-card .media-actions{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 .8rem .8rem}.word-aiken-media-card .media-action-btn{align-items:center;background:var(--accent-light);border:1px solid var(--border);border-radius:.45rem;color:var(--accent);display:inline-flex;font-size:.84rem;font-weight:700;gap:.35rem;line-height:1.2;padding:.45rem .65rem;text-decoration:none}.word-aiken-media-card .media-thumbnail-link{background:#111;display:block;overflow:hidden;position:relative;width:100%}.word-aiken-media-card .media-thumbnail-link img{aspect-ratio:16/9;display:block;height:auto;object-fit:cover;opacity:.96;width:100%}.word-aiken-media-card .media-thumbnail-play{align-items:center;background:rgba(0,0,0,.58);border:2px solid rgba(255,255,255,.92);border-radius:999px;color:#fff;display:flex;font-size:1.6rem;height:4.2rem;justify-content:center;left:50%;line-height:1;padding-left:.15rem;position:absolute;top:50%;transform:translate(-50%,-50%);width:4.2rem}.word-aiken-media-card .media-preview-panel{border-top:1px solid var(--border);padding:0}.word-aiken-media-card .media-preview-panel>summary{color:var(--accent);cursor:pointer;font-size:.86rem;font-weight:700;list-style-position:inside;padding:.65rem .8rem}.word-aiken-media-card .media-fallback-note{color:var(--text-muted);font-size:.78rem;line-height:1.35;padding:0 .8rem .75rem}.word-aiken-media-card .media-webframe,.word-aiken-media-card .media-pdf-object{background:#fff;border:0;display:block;height:min(72vh,42rem);width:100%}.word-aiken-media-card .media-pdf-object{min-height:30rem}.word-aiken-media-card .media-embed-youtube{aspect-ratio:16/9;min-height:260px}.word-aiken-media-card .media-card-header{align-items:center!important;display:flex!important;flex-wrap:wrap!important;gap:.55rem!important;padding:.65rem .8rem!important}.word-aiken-media-card .media-card-text{align-items:baseline!important;display:flex!important;flex:1 1 18rem!important;flex-wrap:wrap!important;gap:.25rem .35rem!important;min-width:0!important}.word-aiken-media-card .media-card-kind{display:inline-block!important;margin-top:0!important}.word-aiken-media-card .media-card-header .media-actions{align-items:center!important;display:flex!important;flex:0 0 auto!important;flex-wrap:wrap!important;gap:.75rem!important;margin-left:auto!important;padding:0!important}.word-aiken-media-card .media-action-btn{appearance:none!important;cursor:pointer!important;font-family:var(--sans)!important;white-space:nowrap!important}.word-aiken-media-card button.media-action-btn{background:var(--accent-light)!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{appearance:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--accent)!important;cursor:pointer!important;display:inline-flex!important;font-family:var(--sans)!important;font-size:.86rem!important;font-weight:700!important;gap:.25rem!important;line-height:1.2!important;padding:0!important;text-decoration:none!important;white-space:nowrap!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:hover,.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:focus-visible{background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;text-decoration:underline!important}body.dark-mode .word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{background:transparent!important;border:0!important;color:var(--accent)!important}.word-aiken-media-card .media-preview-content{border-top:1px solid var(--border);display:block;padding:0}.word-aiken-media-card .media-preview-content[hidden]{display:none!important}.word-aiken-media-card .media-preview-content .media-fallback-note{margin:0}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle+.media-action-btn{margin-left:.15rem!important}@media(max-width:720px){.word-aiken-media-card .media-card-header .media-actions{flex:1 1 100%!important;margin-left:2.35rem!important}}
+  .word-aiken-media-card{background:var(--surface);border:1px solid var(--border);border-radius:.45rem;color:var(--text);display:block;font-family:var(--sans);font-size:.9rem;line-height:1.45;max-width:min(100%,820px);overflow:hidden}.word-aiken-media-card .media-card-header{align-items:center;display:flex;gap:.55rem;padding:.65rem .8rem}.word-aiken-media-card .media-card-icon{background:var(--accent-light);border-radius:999px;color:var(--accent);flex:0 0 auto;font-size:1rem;height:1.8rem;line-height:1.8rem;text-align:center;width:1.8rem}.word-aiken-media-card .media-card-text{min-width:0}.word-aiken-media-card .media-card-title{color:var(--text);font-weight:700;overflow-wrap:anywhere}.word-aiken-media-card .media-card-kind{color:var(--text-muted);font-size:.78rem;margin-top:.1rem}.word-aiken-media-card a.media-card-link{color:var(--accent);text-decoration:underline}.word-aiken-media-card .media-embed{background:#000;border:0;display:block;width:100%}.word-aiken-media-card iframe.media-embed{aspect-ratio:16/9;min-height:220px}.word-aiken-media-card audio.media-embed{background:transparent;padding:0 .8rem .75rem}.word-aiken-media-card video.media-embed{max-height:34rem}.word-aiken-media-card .pdf-embed{background:#fff;height:min(70vh,38rem)}.word-aiken-media-card .media-actions{display:flex;flex-wrap:wrap;gap:.5rem;padding:0 .8rem .8rem}.word-aiken-media-card .media-action-btn{align-items:center;background:var(--accent-light);border:1px solid var(--border);border-radius:.45rem;color:var(--accent);display:inline-flex;font-size:.84rem;font-weight:700;gap:.35rem;line-height:1.2;padding:.45rem .65rem;text-decoration:none}.word-aiken-media-card .media-thumbnail-link{background:#111;display:block;overflow:hidden;position:relative;width:100%}.word-aiken-media-card .media-thumbnail-link img{aspect-ratio:16/9;display:block;height:auto;object-fit:cover;opacity:.96;width:100%}.word-aiken-media-card .media-thumbnail-play{align-items:center;background:rgba(0,0,0,.58);border:2px solid rgba(255,255,255,.92);border-radius:999px;color:#fff;display:flex;font-size:1.6rem;height:4.2rem;justify-content:center;left:50%;line-height:1;padding-left:.15rem;position:absolute;top:50%;transform:translate(-50%,-50%);width:4.2rem}.word-aiken-media-card .media-preview-panel{border-top:1px solid var(--border);padding:0}.word-aiken-media-card .media-preview-panel>summary{color:var(--accent);cursor:pointer;font-size:.86rem;font-weight:700;list-style-position:inside;padding:.65rem .8rem}.word-aiken-media-card .media-fallback-note{color:var(--text-muted);font-size:.78rem;line-height:1.35;padding:0 .8rem .75rem}.word-aiken-media-card .media-webframe,.word-aiken-media-card .media-pdf-object{background:#fff;border:0;display:block;height:min(72vh,42rem);width:100%}.word-aiken-media-card .media-pdf-object{min-height:30rem}.word-aiken-media-card .media-embed-youtube{aspect-ratio:16/9;min-height:260px}.word-aiken-media-card .media-card-header{align-items:center!important;display:flex!important;flex-wrap:wrap!important;gap:.55rem!important;padding:.65rem .8rem!important}.word-aiken-media-card .media-card-text{align-items:baseline!important;display:flex!important;flex:1 1 18rem!important;flex-wrap:wrap!important;gap:.25rem .35rem!important;min-width:0!important}.word-aiken-media-card .media-card-kind{display:inline-block!important;margin-top:0!important}.word-aiken-media-card .media-card-header .media-actions{align-items:center!important;display:flex!important;flex:0 0 auto!important;flex-wrap:wrap!important;gap:.75rem!important;margin-left:auto!important;padding:0!important}.word-aiken-media-card .media-action-btn{appearance:none!important;cursor:pointer!important;font-family:var(--sans)!important;white-space:nowrap!important}.word-aiken-media-card button.media-action-btn{background:var(--accent-light)!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{appearance:none!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--accent)!important;cursor:pointer!important;display:inline-flex!important;font-family:var(--sans)!important;font-size:.86rem!important;font-weight:700!important;gap:.25rem!important;line-height:1.2!important;padding:0!important;text-decoration:none!important;white-space:nowrap!important}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:hover,.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle:focus-visible{background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important;text-decoration:underline!important}body.dark-mode .word-aiken-media-card .media-card-header .media-actions .media-preview-toggle{background:transparent!important;border:0!important;color:var(--accent)!important}.word-aiken-media-card .media-preview-content{border-top:1px solid var(--border);display:block;padding:0}.word-aiken-media-card .media-preview-content[hidden]{display:none!important}.word-aiken-media-card .media-preview-content .media-fallback-note{margin:0}.word-aiken-media-card .media-card-header .media-actions .media-preview-toggle+.media-action-btn{margin-left:.35rem!important}@media(max-width:720px){.word-aiken-media-card .media-card-header .media-actions{flex:1 1 100%!important;margin-left:2.35rem!important}}
   .options{display:flex;flex-direction:column;gap:10px}
   .opt{font-family:var(--sans);font-size:0.92rem;text-align:left;padding:12px 16px;border:2px solid var(--border);border-radius:var(--radius);background:var(--surface);color:var(--text);cursor:pointer;display:flex;align-items:flex-start;gap:10px;line-height:1.5;transition:all 0.2s}
   .opt:hover:not(.locked){border-color:#8b7355;background:var(--surface-alt)}
@@ -5985,6 +6740,11 @@ function buildStandaloneHTML(meta, qJSON) {
   .feedback.show{display:block}
   .feedback.ok{background:#edf7ee;border:1px solid #6bad69;color:#245f2a}
   .feedback.no{background:#fff1ef;border:1px solid #e16f66;color:#9f3028}
+  @keyframes noteFadeIn{from{opacity:0;transform:translateY(-.35rem)}to{opacity:1;transform:translateY(0)}}
+  .study-note-card{animation:noteFadeIn .22s ease-out both;background:#fff;border:1px solid #9fcfeb;border-left:4px solid #0f6cbf;border-radius:.55rem;box-shadow:0 1px 3px rgba(15,108,191,.12);color:#343a40;margin-top:.85rem;padding:1.25rem 1.55rem}
+  .study-note-heading{align-items:center;display:flex;gap:.45rem;margin-bottom:.08rem}.study-note-icon{align-items:center;background:#e7f3ff;border-radius:999px;color:#0f6cbf;display:inline-flex;flex:0 0 .72rem;font-size:.42rem;font-weight:800;height:.72rem;justify-content:center;line-height:1;width:.72rem}.study-note-label{color:#0f6cbf;font-size:calc(.92rem - 1.5px)!important;font-weight:800!important;line-height:1.18!important;text-transform:uppercase!important}.study-note-body{color:#343a40;font-size:calc(.92rem + .5px)!important;font-weight:400;line-height:1.48!important;white-space:pre-wrap}
+  body.dark-mode .study-note-card{background:#20262d;border-color:#4aa0d8;border-left-color:#0f6cbf;box-shadow:none;color:#f8f9fa}body.dark-mode .study-note-icon{background:#173958;color:#9cccff}body.dark-mode .study-note-label{color:#9cccff}body.dark-mode .study-note-body{color:#f8f9fa}
+  @media(prefers-reduced-motion:reduce){.study-note-card{animation:none!important}}
   .nav{display:flex;justify-content:space-between;margin-top:16px;gap:10px}
   .btn{font-family:var(--sans);font-size:0.85rem;font-weight:600;padding:10px 18px;border-radius:var(--radius);border:none;cursor:pointer;transition:all 0.2s}
   .btn-p{background:var(--accent);color:#fff}
@@ -6008,6 +6768,10 @@ function buildStandaloneHTML(meta, qJSON) {
   .review-q{font-family:var(--serif);font-weight:600;margin-bottom:6px}
   .review-a{font-size:0.85rem;color:var(--text-muted)}
   .review-a strong{color:var(--text)}
+  .review-answer-list{display:flex;flex-direction:column;gap:.16rem;margin:.28rem 0 0 .1rem}
+  .review-answer-row{display:grid;grid-template-columns:1.25rem minmax(0,1fr);column-gap:.35rem;align-items:start}
+  .review-answer-marker{font-weight:700;text-align:center}.review-answer-text{min-width:0}
+  .review-answer-list-user{color:var(--text);font-weight:600}.review-answer-list-correct{color:var(--correct);font-weight:700}
   .info{font-size:0.85rem;color:var(--text-muted);text-align:center}
   .feedback-outside{margin-top:.85rem}
   .feedback-outside .feedback{display:block;margin-top:0!important}
@@ -6820,6 +7584,87 @@ body.dark-mode .btn-p:focus-visible {
     color:#ffffff!important;
     box-shadow:none!important;
   }
+
+
+  /* Ajuste v47 — selección múltiple exportada: cuadradito con esquinas un poco menos redondeadas
+     y pequeño tick interior cuando la opción está marcada o revelada. */
+  .opt.multiple-choice .letter{border-radius:.14rem!important;overflow:hidden!important}
+  .opt.multiple-choice .letter::after{background:transparent!important;border-radius:0!important;color:transparent!important;content:"";font-size:0!important;font-weight:700;height:auto!important;left:50%;line-height:1;position:absolute;top:50%;transform:translate(-50%,-54%);width:auto!important}
+  .opt.multiple-choice.selected .letter{background:var(--accent)!important;border-color:var(--accent)!important}
+  .opt.multiple-choice.selected .letter::after,.opt.multiple-choice.correct-r .letter::after,.opt.multiple-choice.incorrect-r .letter::after{background:transparent!important;border-radius:0!important;content:"✓"!important;font-size:0.50rem!important;height:auto!important;width:auto!important}
+  .opt.multiple-choice.selected .letter::after{color:#fff!important}
+  .opt.multiple-choice.correct-r .letter{background:var(--correct)!important;border-color:var(--correct)!important}
+  .opt.multiple-choice.correct-r .letter::after{color:#fff!important}
+  .opt.multiple-choice.incorrect-r .letter{background:var(--incorrect)!important;border-color:var(--incorrect)!important}
+  .opt.multiple-choice.incorrect-r .letter::after{color:#fff!important}
+
+  .shuffle-choice-backdrop{align-items:center;background:rgba(0,0,0,.38);bottom:0;display:flex;justify-content:center;left:0;padding:1.25rem;position:fixed;right:0;top:0;z-index:2000}.shuffle-choice-dialog{background:var(--surface);border:1px solid var(--border);border-radius:.75rem;box-shadow:0 1rem 3rem rgba(0,0,0,.22);color:var(--text);max-width:34rem;padding:1.35rem;width:min(100%,34rem)}.shuffle-choice-dialog h3{font-size:1.08rem;font-weight:800;line-height:1.25;margin:0 0 .45rem}.shuffle-choice-dialog p{color:var(--text-muted);font-size:.88rem;line-height:1.45;margin:0 0 1rem}.shuffle-choice-options{display:grid;gap:.65rem}.shuffle-choice-option{appearance:none;background:var(--surface-alt);border:1px solid var(--border);border-radius:.55rem;color:var(--text);cursor:pointer;font-family:var(--sans);font-size:.92rem;font-weight:700;line-height:1.35;padding:.8rem .95rem;text-align:left}.shuffle-choice-option:hover,.shuffle-choice-option:focus-visible{border-color:var(--accent);box-shadow:0 0 0 .16rem rgba(15,108,191,.18);outline:0}.shuffle-choice-cancel{margin-top:1rem}body.dark-mode .shuffle-choice-backdrop{background:rgba(0,0,0,.58)}
+
+
+/* Ajuste v63 — Modo bilingüe Word/Aiken: segundo documento vinculado y conmutador por pregunta. */
+.word-aiken-upload-header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+}
+.word-aiken-upload-header > label { margin-bottom: 0 !important; }
+.word-aiken-bilingual-toggle {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.82rem;
+  font-weight: 600;
+  gap: 0.35rem;
+  margin: 0 !important;
+  white-space: nowrap;
+}
+.word-aiken-bilingual-secondary {
+  border-top: 1px dashed var(--border);
+  margin-top: 0.8rem;
+  padding-top: 0.75rem;
+}
+.bilingual-translation-btn {
+  align-items: center;
+  background: #e7f3ff;
+  border: 1px solid #9fcfeb;
+  border-radius: 0.35rem;
+  color: #0f6cbf;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 800;
+  gap: 0.12rem;
+  line-height: 1;
+  padding: 0.18rem 0.25rem;
+  position: absolute;
+  right: 0.55rem;
+  top: 0.55rem;
+  z-index: 2;
+}
+.bilingual-translation-btn:hover,
+.bilingual-translation-btn:focus-visible {
+  border-color: #0f6cbf;
+  outline: 0;
+  text-decoration: underline;
+}
+.quiz-slide.has-bilingual-toggle,
+.question-item.has-bilingual-toggle,
+.review-item.has-bilingual-toggle {
+  position: relative;
+}
+.quiz-slide.has-bilingual-toggle .quiz-question-text { padding-right: 2.6rem; }
+.question-item.has-bilingual-toggle .q-header { padding-right: 2.6rem; }
+.review-item.has-bilingual-toggle { padding-right: 3.2rem !important; }
+body.dark-mode .bilingual-translation-btn {
+  background: #173958;
+  border-color: #4aa0d8;
+  color: #9cccff;
+}
+
 </style>
 </head>
 <body>
@@ -6832,34 +7677,64 @@ body.dark-mode .btn-p:focus-visible {
     <button class="mode-btn" onclick="setMode('study',this)">Modo estudio</button>
     <button class="theme-btn" id="themeBtn" type="button" onclick="toggleTheme()">Modo oscuro</button>
     <label style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;cursor:pointer">
-      <input type="checkbox" id="shuf" onchange="restart()"> Mezclar
+      <input type="checkbox" id="shuf" onchange="handleStandaloneShuffleToggle()"> Mezclar
     </label>
   </div>
 </div>
 <div class="quiz-container" id="qa"></div>
 <script>
 var Qs=${qJSON};
-var mode='test',idx=0,ans=[],order=[],flags=[];
+function ci(q){var n=q&&q.options?q.options.length:0,a=Array.isArray(q.correctIndices)&&q.correctIndices.length?q.correctIndices:(q.correctIndex!==undefined?[q.correctIndex]:[0]),seen={};a=a.map(function(x){return parseInt(x,10)}).filter(function(x){return isFinite(x)&&x>=0&&x<n&&!seen[x]&&(seen[x]=1)}).sort(function(a,b){return a-b});if(!a.length&&n>0)a=[0];q.correctIndices=a;q.correctIndex=a[0];return a}
+function mult(q){return ci(q).length>1}
+function arr(a){return Array.isArray(a)?a:(a===undefined||a===null||a===-1?[]:[a])}
+function any(a){return arr(a).length>0}
+function has(a,j){return arr(a).indexOf(j)>=0}
+function same(a,b){a=arr(a).slice().sort(function(x,y){return x-y});b=arr(b).slice().sort(function(x,y){return x-y});return a.length===b.length&&a.every(function(v,i){return v===b[i]})}
+function ok(q,a){return same(ci(q),arr(a))}
+function ansText(q,a){var L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';return arr(a).sort(function(x,y){return x-y}).map(function(i){return (L[i]||String(i+1))+'. '+(q.options[i]||'')}).join('; ')}
+function correctText(q){return ansText(q,ci(q))}
+function reviewAnsText(q,a){return arr(a).sort(function(x,y){return x-y}).map(function(i){return (q.options[i]||'')}).filter(Boolean).join('; ')}
+function reviewCorrectText(q){return reviewAnsText(q,ci(q))}
+function reviewValueHtml(q,a,kind){
+  var ids=arr(a).sort(function(x,y){return x-y}).filter(function(i){return q.options&&q.options[i]});
+  var listMode=mult(q)||ids.length>1;
+  if(!listMode)return '<strong>'+esc(reviewAnsText(q,ids))+'</strong>';
+  var marker=kind==='correct'?'→':'–',cls=kind==='correct'?'review-answer-list-correct':'review-answer-list-user';
+  return '<div class="review-answer-list '+cls+'">'+ids.map(function(i){return '<div class="review-answer-row"><span class="review-answer-marker">'+marker+'</span><span class="review-answer-text">'+esc((q.options&&q.options[i])||'')+'</span></div>'}).join('')+'</div>';
+}
+function correctHtml(q){var ids=ci(q);if(!mult(q)){var i=ids[0],label=displayLetter(q,i,idx,true)+'. ';return '<br>Respuesta correcta: <strong>'+esc(label+((q.options&&q.options[i])||''))+'</strong>'}return '<br>Respuesta correcta:<div class="correct-answer-feedback-list">'+ids.map(function(i){return '<div class="correct-answer-feedback-line"><strong>'+esc(displayLetter(q,i,idx,true)+'.')+'</strong> '+esc((q.options&&q.options[i])||'')+'</div>'}).join('')+'</div>'}
+function noteLabel(q){return q&&/^note$/i.test(String(q.noteLabel||''))?'NOTE':'NOTA'}
+function noteHtml(q){if(!q||!q.note)return '';var label=noteLabel(q);return '<div class="study-note-card" role="note" aria-label="'+esc(label)+'"><div class="study-note-heading"><span class="study-note-icon" aria-hidden="true">i</span><strong class="study-note-label">'+esc(label)+':</strong></div><div class="study-note-body">'+esc(q.note)+'</div></div>'}
+var mode='test',idx=0,ans=[],order=[],optionOrders=[],flags=[],shuffleMode='none';
 function setMode(m,el){mode=m;document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('active')});el.classList.add('active');restart()}
-function restart(){idx=0;ans=[];order=Qs.map(function(_,i){return i});if(document.getElementById('shuf').checked){for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t}}ans=new Array(order.length).fill(-1);flags=new Array(order.length).fill(false);render()}
+function shuffleArray(v){var o=v.slice();for(var i=o.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=o[i];o[i]=o[j];o[j]=t}return o}
+function handleStandaloneShuffleToggle(){var cb=document.getElementById('shuf');if(!cb)return restart();if(cb.checked)showStandaloneShuffleChoice();else{shuffleMode='none';closeStandaloneShuffleChoice();restart()}}
+function showStandaloneShuffleChoice(){closeStandaloneShuffleChoice();var b=document.createElement('div');b.className='shuffle-choice-backdrop';b.id='standaloneShuffleChoiceBackdrop';b.innerHTML='<div class="shuffle-choice-dialog" role="dialog" aria-modal="true" aria-labelledby="shuffleChoiceTitle"><h3 id="shuffleChoiceTitle">Seleccione el tipo de mezcla</h3><p>Elija cómo desea aleatorizar este intento del cuestionario.</p><div class="shuffle-choice-options"><button type="button" class="shuffle-choice-option" onclick="setStandaloneShuffleMode(\'questions\')">Mezclar sólo el orden de las preguntas</button><button type="button" class="shuffle-choice-option" onclick="setStandaloneShuffleMode(\'answers\')">Mezclar sólo el orden de las respuestas</button><button type="button" class="shuffle-choice-option" onclick="setStandaloneShuffleMode(\'both\')">Mezclar orden de preguntas y orden de sus respuestas</button></div><button type="button" class="btn btn-s shuffle-choice-cancel" onclick="cancelStandaloneShuffleChoice()">Cancelar</button></div>';document.body.appendChild(b);var f=b.querySelector('.shuffle-choice-option');if(f)f.focus()}
+function closeStandaloneShuffleChoice(){var b=document.getElementById('standaloneShuffleChoiceBackdrop');if(b)b.remove()}
+function cancelStandaloneShuffleChoice(){shuffleMode='none';var cb=document.getElementById('shuf');if(cb)cb.checked=false;closeStandaloneShuffleChoice();restart()}
+function setStandaloneShuffleMode(m){shuffleMode=['questions','answers','both'].indexOf(m)>=0?m:'none';var cb=document.getElementById('shuf');if(cb)cb.checked=shuffleMode!=='none';closeStandaloneShuffleChoice();restart()}
+function optionOrderFor(page,q){var base=q&&q.options?q.options.map(function(_,i){return i}):[],o=optionOrders&&optionOrders[page];if(!Array.isArray(o)||o.length!==base.length)return base;return o.filter(function(i){return Number.isInteger(i)&&i>=0&&i<base.length})}
+function displayLetter(q,i,page,lower){var L=lower?'abcdefghijklmnopqrstuvwxyz':'ABCDEFGHIJKLMNOPQRSTUVWXYZ',o=optionOrderFor(page,q),p=o.indexOf(i),d=p>=0?p:i;return L[d]||String(d+1)}
+function restart(){idx=0;ans=[];order=Qs.map(function(_,i){return i});var cb=document.getElementById('shuf');if(cb&&!cb.checked)shuffleMode='none';if(shuffleMode==='questions'||shuffleMode==='both')order=shuffleArray(order);optionOrders=order.map(function(qi){var q=Qs[qi],base=q&&q.options?q.options.map(function(_,i){return i}):[];return (shuffleMode==='answers'||shuffleMode==='both')?shuffleArray(base):base});ans=new Array(order.length).fill(-1);flags=new Array(order.length).fill(false);render()}
 function render(){
   if(idx>=order.length){showResults();return}
-  var q=Qs[order[idx]],L='ABCDEF',sel=ans[idx],rev=window._rev||false;
-  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div class="status">'+(sel>=0?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag '+(flags[idx]?'flagged':'')+'" type="button" onclick="toggleFlag()">'+(flags[idx]?'⚑ Desmarcar':'⚐ Marcar pregunta')+'</button></aside><div class="slide"><div class="q-text">'+renderQuestion(q)+'</div><div class="options">';
-  q.options.forEach(function(o,j){
-    var c='opt';
-    if(sel===j)c+=' selected';
-    if(rev){c+=' locked';if(j===q.correctIndex)c+=' correct-r';else if(j===sel&&j!==q.correctIndex)c+=' incorrect-r'}
-    h+='<button class="'+c+'" type="button" '+(rev?'disabled':' onclick="pick('+j+')"')+'><span class="letter" aria-hidden="true"></span><span class="mletter">'+(L[j]||String(j+1)).toLowerCase()+'.</span><span class="otext">'+esc(o)+'</span></button>';
+  var q=Qs[order[idx]],L='ABCDEF',sel=ans[idx],rev=window._rev||false,ord=optionOrderFor(idx,q);
+  var h='<div class="attempt"><aside class="qinfo" aria-label="Estado de la pregunta"><div class="qno">Pregunta '+(idx+1)+'</div><div class="status">'+(any(sel)?'Respuesta guardada':'Sin responder')+'</div><div>Se puntúa como 0 sobre 1,00</div><button class="flag '+(flags[idx]?'flagged':'')+'" type="button" onclick="toggleFlag()">'+(flags[idx]?'⚑ Desmarcar':'⚐ Marcar pregunta')+'</button></aside><div class="slide"><div class="q-text">'+renderQuestion(q)+'</div><div class="options">';
+  ord.forEach(function(j,displayIndex){
+    var o=(q.options&&q.options[j])||'';
+    var c='opt'+(mult(q)?' multiple-choice':'');
+    if(has(sel,j))c+=' selected';
+    if(rev){c+=' locked';if(ci(q).indexOf(j)>=0)c+=' correct-r';else if(has(sel,j)&&ci(q).indexOf(j)<0)c+=' incorrect-r'}
+    h+='<button class="'+c+'" type="button" '+(rev?'disabled':' onclick="pick('+j+')"')+'><span class="letter" aria-hidden="true"></span><span class="mletter">'+(L[displayIndex]||String(displayIndex+1)).toLowerCase()+'.</span><span class="otext">'+esc(o)+'</span></button>';
   });
   h+='</div>'+renderAfterImages(q);
-  if(sel>=0)h+='<button type="button" class="clear-choice" onclick="clearChoice()">Quitar mi elección</button>';
+  if(any(sel))h+='<button type="button" class="clear-choice" onclick="clearChoice()">Quitar mi elección</button>';if(mult(q)&&any(sel)&&mode==='study'&&!rev)h+='<button type="button" class="clear-choice" onclick="checkAns()">Comprobar respuesta</button>'; 
   if(rev&&mode==='study'){
-    var ok=sel===q.correctIndex;
+    var ok=window.ok(q,sel);
     h+='<div class="feedback show '+(ok?'ok':'no')+'"><strong>'+(ok?'\\u2713 Correcto':'\\u2717 Incorrecto')+'</strong>';
-    if(!ok)h+='<br>Respuesta correcta: <strong>'+esc(q.options[q.correctIndex])+'</strong>';
+    if(!ok)h+=correctHtml(q); 
     if(q.explanation)h+='<br><br>'+esc(q.explanation);
-    h+='</div>';
+    h+='</div>'+noteHtml(q);
   }
   h+='</div></div><div class="nav">';
   h+='<button class="btn btn-s" onclick="prev()" '+(idx===0?'disabled':'')+'>Página anterior</button>';
@@ -6868,8 +7743,9 @@ function render(){
   h+='</div>';
   document.getElementById('qa').innerHTML=h;
 }
-function pick(j){ans[idx]=j;if(mode==='study'){window._rev=true}render()}
-function clearChoice(){ans[idx]=-1;window._rev=false;render()}
+function pick(j){var q=Qs[order[idx]];if(mult(q)){var a=arr(ans[idx]),k=a.indexOf(j);if(k>=0)a.splice(k,1);else a.push(j);ans[idx]=a.sort(function(x,y){return x-y});window._rev=false}else{ans[idx]=j;if(mode==='study'){window._rev=true}}render()}
+function checkAns(){window._rev=true;render()}
+function clearChoice(){ans[idx]=mult(Qs[order[idx]])?[]:-1;window._rev=false;render()}
 function toggleFlag(){if(!flags||flags.length!==order.length)flags=new Array(order.length).fill(false);flags[idx]=!flags[idx];render()}
 function next(){idx++;window._rev=false;render()}
 function prev(){if(idx>0){idx--;window._rev=false;render()}}
@@ -6877,7 +7753,7 @@ function finish(){idx=order.length;showResults()}
 function showResults(){
   var cor=0,inc=0,un=0,reviewData=[];
   order.forEach(function(qi,i){
-    var q=Qs[qi],a=ans[i],state=a<0?'unanswered':(a===q.correctIndex?'correct':'incorrect');
+    var q=Qs[qi],a=ans[i],state=!any(a)?'unanswered':(ok(q,a)?'correct':'incorrect');
     if(state==='correct')cor++;else if(state==='incorrect')inc++;else un++;
     reviewData.push({q:q,a:a,state:state,ok:state==='correct',flagged:flags&&flags[i]});
   });
@@ -6892,8 +7768,8 @@ function showResults(){
   reviewData.forEach(function(r,i){
     var q=r.q,a=r.a,ok=r.ok;
     h+='<div class="review-item '+(r.state==='correct'?'ok':(r.state==='unanswered'?'unanswered':'no'))+' '+(r.flagged?'is-flagged-review':'')+'" data-review-state="'+r.state+'">'+(r.flagged?'<span class="review-flag-badge" title="Pregunta marcada" aria-label="Pregunta marcada">⚑</span>':'')+'<div class="review-q">Q'+(i+1)+'. '+renderQuestion(q)+'</div>'+renderAfterImages(q)+'<div class="review-a">';
-    h+=a>=0?'Su respuesta: <strong>'+esc(q.options[a])+'</strong>':'<em>Sin responder</em>';
-    if(!ok)h+='<br>Correcta: <strong style="color:var(--correct)">'+esc(q.options[q.correctIndex])+'</strong>';
+    h+=any(a)?'Su respuesta:'+(mult(q)?'<br>':' ')+reviewValueHtml(q,a,'user'):'<em>Sin responder</em>'; 
+    if(!ok)h+='<br>Correcta:'+(mult(q)?'':' ')+reviewValueHtml(q,ci(q),'correct'); 
     if(q.explanation)h+='<br><em style="color:#a89b88">'+esc(q.explanation)+'</em>';
     h+='</div></div>';
   });
@@ -6942,7 +7818,8 @@ restart();
 
 
 function renderQuestionContent(q) {
-  return escHtml(q && q.question ? q.question : '') + renderQuestionRichBlocks(q);
+  const shown = getVisibleQuestion(q);
+  return escHtml(shown && shown.question ? shown.question : '') + renderQuestionRichBlocks(shown);
 }
 
 function renderQuestionImages(q) {
@@ -6960,6 +7837,7 @@ function renderQuestionRichBlocks(q) {
 }
 
 function renderAfterOptionContent(q) {
+  q = getVisibleQuestion(q);
   const blocks = normalizeWordRichBlocks(q && q.afterOptionBlocks ? q.afterOptionBlocks : []);
   if (blocks.length) return renderRichBlockCollection(blocks, 'after-option-rich-blocks', 'after-option-image');
   return renderImageCollection(q && q.afterOptionImages ? q.afterOptionImages : [], 'after-option-images', 'after-option-image') +
@@ -7073,6 +7951,153 @@ function splitImageDataUri(src) {
   return { mime: match[1], ext, base64: match[3].replace(/\s+/g, '') };
 }
 
+
+/* Ajuste v44 — Respuestas robustas: ANSWER/CORRECT/RIGHT/RESPUESTA, selección única y múltiple. */
+function normalizeAnswerLabelText(text) {
+  return transliterateAikenSmallCaps(String(text || '')).normalize('NFKC').replace(/[\u0300-\u036f]/g, '').replace(/[\u00a0\u2007\u202f]/g, ' ').replace(/[\u200b\u200c\u200d\ufeff]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+}
+function matchAikenAnswerLine(text) {
+  const clean = String(text || '').normalize('NFKC').replace(/[\u00a0\u2007\u202f]/g, ' ').trim();
+  const normalized = transliterateAikenSmallCaps(clean);
+  const match = normalized.match(/^\s*(answer|correct\s+answer|correct|right|respuesta\s+correcta|respuesta|correcta)\s*[:：]\s*([\s\S]*)$/i);
+  if (!match) return null;
+  const colonIndex = clean.search(/[:：]/);
+  const rawLabel = colonIndex >= 0 ? clean.slice(0, colonIndex).trim() : match[1];
+  const rawValue = colonIndex >= 0 ? clean.slice(colonIndex + 1) : match[2];
+  return { label: rawLabel, value: cleanWordAikenText(transliterateAikenSmallCaps(rawValue || '')) };
+}
+function optionTextKey(text) {
+  return normalizeAnswerLabelText(String(text || '').replace(/^[A-J]\s*[.)]\s*/i, '').replace(/^\d{1,2}\s*[.)]\s*/, '').replace(/["“”'‘’«»]/g, ''));
+}
+function uniqueSortedIndices(indices, optionCount) {
+  const seen = new Set();
+  return (indices || []).map(n => parseInt(n, 10)).filter(n => Number.isFinite(n) && n >= 0 && n < optionCount && !seen.has(n) && seen.add(n)).sort((a, b) => a - b);
+}
+function parseAnswerIndicesFromValue(value, options) {
+  const opts = Array.isArray(options) ? options : [];
+  const optionCount = opts.length;
+  const raw = cleanWordAikenText(value || '');
+  if (!raw || optionCount < 1) return [];
+  const indices = [];
+
+  function addIndex(idx) {
+    if (Number.isFinite(idx) && idx >= 0 && idx < optionCount) indices.push(idx);
+  }
+
+  function parseDirectAnswerToken(token) {
+    const cleanToken = cleanWordAikenText(token || '').replace(/^[-–—•]+\s*/, '').replace(/[.;]+$/g, '').trim();
+    if (!cleanToken) return false;
+
+    const ordinalMap = {
+      primera: 0, primero: 0, first: 0, one: 0, uno: 0, una: 0,
+      segunda: 1, segundo: 1, second: 1, two: 1, dos: 1,
+      tercera: 2, tercero: 2, third: 2, three: 2, tres: 2,
+      cuarta: 3, cuarto: 3, fourth: 3, four: 3, cuatro: 3,
+      quinta: 4, quinto: 4, fifth: 4, five: 4, cinco: 4,
+      sexta: 5, sexto: 5, sixth: 5, six: 5, seis: 5,
+      septima: 6, septimo: 6, séptima: 6, séptimo: 6, seventh: 6, seven: 6, siete: 6,
+      octava: 7, octavo: 7, eighth: 7, eight: 7, ocho: 7,
+      novena: 8, noveno: 8, ninth: 8, nine: 8, nueve: 8,
+      decima: 9, decimo: 9, décima: 9, décimo: 9, tenth: 9, ten: 9, diez: 9
+    };
+
+    const letterMatch = cleanToken.match(/^(?:opci[oó]n|option|respuesta|answer)?\s*([A-J])(?:\s*[.)])?$/i);
+    if (letterMatch) { addIndex(letterMatch[1].toUpperCase().charCodeAt(0) - 65); return true; }
+
+    const numberedMatch = cleanToken.match(/^(?:opci[oó]n|option|respuesta|answer)?\s*(\d{1,2})(?:\s*[.)])?$/i);
+    if (numberedMatch) { addIndex(parseInt(numberedMatch[1], 10) - 1); return true; }
+
+    const prefixedLetterMatch = cleanToken.match(/^([A-J])\s*[.)]\s+(.+)$/i);
+    if (prefixedLetterMatch) { addIndex(prefixedLetterMatch[1].toUpperCase().charCodeAt(0) - 65); return true; }
+
+    const key = normalizeAnswerLabelText(cleanToken);
+    if (Object.prototype.hasOwnProperty.call(ordinalMap, key)) { addIndex(ordinalMap[key]); return true; }
+
+    return false;
+  }
+
+  // Casos compactos inequívocos: "BCD", "B C D". No se aplica a frases.
+  const compactLetters = raw.replace(/[\s,;|/+&]+/g, '');
+  if (/^[A-J]{2,10}$/i.test(compactLetters) && compactLetters.length <= optionCount) {
+    compactLetters.split('').forEach(letter => addIndex(letter.toUpperCase().charCodeAt(0) - 65));
+    return uniqueSortedIndices(indices, optionCount);
+  }
+
+  const parts = raw.split(/(?:[,;|/+]+|\s+(?:y|e|and|&)\s+)/i).map(part => part.trim()).filter(Boolean);
+  let allPartsWereDirect = parts.length > 1;
+  parts.forEach(part => { if (!parseDirectAnswerToken(part)) allPartsWereDirect = false; });
+  if (parts.length > 1 && allPartsWereDirect) return uniqueSortedIndices(indices, optionCount);
+
+  // Respuesta única expresada como letra, número u ordinal.
+  if (parseDirectAnswerToken(raw)) return uniqueSortedIndices(indices, optionCount);
+
+  // Respuesta expresada como palabra, frase o párrafo de la opción correcta.
+  // Sólo se compara contra el texto de las opciones si el valor declarado no es
+  // una letra suelta. Esto evita que "RESPUESTA: C" marque todas las opciones
+  // que contienen la letra c.
+  const normalizedRaw = optionTextKey(raw);
+  if (normalizedRaw.length >= 4) {
+    opts.map(optionTextKey).forEach((key, idx) => {
+      if (!key || key.length < 4) return;
+      const exact = normalizedRaw === key;
+      const rawContainsOption = normalizedRaw.length >= Math.min(12, key.length) && normalizedRaw.includes(key);
+      const optionContainsRaw = normalizedRaw.length >= Math.min(12, key.length) && key.includes(normalizedRaw);
+      if (exact || rawContainsOption || optionContainsRaw) addIndex(idx);
+    });
+  }
+
+  return uniqueSortedIndices(indices, optionCount);
+}
+function getCorrectIndices(q) {
+  if (!q) return [];
+  const optionCount = Array.isArray(q.options) ? q.options.length : 0;
+  let indices = [];
+  if (Array.isArray(q.correctIndices) && q.correctIndices.length) indices = q.correctIndices;
+  else if (q.correctIndex !== undefined && q.correctIndex !== null) indices = [q.correctIndex];
+  indices = uniqueSortedIndices(indices, optionCount);
+  if (!indices.length && optionCount > 0) indices = [0];
+  q.correctIndices = indices;
+  q.correctIndex = indices[0];
+  return indices;
+}
+function isMultipleQuestion(q) { return getCorrectIndices(q).length > 1; }
+function isCorrectOption(q, index) { return getCorrectIndices(q).includes(index); }
+function answerToArray(ans) { if (Array.isArray(ans)) return ans; if (ans === undefined || ans === null || ans === -1) return []; return [ans]; }
+function hasAnyAnswer(ans) { return answerToArray(ans).length > 0; }
+function answerContains(ans, index) { return answerToArray(ans).includes(index); }
+function sameIndexSet(a, b) { const aa = uniqueSortedIndices(answerToArray(a), 1000); const bb = uniqueSortedIndices(answerToArray(b), 1000); return aa.length === bb.length && aa.every((value, i) => value === bb[i]); }
+function isAnswerCorrect(q, ans) { return sameIndexSet(getCorrectIndices(q), answerToArray(ans)); }
+function formatAnswerText(q, indices) { const opts = q && Array.isArray(q.options) ? q.options : []; const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; return uniqueSortedIndices(indices, opts.length).map(i => (letters[i] || String(i + 1)) + '. ' + (opts[i] || '')).join('; '); }
+function formatCorrectAnswerText(q) { return formatAnswerText(q, getCorrectIndices(q)); }
+function formatReviewAnswerText(q, indices) { const shown = getVisibleQuestion(q); const opts = shown && Array.isArray(shown.options) ? shown.options : (q && Array.isArray(q.options) ? q.options : []); return uniqueSortedIndices(indices, opts.length).map(i => opts[i] || '').filter(Boolean).join('; '); }
+function formatReviewCorrectAnswerText(q) { return formatReviewAnswerText(q, getCorrectIndices(q)); }
+function renderReviewAnswerValueHtml(q, indices, kind) {
+  const shown = getVisibleQuestion(q);
+  const opts = shown && Array.isArray(shown.options) ? shown.options : (q && Array.isArray(q.options) ? q.options : []);
+  const clean = uniqueSortedIndices(indices, opts.length).filter(i => opts[i]);
+  const listMode = isMultipleQuestion(q) || clean.length > 1;
+  if (!listMode) return '<strong>' + escHtml(formatReviewAnswerText(q, clean)) + '</strong>';
+  const marker = kind === 'correct' ? '→' : '–';
+  const cls = kind === 'correct' ? 'review-answer-list-correct' : 'review-answer-list-user';
+  return '<div class="review-answer-list ' + cls + '">' + clean.map(i =>
+    '<div class="review-answer-row"><span class="review-answer-marker">' + marker + '</span><span class="review-answer-text">' + escHtml(opts[i] || '') + '</span></div>'
+  ).join('') + '</div>';
+}
+function formatCorrectAnswerFeedbackHtml(q, pageIndex) {
+  const shown = getVisibleQuestion(q);
+  const opts = shown && Array.isArray(shown.options) ? shown.options : (q && Array.isArray(q.options) ? q.options : []);
+  const indices = getCorrectIndices(q);
+  if (!isMultipleQuestion(q)) {
+    const i = indices[0];
+    const label = getDisplayLetterForOption(q, i, pageIndex, true) + '. ';
+    return '<br>La respuesta correcta es: <strong>' + escHtml(label + (opts[i] || '')) + '</strong>';
+  }
+  const rows = uniqueSortedIndices(indices, opts.length).map(i =>
+    '<div class="correct-answer-feedback-line"><strong>' + escHtml(getDisplayLetterForOption(q, i, pageIndex, true) + '.') + '</strong> ' + escHtml(opts[i] || '') + '</div>'
+  ).join('');
+  return '<br>La respuesta correcta es:<div class="correct-answer-feedback-list">' + rows + '</div>';
+}
+
 // ═══════════════════════════════════════════════════════
 //  UTILITIES
 // ═══════════════════════════════════════════════════════
@@ -7154,9 +8179,29 @@ function setWordAikenSelectedFile(file) {
   }
 }
 
+
+function setWordAikenSelectedFileAlt(file) {
+  const input = document.getElementById('wordAikenFileAlt');
+  const status = document.getElementById('wordAikenDropStatusAlt');
+  wordAikenSelectedFileAlt = file || null;
+  if (input && file) {
+    try {
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      input.files = dt.files;
+    } catch (e) {}
+  }
+  if (status) {
+    status.innerHTML = file
+      ? 'Segundo documento seleccionado: <strong>' + escHtml(file.name) + '</strong>. Pulse Importar para vincularlo.'
+      : 'Arrastre aquí el segundo archivo <strong>.docx</strong> en el otro idioma o use «Elegir archivo».';
+  }
+}
+
 function setupWordAikenDragAndDrop() {
   const box = document.getElementById('wordAikenUpload');
   const input = document.getElementById('wordAikenFile');
+  const inputAlt = document.getElementById('wordAikenFileAlt');
   if (!box || !input || box.dataset.dragDropReady === '1') return;
   box.dataset.dragDropReady = '1';
 
@@ -7174,6 +8219,23 @@ function setupWordAikenDragAndDrop() {
       setWordAikenSelectedFile(null);
     }
   });
+
+  if (inputAlt) {
+    inputAlt.addEventListener('change', () => {
+      const file = inputAlt.files && inputAlt.files[0];
+      if (file) {
+        if (isDocxFile(file)) {
+          setWordAikenSelectedFileAlt(file);
+        } else {
+          setWordAikenSelectedFileAlt(null);
+          inputAlt.value = '';
+          showToast('El segundo archivo debe ser un documento MS Word .docx');
+        }
+      } else {
+        setWordAikenSelectedFileAlt(null);
+      }
+    });
+  }
 
   ['dragenter', 'dragover'].forEach(evtName => {
     box.addEventListener(evtName, (e) => {
@@ -7211,8 +8273,14 @@ function setupWordAikenDragAndDrop() {
       return;
     }
 
-    setWordAikenSelectedFile(file);
-    showToast('Documento preparado: ' + file.name);
+    const secondaryBox = document.getElementById('wordAikenBilingualSecondary');
+    if (secondaryBox && secondaryBox.style.display !== 'none' && wordAikenSelectedFile && !wordAikenSelectedFileAlt) {
+      setWordAikenSelectedFileAlt(file);
+      showToast('Segundo documento preparado: ' + file.name);
+    } else {
+      setWordAikenSelectedFile(file);
+      showToast('Documento preparado: ' + file.name);
+    }
   });
 }
 
@@ -7221,6 +8289,7 @@ function updateImportFormatUi() {
   const wordBox = document.getElementById('wordAikenUpload');
   const textarea = document.getElementById('importData');
   if (wordBox) wordBox.style.display = fmt === 'docx-aiken' ? 'block' : 'none';
+  if (fmt !== 'docx-aiken') { const b = document.getElementById('wordAikenBilingualSecondary'); if (b) b.style.display = 'none'; }
   if (textarea) {
     textarea.disabled = fmt === 'docx-aiken';
     textarea.placeholder = fmt === 'docx-aiken'

@@ -1,3 +1,19 @@
+# Actualización 1.11
+
+Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v64_bilingue_idioma_persistente_revision.html`, conservando la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
+
+Cambios principales incorporados en el HTML:
+
+- tarjeta NOTA/NOTE más compacta, con icono reducido, etiqueta en mayúsculas y menor separación;
+- depuración de títulos, encabezados y frases ajenas a preguntas al importar Word Aiken ampliado;
+- mezcla avanzada: sólo preguntas, sólo respuestas, o preguntas y respuestas;
+- modo bilingüe con segundo documento Word vinculado por posición;
+- botón de traducción en cuestionario, editor y revisión;
+- persistencia configurable del idioma durante el cuestionario;
+- revisión bilingüe corregida para enunciado, respuesta del usuario, respuesta correcta, explicación, justificación, nota y elementos asociados.
+
+El proyecto deriva de un fork modificado de `https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
+
 # Generador de cuestionarios NotebookLM — PWA para iPhone
 
 Aplicación web progresiva basada en el HTML original del generador de cuestionarios. El proyecto está preparado para publicarse directamente en GitHub Pages y para instalarse en iPhone desde Safari mediante **Añadir a pantalla de inicio**.
@@ -216,3 +232,15 @@ Cambios de esta entrega:
 - Caché PWA actualizada a `notebooklm-quiz-pwa-v8` para forzar que iPhone y GitHub Pages recojan el nuevo HTML.
 
 Nota técnica: el nuevo HTML carga `mammoth.browser.min.js` desde jsDelivr para leer documentos `.docx`. Se ha conservado esa referencia externa para no alterar la lógica del HTML recibido. La app PWA sigue cacheando sus archivos locales esenciales; la importación Word/Aiken necesita que esa librería esté disponible en el navegador.
+
+## Versión 1.10
+
+Cambios de esta entrega:
+
+- Sustitución del `index.html` de la versión 1.9 por el nuevo HTML `v42_word_aiken_imagenes_multimedia_separacion_acciones_plus`, conservando intacta la envoltura PWA previa: iconos CG, manifiesto, hoja de áreas seguras, favicon invisible en PC, fondo exterior claro/oscuro y publicación directa en GitHub Pages.
+- Conservación de la importación **MS Word Aiken con imágenes**, con soporte para `.docx`, arrastrar/soltar, imágenes, tablas, enlaces, recursos multimedia, justificaciones pedagógicas y exportaciones enriquecidas.
+- Ajuste fino de las tarjetas multimedia: se mantiene la acción de previsualización como texto desplegable y se incrementa la separación respecto al botón de apertura externa mediante el ajuste v57.
+- Caché PWA actualizada a `notebooklm-quiz-pwa-v9` para forzar que iPhone y GitHub Pages recojan el nuevo HTML.
+
+Nota técnica: se conserva la carga de `mammoth.browser.min.js` desde jsDelivr exactamente como viene en el HTML recibido, para no alterar la lógica del importador Word/Aiken.
+
