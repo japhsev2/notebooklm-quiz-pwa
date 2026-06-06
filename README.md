@@ -264,3 +264,10 @@ Cambios de esta entrega:
 
 Nota técnica: se conserva la carga de `mammoth.browser.min.js` desde jsDelivr exactamente como viene en el HTML recibido, para no alterar la lógica del importador Word/Aiken.
 
+
+
+## Actualización 1.13
+
+Se sustituye `index.html` por `index_moodle_51_quiz_navblock_v76_quiz_nav_bajo_pregunta_ventana_reducida.html`, conservando la envoltura PWA previa. Esta versión corrige la disposición del bloque «Navegación por el cuestionario» en ventana reducida de escritorio: cuando el ancho disponible es reducido, el bloque pasa debajo del cuadro de la pregunta, como en móvil.
+
+El `service-worker.js` se actualiza a `notebooklm-quiz-pwa-v12` para forzar la renovación de caché en Safari/iPhone.

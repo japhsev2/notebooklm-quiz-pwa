@@ -4351,6 +4351,48 @@ body.dark-mode .duplicate-review-nav-btn {
   .duplicate-review-prev { left: 0.75rem; }
   .duplicate-review-next { right: 0.75rem; }
 }
+
+
+/* Ajuste v75 — Revisión interactiva de duplicados en móvil: desplazamiento vertical interno.
+   No se alteran las dimensiones del pop-up; sólo se permite que, en teléfono,
+   el propio diálogo pueda desplazarse hacia abajo hasta los botones finales. */
+@media (max-width: 720px) {
+  .duplicate-review-dialog {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+  .duplicate-review-track {
+    overflow-y: visible !important;
+    max-height: none !important;
+  }
+}
+
+
+
+/* Ajuste v76 — Ventana reducida de escritorio: navegación debajo de la pregunta.
+   Cuando el navegador está estrecho por multitarea o pantalla partida, el bloque
+   «Navegación por el cuestionario» deja de colocarse encima o a la derecha y pasa
+   a mostrarse debajo del cuadro celeste, igual que en teléfono móvil. */
+@media (max-width: 980px) {
+  #quizArea .moodle-quiz-page {
+    grid-template-columns: 1fr !important;
+  }
+  #quizArea .moodle-quiz-main {
+    order: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  #quizArea .moodle-quiz-navigation {
+    order: 2 !important;
+    position: static !important;
+    top: auto !important;
+    width: 100% !important;
+    margin-top: 1.25rem !important;
+  }
+}
+
 </style>
 </head>
 <body>

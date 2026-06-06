@@ -1,0 +1,17 @@
+{
+  "version": "1.13",
+  "source_html": "index_moodle_51_quiz_navblock_v76_quiz_nav_bajo_pregunta_ventana_reducida.html",
+  "integrated_as": "index.html",
+  "pwa_cache_name": "notebooklm-quiz-pwa-v12",
+  "changes_preserved": [
+    "icons",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "html_sha256": "421a7432d7d9af8fe7ceb7277d8cbc9924b4746f12c28b27fee66f7c73aab191",
+  "created_utc": "2026-06-06T00:01:53.094947Z"
+}

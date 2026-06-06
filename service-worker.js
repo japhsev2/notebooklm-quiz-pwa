@@ -1,7 +1,7 @@
 /* service-worker.js
    Caché local de la aplicación PWA. No altera la lógica del HTML original.
 */
-const CACHE_NAME = 'notebooklm-quiz-pwa-v11';
+const CACHE_NAME = 'notebooklm-quiz-pwa-v12';
 const APP_SHELL = [
   './',
   './index.html',
