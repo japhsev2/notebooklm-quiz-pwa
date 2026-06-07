@@ -1,0 +1,33 @@
+{
+  "version": "1.14",
+  "input_html": "index_moodle_51_quiz_navblock_v100_carrousel_flick_extremo.html",
+  "base_zip": "notebooklm-quiz-pwa-v23-html-v76-nav-bajo-pregunta.zip",
+  "output_zip": "notebooklm-quiz-pwa-v24-html-v100-carrousel-flick-extremo.zip",
+  "source_html_sha256": "5f573f054254b7806e19f1343deb44dafb196324bb51a939a509256ce09bb58e",
+  "previous_index_sha256": "421a7432d7d9af8fe7ceb7277d8cbc9924b4746f12c28b27fee66f7c73aab191",
+  "new_index_sha256": "6d524fc7977476c5a6b0bca22595a166762129615f6ad6d03f56d691094c15a7",
+  "service_worker_cache": "notebooklm-quiz-pwa-v13",
+  "preserved_wrapper_files": [
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    "icons/",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "head_injections_preserved": [
+    "viewport-fit=cover",
+    "manifest",
+    "apple-touch-icon",
+    "favicon invisible",
+    "pwa-safe-area.css",
+    "service-worker registration",
+    "theme shell sync"
+  ],
+  "checks_expected": [
+    "node --check extracted inline scripts",
+    "node --check service-worker.js"
+  ],
+  "generated_utc": "2026-06-07T19:05:54Z"
+}

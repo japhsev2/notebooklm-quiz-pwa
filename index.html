@@ -4264,14 +4264,83 @@ body.dark-mode .duplicate-review-col {
   justify-content: space-between;
 }
 .duplicate-review-phase-badge {
+  appearance: none;
   background: var(--accent-light);
   border: 1px solid #9fcfeb;
   border-radius: 999px;
   color: var(--accent);
+  cursor: default;
+  font-family: var(--sans);
   font-size: 0.78rem;
   font-weight: 800;
   line-height: 1.2;
   padding: 0.26rem 0.62rem;
+}
+.duplicate-review-phase-badge.is-switchable {
+  cursor: pointer;
+}
+.duplicate-review-phase-badge.is-switchable:hover,
+.duplicate-review-phase-badge.is-switchable:focus-visible {
+  border-color: var(--accent);
+  outline: 0;
+  text-decoration: none;
+}
+.duplicate-review-editor-btn {
+  align-items: center !important;
+  background: #e7f3ff !important;
+  border: 1px solid #9fcfeb !important;
+  color: #0f6cbf !important;
+  display: inline-flex;
+  font-weight: 800 !important;
+  justify-content: center !important;
+  white-space: nowrap;
+}
+.duplicate-review-editor-btn:hover,
+.duplicate-review-editor-btn:focus-visible {
+  background: #dcedff !important;
+  border-color: #0f6cbf !important;
+  color: #0f6cbf !important;
+  outline: 0 !important;
+  text-decoration: none !important;
+}
+body.dark-mode .duplicate-review-editor-btn {
+  background: #173958 !important;
+  border-color: #4aa0d8 !important;
+  color: #9cccff !important;
+}
+body.dark-mode .duplicate-review-editor-btn:hover,
+body.dark-mode .duplicate-review-editor-btn:focus-visible {
+  background: #1f476a !important;
+  border-color: #6fb1f4 !important;
+  color: #cfe7ff !important;
+}
+.editor-heading-row {
+  gap: 0.75rem;
+}
+@media (max-width: 640px) {
+  .editor-heading-row {
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  .editor-heading-row h2 {
+    flex: 0 0 auto !important;
+    margin-right: 0 !important;
+  }
+  .editor-bilingual-toolbar {
+    flex: 1 1 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    min-width: 0 !important;
+  }
+  .editor-bilingual-toolbar .btn,
+  .editor-bilingual-toolbar .bilingual-global-translation-btn {
+    flex: 0 0 auto !important;
+  }
+  .duplicate-review-editor-btn {
+    max-width: 100% !important;
+  }
 }
 .duplicate-review-qbox {
   position: relative;
@@ -4335,6 +4404,10 @@ body.dark-mode .duplicate-review-phase-badge {
   border-color: #345f84;
   color: #b8d7ee;
 }
+body.dark-mode .duplicate-review-phase-badge.is-switchable:hover,
+body.dark-mode .duplicate-review-phase-badge.is-switchable:focus-visible {
+  border-color: #6fb1f4;
+}
 body.dark-mode .duplicate-review-nav-btn {
   background: #20262d;
   border-color: #4a535d;
@@ -4352,6 +4425,47 @@ body.dark-mode .duplicate-review-nav-btn {
   .duplicate-review-next { right: 0.75rem; }
 }
 
+
+/* Ajuste v78 — Revisión de duplicados: traducción sin desplazamiento lateral fantasma.
+   El carril no aplica desplazamiento suave por CSS; la navegación lateral conserva
+   su animación sólo cuando se pulsa explícitamente anterior/siguiente. */
+.duplicate-review-track {
+  scroll-behavior: auto !important;
+}
+
+
+
+/* Ajuste v79 — Revisión de duplicados: botones laterales fuera del contenido.
+   Se reservan dos carriles laterales invisibles para que anterior/siguiente no
+   tapen la tarjeta activa ni sus preguntas; la tarjeta se centra dentro del visor. */
+.duplicate-review-dialog {
+  --duplicate-review-nav-gutter: 3.85rem;
+}
+.duplicate-review-track {
+  padding-left: var(--duplicate-review-nav-gutter) !important;
+  padding-right: var(--duplicate-review-nav-gutter) !important;
+  scroll-padding-left: var(--duplicate-review-nav-gutter) !important;
+  scroll-padding-right: var(--duplicate-review-nav-gutter) !important;
+}
+.duplicate-review-card {
+  flex-basis: min(70rem, calc(100% - (var(--duplicate-review-nav-gutter) * 2))) !important;
+  min-width: min(70rem, calc(100% - (var(--duplicate-review-nav-gutter) * 2))) !important;
+}
+.duplicate-review-prev { left: 0.72rem !important; }
+.duplicate-review-next { right: 0.72rem !important; }
+@media (max-width: 720px) {
+  .duplicate-review-dialog { --duplicate-review-nav-gutter: 2.95rem; }
+  .duplicate-review-track {
+    padding-left: var(--duplicate-review-nav-gutter) !important;
+    padding-right: var(--duplicate-review-nav-gutter) !important;
+  }
+  .duplicate-review-card {
+    flex-basis: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+    min-width: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+  }
+  .duplicate-review-prev { left: 0.42rem !important; }
+  .duplicate-review-next { right: 0.42rem !important; }
+}
 
 /* Ajuste v75 — Revisión interactiva de duplicados en móvil: desplazamiento vertical interno.
    No se alteran las dimensiones del pop-up; sólo se permite que, en teléfono,
@@ -4390,6 +4504,855 @@ body.dark-mode .duplicate-review-nav-btn {
     top: auto !important;
     width: 100% !important;
     margin-top: 1.25rem !important;
+  }
+}
+
+
+/* Ajuste v80 — Revisión de duplicados: modal centrado y comparación paralela real.
+   - El diálogo queda centrado en el viewport con márgenes simétricos.
+   - Si varias preguntas omitidas colisionan con la misma pregunta ya importada,
+     se agrupan en una sola tarjeta y se muestran en columnas paralelas.
+   - Si sólo existe una coincidencia, se mantiene la lectura clásica de dos columnas.
+   - Los botones laterales navegan por grupos y no invaden nunca el contenido. */
+.duplicate-review-backdrop {
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(0.75rem, 2.6vh, 1.75rem) clamp(0.75rem, 2.2vw, 1.5rem) !important;
+}
+.duplicate-review-dialog {
+  --duplicate-review-nav-gutter: 3.95rem;
+  display: flex !important;
+  flex-direction: column !important;
+  margin: auto !important;
+  max-height: min(92vh, 58rem) !important;
+  max-width: min(94vw, 86rem) !important;
+  width: min(94vw, 86rem) !important;
+}
+.duplicate-review-header,
+.duplicate-review-actions {
+  flex: 0 0 auto !important;
+}
+.duplicate-review-track {
+  align-items: stretch !important;
+  display: flex !important;
+  flex: 1 1 auto !important;
+  gap: 1rem !important;
+  min-height: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+  padding: 1rem var(--duplicate-review-nav-gutter) 1.1rem var(--duplicate-review-nav-gutter) !important;
+  scroll-behavior: auto !important;
+  scroll-padding-left: var(--duplicate-review-nav-gutter) !important;
+  scroll-padding-right: var(--duplicate-review-nav-gutter) !important;
+  scroll-snap-type: x mandatory !important;
+}
+.duplicate-review-card {
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex: 0 0 min(78rem, calc(100% - (var(--duplicate-review-nav-gutter) * 2))) !important;
+  flex-direction: column !important;
+  min-width: min(78rem, calc(100% - (var(--duplicate-review-nav-gutter) * 2))) !important;
+  scroll-snap-align: center !important;
+}
+.duplicate-review-card-title {
+  flex: 0 0 auto !important;
+}
+.duplicate-review-card-title.duplicate-review-card-title-simple {
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+.duplicate-review-pair,
+.duplicate-review-parallel {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+.duplicate-review-pair {
+  display: grid !important;
+  gap: 0.9rem !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+}
+.duplicate-review-parallel {
+  display: grid !important;
+  gap: 0.9rem !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: minmax(19rem, 1fr) !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  padding: 0 0 0.25rem !important;
+}
+.duplicate-review-parallel .duplicate-review-col {
+  min-width: 19rem !important;
+}
+.duplicate-review-col {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+.duplicate-review-col-title {
+  align-items: center !important;
+  display: flex !important;
+  gap: 0.6rem !important;
+  justify-content: space-between !important;
+  margin: 0 0 0.55rem !important;
+}
+.duplicate-review-col-title h4 {
+  margin: 0 !important;
+}
+.duplicate-review-col-title .duplicate-review-choice {
+  flex: 0 0 auto !important;
+  font-size: 0.78rem !important;
+  white-space: nowrap !important;
+}
+.duplicate-review-col > h4 {
+  flex: 0 0 auto !important;
+}
+.duplicate-review-qbox {
+  flex: 1 1 auto !important;
+}
+.duplicate-review-matches {
+  display: contents !important;
+}
+.duplicate-review-matches .duplicate-review-col {
+  flex: initial !important;
+}
+.duplicate-review-nav-btn {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+}
+.duplicate-review-prev { left: 0.72rem !important; }
+.duplicate-review-next { right: 0.72rem !important; }
+body.dark-mode .duplicate-review-parallel {
+  scrollbar-color: #4a535d transparent;
+}
+@media (max-width: 980px) {
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 3.35rem;
+    max-width: 96vw !important;
+    width: 96vw !important;
+  }
+  .duplicate-review-card {
+    flex-basis: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+    min-width: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+  }
+  .duplicate-review-parallel {
+    grid-auto-columns: minmax(17.5rem, 86%) !important;
+  }
+  .duplicate-review-pair {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 720px) {
+  .duplicate-review-backdrop {
+    align-items: center !important;
+    padding: 0.65rem !important;
+  }
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 2.85rem;
+    max-height: 92vh !important;
+    width: 96vw !important;
+  }
+  .duplicate-review-track {
+    padding-left: var(--duplicate-review-nav-gutter) !important;
+    padding-right: var(--duplicate-review-nav-gutter) !important;
+  }
+  .duplicate-review-card {
+    flex-basis: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+    min-width: calc(100% - (var(--duplicate-review-nav-gutter) * 2)) !important;
+  }
+  .duplicate-review-parallel {
+    grid-auto-columns: minmax(15.5rem, 92%) !important;
+  }
+  .duplicate-review-col-title {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+  }
+  .duplicate-review-prev { left: 0.38rem !important; }
+  .duplicate-review-next { right: 0.38rem !important; }
+}
+
+
+/* Ajuste v82 — Revisión de duplicados en móvil: acciones al final del scroll y trazabilidad cromática.
+   Sólo afecta al visor de preguntas omitidas por duplicado. */
+.duplicate-review-doc-number {
+  color: #3f6f9f !important;
+  display: block !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  margin-top: 0.12rem !important;
+}
+body.dark-mode .duplicate-review-doc-number {
+  color: #9fcfeb !important;
+}
+@media (max-width: 720px) {
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 0rem !important;
+    display: block !important;
+    max-height: 92vh !important;
+    max-width: 96vw !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    width: min(96vw, 100%) !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+  .duplicate-review-header {
+    position: static !important;
+  }
+  .duplicate-review-track {
+    display: block !important;
+    flex: none !important;
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    scroll-padding-left: 0.85rem !important;
+    scroll-padding-right: 0.85rem !important;
+  }
+  .duplicate-review-actions {
+    display: flex !important;
+    flex: none !important;
+    position: static !important;
+  }
+  .duplicate-review-card {
+    flex: none !important;
+    flex-basis: auto !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    padding: 0.85rem !important;
+  }
+  .duplicate-review-pair,
+  .duplicate-review-parallel {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: 100% !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+  }
+  .duplicate-review-parallel .duplicate-review-col,
+  .duplicate-review-col {
+    flex-basis: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .duplicate-review-question,
+  .duplicate-review-option {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .duplicate-review-nav-btn {
+    bottom: auto !important;
+    top: 52% !important;
+    transform: translateY(-50%) !important;
+  }
+  .duplicate-review-prev { left: 0.72rem !important; }
+  .duplicate-review-next { right: 0.72rem !important; }
+}
+
+
+
+/* Ajuste v83 — Revisión de duplicados en móvil: navegación horizontal real entre comparaciones.
+   Mantiene la cabecera y las acciones dentro del flujo vertical del diálogo, pero
+   restaura el carril horizontal para pasar de una comparación a la siguiente. */
+@media (max-width: 720px) {
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 0rem !important;
+    display: block !important;
+    max-height: 92vh !important;
+    max-width: 96vw !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    width: min(96vw, 100%) !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+  .duplicate-review-header {
+    position: static !important;
+  }
+  .duplicate-review-track {
+    display: flex !important;
+    flex: none !important;
+    gap: 0.85rem !important;
+    min-height: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    scroll-padding-left: 0.85rem !important;
+    scroll-padding-right: 0.85rem !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x pan-y !important;
+  }
+  .duplicate-review-track.duplicate-review-touching {
+  scroll-snap-type: none !important;
+}
+  .duplicate-review-card {
+    box-sizing: border-box !important;
+    flex: 0 0 100% !important;
+    flex-basis: 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.85rem !important;
+    scroll-snap-align: start !important;
+  }
+  .duplicate-review-actions {
+    display: flex !important;
+    flex: none !important;
+    position: static !important;
+  }
+  .duplicate-review-pair,
+  .duplicate-review-parallel {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: 100% !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+  }
+  .duplicate-review-parallel .duplicate-review-col,
+  .duplicate-review-col {
+    flex-basis: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .duplicate-review-question,
+  .duplicate-review-option {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .duplicate-review-nav-btn {
+    bottom: auto !important;
+    height: 2.25rem !important;
+    position: fixed !important;
+    top: 50vh !important;
+    transform: translateY(-50%) !important;
+    width: 2.25rem !important;
+    z-index: 3002 !important;
+  }
+  .duplicate-review-prev { left: calc(2vw + 0.25rem) !important; }
+  .duplicate-review-next { right: calc(2vw + 0.25rem) !important; }
+}
+
+
+/* Ajuste v84 — Trazabilidad documental completa en revisión de duplicados.
+   El número mostrado como (#N en documento) procede siempre de la posición real
+   de la pregunta dentro del documento importado y se normaliza antes de comparar duplicados. */
+.duplicate-review-doc-number {
+  color: #2f6798 !important;
+}
+body.dark-mode .duplicate-review-doc-number {
+  color: #9fcfeb !important;
+}
+
+
+
+/* Ajuste v89 — Editor móvil: botonera más equilibrada y enunciados legibles.
+   - En teléfono, los botones del editor se distribuyen en dos filas estables.
+   - El botón «Revisión de omitidas» conserva el estilo celeste y ya no comprime la fila.
+   - Las preguntas normales/ya importadas dejan de encajarse en una columna estrecha:
+     el enunciado pasa a ocupar todo el ancho útil de la tarjeta. */
+@media (max-width: 640px) {
+  .editor-heading-row {
+    align-items: flex-start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.85rem !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+  }
+  .editor-heading-row h2 {
+    flex: none !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+  .editor-bilingual-toolbar {
+    align-items: stretch !important;
+    display: grid !important;
+    gap: 0.55rem !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto !important;
+    width: 100% !important;
+  }
+  .editor-bilingual-toolbar > .btn,
+  .editor-bilingual-toolbar .bilingual-global-translation-btn {
+    border-radius: 0.55rem !important;
+    font-size: 0.88rem !important;
+    justify-content: center !important;
+    line-height: 1.18 !important;
+    min-height: 2.75rem !important;
+    padding: 0.58rem 0.72rem !important;
+    white-space: normal !important;
+    width: 100% !important;
+  }
+  .editor-bilingual-toolbar > .btn-secondary:not(.duplicate-review-editor-btn) {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 !important;
+  }
+  .editor-bilingual-toolbar > .duplicate-review-editor-btn {
+    grid-column: 2 / 4 !important;
+    grid-row: 1 !important;
+    max-width: none !important;
+  }
+  .editor-bilingual-toolbar > .btn-primary {
+    grid-column: 1 / 3 !important;
+    grid-row: 2 !important;
+  }
+  #editorBilingualGlobalSlot {
+    align-self: stretch !important;
+    display: flex !important;
+    grid-column: 3 / 4 !important;
+    grid-row: 2 !important;
+    min-width: 3.25rem !important;
+  }
+  #editorBilingualGlobalSlot:empty {
+    display: none !important;
+  }
+  #editorBilingualGlobalSlot .bilingual-global-translation-btn {
+    min-width: 3.25rem !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    white-space: nowrap !important;
+  }
+
+  .question-item {
+    padding: 1rem !important;
+  }
+  .question-item.has-bilingual-toggle {
+    padding-right: 1rem !important;
+  }
+  .question-item.has-bilingual-toggle .q-header {
+    padding-right: 2.55rem !important;
+  }
+  .q-header {
+    align-items: center !important;
+    column-gap: 0.55rem !important;
+    display: grid !important;
+    grid-template-columns: auto auto minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto !important;
+    margin-bottom: 0.85rem !important;
+    row-gap: 0.65rem !important;
+    width: 100% !important;
+  }
+  .q-header .drag-handle {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+  }
+  .q-header .q-number {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: start !important;
+  }
+  .q-header .q-actions {
+    grid-column: 4 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+  }
+  .q-header .q-text {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    line-height: 1.42 !important;
+    min-width: 0 !important;
+    overflow-wrap: break-word !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    word-break: normal !important;
+  }
+  .question-item .bilingual-translation-btn {
+    right: 0.85rem !important;
+    top: 0.85rem !important;
+  }
+  .q-options {
+    gap: 0.55rem !important;
+    grid-template-columns: 1fr !important;
+  }
+  .q-option {
+    line-height: 1.45 !important;
+    padding: 0.72rem 0.85rem !important;
+  }
+}
+
+
+/* Ajuste v90 — Editor móvil: enunciados todavía más anchos.
+   Se reduce sólo el espacio lateral interno de las tarjetas del editor en teléfono
+   y se permite que el enunciado ocupe prácticamente todo el ancho útil real. */
+@media (max-width: 640px) {
+  #panel-editor {
+    margin-left: -0.35rem !important;
+    margin-right: -0.35rem !important;
+  }
+  #panel-editor .question-item {
+    padding-left: 0.72rem !important;
+    padding-right: 0.72rem !important;
+  }
+  #panel-editor .question-item.has-bilingual-toggle {
+    padding-right: 0.72rem !important;
+  }
+  #panel-editor .q-header {
+    column-gap: 0.45rem !important;
+  }
+  #panel-editor .q-header .q-text {
+    grid-column: 1 / -1 !important;
+    margin-left: -0.08rem !important;
+    margin-right: -0.08rem !important;
+    max-width: none !important;
+    width: calc(100% + 0.16rem) !important;
+  }
+  #panel-editor .question-item.has-bilingual-toggle .q-header {
+    padding-right: 2.35rem !important;
+  }
+  #panel-editor .q-options {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+/* Ajuste v91 — Editor móvil: botonera más compacta y enunciados con dos unidades menos.
+   - Reduce la altura de «Borrar todo», «Revisión de omitidas» y «+ Añadir pregunta».
+   - Reduce todavía más el botón global de traducción.
+   - En las tarjetas normales/ya importadas del editor, el enunciado baja 2 px de tamaño. */
+@media (max-width: 640px) {
+  #panel-editor .editor-heading-row {
+    gap: 0.68rem !important;
+    margin-bottom: 0.82rem !important;
+  }
+  #panel-editor .editor-bilingual-toolbar {
+    gap: 0.42rem !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto !important;
+  }
+  #panel-editor .editor-bilingual-toolbar > .btn,
+  #panel-editor .editor-bilingual-toolbar > .duplicate-review-editor-btn {
+    border-radius: 0.5rem !important;
+    font-size: 0.82rem !important;
+    line-height: 1.08 !important;
+    min-height: 2.18rem !important;
+    padding: 0.34rem 0.55rem !important;
+  }
+  #panel-editor .editor-bilingual-toolbar > .btn-primary {
+    min-height: 2.28rem !important;
+    padding-top: 0.36rem !important;
+    padding-bottom: 0.36rem !important;
+  }
+  #panel-editor #editorBilingualGlobalSlot {
+    min-width: 2.55rem !important;
+  }
+  #panel-editor #editorBilingualGlobalSlot .bilingual-global-translation-btn {
+    border-radius: 0.48rem !important;
+    font-size: 0.74rem !important;
+    gap: 0.04rem !important;
+    line-height: 1 !important;
+    min-height: 2.02rem !important;
+    min-width: 2.55rem !important;
+    padding: 0.22rem 0.28rem !important;
+  }
+  #panel-editor .q-header .q-text {
+    font-size: calc(1rem - 2px) !important;
+    line-height: 1.42 !important;
+  }
+}
+
+
+/* Ajuste v92 — Editor móvil: los enunciados no reservan espacio a la derecha.
+   En teléfono, los iconos de edición, borrado y traducción quedan fuera del flujo
+   del enunciado; la pregunta ocupa todo el ancho útil de la tarjeta y no se corta
+   por columnas fantasma ni por zonas vacías laterales. */
+@media (max-width: 640px) {
+  #panel-editor .question-item {
+    position: relative !important;
+  }
+  #panel-editor .question-item.has-bilingual-toggle {
+    padding-right: 0.72rem !important;
+  }
+  #panel-editor .q-header,
+  #panel-editor .question-item.has-bilingual-toggle .q-header {
+    column-gap: 0.45rem !important;
+    display: grid !important;
+    grid-template-columns: auto auto minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    padding-right: 0 !important;
+    position: relative !important;
+    width: 100% !important;
+  }
+  #panel-editor .q-header .drag-handle {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+  #panel-editor .q-header .q-number {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+  #panel-editor .q-header .q-actions {
+    display: inline-flex !important;
+    gap: 0.22rem !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    position: absolute !important;
+    right: 2.55rem !important;
+    top: 0 !important;
+    z-index: 2 !important;
+  }
+  #panel-editor .question-item:not(.has-bilingual-toggle) .q-header .q-actions {
+    right: 0 !important;
+  }
+  #panel-editor .question-item .bilingual-translation-btn {
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    z-index: 2 !important;
+  }
+  #panel-editor .q-header .q-text {
+    box-sizing: border-box !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    padding-right: 0 !important;
+    position: relative !important;
+    width: 100% !important;
+    z-index: 1 !important;
+  }
+}
+
+
+
+/* Ajuste v94 — Revisión de omitidas: traducción estrictamente en la cabecera documental.
+   El conmutador se sitúa en el margen derecho de la cabecera, alineado con (#N en documento),
+   y el enunciado queda con todo el ancho libre de la tarjeta. */
+.duplicate-review-trace-heading {
+  align-items: flex-start !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  column-gap: 0.55rem !important;
+  margin: 0 0 0.55rem !important;
+  width: 100% !important;
+}
+.duplicate-review-trace-heading h4 {
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+.duplicate-review-trace-heading .duplicate-review-doc-number {
+  display: block !important;
+  margin-top: 0.08rem !important;
+}
+.duplicate-review-header-translation-btn {
+  align-self: end !important;
+  justify-self: end !important;
+  position: static !important;
+  right: auto !important;
+  top: auto !important;
+  transform: none !important;
+  margin: 0 0 0.03rem 0 !important;
+}
+.duplicate-review-qbox.has-bilingual-toggle,
+.duplicate-review-qbox {
+  padding-top: 0 !important;
+}
+.duplicate-review-qbox.has-bilingual-toggle .duplicate-review-question,
+.duplicate-review-question {
+  padding-right: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+}
+.duplicate-review-col-title {
+  align-items: flex-start !important;
+}
+.duplicate-review-col-title .duplicate-review-trace-heading {
+  flex: 1 1 auto !important;
+}
+@media (max-width: 720px) {
+  .duplicate-review-col-title {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.45rem !important;
+  }
+  .duplicate-review-col-title .duplicate-review-choice {
+    align-self: flex-start !important;
+  }
+}
+
+
+/* Ajuste v96 — Revisión de omitidas: traducción ligeramente más compacta,
+   siempre al margen derecho de todas las tarjetas, y checkbox de omitidas
+   reubicado arriba a la derecha sólo en PC. */
+.duplicate-review-trace-heading {
+  display: block !important;
+  margin: 0 0 0.55rem !important;
+  width: 100% !important;
+}
+.duplicate-review-trace-copy {
+  display: block !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+.duplicate-review-trace-title {
+  color: var(--accent) !important;
+  display: block !important;
+  font-size: 0.86rem !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+}
+.duplicate-review-trace-meta-row {
+  align-items: center !important;
+  display: flex !important;
+  gap: 0.45rem !important;
+  justify-content: space-between !important;
+  margin-top: 0.08rem !important;
+  min-width: 0 !important;
+  width: 100% !important;
+}
+.duplicate-review-doc-number {
+  color: #2f6ea8 !important;
+  display: block !important;
+  flex: 1 1 auto !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+  min-width: 0 !important;
+}
+.duplicate-review-header-translation-btn,
+.duplicate-review-qbox .bilingual-translation-btn.duplicate-review-header-translation-btn {
+  align-items: center !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  font-size: 0.70rem !important;
+  justify-content: center !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  min-height: 1.28rem !important;
+  min-width: 1.88rem !important;
+  padding: 0.10rem 0.20rem !important;
+  position: static !important;
+  right: auto !important;
+  top: auto !important;
+  transform: none !important;
+}
+.duplicate-review-col-title {
+  margin: 0 0 0.55rem !important;
+  min-width: 0 !important;
+}
+.duplicate-review-col-title .duplicate-review-trace-heading {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+.duplicate-review-col .duplicate-review-question {
+  max-width: none !important;
+  min-width: 0 !important;
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+.duplicate-review-col .duplicate-review-qbox,
+.duplicate-review-qbox.has-bilingual-toggle,
+.duplicate-review-qbox {
+  padding-top: 0 !important;
+}
+@media (min-width: 721px) {
+  .duplicate-review-col.duplicate-review-col-omitted {
+    padding-top: 3.05rem !important;
+    position: relative !important;
+  }
+  .duplicate-review-col.duplicate-review-col-omitted .duplicate-review-col-title {
+    margin: 0 0 0.55rem !important;
+  }
+  .duplicate-review-col.duplicate-review-col-omitted .duplicate-review-choice {
+    align-items: center !important;
+    background: transparent !important;
+    display: inline-flex !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    gap: 0.45rem !important;
+    margin: 0 !important;
+    position: absolute !important;
+    right: 0.9rem !important;
+    top: 0.95rem !important;
+    white-space: nowrap !important;
+    z-index: 3 !important;
+  }
+  .duplicate-review-col.duplicate-review-col-omitted .duplicate-review-choice input {
+    margin: 0 !important;
+  }
+}
+@media (max-width: 720px) {
+  .duplicate-review-header-translation-btn,
+  .duplicate-review-qbox .bilingual-translation-btn.duplicate-review-header-translation-btn {
+    transform: translateY(-0.64rem) !important;
+    font-size: 0.68rem !important;
+    min-height: 1.24rem !important;
+    min-width: 1.80rem !important;
+    padding: 0.09rem 0.18rem !important;
+  }
+  .duplicate-review-col-title {
+    align-items: flex-start !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.42rem !important;
+  }
+  .duplicate-review-col-title .duplicate-review-choice {
+    align-self: flex-start !important;
+    position: static !important;
+  }
+}
+
+
+
+/* Ajuste v98 — Revisión de omitidas:
+   - En móvil, reduce ligeramente el texto explicativo de la cabecera.
+   - En PC, sube un poco el botón de traducir para centrarlo visualmente
+     entre el título azul y la línea (#X en documento). */
+@media (max-width: 720px) {
+  .duplicate-review-header p {
+    font-size: 0.76rem !important;
+    line-height: 1.34 !important;
+  }
+}
+@media (min-width: 721px) {
+  .duplicate-review-header-translation-btn,
+  .duplicate-review-qbox .bilingual-translation-btn.duplicate-review-header-translation-btn {
+    transform: translateY(-0.64rem) !important;
+  }
+}
+
+
+/* Ajuste v99 -- Carrusel premium de revision de omitidas.
+   El encaje final se dispara en el mismo evento de suelta, sin esperar a que
+   varios frames confirmen que la inercia termino. Las tarjetas se promocionan
+   a capa compuesta para suavizar el scroll lateral en iOS/Android. */
+.duplicate-review-track {
+  contain: layout paint !important;
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior-x: contain !important;
+}
+.duplicate-review-card {
+  backface-visibility: hidden !important;
+  transform: translate3d(0, 0, 0) !important;
+  will-change: transform !important;
+}
+@media (max-width: 720px) {
+  .duplicate-review-track {
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: auto !important;
+  }
+  .duplicate-review-track.duplicate-review-touching {
+    scroll-snap-type: none !important;
+  }
+}
+
+
+/* Ajuste v100 -- Flick extremo en revision de omitidas.
+   La proyeccion del gesto admite saltos largos: un desplazamiento muy energico
+   puede avanzar 16 tarjetas o mas, sin introducir retardos ni debounce. */
+@media (max-width: 720px) {
+  .duplicate-review-track {
+    scroll-snap-stop: normal !important;
   }
 }
 
@@ -4499,10 +5462,11 @@ body.dark-mode .duplicate-review-nav-btn {
   <!-- ═══════════ EDITOR TAB ═══════════ -->
   <div class="tab-panel" id="panel-editor">
 
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <div class="editor-heading-row" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
       <h2 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;">Preguntas</h2>
       <div class="editor-bilingual-toolbar">
         <button class="btn btn-secondary btn-sm" onclick="clearAllQuestions()">Borrar todo</button>
+        <button id="editorDuplicateReviewBtn" class="btn btn-secondary btn-sm duplicate-review-editor-btn" type="button" onclick="openDuplicateReviewFromEditor()" style="display:none;">Revisión de omitidas</button>
         <button class="btn btn-primary btn-sm" onclick="addNewQuestion()">+ Añadir pregunta</button>
         <span id="editorBilingualGlobalSlot"></span>
       </div>
@@ -4719,12 +5683,17 @@ async function importQuiz() {
     showToast('No se han encontrado preguntas válidas. Revise el formato.');
     return;
   }
+  parsed.forEach((q, idx) => {
+    if (q && !Number.isFinite(Number(q.documentQuestionNumber))) q.documentQuestionNumber = idx + 1;
+    if (q && q.bilingualAlt && !Number.isFinite(Number(q.bilingualAlt.documentQuestionNumber))) q.bilingualAlt.documentQuestionNumber = idx + 1;
+  });
   // Deduplicate against existing questions (especially useful for NLM paste).
   // v72: when questions are omitted as duplicates, keep a reviewable comparison
   // so the user can decide whether to import none, some, or all of them.
   let added = 0;
   let skipped = 0;
   const duplicateItems = [];
+  parsed.forEach((q, idx) => ensureQuestionDocumentTraceability(q, idx + 1));
   for (const q of parsed) {
     const duplicateMatches = findDuplicateQuestionMatches(q);
     if (duplicateMatches.length) {
@@ -4792,6 +5761,23 @@ function cloneQuestionForDuplicateReview(q) {
   return JSON.parse(JSON.stringify(q || {}));
 }
 
+function ensureQuestionDocumentTraceability(q, fallbackOneBased) {
+  if (!q || typeof q !== 'object') return q;
+  const existing = q.documentQuestionNumber ?? q.originalQuestionNumber ?? q.sourceQuestionNumber ?? q.questionNumberInDocument;
+  let n = Number(existing);
+  if (!Number.isFinite(n) || n <= 0) n = Number(fallbackOneBased);
+  if (Number.isFinite(n) && n > 0) {
+    q.documentQuestionNumber = Math.round(n);
+  }
+  if (q.bilingualAlt && typeof q.bilingualAlt === 'object') {
+    const altExisting = q.bilingualAlt.documentQuestionNumber ?? q.bilingualAlt.originalQuestionNumber ?? q.bilingualAlt.sourceQuestionNumber ?? q.bilingualAlt.questionNumberInDocument;
+    let altN = Number(altExisting);
+    if (!Number.isFinite(altN) || altN <= 0) altN = Number(q.documentQuestionNumber || fallbackOneBased);
+    if (Number.isFinite(altN) && altN > 0) q.bilingualAlt.documentQuestionNumber = Math.round(altN);
+  }
+  return q;
+}
+
 function getDuplicateReviewVisibleQuestion(q) {
   return getVisibleQuestion(q || {}) || q || {};
 }
@@ -4820,8 +5806,54 @@ function toggleDuplicateReviewQuestionLanguage(itemIndex, zone, matchIndex) {
   if (zone === 'omitted') q = item.omitted;
   else if (zone === 'match' && item.matches && item.matches[matchIndex]) q = item.matches[matchIndex].question;
   if (!hasBilingualAlt(q)) return;
+
+  // v97: además de conservar el carril horizontal, preservar el desplazamiento
+  // vertical del diálogo en móvil para que cambiar el idioma en la tarjeta inferior
+  // no salte de vuelta a la parte superior de la comparación.
+  const activeTrack = document.querySelector('#duplicateReviewBackdrop .duplicate-review-track');
+  const activeDialog = document.querySelector('#duplicateReviewBackdrop .duplicate-review-dialog');
+  const preservedScrollLeft = activeTrack ? activeTrack.scrollLeft : null;
+  const preservedDialogScrollTop = activeDialog ? activeDialog.scrollTop : null;
   q.bilingualLang = isBilingualAltVisible(q) ? 'primary' : 'alt';
-  showDuplicateReviewDialog({ keepPhase: true, focusIndex: itemIndex });
+  showDuplicateReviewDialog({
+    keepPhase: true,
+    focusIndex: itemIndex,
+    scrollLeft: preservedScrollLeft,
+    scrollTop: preservedDialogScrollTop,
+    suppressFocus: true
+  });
+}
+
+function getQuestionDocumentNumber(q, fallbackOneBased) {
+  ensureQuestionDocumentTraceability(q, fallbackOneBased);
+  const visible = getDuplicateReviewVisibleQuestion(q || {});
+  const raw = visible.documentQuestionNumber ?? visible.originalQuestionNumber ?? visible.sourceQuestionNumber ?? visible.questionNumberInDocument ?? (q ? (q.documentQuestionNumber ?? q.originalQuestionNumber ?? q.sourceQuestionNumber ?? q.questionNumberInDocument) : undefined);
+  const n = Number(raw);
+  if (Number.isFinite(n) && n > 0) return Math.round(n);
+  const fallback = Number(fallbackOneBased);
+  return Number.isFinite(fallback) && fallback > 0 ? Math.round(fallback) : null;
+}
+
+function renderDuplicateReviewDocNumberLine(q, fallbackOneBased) {
+  const n = getQuestionDocumentNumber(q, fallbackOneBased);
+  return n ? '<span class="duplicate-review-doc-number">(#' + n + ' en documento)</span>' : '<span class="duplicate-review-doc-number">(#? en documento)</span>';
+}
+
+function renderDuplicateReviewHeaderToggle(q, itemIndex, zone, matchIndex) {
+  if (!hasBilingualAlt(q)) return '';
+  return '<button type="button" class="bilingual-translation-btn duplicate-review-header-translation-btn" title="Cambiar idioma" aria-label="Cambiar idioma" onclick="toggleDuplicateReviewQuestionLanguage(' + itemIndex + ',\'' + escAttr(zone) + '\',' + (Number.isFinite(matchIndex) ? matchIndex : -1) + ')">🌐A</button>';
+}
+
+function renderDuplicateReviewTraceHeader(title, q, fallbackOneBased, itemIndex, zone, matchIndex) {
+  return '<div class="duplicate-review-trace-heading">' +
+         '<div class="duplicate-review-trace-copy">' +
+           '<div class="duplicate-review-trace-title">' + escHtml(title) + '</div>' +
+           '<div class="duplicate-review-trace-meta-row">' +
+             renderDuplicateReviewDocNumberLine(q, fallbackOneBased) +
+             renderDuplicateReviewHeaderToggle(q, itemIndex, zone, matchIndex) +
+           '</div>' +
+         '</div>' +
+         '</div>';
 }
 
 function renderDuplicateReviewQuestion(q, itemIndex, zone, matchIndex) {
@@ -4833,21 +5865,123 @@ function renderDuplicateReviewQuestion(q, itemIndex, zone, matchIndex) {
     const cls = correct.includes(i) ? ' duplicate-review-option correct' : ' duplicate-review-option';
     return '<div class="' + cls.trim() + '"><strong>' + escHtml(letter) + '</strong> ' + escHtml(opt || '') + '</div>';
   }).join('');
-  const hasToggle = hasBilingualAlt(q);
-  const toggle = hasToggle
-    ? '<button type="button" class="bilingual-translation-btn" title="Cambiar idioma" aria-label="Cambiar idioma" onclick="toggleDuplicateReviewQuestionLanguage(' + itemIndex + ',\'' + escAttr(zone) + '\',' + (Number.isFinite(matchIndex) ? matchIndex : -1) + ')">🌐A</button>'
-    : '';
-  return '<div class="duplicate-review-qbox' + (hasToggle ? ' has-bilingual-toggle' : '') + '">' +
-         toggle +
+  return '<div class="duplicate-review-qbox">' +
          '<div class="duplicate-review-question">' + escHtml(vq.question || '(Sin enunciado)') + '</div>' +
          '<div class="duplicate-review-options">' + rows + '</div>' +
          '</div>';
+}
+
+
+function getDuplicateReviewItemMatches(item) {
+  return Array.isArray(item && item.matches) ? item.matches : [];
+}
+
+function getDuplicateReviewGroupKey(item, itemIndex) {
+  const matches = getDuplicateReviewItemMatches(item);
+  if (matches.length === 1 && Number.isFinite(Number(matches[0].index))) return 'match-' + Number(matches[0].index);
+  if (matches.length > 1) return 'multi-item-' + itemIndex;
+  return 'single-item-' + itemIndex;
+}
+
+function buildDuplicateReviewGroups(items) {
+  const map = new Map();
+  (items || []).forEach((item, itemIndex) => {
+    if (!item) return;
+    const key = getDuplicateReviewGroupKey(item, itemIndex);
+    if (!map.has(key)) map.set(key, { key: key, itemIndices: [] });
+    map.get(key).itemIndices.push(itemIndex);
+  });
+  return Array.from(map.values());
+}
+
+function formatDuplicateReviewIndexList(indices) {
+  const nums = (indices || []).map(i => Number(i) + 1).filter(n => Number.isFinite(n));
+  if (!nums.length) return '';
+  if (nums.length === 1) return String(nums[0]);
+  if (nums.length === 2) return nums[0] + ' y ' + nums[1];
+  return nums.slice(0, -1).join(', ') + ' y ' + nums[nums.length - 1];
+}
+
+function getDuplicateReviewGroupMatches(group, items) {
+  const byKey = new Map();
+  (group.itemIndices || []).forEach(itemIndex => {
+    const item = items[itemIndex];
+    getDuplicateReviewItemMatches(item).forEach((match, matchIndex) => {
+      const key = Number.isFinite(Number(match.index)) ? 'idx-' + Number(match.index) : 'local-' + itemIndex + '-' + matchIndex;
+      if (!byKey.has(key)) byKey.set(key, { match: match, sourceItemIndex: itemIndex, sourceMatchIndex: matchIndex });
+    });
+  });
+  return Array.from(byKey.values());
+}
+
+function renderDuplicateReviewChoiceForItem(item, itemIndex, compact) {
+  if (item && item.imported) return '<span class="duplicate-review-already-added">✓ Ya añadida</span>';
+  return '<label class="duplicate-review-choice' + (compact ? ' duplicate-review-choice-compact' : '') + '"><input type="checkbox" class="duplicate-review-select" data-duplicate-index="' + itemIndex + '"> <span>Añadir esta versión omitida</span></label>';
+}
+
+function renderDuplicateReviewMatchColumn(matchInfo, matchesCount) {
+  const match = matchInfo && matchInfo.match ? matchInfo.match : {};
+  const sourceItemIndex = Number.isFinite(matchInfo && matchInfo.sourceItemIndex) ? matchInfo.sourceItemIndex : 0;
+  const sourceMatchIndex = Number.isFinite(matchInfo && matchInfo.sourceMatchIndex) ? matchInfo.sourceMatchIndex : 0;
+  const importedTitle = 'Ya importada #' + (Number(match.index) + 1) + (matchesCount > 1 ? ' · coincidencia ' + (sourceMatchIndex + 1) : '');
+  return '<div class="duplicate-review-col duplicate-review-col-imported">' +
+    renderDuplicateReviewTraceHeader(importedTitle, match.question, Number(match.index) + 1, sourceItemIndex, 'match', sourceMatchIndex) +
+    renderDuplicateReviewQuestion(match.question, sourceItemIndex, 'match', sourceMatchIndex) +
+    '</div>';
+}
+
+function renderDuplicateReviewOmittedColumn(item, itemIndex, showIndexInTitle) {
+  const title = 'Omitida en esta importación' + (showIndexInTitle ? ' (#' + (itemIndex + 1) + ')' : '');
+  return '<div class="duplicate-review-col duplicate-review-col-omitted">' +
+    '<div class="duplicate-review-col-title">' + renderDuplicateReviewTraceHeader(title, item.omitted, itemIndex + 1, itemIndex, 'omitted', -1) + renderDuplicateReviewChoiceForItem(item, itemIndex, true) + '</div>' +
+    renderDuplicateReviewQuestion(item.omitted, itemIndex, 'omitted', -1) +
+    '</div>';
+}
+
+function renderDuplicateReviewGroupCard(group, groupIndex, groups, items) {
+  const groupItemIndices = group.itemIndices || [];
+  const matchInfos = getDuplicateReviewGroupMatches(group, items);
+  const isClassicPair = groupItemIndices.length === 1 && matchInfos.length === 1;
+  const itemListLabel = formatDuplicateReviewIndexList(groupItemIndices);
+  const total = items.length;
+  const dataItems = groupItemIndices.join(' ');
+  if (isClassicPair) {
+    const itemIndex = groupItemIndices[0];
+    const item = items[itemIndex];
+    return '<section class="duplicate-review-card duplicate-review-card-classic" data-duplicate-group-index="' + groupIndex + '" data-duplicate-items="' + escAttr(dataItems) + '">' +
+      '<div class="duplicate-review-card-title duplicate-review-card-title-simple">' +
+        '<strong>Pregunta omitida ' + (itemIndex + 1) + ' de ' + total + '</strong>' +
+      '</div>' +
+      '<div class="duplicate-review-pair">' +
+        renderDuplicateReviewMatchColumn(matchInfos[0], 1) +
+        renderDuplicateReviewOmittedColumn(item, itemIndex, false) +
+      '</div>' +
+    '</section>';
+  }
+  const importedCols = matchInfos.map(mi => renderDuplicateReviewMatchColumn(mi, matchInfos.length)).join('');
+  const omittedCols = groupItemIndices.map(itemIndex => renderDuplicateReviewOmittedColumn(items[itemIndex], itemIndex, groupItemIndices.length > 1)).join('');
+  const plural = groupItemIndices.length > 1 ? 'Preguntas omitidas ' : 'Pregunta omitida ';
+  return '<section class="duplicate-review-card duplicate-review-card-parallel" data-duplicate-group-index="' + groupIndex + '" data-duplicate-items="' + escAttr(dataItems) + '">' +
+    '<div class="duplicate-review-card-title">' +
+      '<strong>' + plural + itemListLabel + ' de ' + total + '</strong>' +
+      '<span class="duplicate-review-card-subtitle">Comparación paralela: ya importada' + (matchInfos.length > 1 ? 's' : '') + ' y versiones omitidas</span>' +
+    '</div>' +
+    '<div class="duplicate-review-parallel" style="--duplicate-review-column-count:' + Math.max(2, matchInfos.length + groupItemIndices.length) + '">' + importedCols + omittedCols + '</div>' +
+  '</section>';
+}
+
+function findDuplicateReviewCardForItem(track, itemIndex) {
+  if (!track) return null;
+  const safeIndex = String(Number(itemIndex));
+  return track.querySelector('.duplicate-review-card[data-duplicate-items~="' + safeIndex + '"]') ||
+         track.querySelector('.duplicate-review-card');
 }
 
 function showDuplicateReviewDialog(options) {
   options = options || {};
   closeDuplicateReviewDialog();
   const items = lastDuplicateReview && Array.isArray(lastDuplicateReview.items) ? lastDuplicateReview.items : [];
+  const groups = buildDuplicateReviewGroups(items);
   const hasBilingual = duplicateReviewHasBilingualItems();
   if (!lastDuplicateReview) lastDuplicateReview = { items: items, phase: 'primary', bilingual: hasBilingual };
   if (!options.keepPhase) {
@@ -4856,41 +5990,22 @@ function showDuplicateReviewDialog(options) {
   }
   const phase = lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary';
   const phaseLabel = hasBilingual ? (phase === 'alt' ? 'Documento 2 · segundo idioma' : 'Documento 1 · idioma principal') : 'Documento único';
+  const phaseBadge = hasBilingual
+    ? '<button type="button" class="duplicate-review-phase-badge is-switchable" title="Cambiar documento de revisión" aria-label="Cambiar documento de revisión" onclick="toggleDuplicateReviewPhase(event)">' + escHtml(phaseLabel) + '</button>'
+    : '<span class="duplicate-review-phase-badge">' + escHtml(phaseLabel) + '</span>';
   const backdrop = document.createElement('div');
   backdrop.className = 'duplicate-review-backdrop';
   backdrop.id = 'duplicateReviewBackdrop';
   backdrop.setAttribute('role', 'presentation');
-  const body = items.length ? items.map((item, idx) => {
-    const matches = Array.isArray(item.matches) && item.matches.length ? item.matches : [];
-    const matchCards = matches.map((match, mi) =>
-      '<div class="duplicate-review-col">' +
-        '<h4>Ya importada ' + escHtml('#' + (Number(match.index) + 1)) + (matches.length > 1 ? ' · coincidencia ' + (mi + 1) : '') + '</h4>' +
-        renderDuplicateReviewQuestion(match.question, idx, 'match', mi) +
-      '</div>'
-    ).join('');
-    const disabled = item.imported ? ' disabled' : '';
-    const choice = item.imported
-      ? '<span class="duplicate-review-already-added">✓ Ya añadida a la importación final</span>'
-      : '<label class="duplicate-review-choice"><input type="checkbox" class="duplicate-review-select" data-duplicate-index="' + idx + '"' + disabled + '> <span>Añadir esta versión omitida</span></label>';
-    return '<section class="duplicate-review-card" data-duplicate-index="' + idx + '">' +
-      '<div class="duplicate-review-card-title">' +
-        '<strong>Pregunta omitida ' + (idx + 1) + ' de ' + items.length + '</strong>' +
-        choice +
-      '</div>' +
-      '<div class="duplicate-review-pair">' +
-        '<div class="duplicate-review-matches">' + matchCards + '</div>' +
-        '<div class="duplicate-review-col"><h4>Omitida en esta importación</h4>' + renderDuplicateReviewQuestion(item.omitted, idx, 'omitted', -1) + '</div>' +
-      '</div>' +
-    '</section>';
-  }).join('') : '<div class="duplicate-review-empty">No hay preguntas omitidas pendientes de revisar.</div>';
+  const body = groups.length ? groups.map((group, groupIndex) => renderDuplicateReviewGroupCard(group, groupIndex, groups, items)).join('') : '<div class="duplicate-review-empty">No hay preguntas omitidas pendientes de revisar.</div>';
   const nextPhaseText = hasBilingual && phase === 'primary' ? ' Al cerrar o terminar esta revisión se abrirá automáticamente la comprobación del documento 2.' : '';
   backdrop.innerHTML =
     '<div class="duplicate-review-dialog" role="dialog" aria-modal="true" aria-labelledby="duplicateReviewTitle">' +
-      '<button type="button" class="duplicate-review-nav-btn duplicate-review-prev" onclick="navigateDuplicateReview(-1)" aria-label="Pregunta omitida anterior">‹</button>' +
-      '<button type="button" class="duplicate-review-nav-btn duplicate-review-next" onclick="navigateDuplicateReview(1)" aria-label="Pregunta omitida siguiente">›</button>' +
+      '<button type="button" class="duplicate-review-nav-btn duplicate-review-prev" onclick="navigateDuplicateReview(-1)" aria-label="Grupo anterior de preguntas omitidas">‹</button>' +
+      '<button type="button" class="duplicate-review-nav-btn duplicate-review-next" onclick="navigateDuplicateReview(1)" aria-label="Grupo siguiente de preguntas omitidas">›</button>' +
       '<div class="duplicate-review-header">' +
-        '<div class="duplicate-review-title-row"><h3 id="duplicateReviewTitle">Revisión de preguntas omitidas por posible duplicado</h3><span class="duplicate-review-phase-badge">' + escHtml(phaseLabel) + '</span></div>' +
-        '<p>Compare cada pregunta omitida con la pregunta ya importada que el HTML ha interpretado como parecida o repetida. Desplácese horizontalmente o use los botones laterales para revisar todas las versiones y marque las que sí deban añadirse a la importación final.' + nextPhaseText + '</p>' +
+        '<div class="duplicate-review-title-row"><h3 id="duplicateReviewTitle">Revisión de preguntas omitidas por posible duplicado</h3>' + phaseBadge + '</div>' +
+        '<p>Compare cada pregunta omitida con la pregunta ya importada que el HTML ha interpretado como parecida o repetida. Cuando una misma pregunta tenga varias versiones omitidas, se mostrarán en paralelo para que pueda rescatar explícitamente sólo las que procedan.' + nextPhaseText + '</p>' +
       '</div>' +
       '<div class="duplicate-review-track">' + body + '</div>' +
       '<div class="duplicate-review-actions">' +
@@ -4902,17 +6017,91 @@ function showDuplicateReviewDialog(options) {
     '</div>';
   backdrop.addEventListener('click', function(e) { if (e.target === backdrop) finishDuplicateReviewPhase(false); });
   document.body.appendChild(backdrop);
-  const focusIndex = Number.isFinite(options.focusIndex) ? options.focusIndex : 0;
+  const focusIndex = Number.isFinite(options.focusIndex) ? Math.max(0, Math.min(items.length - 1, options.focusIndex)) : 0;
+  const dialog = backdrop.querySelector('.duplicate-review-dialog');
   const track = backdrop.querySelector('.duplicate-review-track');
-  const card = backdrop.querySelector('.duplicate-review-card[data-duplicate-index="' + focusIndex + '"]');
-  if (track && card) track.scrollLeft = card.offsetLeft - track.offsetLeft;
-  const first = backdrop.querySelector('.duplicate-review-select:not(:disabled), .duplicate-review-actions .btn');
-  if (first) first.focus();
+  const card = findDuplicateReviewCardForItem(track, focusIndex);
+  if (Number.isFinite(options.scrollLeft)) {
+    restoreDuplicateReviewScrollLeft(track, options.scrollLeft);
+  } else {
+    restoreDuplicateReviewPosition(track, card);
+  }
+  if (Number.isFinite(options.scrollTop)) {
+    restoreDuplicateReviewDialogScrollTop(dialog, options.scrollTop);
+  }
+
+  if (!options.suppressFocus) {
+    const focusRoot = card || backdrop;
+    const first = focusRoot.querySelector('.duplicate-review-select:not(:disabled), .bilingual-translation-btn, .duplicate-review-actions .btn') ||
+                  backdrop.querySelector('.duplicate-review-actions .btn');
+    if (first && typeof first.focus === 'function') first.focus({ preventScroll: true });
+  }
+
+  bindDuplicateReviewMobileTouchSnap();
+}
+
+function setDuplicateReviewTrackInstantScroll(track, callback) {
+  if (!track || typeof callback !== 'function') return;
+  const previousBehavior = track.style.scrollBehavior;
+  track.style.scrollBehavior = 'auto';
+  callback();
+  requestAnimationFrame(function() {
+    track.style.scrollBehavior = previousBehavior || '';
+  });
+}
+
+function restoreDuplicateReviewScrollLeft(track, left) {
+  if (!track) return;
+  const target = Math.max(0, Number(left) || 0);
+  setDuplicateReviewTrackInstantScroll(track, function() {
+    track.scrollLeft = target;
+    requestAnimationFrame(function() {
+      track.scrollLeft = target;
+      requestAnimationFrame(function() { track.scrollLeft = target; });
+    });
+  });
+}
+
+function restoreDuplicateReviewDialogScrollTop(dialog, top) {
+  if (!dialog) return;
+  const target = Math.max(0, Number(top) || 0);
+  dialog.scrollTop = target;
+  requestAnimationFrame(function() {
+    dialog.scrollTop = target;
+    requestAnimationFrame(function() { dialog.scrollTop = target; });
+  });
+}
+
+function getDuplicateReviewCenteredScrollLeft(track, card) {
+  if (!track || !card) return 0;
+  const centered = card.offsetLeft - track.offsetLeft - Math.max(0, (track.clientWidth - card.offsetWidth) / 2);
+  const max = Math.max(0, track.scrollWidth - track.clientWidth);
+  return Math.max(0, Math.min(max, centered));
+}
+
+function restoreDuplicateReviewPosition(track, card) {
+  if (!track || !card) return;
+  restoreDuplicateReviewScrollLeft(track, getDuplicateReviewCenteredScrollLeft(track, card));
 }
 
 function closeDuplicateReviewDialog() {
   const old = document.getElementById('duplicateReviewBackdrop');
   if (old) old.remove();
+}
+
+function toggleDuplicateReviewPhase(event) {
+  if (event && typeof event.preventDefault === 'function') event.preventDefault();
+  if (event && typeof event.stopPropagation === 'function') event.stopPropagation();
+  if (!duplicateReviewHasBilingualItems()) return;
+  const track = document.querySelector('#duplicateReviewBackdrop .duplicate-review-track');
+  const preservedScrollLeft = track ? track.scrollLeft : null;
+  lastDuplicateReview.phase = lastDuplicateReview && lastDuplicateReview.phase === 'alt' ? 'primary' : 'alt';
+  setDuplicateReviewPhaseLanguage(lastDuplicateReview.phase);
+  showDuplicateReviewDialog({
+    keepPhase: true,
+    scrollLeft: preservedScrollLeft,
+    suppressFocus: true
+  });
 }
 
 function finishDuplicateReviewPhase(forceClose) {
@@ -4928,6 +6117,7 @@ function finishDuplicateReviewPhase(forceClose) {
   if (lastDuplicateReview && Array.isArray(lastDuplicateReview.items)) {
     lastDuplicateReview.items = lastDuplicateReview.items.filter(item => !item.imported);
   }
+  updateEditorDuplicateReviewButton();
 }
 
 function navigateDuplicateReview(direction) {
@@ -4935,15 +6125,217 @@ function navigateDuplicateReview(direction) {
   if (!track) return;
   const cards = Array.from(track.querySelectorAll('.duplicate-review-card'));
   if (!cards.length) return;
-  const currentLeft = track.scrollLeft + track.getBoundingClientRect().left;
   let currentIndex = 0;
   let best = Infinity;
   cards.forEach((card, i) => {
-    const dist = Math.abs(card.getBoundingClientRect().left - track.getBoundingClientRect().left);
+    const dist = Math.abs((card.getBoundingClientRect().left + card.getBoundingClientRect().width / 2) - (track.getBoundingClientRect().left + track.clientWidth / 2));
     if (dist < best) { best = dist; currentIndex = i; }
   });
   const nextIndex = Math.max(0, Math.min(cards.length - 1, currentIndex + (direction > 0 ? 1 : -1)));
-  cards[nextIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+  const target = getDuplicateReviewCenteredScrollLeft(track, cards[nextIndex]);
+  track.scrollTo({ left: target, behavior: 'smooth' });
+}
+
+let duplicateReviewSnapFrame = null;
+let duplicateReviewIsDragging = false;
+let duplicateReviewPointerId = null;
+let duplicateReviewStartScrollLeft = 0;
+let duplicateReviewLastScrollLeft = 0;
+let duplicateReviewLastScrollTime = 0;
+let duplicateReviewScrollVelocity = 0;
+let duplicateReviewPointerStartX = 0;
+let duplicateReviewPointerLastX = 0;
+let duplicateReviewPointerLastTime = 0;
+let duplicateReviewPointerVelocity = 0;
+let duplicateReviewGestureStartTime = 0;
+let duplicateReviewLastSnapTime = 0;
+
+function bindDuplicateReviewMobileTouchSnap() {
+  const track = document.querySelector('#duplicateReviewBackdrop .duplicate-review-track');
+  if (!track || track.dataset.mobileTouchSnapBound === '1') return;
+
+  track.dataset.mobileTouchSnapBound = '1';
+
+  function isMobileCarousel() {
+    return window.matchMedia('(max-width: 720px)').matches;
+  }
+
+  function getGestureClientX(ev) {
+    if (ev && ev.touches && ev.touches.length) return ev.touches[0].clientX;
+    if (ev && ev.changedTouches && ev.changedTouches.length) return ev.changedTouches[0].clientX;
+    return ev && Number.isFinite(ev.clientX) ? ev.clientX : null;
+  }
+
+  function beginInteraction(ev) {
+    if (!isMobileCarousel()) return;
+    const now = performance.now();
+    const x = getGestureClientX(ev);
+    duplicateReviewIsDragging = true;
+    duplicateReviewPointerId = ev && Number.isFinite(ev.pointerId) ? ev.pointerId : null;
+    duplicateReviewStartScrollLeft = track.scrollLeft;
+    duplicateReviewLastScrollLeft = track.scrollLeft;
+    duplicateReviewLastScrollTime = now;
+    duplicateReviewScrollVelocity = 0;
+    duplicateReviewPointerStartX = Number.isFinite(x) ? x : 0;
+    duplicateReviewPointerLastX = duplicateReviewPointerStartX;
+    duplicateReviewPointerLastTime = now;
+    duplicateReviewPointerVelocity = 0;
+    duplicateReviewGestureStartTime = now;
+    if (duplicateReviewSnapFrame) {
+      cancelAnimationFrame(duplicateReviewSnapFrame);
+      duplicateReviewSnapFrame = null;
+    }
+    track.classList.add('duplicate-review-touching');
+  }
+
+  function endInteraction() {
+    if (!isMobileCarousel() || !duplicateReviewIsDragging) return;
+    duplicateReviewIsDragging = false;
+    duplicateReviewPointerId = null;
+    track.classList.remove('duplicate-review-touching');
+    snapDuplicateReviewToProjectedCard(track);
+  }
+
+  track.addEventListener('scroll', function () {
+    if (!isMobileCarousel()) return;
+    const now = performance.now();
+    const dt = Math.max(1, now - duplicateReviewLastScrollTime);
+    const current = track.scrollLeft;
+    const instantVelocity = (current - duplicateReviewLastScrollLeft) / dt;
+    duplicateReviewScrollVelocity = (duplicateReviewScrollVelocity * 0.55) + (instantVelocity * 0.45);
+    duplicateReviewLastScrollLeft = current;
+    duplicateReviewLastScrollTime = now;
+  }, { passive: true });
+
+  function updateGestureVelocity(ev) {
+    if (!isMobileCarousel() || !duplicateReviewIsDragging) return;
+    const x = getGestureClientX(ev);
+    if (!Number.isFinite(x)) return;
+    const now = performance.now();
+    const dt = Math.max(1, now - duplicateReviewPointerLastTime);
+    // La velocidad del dedo se invierte para convertirla a velocidad natural de scrollLeft.
+    const instantPointerVelocity = -((x - duplicateReviewPointerLastX) / dt);
+    duplicateReviewPointerVelocity = (duplicateReviewPointerVelocity * 0.50) + (instantPointerVelocity * 0.50);
+    duplicateReviewPointerLastX = x;
+    duplicateReviewPointerLastTime = now;
+  }
+
+  track.addEventListener('pointerdown', function (ev) {
+    beginInteraction(ev);
+  }, { passive: true });
+
+  track.addEventListener('pointermove', function (ev) {
+    if (duplicateReviewPointerId !== null && ev.pointerId !== duplicateReviewPointerId) return;
+    updateGestureVelocity(ev);
+  }, { passive: true });
+
+  track.addEventListener('pointerup', function (ev) {
+    if (duplicateReviewPointerId !== null && ev.pointerId !== duplicateReviewPointerId) return;
+    endInteraction();
+  }, { passive: true });
+
+  track.addEventListener('pointercancel', function () {
+    duplicateReviewIsDragging = false;
+    duplicateReviewPointerId = null;
+    track.classList.remove('duplicate-review-touching');
+  }, { passive: true });
+
+  track.addEventListener('lostpointercapture', endInteraction, { passive: true });
+
+  // Fallback para WebKit antiguo: mismo disparo inmediato, sin debounce ni espera de inercia.
+  track.addEventListener('touchstart', beginInteraction, { passive: true });
+  track.addEventListener('touchmove', updateGestureVelocity, { passive: true });
+  track.addEventListener('touchend', function (ev) {
+    updateGestureVelocity(ev);
+    endInteraction();
+  }, { passive: true });
+  track.addEventListener('touchcancel', function () {
+    duplicateReviewIsDragging = false;
+    duplicateReviewPointerId = null;
+    track.classList.remove('duplicate-review-touching');
+  }, { passive: true });
+}
+
+function getDuplicateReviewCardTargets(track, cards) {
+  return cards.map(function(card, index) {
+    return {
+      index: index,
+      card: card,
+      left: getDuplicateReviewCenteredScrollLeft(track, card)
+    };
+  });
+}
+
+function getNearestDuplicateReviewTarget(targets, left) {
+  let nearest = targets[0];
+  let best = Infinity;
+  targets.forEach(function(target) {
+    const dist = Math.abs(target.left - left);
+    if (dist < best) {
+      best = dist;
+      nearest = target;
+    }
+  });
+  return nearest;
+}
+
+function snapDuplicateReviewToProjectedCard(track) {
+  if (!track) return;
+
+  const now = performance.now();
+  if (now - duplicateReviewLastSnapTime < 60) return;
+  duplicateReviewLastSnapTime = now;
+
+  const cards = Array.from(track.querySelectorAll('.duplicate-review-card'));
+  if (!cards.length) return;
+
+  const max = Math.max(0, track.scrollWidth - track.clientWidth);
+  const targets = getDuplicateReviewCardTargets(track, cards);
+  const currentLeft = track.scrollLeft;
+  const currentTarget = getNearestDuplicateReviewTarget(targets, currentLeft);
+  const dragDistance = currentLeft - duplicateReviewStartScrollLeft;
+  const avgStep = targets.length > 1
+    ? Math.max(1, Math.abs(targets[Math.min(1, targets.length - 1)].left - targets[0].left))
+    : Math.max(1, track.clientWidth);
+
+  const scrollVelocity = Number.isFinite(duplicateReviewScrollVelocity) ? duplicateReviewScrollVelocity : 0;
+  const pointerVelocity = Number.isFinite(duplicateReviewPointerVelocity) ? duplicateReviewPointerVelocity : 0;
+  const velocity = Math.abs(pointerVelocity) > Math.abs(scrollVelocity) ? pointerVelocity : scrollVelocity;
+  const gestureDuration = Math.max(1, now - duplicateReviewGestureStartTime);
+  const energy = Math.abs(velocity);
+  let projectedLeft = currentLeft + (velocity * 780);
+
+  // v100: salto de largo alcance, proporcional a la energia del gesto.
+  // Un flick muy energico puede avanzar 16 tarjetas o mas, limitado solo por el numero real de tarjetas.
+  if (energy > 0.42 || Math.abs(dragDistance) > avgStep * 0.28) {
+    const maxJump = Math.max(1, Math.min(targets.length - 1, 32));
+    const velocityJump = Math.trunc(Math.sign(velocity) * Math.pow(Math.min(energy, 7.5), 1.32) * 4.15);
+    const distanceJump = Math.trunc(dragDistance / avgStep);
+    const quickFlickBonus = gestureDuration < 230 && energy > 1.15
+      ? Math.trunc(Math.sign(velocity || dragDistance || 1) * Math.min(maxJump, 3 + (energy * 2.2)))
+      : 0;
+    let jump = velocityJump || distanceJump || quickFlickBonus || (dragDistance > 0 ? 1 : -1);
+    if (quickFlickBonus && Math.abs(quickFlickBonus) > Math.abs(jump)) jump = quickFlickBonus;
+    jump = Math.max(-maxJump, Math.min(maxJump, jump));
+    const nextIndex = Math.max(0, Math.min(targets.length - 1, currentTarget.index + jump));
+    projectedLeft = targets[nextIndex].left;
+  }
+
+  projectedLeft = Math.max(0, Math.min(max, projectedLeft));
+  const target = getNearestDuplicateReviewTarget(targets, projectedLeft);
+  const finalLeft = Math.max(0, Math.min(max, target.left));
+
+  if (Math.abs(finalLeft - currentLeft) < 0.5) return;
+
+  const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  track.scrollTo({
+    left: finalLeft,
+    behavior: smooth ? 'smooth' : 'auto'
+  });
+}
+
+function smoothSnapDuplicateReviewToNearestCard(track) {
+  snapDuplicateReviewToProjectedCard(track);
 }
 
 function selectAllDuplicateReviewItems() {
@@ -5399,6 +6791,7 @@ async function parseWordAikenWithImages(fileOverride) {
   });
 
   const parsed = parseAikenHtmlWithImages(result.value);
+  parsed.forEach((q, idx) => { if (q && !Number.isFinite(Number(q.documentQuestionNumber))) q.documentQuestionNumber = idx + 1; });
   if (parsed.length === 0) {
     throw new Error('No se han detectado preguntas Aiken válidas en el documento Word. Revise que existan opciones a), a., A), A. o numeración automática de Word, y una línea de respuesta válida, como ANSWER:, CORRECT:, RIGHT:, RESPUESTA: o RESPUESTA CORRECTA:.');
   }
@@ -5456,6 +6849,7 @@ function parseAikenHtmlWithImages(html) {
     if (!cleanQuestion && !current.images.length && !current.tables.length && !current.afterOptionImages.length && !current.afterOptionTables.length) return;
 
     result.push({
+      documentQuestionNumber: result.length + 1,
       question: cleanQuestion,
       options: optionTexts,
       correctIndex,
@@ -6680,6 +8074,27 @@ function loadSampleQuiz() {
 // ═══════════════════════════════════════════════════════
 //  EDITOR
 // ═══════════════════════════════════════════════════════
+function hasReviewableDuplicateOmissions() {
+  return !!(lastDuplicateReview && Array.isArray(lastDuplicateReview.items) && lastDuplicateReview.items.some(item => item && !item.imported));
+}
+
+function updateEditorDuplicateReviewButton() {
+  const btn = document.getElementById('editorDuplicateReviewBtn');
+  if (!btn) return;
+  btn.style.display = hasReviewableDuplicateOmissions() ? 'inline-flex' : 'none';
+}
+
+function openDuplicateReviewFromEditor() {
+  if (!hasReviewableDuplicateOmissions()) {
+    showToast('No hay preguntas omitidas pendientes de revisión');
+    updateEditorDuplicateReviewButton();
+    return;
+  }
+  if (!lastDuplicateReview.phase) lastDuplicateReview.phase = 'primary';
+  setDuplicateReviewPhaseLanguage(lastDuplicateReview.phase === 'alt' ? 'alt' : 'primary');
+  showDuplicateReviewDialog({ keepPhase: true });
+}
+
 function renderEditor() {
   const list = document.getElementById('questionList');
   const empty = document.getElementById('emptyEditor');
@@ -6687,12 +8102,14 @@ function renderEditor() {
     list.innerHTML = '';
     const globalSlot = document.getElementById('editorBilingualGlobalSlot');
     if (globalSlot) globalSlot.innerHTML = '';
+    updateEditorDuplicateReviewButton();
     empty.style.display = 'block';
     return;
   }
   empty.style.display = 'none';
   const globalSlot = document.getElementById('editorBilingualGlobalSlot');
   if (globalSlot) globalSlot.innerHTML = renderGlobalBilingualToggleButton('editor');
+  updateEditorDuplicateReviewButton();
   list.innerHTML = questions.map((q, i) => {
     const shown = getVisibleQuestion(q);
     return `
@@ -8676,6 +10093,169 @@ body.dark-mode .duplicate-review-col {
   .duplicate-review-actions .btn { justify-content: center; width: 100%; }
 }
 
+
+/* Ajuste v82 — Revisión de duplicados en móvil: acciones al final del scroll y trazabilidad cromática.
+   Sólo afecta al visor de preguntas omitidas por duplicado. */
+.duplicate-review-doc-number {
+  color: #3f6f9f !important;
+  display: block !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  line-height: 1.22 !important;
+  margin-top: 0.12rem !important;
+}
+body.dark-mode .duplicate-review-doc-number {
+  color: #9fcfeb !important;
+}
+@media (max-width: 720px) {
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 0rem !important;
+    display: block !important;
+    max-height: 92vh !important;
+    max-width: 96vw !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    width: min(96vw, 100%) !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+  .duplicate-review-header {
+    position: static !important;
+  }
+  .duplicate-review-track {
+    display: block !important;
+    flex: none !important;
+    min-height: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    scroll-padding-left: 0.85rem !important;
+    scroll-padding-right: 0.85rem !important;
+  }
+  .duplicate-review-actions {
+    display: flex !important;
+    flex: none !important;
+    position: static !important;
+  }
+  .duplicate-review-card {
+    flex: none !important;
+    flex-basis: auto !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    padding: 0.85rem !important;
+  }
+  .duplicate-review-pair,
+  .duplicate-review-parallel {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: 100% !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+  }
+  .duplicate-review-parallel .duplicate-review-col,
+  .duplicate-review-col {
+    flex-basis: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .duplicate-review-question,
+  .duplicate-review-option {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .duplicate-review-nav-btn {
+    bottom: auto !important;
+    top: 52% !important;
+    transform: translateY(-50%) !important;
+  }
+  .duplicate-review-prev { left: 0.72rem !important; }
+  .duplicate-review-next { right: 0.72rem !important; }
+}
+
+
+
+/* Ajuste v83 — Revisión de duplicados en móvil: navegación horizontal real entre comparaciones.
+   Mantiene la cabecera y las acciones dentro del flujo vertical del diálogo, pero
+   restaura el carril horizontal para pasar de una comparación a la siguiente. */
+@media (max-width: 720px) {
+  .duplicate-review-dialog {
+    --duplicate-review-nav-gutter: 0rem !important;
+    display: block !important;
+    max-height: 92vh !important;
+    max-width: 96vw !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    width: min(96vw, 100%) !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain !important;
+  }
+  .duplicate-review-header {
+    position: static !important;
+  }
+  .duplicate-review-track {
+    display: flex !important;
+    flex: none !important;
+    gap: 0.85rem !important;
+    min-height: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+    scroll-padding-left: 0.85rem !important;
+    scroll-padding-right: 0.85rem !important;
+    scroll-snap-type: x mandatory !important;
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x pan-y !important;
+  }
+  .duplicate-review-card {
+    box-sizing: border-box !important;
+    flex: 0 0 100% !important;
+    flex-basis: 100% !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.85rem !important;
+    scroll-snap-align: start !important;
+  }
+  .duplicate-review-actions {
+    display: flex !important;
+    flex: none !important;
+    position: static !important;
+  }
+  .duplicate-review-pair,
+  .duplicate-review-parallel {
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    grid-auto-columns: 100% !important;
+    overflow-x: visible !important;
+    width: 100% !important;
+  }
+  .duplicate-review-parallel .duplicate-review-col,
+  .duplicate-review-col {
+    flex-basis: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .duplicate-review-question,
+  .duplicate-review-option {
+    overflow-wrap: anywhere !important;
+    word-break: normal !important;
+  }
+  .duplicate-review-nav-btn {
+    bottom: auto !important;
+    height: 2.25rem !important;
+    position: fixed !important;
+    top: 50vh !important;
+    transform: translateY(-50%) !important;
+    width: 2.25rem !important;
+    z-index: 3002 !important;
+  }
+  .duplicate-review-prev { left: calc(2vw + 0.25rem) !important; }
+  .duplicate-review-next { right: calc(2vw + 0.25rem) !important; }
+}
 </style>
 </head>
 <body>
@@ -9126,6 +10706,7 @@ function slugify(s) { return (s || 'quiz').toLowerCase().replace(/[^a-z0-9]+/g, 
 function updateBadge() {
   const n = questions.length;
   document.getElementById('questionCountBadge').textContent = n + ' pregunta' + (n !== 1 ? 's' : '');
+  updateEditorDuplicateReviewButton();
 }
 
 function showToast(msg, options) {

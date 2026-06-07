@@ -1,3 +1,22 @@
+# Actualización 1.14
+
+Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v100_carrousel_flick_extremo.html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
+
+Cambios principales incorporados en el HTML:
+
+- corrección del botón de traducción en el pop-up de preguntas omitidas para que no reinicie la navegación;
+- eliminación de desplazamientos laterales fantasma al traducir dentro de la revisión de duplicados;
+- botones laterales anterior/siguiente sin invadir el contenido de las tarjetas;
+- modal de revisión de duplicados centrado y estable;
+- comparación paralela para duplicados múltiples o variantes relacionadas;
+- trazabilidad documental completa con número `(#N en documento)`;
+- checkbox uniforme `Añadir esta versión omitida` dentro de la tarjeta correspondiente;
+- carrusel móvil de revisión de omitidas con gesto táctil tipo flick;
+- salto de múltiples tarjetas con gestos enérgicos, hasta un máximo práctico de 32 posiciones;
+- conservación de la animación suave de los botones laterales.
+
+El proyecto deriva de un fork modificado de `https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
+
 # Actualización 1.12
 
 Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v74_revision_duplicados_importada_izquierda.html`, conservando la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
