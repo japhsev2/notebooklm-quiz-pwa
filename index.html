@@ -5358,15 +5358,16 @@ body.dark-mode .duplicate-review-doc-number {
 
 
 
-/* Ajuste v101 — iPhone / móvil: aviso inferior de importación perfectamente centrado.
-   Sólo afecta a pantallas móviles; en escritorio se conserva el aviso inferior derecho. */
+/* Ajuste v102 — iPhone / móvil: aviso inferior centrado con márgenes laterales algo mayores.
+   Sólo afecta a pantallas móviles; en escritorio se conserva el aviso inferior derecho.
+   La anchura se reduce unos píxeles a ambos lados para que el toast no roce tanto los extremos. */
 @media (max-width: 767px) {
   .toast {
     left: 50% !important;
     right: auto !important;
     bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
-    width: min(calc(100vw - 2rem), 40rem) !important;
-    max-width: calc(100vw - 2rem) !important;
+    width: min(calc(100vw - 2.74rem), 40rem) !important;
+    max-width: calc(100vw - 2.74rem) !important;
     min-width: 0 !important;
     text-align: center !important;
     display: flex !important;

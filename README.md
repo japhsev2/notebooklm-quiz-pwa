@@ -302,3 +302,10 @@ Cambio principal del HTML v101:
 - En escritorio se conserva el comportamiento anterior del aviso inferior derecho.
 
 La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v14` para forzar la renovación del HTML en Safari/iPhone.
+
+
+## Actualización 1.16
+
+Esta versión sustituye el `index.html` por `index_moodle_51_quiz_navblock_v102_toast_movil_margenes.html`, conservando la envoltura PWA anterior: iconos CG, manifiesto, service worker, área segura iOS, favicon invisible en PC y despliegue en GitHub Pages.
+
+El cambio funcional del HTML correcto es el ajuste v102: en iPhone/móvil el aviso inferior de importación queda centrado, pero con márgenes laterales algo mayores para que no roce los extremos de la pantalla. En escritorio se conserva el aviso inferior derecho.
