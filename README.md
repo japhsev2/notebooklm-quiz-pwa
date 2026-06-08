@@ -309,3 +309,12 @@ La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v14` para 
 Esta versión sustituye el `index.html` por `index_moodle_51_quiz_navblock_v102_toast_movil_margenes.html`, conservando la envoltura PWA anterior: iconos CG, manifiesto, service worker, área segura iOS, favicon invisible en PC y despliegue en GitHub Pages.
 
 El cambio funcional del HTML correcto es el ajuste v102: en iPhone/móvil el aviso inferior de importación queda centrado, pero con márgenes laterales algo mayores para que no roce los extremos de la pantalla. En escritorio se conserva el aviso inferior derecho.
+
+
+## Actualización 1.17
+
+Se corrige la sustitución anterior del HTML y se integra como `index.html` el archivo correcto `index_moodle_51_quiz_navblock_v103_toast_click_aislado_quiz.html`.
+
+Esta versión conserva la envoltura PWA previa: iconos CG, manifiesto, service worker, favicon invisible en PC, `pwa-safe-area.css`, `offline.html`, `.nojekyll`, `.gitignore`, compatibilidad con GitHub Pages e instalación en iPhone desde Safari.
+
+El service worker se ha actualizado a `notebooklm-quiz-pwa-v16` para forzar la renovación de la caché en iPhone/Safari.
