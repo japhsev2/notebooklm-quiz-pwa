@@ -290,3 +290,15 @@ Nota técnica: se conserva la carga de `mammoth.browser.min.js` desde jsDelivr e
 Se sustituye `index.html` por `index_moodle_51_quiz_navblock_v76_quiz_nav_bajo_pregunta_ventana_reducida.html`, conservando la envoltura PWA previa. Esta versión corrige la disposición del bloque «Navegación por el cuestionario» en ventana reducida de escritorio: cuando el ancho disponible es reducido, el bloque pasa debajo del cuadro de la pregunta, como en móvil.
 
 El `service-worker.js` se actualiza a `notebooklm-quiz-pwa-v12` para forzar la renovación de caché en Safari/iPhone.
+
+
+## Versión 1.15 — HTML v101 correcto: toast móvil centrado
+
+Esta versión sustituye únicamente el `index.html` del paquete anterior por el HTML correcto `index_moodle_51_quiz_navblock_v101_toast_movil_centrado _ v2.html`. Se conserva la envoltura PWA previa: iconos CG, `manifest.json`, `pwa-safe-area.css`, `offline.html`, favicon invisible en PC, `.nojekyll`, `.gitignore`, compatibilidad iPhone y GitHub Pages.
+
+Cambio principal del HTML v101:
+
+- En iPhone y pantallas móviles, el aviso inferior de importación (`.toast`) queda centrado horizontalmente, con anchura adaptada a la pantalla y respeto del `safe-area-inset-bottom`.
+- En escritorio se conserva el comportamiento anterior del aviso inferior derecho.
+
+La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v14` para forzar la renovación del HTML en Safari/iPhone.
