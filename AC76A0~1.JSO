@@ -1,0 +1,22 @@
+{
+  "version": "1.20",
+  "package": "notebooklm-quiz-pwa-v30-html-v133-11-correcto.zip",
+  "base_package": "notebooklm-quiz-pwa-v29-html-v133-10-correcto.zip",
+  "source_html": "index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(11).html",
+  "source_html_sha256": "ab1f7c72486b39a4dbf0ab89d7cc015fb1d0a0f354291277875ffb687df0cda1",
+  "changes": [
+    "Replaced index.html with the corrected v133(11) HTML",
+    "Preserved existing PWA wrapper and assets",
+    "Updated service-worker cache to notebooklm-quiz-pwa-v19",
+    "Updated README"
+  ],
+  "cache_name": "notebooklm-quiz-pwa-v19",
+  "hashes": {
+    "index.html": "03a685dd68d5e7d928a14ca21cdc9ec53feaf34fb3ae7e2c683587f321522989",
+    "service-worker.js": "53f64e110e18496947f69424cdd82892bc9335dff5153b7664fa839a645c2bc1",
+    "README.md": "11d85fa72042dc2a440bc97cb92f3d20869feadded769f4bdac5018cfc4eeae0",
+    "manifest.json": "9ff3713f8cd6088ea26255e4deedf5619511c2f93de6176a1c8195488bac5d74",
+    "pwa-safe-area.css": "8f7993b7df7a76f43bb3d1ec7c01ecb7e78c04349e3ed304243a8486092daa14",
+    "offline.html": "468b02946613917a530adf8c45044924f329d1ee537c393f9097ab00c62071c1"
+  }
+}

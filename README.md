@@ -337,3 +337,12 @@ Corrección de integración: se sustituye únicamente `index.html` por el HTML c
 
 El `service-worker.js` se actualiza a la caché `notebooklm-quiz-pwa-v18` para forzar la renovación del HTML en Safari/iPhone.
 
+## Versión 1.20 — HTML v133(11) correcto
+
+Esta versión corrige la entrega anterior sustituyendo únicamente `index.html` por el archivo correcto:
+
+`index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(11).html`
+
+Se conserva la envoltura PWA acumulada del paquete: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos, favicon invisible, `.nojekyll` y `.gitignore`.
+
+El `service-worker.js` actualiza la caché a `notebooklm-quiz-pwa-v19` para forzar que Safari/iPhone recoja el HTML nuevo.

@@ -1,0 +1,18 @@
+{
+  "version": "1.19",
+  "source_html": "index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(10).html",
+  "source_sha256": "e8fdbc1a1cdc3b3b663bb1986eea50d6fe36682693de3d360ff4ca2e4cc29bbe",
+  "packaged_index_sha256": "bef43c321b51e57976d720bb0f9311e9bdec2d78dca12dcf515e1f59c655b219",
+  "cache_name": "notebooklm-quiz-pwa-v18",
+  "checks": {
+    "Moodle 5.2": false,
+    "v334": false,
+    "v133": true,
+    "attemptReviewToolsStateV179": true,
+    "hqEditorToolsV258": true,
+    "serviceWorker": true,
+    "manifest.json": true,
+    "pwa-safe-area.css": true
+  },
+  "created_utc": "2026-06-26T01:38:18.690224Z"
+}

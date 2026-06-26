@@ -15,8 +15,56 @@ body.dark-mode #hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swa
 </style>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Generador de cuestionarios NotebookLM</title>
+<meta name="description" content="Generador de cuestionarios NotebookLM instalable como aplicación web progresiva.">
+<meta name="theme-color" content="#f8f9fa">
+<meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d2125" media="(prefers-color-scheme: dark)">
+<meta name="application-name" content="Cuestionarios">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cuestionarios">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="data:,">
+<link rel="shortcut icon" href="data:,">
+<link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152.png">
+<link rel="apple-touch-icon" sizes="167x167" href="./icons/apple-touch-icon-167.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png">
+<link rel="stylesheet" href="./pwa-safe-area.css">
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(function (error) {
+        console.warn('No se pudo registrar el service worker:', error);
+      });
+    });
+  }
+</script>
+<script>
+  (function () {
+    function syncPwaThemeShell() {
+      var isDark = document.body && document.body.classList.contains('dark-mode');
+      document.documentElement.classList.toggle('pwa-dark-mode', !!isDark);
+      document.documentElement.setAttribute('data-pwa-theme', isDark ? 'dark' : 'light');
+      document.documentElement.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
+      if (document.body) document.body.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
+      var metas = document.querySelectorAll('meta[name="theme-color"]');
+      metas.forEach(function (meta) {
+        if (!meta.media) meta.setAttribute('content', isDark ? '#1d2125' : '#f8f9fa');
+      });
+    }
+    window.addEventListener('DOMContentLoaded', function () {
+      syncPwaThemeShell();
+      if (document.body) {
+        new MutationObserver(syncPwaThemeShell).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+      }
+    });
+    window.addEventListener('pageshow', syncPwaThemeShell);
+  })();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js">
 
 /* Ajuste v159 — Limpieza quirúrgica Word/Aiken.
