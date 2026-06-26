@@ -1,0 +1,30 @@
+{
+  "version": "1.21",
+  "package": "notebooklm-quiz-pwa-v31-html-v133-15.zip",
+  "base_zip": "NOTEBO~1.ZIP",
+  "html_source": "index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(15).html",
+  "service_worker_cache": "notebooklm-quiz-pwa-v20",
+  "created_utc": "2026-06-26T18:01:03Z",
+  "updated_files": [
+    "index.html",
+    "service-worker.js",
+    "README.md",
+    "ACTUALIZACION_1_21_VERIFICACION.json"
+  ],
+  "preserved_pwa_files": [
+    "icons/",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "checksums": {
+    "index.html": "24718aaa5c83a45a8bf8991933923caae441d6111df46d98ffc07d7f960a844e",
+    "service-worker.js": "e56451c3a8937ba8a13dde710239d70bb75cd6ef9d684c87b3b26359fa697a8f",
+    "README.md": "a98019f530e6026a5002360366872bd6fab857935bd43b27ff507a1f99732507",
+    "manifest.json": "9ff3713f8cd6088ea26255e4deedf5619511c2f93de6176a1c8195488bac5d74",
+    "pwa-safe-area.css": "8f7993b7df7a76f43bb3d1ec7c01ecb7e78c04349e3ed304243a8486092daa14"
+  }
+}

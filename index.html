@@ -15,7 +15,7 @@ body.dark-mode #hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swa
 </style>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Generador de cuestionarios NotebookLM</title>
 <meta name="description" content="Generador de cuestionarios NotebookLM instalable como aplicación web progresiva.">
 <meta name="theme-color" content="#f8f9fa">
@@ -43653,7 +43653,10 @@ body.dark-mode .hq-review-search-empty-v125 {
     zone.classList.add('is-visible-v125');
     if (focusInput) {
       var input = getReviewSearchInputV125();
-      if (input) window.setTimeout(function() { input.focus(); }, 0);
+      if (input && typeof input.focus === 'function') {
+        try { input.focus({ preventScroll: true }); }
+        catch (err) { input.focus(); }
+      }
     }
   }
 
@@ -43761,8 +43764,8 @@ body.dark-mode .hq-review-search-empty-v125 {
     if (!zone || !input || zone.__v125ReviewSearchBound) return;
     zone.__v125ReviewSearchBound = true;
     zone.addEventListener('pointerdown', function(event) {
-      if (event.target === input || event.target === clear) return;
-      HQ125_showReviewSearch(true);
+      if (event.target === clear) return;
+      HQ125_showReviewSearch(event.target !== input);
     });
     input.addEventListener('focus', function() { HQ125_showReviewSearch(false); });
     input.addEventListener('input', function() { HQ125_updateReviewSearch(input.value); });
@@ -43995,11 +43998,13 @@ body.dark-mode .hq-review-search-empty-v125 {
   .hq-review-search-zone-v125.has-bilingual-v126:not(.is-floating-v126),
   .hq-review-search-zone-v125.is-floating-v126,
   .hq-review-search-zone-v125.has-bilingual-v126.is-floating-v126 {
-    width: var(--hq-review-search-centered-width-v127, calc(100vw - 1.25rem)) !important;
+    width: var(--hq-review-search-centered-width-v127, 55.555vw) !important;
+    max-width: 55.555vw !important;
   }
   .hq-review-search-zone-v125.is-floating-v126,
   .hq-review-search-zone-v125.has-bilingual-v126.is-floating-v126 {
-    width: var(--hq-review-search-centered-floating-width-v127, calc(100vw - 1.25rem)) !important;
+    width: var(--hq-review-search-centered-floating-width-v127, 55.555vw) !important;
+    max-width: 55.555vw !important;
   }
 }
 </style>
@@ -44023,7 +44028,7 @@ body.dark-mode .hq-review-search-empty-v125 {
     var rowRect = row.getBoundingClientRect();
     var centerX = Math.round(window.innerWidth / 2);
     var leftInsideRow = Math.round(centerX - rowRect.left);
-    var baseWidth = window.matchMedia && window.matchMedia('(max-width: 640px)').matches ? 'calc(100vw - 1.25rem)' : 'min(34rem, calc(100vw - 2rem))';
+    var baseWidth = window.matchMedia && window.matchMedia('(max-width: 640px)').matches ? '55.555vw' : 'min(34rem, calc(100vw - 2rem))';
     zone.style.setProperty('--hq-review-search-centered-left-v127', leftInsideRow + 'px');
     zone.style.setProperty('--hq-review-search-centered-width-v127', baseWidth);
     zone.style.setProperty('--hq-review-search-centered-floating-width-v127', baseWidth);
@@ -44179,11 +44184,13 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     left: var(--hq-attempt-review-search-left-v128, 50%);
     top: calc(100% + 0.12rem);
     transform: translateX(-50%);
-    width: var(--hq-attempt-review-search-width-v128, calc(100vw - 1.25rem));
+    width: var(--hq-attempt-review-search-width-v128, 55.555vw);
+    max-width: 55.555vw;
   }
   #quizArea .moodle-review-attempt-page .hq-attempt-review-search-zone-v128.is-floating-v128 {
     top: var(--hq-attempt-review-search-floating-top-v128, max(3.75rem, calc(env(safe-area-inset-top, 0px) + 0.25rem))) !important;
-    width: var(--hq-attempt-review-search-width-v128, calc(100vw - 1.25rem)) !important;
+    width: var(--hq-attempt-review-search-width-v128, 55.555vw) !important;
+    max-width: 55.555vw !important;
   }
   #quizArea .moodle-review-attempt-page .hq-attempt-review-search-box-v128 {
     height: 1.92rem;
@@ -44244,7 +44251,10 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     syncAttemptReviewSearchFloatingV128();
     if (focusInput) {
       var input = getAttemptReviewSearchInputV128();
-      if (input) window.setTimeout(function() { input.focus(); }, 0);
+      if (input && typeof input.focus === 'function') {
+        try { input.focus({ preventScroll: true }); }
+        catch (err) { input.focus(); }
+      }
     }
   }
 
@@ -44337,7 +44347,7 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     var leftInsideRow = Math.round(centerX - rowRect.left);
     var mobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     zone.style.setProperty('--hq-attempt-review-search-left-v128', leftInsideRow + 'px');
-    zone.style.setProperty('--hq-attempt-review-search-width-v128', mobile ? 'calc(100vw - 1.25rem)' : 'min(34rem, calc(100vw - 2rem))');
+    zone.style.setProperty('--hq-attempt-review-search-width-v128', mobile ? '55.555vw' : 'min(34rem, calc(100vw - 2rem))');
   }
 
   function isAttemptReviewSearchActiveV128(zone, input) {
@@ -44386,8 +44396,9 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
       return;
     }
     zone.__v128AttemptReviewSearchBound = true;
-    zone.addEventListener('pointerdown', function() {
-      HQ128_showAttemptReviewSearch(true);
+    zone.addEventListener('pointerdown', function(event) {
+      if (event.target === clear) return;
+      HQ128_showAttemptReviewSearch(event.target !== input);
     });
     input.addEventListener('input', function() {
       HQ128_updateAttemptReviewSearch(input.value);
@@ -44963,6 +44974,86 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncV133ButtonOnly, { once: true });
   else syncV133ButtonOnly();
+})();
+</script>
+
+<style id="hq-v133-ios-mobile-keyboard-input-fix">
+/* v133 -- iPhone/GitHub Pages: permite escribir sin autozoom al enfocar campos editables.
+   No cambia busqueda ni filtrado; sólo normaliza la interacción de escritura en iOS móvil. */
+@media (max-width: 767px) {
+  html,
+  body {
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+  }
+  input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]):not([type="file"]):not([type="range"]):not([type="color"]),
+  textarea,
+  select,
+  [contenteditable="true"],
+  [contenteditable=""],
+  [role="textbox"] {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+    font-size: 16px !important;
+  }
+}
+</style>
+<script id="hq-v133-ios-mobile-keyboard-input-fix">
+(function() {
+  'use strict';
+
+  function isCoarseMobileV133() {
+    try {
+      return window.matchMedia('(max-width: 767px) and (pointer: coarse)').matches;
+    } catch (err) {
+      return window.innerWidth <= 767;
+    }
+  }
+
+  function isTextInputV133(el) {
+    if (!el || !el.tagName) return false;
+    if (el.disabled || el.readOnly) return false;
+    var tag = el.tagName.toLowerCase();
+    if (tag === 'textarea') return true;
+    if (tag === 'select') return true;
+    if (el.isContentEditable) return true;
+    if (el.getAttribute && el.getAttribute('role') === 'textbox') return true;
+    if (tag !== 'input') return false;
+    var type = String(el.getAttribute('type') || 'text').toLowerCase();
+    return !/^(button|submit|reset|checkbox|radio|file|range|color|image|hidden)$/.test(type);
+  }
+
+  function closestTextInputV133(target) {
+    if (!target) return null;
+    var el = target.nodeType === 1 ? target : target.parentElement;
+    while (el && el !== document.documentElement) {
+      if (isTextInputV133(el)) return el;
+      el = el.parentElement;
+    }
+    return null;
+  }
+
+  function focusTextInputV133(el) {
+    if (!el || typeof el.focus !== 'function') return;
+    try { el.focus({ preventScroll: true }); }
+    catch (err) { el.focus(); }
+  }
+
+  function onDirectMobileTextTouchV133(event) {
+    if (!isCoarseMobileV133()) return;
+    var el = closestTextInputV133(event && event.target);
+    if (!el) return;
+    focusTextInputV133(el);
+  }
+
+  document.addEventListener('touchstart', onDirectMobileTextTouchV133, true);
+  document.addEventListener('touchend', onDirectMobileTextTouchV133, true);
+  document.addEventListener('pointerup', function(event) {
+    if (event && event.pointerType && event.pointerType !== 'touch' && event.pointerType !== 'pen') return;
+    onDirectMobileTextTouchV133(event);
+  }, true);
 })();
 </script>
 

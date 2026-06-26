@@ -1,15 +1,3 @@
-# Actualización 1.18
-
-Esta versión corrige la sustitución anterior y reemplaza el `index.html` del paquete por `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(5).html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC, `.nojekyll`, `.gitignore` y compatibilidad con GitHub Pages/iPhone.
-
-Cambios principales incorporados en el HTML:
-
-- evolución del HTML a la línea `Moodle 5.2 / v334`;
-- ajustes recientes en revisión, menú del editor y herramientas contraídas por defecto;
-- conservación de las mejoras previas del proyecto: Word/Aiken ampliado, multimedia, revisión, duplicados, bilingüismo, modo oscuro, navegación, exportaciones y PWA.
-
-El proyecto deriva de un fork modificado de `https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
-
 # Actualización 1.14
 
 Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v100_carrousel_flick_extremo.html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
@@ -331,18 +319,11 @@ Esta versión conserva la envoltura PWA previa: iconos CG, manifiesto, service w
 
 El service worker se ha actualizado a `notebooklm-quiz-pwa-v16` para forzar la renovación de la caché en iPhone/Safari.
 
-## Versión 1.19
+## Actualización 1.21
 
-Corrección de integración: se sustituye únicamente `index.html` por el HTML correcto `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(10).html`, conservando la envoltura PWA anterior: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos, favicon invisible y estructura para GitHub Pages/iPhone.
+Esta versión sustituye únicamente el `index.html` del paquete anterior por el HTML correcto `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(15).html`, conservando la envoltura PWA previa: iconos CG, `manifest.json`, `pwa-safe-area.css`, `offline.html`, favicon invisible en PC, `.nojekyll`, `.gitignore`, compatibilidad iPhone y GitHub Pages.
 
-El `service-worker.js` se actualiza a la caché `notebooklm-quiz-pwa-v18` para forzar la renovación del HTML en Safari/iPhone.
+El HTML integrado mantiene la línea Moodle 5.2 / v334 / v133 y añade los cambios acumulados presentes en esta entrega, incluidos los ajustes avanzados de revisión del intento, edición de respuestas de redactar desde la revisión, revisión final con menú sobre la palabra «Revisión» y el bloque de conversión de documentos Word/Aiken.
 
-## Versión 1.20 — HTML v133(11) correcto
+El `service-worker.js` se ha actualizado a `notebooklm-quiz-pwa-v20` para forzar la renovación de caché en Safari/iPhone.
 
-Esta versión corrige la entrega anterior sustituyendo únicamente `index.html` por el archivo correcto:
-
-`index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(11).html`
-
-Se conserva la envoltura PWA acumulada del paquete: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos, favicon invisible, `.nojekyll` y `.gitignore`.
-
-El `service-worker.js` actualiza la caché a `notebooklm-quiz-pwa-v19` para forzar que Safari/iPhone recoja el HTML nuevo.
