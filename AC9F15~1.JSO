@@ -1,0 +1,24 @@
+{
+  "version": "1.15",
+  "html_source": "index_moodle_51_quiz_navblock_v101_toast_movil_centrado _ v2.html",
+  "html_sha256": "0994b764ac982e3933759ff8fd943c85c7f5c9f903bf290e8836bf7b63b0188b",
+  "integrated_index_sha256": "566e6b8a50c3f7b35973e25fce98886a7e896adfd9f0bd6dc3c078d5ebe64eb7",
+  "service_worker_cache": "notebooklm-quiz-pwa-v14",
+  "updated_files": [
+    "index.html",
+    "service-worker.js",
+    "README.md",
+    "ACTUALIZACION_1_15_VERIFICACION.json"
+  ],
+  "preserved": [
+    "icons/",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "main_change": "v101: toast móvil centrado; en escritorio se conserva el aviso inferior derecho.",
+  "created_utc": "2026-06-08T01:29:50Z"
+}

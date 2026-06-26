@@ -1,0 +1,18 @@
+{
+  "version": "1.18",
+  "cache_name": "notebooklm-quiz-pwa-v17",
+  "index_html": "index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(5).html",
+  "operation": "Sustitucion del index.html anterior por el HTML correcto adjuntado, conservando la envoltura PWA previa.",
+  "preserved": [
+    "icons/",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "source_project": "Fork modificado de https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer",
+  "sha256_index_html": "9e5c840e536f1acc5a6a139d9e7f6fb26217c7b997688a809c4dada10dc380dd",
+  "created_utc": "2026-06-26T00:53:42Z"
+}

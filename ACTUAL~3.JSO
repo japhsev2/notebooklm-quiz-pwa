@@ -1,0 +1,35 @@
+{
+  "version": "1.12",
+  "created_utc": "2026-06-05T13:28:27Z",
+  "source_new_html": "index_moodle_51_quiz_navblock_v74_revision_duplicados_importada_izquierda.html",
+  "source_new_html_sha256": "b459dc3db234b9b71d7972163a872a0ef576f0394415bd07bb280c743be1eef9",
+  "packaged_index_sha256": "5b22f35dd53df4623c1f7e74ba3b52f6fe2ef13b80589cbf735d9fa863f32837",
+  "base_zip": "notebooklm-quiz-pwa-v21-html-v64-bilingue.zip",
+  "base_zip_sha256": "22d17569f072c0886d0f907574f26422f8b5e93e04847a2c7de047d9a09bf319",
+  "service_worker_cache": "notebooklm-quiz-pwa-v11",
+  "preserved_files": [
+    "icons/",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "updated_files": [
+    "index.html",
+    "service-worker.js",
+    "README.md",
+    "ACTUALIZACION_1_12_VERIFICACION.json"
+  ],
+  "pwa_head_preserved": true,
+  "new_html_features_from_report": [
+    "global translation controls in Editor and Review",
+    "no automatic redirect to Editor after import",
+    "translation button placement, radius and touch area adjusted",
+    "interactive duplicate review from clickable toast",
+    "bilingual duplicate review with translation buttons",
+    "previous/next navigation inside duplicate review dialog",
+    "already imported card on left and omitted card on right"
+  ]
+}

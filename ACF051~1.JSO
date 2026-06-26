@@ -1,0 +1,19 @@
+{
+  "version": "1.16",
+  "html_source": "index_moodle_51_quiz_navblock_v102_toast_movil_margenes.html",
+  "integrated_as": "index.html",
+  "source_sha256": "651e9f8e80569a546f6ff4f269b7a0d10eba997105a3302abf28b3f620c6e8b3",
+  "integrated_sha256": "4a5977a3ad354dfa7e1fb3429464ace4d950345f580a1cd6ee2f4b8060459d74",
+  "service_worker_cache": "notebooklm-quiz-pwa-v15",
+  "preserved_pwa_files": [
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    "icons/",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "main_change": "v102: toast móvil centrado con márgenes laterales mayores; escritorio mantiene el toast inferior derecho.",
+  "generated_at_utc": "2026-06-08T01:58:41Z"
+}

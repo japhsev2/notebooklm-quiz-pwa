@@ -1,3 +1,15 @@
+# Actualización 1.18
+
+Esta versión corrige la sustitución anterior y reemplaza el `index.html` del paquete por `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(5).html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC, `.nojekyll`, `.gitignore` y compatibilidad con GitHub Pages/iPhone.
+
+Cambios principales incorporados en el HTML:
+
+- evolución del HTML a la línea `Moodle 5.2 / v334`;
+- ajustes recientes en revisión, menú del editor y herramientas contraídas por defecto;
+- conservación de las mejoras previas del proyecto: Word/Aiken ampliado, multimedia, revisión, duplicados, bilingüismo, modo oscuro, navegación, exportaciones y PWA.
+
+El proyecto deriva de un fork modificado de `https://github.com/Tony-Myers/NotebookLM-Quiz-extractor-and-enhancer`.
+
 # Actualización 1.14
 
 Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v100_carrousel_flick_extremo.html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.

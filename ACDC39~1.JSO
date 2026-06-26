@@ -1,0 +1,18 @@
+{
+  "version": "1.17",
+  "integrated_html": "index_moodle_51_quiz_navblock_v103_toast_click_aislado_quiz.html",
+  "source_html_sha256": "ef243b43c42b3e19dd742f603072c6250be292626cc20e40d23f107183639846",
+  "final_index_sha256": "7084275e938abb4bb5186c6483595fc68b52842903419c76f54e1cbea82db95f",
+  "service_worker_cache": "notebooklm-quiz-pwa-v16",
+  "pwa_wrapper_preserved": [
+    "icons",
+    "manifest.json",
+    "pwa-safe-area.css",
+    "offline.html",
+    "favicon.ico",
+    ".gitignore",
+    ".nojekyll"
+  ],
+  "note": "El HTML nuevo se integra como index.html conservando los metadatos y scripts PWA/iOS previamente añadidos en el head.",
+  "created_utc": "2026-06-08T20:57:14Z"
+}

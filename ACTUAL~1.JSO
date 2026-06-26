@@ -1,0 +1,20 @@
+{
+  "version": "1.10",
+  "package": "notebooklm-quiz-pwa-v20-html-plus.zip",
+  "source_html": "index_moodle_51_quiz_navblock_v42_word_aiken_imagenes_multimedia_separacion_acciones_plus.html",
+  "base_package": "notebooklm-quiz-pwa-v19-html-v42-word-aiken-multimedia.zip",
+  "cache_name": "notebooklm-quiz-pwa-v9",
+  "notes": [
+    "Se ha sustituido el HTML anterior por el nuevo HTML plus.",
+    "Se han conservado los archivos PWA externos ya existentes.",
+    "Se han reinyectado sólo los metadatos y scripts envolventes necesarios en el head."
+  ],
+  "sha256": {
+    "index.html": "123d59ac9d393134690d7d9a5e2a03d6edc1d2ce78e263d31d4003958d12176c",
+    "service-worker.js": "b72ae46fd9c1adb7fcb9209b2b1269eb8614a7e62094981f5f77a099c144f3f3",
+    "README.md": "58646eff3167b501b72f451714e0f5edb4d418c1ed490b99407480dc3111f46c",
+    "manifest.json": "9ff3713f8cd6088ea26255e4deedf5619511c2f93de6176a1c8195488bac5d74",
+    "pwa-safe-area.css": "8f7993b7df7a76f43bb3d1ec7c01ecb7e78c04349e3ed304243a8486092daa14",
+    "offline.html": "468b02946613917a530adf8c45044924f329d1ee537c393f9097ab00c62071c1"
+  }
+}
