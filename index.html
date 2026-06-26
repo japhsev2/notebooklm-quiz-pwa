@@ -15,56 +15,8 @@ body.dark-mode #hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swa
 </style>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Generador de cuestionarios NotebookLM</title>
-<meta name="description" content="Generador de cuestionarios NotebookLM instalable como aplicación web progresiva.">
-<meta name="theme-color" content="#f8f9fa">
-<meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d2125" media="(prefers-color-scheme: dark)">
-<meta name="application-name" content="Cuestionarios">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Cuestionarios">
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="data:,">
-<link rel="shortcut icon" href="data:,">
-<link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120.png">
-<link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152.png">
-<link rel="apple-touch-icon" sizes="167x167" href="./icons/apple-touch-icon-167.png">
-<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png">
-<link rel="stylesheet" href="./pwa-safe-area.css">
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('./service-worker.js', { scope: './' }).catch(function (error) {
-        console.warn('No se pudo registrar el service worker:', error);
-      });
-    });
-  }
-</script>
-<script>
-  (function () {
-    function syncPwaThemeShell() {
-      var isDark = document.body && document.body.classList.contains('dark-mode');
-      document.documentElement.classList.toggle('pwa-dark-mode', !!isDark);
-      document.documentElement.setAttribute('data-pwa-theme', isDark ? 'dark' : 'light');
-      document.documentElement.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
-      if (document.body) document.body.style.backgroundColor = isDark ? '#1d2125' : '#f8f9fa';
-      var metas = document.querySelectorAll('meta[name="theme-color"]');
-      metas.forEach(function (meta) {
-        if (!meta.media) meta.setAttribute('content', isDark ? '#1d2125' : '#f8f9fa');
-      });
-    }
-    window.addEventListener('DOMContentLoaded', function () {
-      syncPwaThemeShell();
-      if (document.body) {
-        new MutationObserver(syncPwaThemeShell).observe(document.body, { attributes: true, attributeFilter: ['class'] });
-      }
-    });
-    window.addEventListener('pageshow', syncPwaThemeShell);
-  })();
-</script>
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js">
 
 /* Ajuste v159 — Limpieza quirúrgica Word/Aiken.
@@ -38328,7 +38280,7 @@ body.dark-mode #panel-editor #questionList.hq-hierarchical-list-v258.hq-area-ada
       bar.insertBefore(btn, bar.firstChild);
     }
     btn.classList.add('hq-area-color-swatch-adaptive-v35', 'hq-area-color-swatch-adaptive-v37');
-    if (bar.firstElementChild !== btn) bar.insertBefore(btn, bar.firstChild);
+    /* v133 stability fix: no forced first-position reordering; AREA_BASE_PALETTE owns swatch order. */
     btn.classList.toggle('is-active-v20', isAdaptiveState());
     btn.classList.toggle('is-active-v37', isAdaptiveState());
   }
@@ -38502,7 +38454,7 @@ body.dark-mode #panel-editor #questionList.hq-hierarchical-list-v258.hq-area-ada
       bar.insertBefore(btn, bar.firstChild);
     }
     btn.classList.add('hq-area-color-swatch-adaptive-v38');
-    if (bar.firstElementChild !== btn) bar.insertBefore(btn, bar.firstChild);
+    /* v133 stability fix: no forced first-position reordering; AREA_BASE_PALETTE owns swatch order. */
     btn.classList.toggle('is-active-v20', isAdaptiveState());
     btn.classList.toggle('is-active-v38', isAdaptiveState());
   }
@@ -38670,7 +38622,7 @@ body.dark-mode #panel-editor #questionList.hq-hierarchical-list-v258.hq-area-ada
       bar.insertBefore(btn, bar.firstChild);
     }
     btn.classList.add('hq-area-color-swatch-adaptive-v39');
-    if (bar.firstElementChild !== btn) bar.insertBefore(btn, bar.firstChild);
+    /* v133 stability fix: no forced first-position reordering; AREA_BASE_PALETTE owns swatch order. */
     btn.classList.toggle('is-active-v20', isAdaptiveState());
     btn.classList.toggle('is-active-v39', isAdaptiveState());
   }
@@ -44952,47 +44904,17 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
 (function() {
   'use strict';
   var TOKEN = '__adaptive_page_bg_v133__';
-  var STORAGE_KEY = 'hqHeadingAreaBackgroundToolStateV20';
-  var LEFT_ANCHOR = '__adaptive_gradient_v35__';
-  var RIGHT_ANCHOR = '#f8fbff';
-  var scheduled = false;
-  function readState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null') || {}; } catch (err) { return {}; }
-  }
-  function isActive() {
-    var state = readState();
-    return !!(state && state.enabled && state.mode === 'custom' && String(state.current || '').toLowerCase() === TOKEN);
-  }
-  function placeIntermediate() {
-    scheduled = false;
+  function syncV133ButtonOnly() {
     var bar = document.querySelector('#hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swatches-v20');
     if (!bar) return;
     var btn = bar.querySelector('[data-hq-area-color-v20="' + TOKEN + '"]');
     if (!btn) return;
     btn.classList.add('hq-area-color-swatch-adaptive-v133');
-    btn.classList.toggle('is-active-v20', isActive());
     btn.setAttribute('aria-label', 'Fondo general claro/oscuro HTML');
     btn.setAttribute('title', 'Fondo general claro/oscuro HTML');
-    var right = bar.querySelector('[data-hq-area-color-v20="' + RIGHT_ANCHOR + '"]');
-    var left = bar.querySelector('[data-hq-area-color-v20="' + LEFT_ANCHOR + '"]');
-    if (right && right !== btn) {
-      if (right.previousElementSibling !== btn) bar.insertBefore(btn, right);
-    } else if (left && left.nextSibling !== btn) {
-      bar.insertBefore(btn, left.nextSibling);
-    }
   }
-  function schedule() {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(placeIntermediate);
-  }
-  var tools = document.getElementById('hqEditorToolsV258');
-  if (tools && window.MutationObserver) new MutationObserver(schedule).observe(tools, { childList: true, subtree: true });
-  document.addEventListener('click', function(event) {
-    if (event.target && event.target.closest && event.target.closest('[data-hq-area-color-v20]')) setTimeout(schedule, 0);
-  }, true);
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule);
-  else schedule();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncV133ButtonOnly, { once: true });
+  else syncV133ButtonOnly();
 })();
 </script>
 
