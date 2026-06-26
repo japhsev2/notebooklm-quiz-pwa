@@ -42436,7 +42436,7 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
     overscroll-behavior: contain !important;
     position: fixed !important;
     right: 0.75rem !important;
-    top: 0.75rem !important;
+    top: var(--hq-editor-tools-floating-top-v98, max(3.75rem, calc(env(safe-area-inset-top, 0px) + 0.25rem))) !important;
     width: auto !important;
     z-index: 1900 !important;
   }
@@ -43835,7 +43835,7 @@ body.dark-mode .hq-review-search-empty-v125 {
 }
 @media (max-width: 640px) {
   .hq-review-search-zone-v125.is-floating-v126 {
-    top: var(--hq-review-search-floating-top-v126, max(0.48rem, env(safe-area-inset-top))) !important;
+    top: var(--hq-review-search-floating-top-v126, max(3.75rem, calc(env(safe-area-inset-top, 0px) + 0.25rem))) !important;
     width: var(--hq-review-search-floating-width-v126, calc(100vw - 1.25rem)) !important;
   }
   .hq-review-search-zone-v125.has-bilingual-v126:not(.is-floating-v126) {
@@ -44182,7 +44182,7 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     width: var(--hq-attempt-review-search-width-v128, calc(100vw - 1.25rem));
   }
   #quizArea .moodle-review-attempt-page .hq-attempt-review-search-zone-v128.is-floating-v128 {
-    top: var(--hq-attempt-review-search-floating-top-v128, max(0.48rem, env(safe-area-inset-top))) !important;
+    top: var(--hq-attempt-review-search-floating-top-v128, max(3.75rem, calc(env(safe-area-inset-top, 0px) + 0.25rem))) !important;
     width: var(--hq-attempt-review-search-width-v128, calc(100vw - 1.25rem)) !important;
   }
   #quizArea .moodle-review-attempt-page .hq-attempt-review-search-box-v128 {

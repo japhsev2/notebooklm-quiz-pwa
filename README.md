@@ -330,3 +330,10 @@ Se corrige la sustitución anterior del HTML y se integra como `index.html` el a
 Esta versión conserva la envoltura PWA previa: iconos CG, manifiesto, service worker, favicon invisible en PC, `pwa-safe-area.css`, `offline.html`, `.nojekyll`, `.gitignore`, compatibilidad con GitHub Pages e instalación en iPhone desde Safari.
 
 El service worker se ha actualizado a `notebooklm-quiz-pwa-v16` para forzar la renovación de la caché en iPhone/Safari.
+
+## Versión 1.19
+
+Corrección de integración: se sustituye únicamente `index.html` por el HTML correcto `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(10).html`, conservando la envoltura PWA anterior: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos, favicon invisible y estructura para GitHub Pages/iPhone.
+
+El `service-worker.js` se actualiza a la caché `notebooklm-quiz-pwa-v18` para forzar la renovación del HTML en Safari/iPhone.
+
