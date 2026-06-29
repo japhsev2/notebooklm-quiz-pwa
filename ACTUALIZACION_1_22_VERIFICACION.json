@@ -1,0 +1,27 @@
+{
+  "version": "1.22",
+  "package": "notebooklm-quiz-pwa-v32-html-v133-17.zip",
+  "base_zip": "notebooklm-quiz-pwa-v26-html-v102-toast-movil-margenes.zip",
+  "source_html": "index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133 (17).html",
+  "source_docx": "compendio_documental_cambios_html_2026-06-29T12-10-02.docx",
+  "service_worker_cache": "notebooklm-quiz-pwa-v21",
+  "pwa_head_reinjected": true,
+  "checks": {
+    "viewport_fit": true,
+    "manifest": true,
+    "service_worker_register": true,
+    "pwa_safe_area": true,
+    "toc_safe_area_fix": true,
+    "configure_mass_select": true,
+    "attempt_review_navigation": true,
+    "editor_tools": true,
+    "area_adaptive": true
+  },
+  "sha256": {
+    "base_zip": "c50e7e6853c536f09d7e07fc63d388558fab93788e99ccc40fe163b90a050968",
+    "source_html": "53d579205ec5085451ad9be014ed9d4e1ca839f0522f7b3c0b280f05106722e9",
+    "source_docx": "4425bdc6558b2d3566bc5f707c80063e99f2df7138ca0dc888171ca7a66a80df",
+    "final_index": "fe96b6975ec399ef3df57c62db315079f1ae2a626bea2f5df104bffd249fb99c",
+    "service_worker": "68a85fe3329eaf1c7c6d67806fb4f7d8466e9ae2da1ffb381b132e0d0e721925"
+  }
+}

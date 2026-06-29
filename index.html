@@ -17,6 +17,7 @@ body.dark-mode #hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swa
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Generador de cuestionarios NotebookLM</title>
+
 <meta name="description" content="Generador de cuestionarios NotebookLM instalable como aplicación web progresiva.">
 <meta name="theme-color" content="#f8f9fa">
 <meta name="theme-color" content="#f8f9fa" media="(prefers-color-scheme: light)">
@@ -65,6 +66,7 @@ body.dark-mode #hqEditorToolsV258 .hq-heading-color-menu-v286 .hq-area-color-swa
     window.addEventListener('pageshow', syncPwaThemeShell);
   })();
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js">
 
 /* Ajuste v159 — Limpieza quirúrgica Word/Aiken.
@@ -41524,7 +41526,7 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
 <style id="moodle-editor-configurar-paneles-ancho-fijo-select-all-v86-style">
 /* v86 -- Editor > Configurar.
    1) Si se ocultan paneles laterales, el carril central conserva el mismo ancho que tenía con los dos paneles visibles.
-   2) Añade la acción inferior izquierda "Seleccionar/Deseleccionar todo" al desplegable Configurar. */
+   2) Añade la acción inferior izquierda dinámica "Seleccionar todo" / "Deseleccionar todo" al desplegable Configurar. */
 @media (min-width: 1181px) {
   body.v85-editor-hide-tools-panel #panel-editor .hq-editor-layout-v258,
   body.v85-editor-hide-toc-panel #panel-editor .hq-editor-layout-v258,
@@ -41601,7 +41603,7 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
       btn.type = 'button';
       btn.id = 'editorConfigBulkV86';
       btn.className = 'v86-editor-config-bulk';
-      btn.textContent = 'Seleccionar/Deseleccionar todo';
+      btn.textContent = 'Seleccionar todo';
       actions.insertBefore(btn, actions.firstChild);
     }
     if (!btn.__v86BulkBound) {
@@ -41979,11 +41981,13 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
 (function() {
   'use strict';
 
-  var nextBulkActionV91 = 'deselect';
-
   function allConfigCheckboxesV91(menu) {
     if (!menu) return [];
     return Array.prototype.slice.call(menu.querySelectorAll('input[type="checkbox"][data-v84-editor-config-option], #editorSidePanelsEnabledV85'));
+  }
+
+  function anyConfigCheckboxSelectedV91(inputs) {
+    return (inputs || []).some(function(input) { return !!(input && input.checked); });
   }
 
   function setCheckboxV91(input, checked) {
@@ -41994,14 +41998,28 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
     }
   }
 
+  function syncEditorConfigBulkLabelV91() {
+    var menu = document.getElementById('editorConfigMenuV84');
+    if (!menu) return;
+    var btn = menu.querySelector('#editorConfigBulkV86');
+    if (!btn) return;
+    var inputs = allConfigCheckboxesV91(menu);
+    var anySelected = anyConfigCheckboxSelectedV91(inputs);
+    var label = anySelected ? 'Deseleccionar todo' : 'Seleccionar todo';
+    if (btn.textContent !== label) btn.textContent = label;
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('title', label);
+  }
+
   function runEditorConfigBulkV91() {
     var menu = document.getElementById('editorConfigMenuV84');
     if (!menu) return;
     var inputs = allConfigCheckboxesV91(menu);
     if (!inputs.length) return;
-    var shouldCheck = nextBulkActionV91 === 'select';
+    var anySelected = anyConfigCheckboxSelectedV91(inputs);
+    var shouldCheck = !anySelected;
     inputs.forEach(function(input) { setCheckboxV91(input, shouldCheck); });
-    nextBulkActionV91 = shouldCheck ? 'deselect' : 'select';
+    syncEditorConfigBulkLabelV91();
   }
 
   document.addEventListener('click', function(event) {
@@ -42013,7 +42031,31 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
     runEditorConfigBulkV91();
   }, true);
 
+  document.addEventListener('change', function(event) {
+    if (!event || !event.target || !event.target.closest) return;
+    if (!event.target.closest('#editorConfigMenuV84')) return;
+    if (!event.target.matches('input[type="checkbox"][data-v84-editor-config-option], #editorSidePanelsEnabledV85')) return;
+    syncEditorConfigBulkLabelV91();
+  }, true);
+
+  var observerV91 = new MutationObserver(function() {
+    syncEditorConfigBulkLabelV91();
+  });
+
+  function bootV91() {
+    syncEditorConfigBulkLabelV91();
+    var panel = document.getElementById('panel-editor') || document.body;
+    if (panel && !panel.__v91EditorConfigBulkLabelObserverBound) {
+      panel.__v91EditorConfigBulkLabelObserverBound = true;
+      observerV91.observe(panel, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootV91);
+  else bootV91();
+
   window.runEditorConfigBulkV91 = runEditorConfigBulkV91;
+  window.syncEditorConfigBulkLabelV91 = syncEditorConfigBulkLabelV91;
 })();
 </script>
 
@@ -42829,11 +42871,20 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
     return window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
   }
 
-  function clickInRightFifthV105(event, title) {
+  function getTitleFifthZoneV105(event, title) {
     var rect = title.getBoundingClientRect();
     var clientX = typeof event.clientX === 'number' ? event.clientX : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : NaN);
-    if (!Number.isFinite(clientX) || !rect.width) return false;
-    return clientX >= rect.right - (rect.width / 5);
+    if (!Number.isFinite(clientX) || !rect.width) return '';
+    var ratio = (clientX - rect.left) / rect.width;
+    if (ratio < 0.2) return 'edge';
+    if (ratio > 0.8) return 'edge';
+    return 'center';
+  }
+
+  function returnAttemptReviewToSingleV105() {
+    if (typeof toggleAttemptReviewLayout === 'function') {
+      toggleAttemptReviewLayout();
+    }
   }
 
   document.addEventListener('click', function(event) {
@@ -42842,11 +42893,16 @@ body.v85-editor-hide-tools-panel.v85-editor-hide-toc-panel #panel-editor .hq-edi
     var nav = title.closest('#mod_quiz_navblock.moodle-quiz-navigation');
     var page = title.closest('.moodle-review-attempt-page.is-all-questions');
     if (!nav || !page) return;
-    if (!clickInRightFifthV105(event, title)) return;
+    var zone = getTitleFifthZoneV105(event, title);
+    if (!zone) return;
     event.preventDefault();
     event.stopPropagation();
     if (event.stopImmediatePropagation) event.stopImmediatePropagation();
-    nav.classList.toggle('v104-attempt-nav-collapsed');
+    if (zone === 'center') {
+      nav.classList.toggle('v104-attempt-nav-collapsed');
+      return;
+    }
+    returnAttemptReviewToSingleV105();
   }, true);
 })();
 </script>
@@ -44551,11 +44607,20 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     return document.querySelector('#quizArea .moodle-review-attempt-page.is-all-questions #mod_quiz_navblock.moodle-quiz-navigation');
   }
 
-  function clickInRightFifthV129(event, title) {
+  function getTitleFifthZoneV129(event, title) {
     var rect = title.getBoundingClientRect();
     var clientX = typeof event.clientX === 'number' ? event.clientX : (event.changedTouches && event.changedTouches[0] ? event.changedTouches[0].clientX : NaN);
-    if (!Number.isFinite(clientX) || !rect.width) return false;
-    return clientX >= rect.right - (rect.width / 5);
+    if (!Number.isFinite(clientX) || !rect.width) return '';
+    var ratio = (clientX - rect.left) / rect.width;
+    if (ratio < 0.2) return 'edge';
+    if (ratio > 0.8) return 'edge';
+    return 'center';
+  }
+
+  function returnAttemptReviewToSingleV129() {
+    if (typeof toggleAttemptReviewLayout === 'function') {
+      toggleAttemptReviewLayout();
+    }
   }
 
   function syncCollapsedFromDomV129() {
@@ -44603,12 +44668,17 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
     var nav = title.closest('#mod_quiz_navblock.moodle-quiz-navigation');
     var page = title.closest('.moodle-review-attempt-page.is-all-questions');
     if (!nav || !page) return;
-    if (!clickInRightFifthV129(event, title)) return;
+    var zone = getTitleFifthZoneV129(event, title);
+    if (!zone) return;
     event.preventDefault();
     event.stopPropagation();
     if (event.stopImmediatePropagation) event.stopImmediatePropagation();
-    nav.classList.toggle('v104-attempt-nav-collapsed');
-    collapsedV129 = nav.classList.contains('v104-attempt-nav-collapsed');
+    if (zone === 'center') {
+      nav.classList.toggle('v104-attempt-nav-collapsed');
+      collapsedV129 = nav.classList.contains('v104-attempt-nav-collapsed');
+      return;
+    }
+    returnAttemptReviewToSingleV129();
   }, true);
 
   var observerV129 = new MutationObserver(function(mutations) {
@@ -45056,6 +45126,23 @@ body.dark-mode #quizArea .moodle-review-attempt-page .hq-attempt-review-search-e
   }, true);
 })();
 </script>
+
+
+<style id="hq-v133-editor-toc-mobile-bottom-safe-area-fix">
+/* v133 -- Editor: Tabla de contenidos a la misma altura inferior que Navegación por el cuestionario.
+   Aplica sólo en móvil y en ventanas estrechas/multitarea; no toca escritorio ni tablets a pantalla completa. */
+@media (max-width: 767px) {
+  #panel-editor #hqEditorTocV258 {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 0.72rem) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1280px) and (max-height: 900px) {
+  #panel-editor #hqEditorTocV258 {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 0.72rem) !important;
+  }
+}
+</style>
 
 </body>
 </html>

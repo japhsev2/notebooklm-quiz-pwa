@@ -1,3 +1,18 @@
+# Actualización 1.22 — HTML v133 (17)
+
+Se sustituye `index.html` por `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133 (17).html`, conservando la envoltura PWA del ZIP base adjunto.
+
+Cambios principales contrastados con el compendio Word adjunto:
+
+- Reubicación inferior segura del panel `Tabla de contenidos` en la sección Editor para móvil y ventanas estrechas/multitarea.
+- Nuevo comportamiento por quintos del título `Navegación por el cuestionario` en `Revisar intento`: zona izquierda, zona central y zona derecha con comportamientos diferenciados.
+- Corrección del botón inferior de selección masiva del desplegable `Configurar` en Editor.
+- Conservación de iconos, manifest, service worker, safe-area, offline, favicon invisible, GitHub Pages e instalación en iPhone.
+
+El service worker se actualiza a `notebooklm-quiz-pwa-v21` para forzar renovación de caché.
+
+---
+
 # Actualización 1.14
 
 Esta versión sustituye el `index.html` anterior por `index_moodle_51_quiz_navblock_v100_carrousel_flick_extremo.html`, conservando intacta la envoltura PWA ya existente: `manifest.json`, `service-worker.js`, `pwa-safe-area.css`, `offline.html`, iconos CG, favicon invisible en PC y compatibilidad con GitHub Pages/iPhone.
@@ -309,21 +324,3 @@ La caché del service worker se ha actualizado a `notebooklm-quiz-pwa-v14` para 
 Esta versión sustituye el `index.html` por `index_moodle_51_quiz_navblock_v102_toast_movil_margenes.html`, conservando la envoltura PWA anterior: iconos CG, manifiesto, service worker, área segura iOS, favicon invisible en PC y despliegue en GitHub Pages.
 
 El cambio funcional del HTML correcto es el ajuste v102: en iPhone/móvil el aviso inferior de importación queda centrado, pero con márgenes laterales algo mayores para que no roce los extremos de la pantalla. En escritorio se conserva el aviso inferior derecho.
-
-
-## Actualización 1.17
-
-Se corrige la sustitución anterior del HTML y se integra como `index.html` el archivo correcto `index_moodle_51_quiz_navblock_v103_toast_click_aislado_quiz.html`.
-
-Esta versión conserva la envoltura PWA previa: iconos CG, manifiesto, service worker, favicon invisible en PC, `pwa-safe-area.css`, `offline.html`, `.nojekyll`, `.gitignore`, compatibilidad con GitHub Pages e instalación en iPhone desde Safari.
-
-El service worker se ha actualizado a `notebooklm-quiz-pwa-v16` para forzar la renovación de la caché en iPhone/Safari.
-
-## Actualización 1.21
-
-Esta versión sustituye únicamente el `index.html` del paquete anterior por el HTML correcto `index_moodle_52_v334_revision_menu_editor_herramientas_contraido_por_defecto_v133(15).html`, conservando la envoltura PWA previa: iconos CG, `manifest.json`, `pwa-safe-area.css`, `offline.html`, favicon invisible en PC, `.nojekyll`, `.gitignore`, compatibilidad iPhone y GitHub Pages.
-
-El HTML integrado mantiene la línea Moodle 5.2 / v334 / v133 y añade los cambios acumulados presentes en esta entrega, incluidos los ajustes avanzados de revisión del intento, edición de respuestas de redactar desde la revisión, revisión final con menú sobre la palabra «Revisión» y el bloque de conversión de documentos Word/Aiken.
-
-El `service-worker.js` se ha actualizado a `notebooklm-quiz-pwa-v20` para forzar la renovación de caché en Safari/iPhone.
-
